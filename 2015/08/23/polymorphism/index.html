@@ -26,7 +26,7 @@
 
 
 
-  <meta name="keywords" content="Backtracking," />
+  <meta name="keywords" content="OOP," />
 
 
 
@@ -35,19 +35,16 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="https://leetcode.com/problems/permutations/模板一样的题。背诵并理解全文。
-1234567891011121314151617181920212223242526List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; ans;public List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; permute(int[] nums) &amp;#1">
+<meta name="description" content="Definition of PolymorphismPolymorphism is the ability of an object to take on many forms. The most common useof polymorphism in OOP occurs when a parent class reference is used to refer to achild clas">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Permutation Template">
-<meta property="og:url" content="http://zhaoze1991.github.io/2015/08/23/Permutation-Template/index.html">
+<meta property="og:title" content="Polymorphism">
+<meta property="og:url" content="http://zhaoze1991.github.io/2015/08/23/polymorphism/index.html">
 <meta property="og:site_name" content="Just-Zzz">
-<meta property="og:description" content="https://leetcode.com/problems/permutations/模板一样的题。背诵并理解全文。
-1234567891011121314151617181920212223242526List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; ans;public List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; permute(int[] nums) &amp;#1">
-<meta property="og:updated_time" content="2015-08-23T05:08:53.000Z">
+<meta property="og:description" content="Definition of PolymorphismPolymorphism is the ability of an object to take on many forms. The most common useof polymorphism in OOP occurs when a parent class reference is used to refer to achild clas">
+<meta property="og:updated_time" content="2015-08-23T17:01:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Permutation Template">
-<meta name="twitter:description" content="https://leetcode.com/problems/permutations/模板一样的题。背诵并理解全文。
-1234567891011121314151617181920212223242526List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; ans;public List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; permute(int[] nums) &amp;#1">
+<meta name="twitter:title" content="Polymorphism">
+<meta name="twitter:description" content="Definition of PolymorphismPolymorphism is the ability of an object to take on many forms. The most common useof polymorphism in OOP occurs when a parent class reference is used to refer to achild clas">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -57,7 +54,7 @@
   };
 </script>
 
-  <title> Permutation Template | Just-Zzz </title>
+  <title> Polymorphism | Just-Zzz </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -164,7 +161,7 @@
           
           
             
-              Permutation Template
+              Polymorphism
             
           
         </h1>
@@ -173,7 +170,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-23T00:54:23-04:00" content="2015-08-23">
+          <time itemprop="dateCreated" datetime="2015-08-23T12:30:09-04:00" content="2015-08-23">
             2015-08-23
           </time>
         </span>
@@ -192,8 +189,21 @@
       
 
       
-        <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/permutations/" target="_blank" rel="external">https://leetcode.com/problems/permutations/</a><br>模板一样的题。背诵并理解全文。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">List&lt;List&lt;Integer&gt;&gt; ans;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; permute(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">    Arrays.sort(nums);</span><br><span class="line">    ans = <span class="keyword">new</span> ArrayList&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line">    HashSet&lt;Integer&gt; visited = <span class="keyword">new</span> HashSet&lt;Integer&gt;();</span><br><span class="line">    List&lt;Integer&gt; path = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    dfs(nums, path, visited);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[] nums, List&lt;Integer&gt; path, HashSet&lt;Integer&gt; visited)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (path.size() == nums.length) &#123;</span><br><span class="line">        ans.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;(path));</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (visited.contains(nums[i]))</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        visited.add(nums[i]);</span><br><span class="line">        path.add(nums[i]);</span><br><span class="line">        dfs(nums, path, visited);</span><br><span class="line">        path.remove(path.size() - <span class="number">1</span>);</span><br><span class="line">        visited.remove(nums[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <span itemprop="articleBody"><h3 id="Definition_of_Polymorphism">Definition of Polymorphism</h3><p>Polymorphism is the ability of an object to take on many forms. The most common use<br>of polymorphism in OOP occurs when a parent class reference is used to refer to a<br>child class object.</p>
+<h3 id="例子">例子</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Instrument</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Instrument play"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Piano</span> <span class="keyword">extends</span> <span class="title">Instrument</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Piano play"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Violin</span> <span class="keyword">extends</span> <span class="title">Instrument</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Violin play"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义了Piano和Violin类，每个类override父类的play() method</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Good_Example</span> </span>&#123;</span><br><span class="line">    <span class="comment">// if you add more new class, you can still use this interface</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tune</span><span class="params">(Instrument i)</span> </span>&#123;</span><br><span class="line">        i.play();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Piano piano = <span class="keyword">new</span> Piano();</span><br><span class="line">        Violin violin = <span class="keyword">new</span> Violin();</span><br><span class="line">        ArrayList&lt;Instrument&gt; instrument = <span class="keyword">new</span> ArrayList&lt;Instrument&gt;();</span><br><span class="line">        instrument.add(piano);</span><br><span class="line">        instrument.add(violin)</span><br><span class="line">        <span class="comment">// you can add more for different class</span></span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">        <span class="keyword">for</span> (Instrument i : instrument) &#123;</span><br><span class="line">            tune(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bad_Example</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tune</span><span class="params">(Violin v)</span> </span>&#123;</span><br><span class="line">        v.play();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tune</span><span class="params">(Piano p)</span> </span>&#123;</span><br><span class="line">        p.play();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// if you want to add more new subclass, you need to implement</span></span><br><span class="line">    <span class="comment">// the new tune() method</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Piano piano = <span class="keyword">new</span> Piano();</span><br><span class="line">        Violin violin = <span class="keyword">new</span> Violin();</span><br><span class="line">        tune(piano);</span><br><span class="line">        tune(violin);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Benefits_of_Polymorphism">Benefits of Polymorphism</h3><ul>
+<li>Simplicity<ul>
+<li>less code</li>
+</ul>
+</li>
+<li>Extensibility<ul>
+<li>Other subclass could be added later to family of types</li>
+</ul>
+</li>
+</ul>
 </span>
       
     </div>
@@ -202,7 +212,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Backtracking/" rel="tag">#Backtracking</a>
+            <a href="/tags/OOP/" rel="tag">#OOP</a>
           
         </div>
       
@@ -211,13 +221,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/08/23/polymorphism/" rel="prev">Polymorphism</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/08/23/hello-world/" rel="next">Hello World</a>
+              <a href="/2015/08/23/Permutation-Template/" rel="next">Permutation Template</a>
             
           </div>
         </div>
@@ -321,7 +329,7 @@
           <div class="post-toc">
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition_of_Polymorphism"><span class="nav-number">1.</span> <span class="nav-text">Definition of Polymorphism</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">2.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Benefits_of_Polymorphism"><span class="nav-number">3.</span> <span class="nav-text">Benefits of Polymorphism</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
