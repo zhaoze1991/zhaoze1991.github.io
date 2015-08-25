@@ -26,7 +26,7 @@
 
 
 
-  <meta name="keywords" content="Two Pointer," />
+  <meta name="keywords" content="Two Pointers," />
 
 
 
@@ -36,19 +36,19 @@
 
 
 <meta name="description" content="https://leetcode.com/problems/container-with-most-water/图片引用自: http://www.programcreek.com/2014/03/leetcode-container-with-most-water-java/
-这种题一直搞不怎么明白。在此题中，你可以当containter 不占任何体积。思路如下：双指针指向数组的两端，计算能够装">
+这种题一直搞不怎么明白。在此题中，你可以当两端挡板不占任何体积。思路如下：双指针指向数组的两端，计算能够装水的量，在此过">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Container With Most Water">
 <meta property="og:url" content="http://zhaoze1991.github.io/2015/08/24/Container-With-Most-Water/index.html">
 <meta property="og:site_name" content="Just-Zzz">
 <meta property="og:description" content="https://leetcode.com/problems/container-with-most-water/图片引用自: http://www.programcreek.com/2014/03/leetcode-container-with-most-water-java/
-这种题一直搞不怎么明白。在此题中，你可以当containter 不占任何体积。思路如下：双指针指向数组的两端，计算能够装">
+这种题一直搞不怎么明白。在此题中，你可以当两端挡板不占任何体积。思路如下：双指针指向数组的两端，计算能够装水的量，在此过">
 <meta property="og:image" content="http://www.programcreek.com/wp-content/uploads/2014/03/container-with-most-water-400x161.png">
-<meta property="og:updated_time" content="2015-08-24T18:49:53.000Z">
+<meta property="og:updated_time" content="2015-08-24T19:45:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Container With Most Water">
 <meta name="twitter:description" content="https://leetcode.com/problems/container-with-most-water/图片引用自: http://www.programcreek.com/2014/03/leetcode-container-with-most-water-java/
-这种题一直搞不怎么明白。在此题中，你可以当containter 不占任何体积。思路如下：双指针指向数组的两端，计算能够装">
+这种题一直搞不怎么明白。在此题中，你可以当两端挡板不占任何体积。思路如下：双指针指向数组的两端，计算能够装水的量，在此过">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -203,7 +203,7 @@
 
       
         <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/container-with-most-water/" target="_blank" rel="external">https://leetcode.com/problems/container-with-most-water/</a><br>图片引用自: <a href="http://www.programcreek.com/2014/03/leetcode-container-with-most-water-java/" target="_blank" rel="external">http://www.programcreek.com/2014/03/leetcode-container-with-most-water-java/</a><br><img src="http://www.programcreek.com/wp-content/uploads/2014/03/container-with-most-water-400x161.png" alt="alt text"></p>
-<p>这种题一直搞不怎么明白。<br>在此题中，你可以当containter 不占任何体积。<br>思路如下：<br>双指针指向数组的两端，计算能够装水的量，在此过程中，比较数组两端的大小，小的一侧向中间移动，直到两个指针重合。</p>
+<p>这种题一直搞不怎么明白。<br>在此题中，你可以当两端挡板不占任何体积。<br>思路如下：<br>双指针指向数组的两端，计算能够装水的量，在此过程中，比较数组两端的大小，小的一侧向中间移动，直到两个指针重合。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (height == <span class="keyword">null</span> || height.length &lt;= <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> begin = <span class="number">0</span>, end = height.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (begin &lt; end) &#123;</span><br><span class="line">        <span class="keyword">int</span> h = Math.min(height[begin], height[end]);</span><br><span class="line">        <span class="keyword">int</span> w = end - begin;</span><br><span class="line">        max = Math.max(h * w, max);</span><br><span class="line">        <span class="keyword">if</span> (height[begin] &lt; height[end])</span><br><span class="line">            ++begin;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            --end;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </span>
       
@@ -213,7 +213,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Two-Pointer/" rel="tag">#Two Pointer</a>
+            <a href="/tags/Two-Pointers/" rel="tag">#Two Pointers</a>
           
         </div>
       
@@ -221,6 +221,8 @@
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/08/24/3-Sum/" rel="prev">3-Sum</a>
             
           </div>
 
@@ -288,7 +290,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -302,7 +304,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
