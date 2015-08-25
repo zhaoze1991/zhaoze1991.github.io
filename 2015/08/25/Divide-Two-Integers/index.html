@@ -26,7 +26,7 @@
 
 
 
-  <meta name="keywords" content="string," />
+  <meta name="keywords" content="Binary Search," />
 
 
 
@@ -35,16 +35,31 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="https://leetcode.com/problems/zigzag-conversion/题目本身可能有啥数学解法，但是，我不喜欢数学解法。做这题的时候挂在一个corner case上，如果numRows = 1, 则立即返回原来的字符串。基本思路如下：定义一个string类型的数组，数组长度为numRows，可以把这个数组看成是从上到下排列的。然后开始遍历整个字符串，同时将字符填到数组中。">
+<meta name="description" content="Solve the problem虽然标签是二分查找，但是用到了一些位操作的技巧。
+
+判断结果的符号。在第6行中，用到了异或操作，即两个条件中有且仅有一个条件为真，才为真。
+左移操作。左移即乘以2。
+
+e.g. dividend = 100, divisor = 3(1) temp = 96, num = 32, end = 4, ans = 32(2) temp = 3, num = 1, en">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ZigZag Conversion">
-<meta property="og:url" content="http://zhaoze1991.github.io/2015/08/24/ZigZag-Conversion/index.html">
+<meta property="og:title" content="Divide Two Integers ">
+<meta property="og:url" content="http://zhaoze1991.github.io/2015/08/25/Divide-Two-Integers/index.html">
 <meta property="og:site_name" content="Just-Zzz">
-<meta property="og:description" content="https://leetcode.com/problems/zigzag-conversion/题目本身可能有啥数学解法，但是，我不喜欢数学解法。做这题的时候挂在一个corner case上，如果numRows = 1, 则立即返回原来的字符串。基本思路如下：定义一个string类型的数组，数组长度为numRows，可以把这个数组看成是从上到下排列的。然后开始遍历整个字符串，同时将字符填到数组中。">
-<meta property="og:updated_time" content="2015-08-24T14:47:47.000Z">
+<meta property="og:description" content="Solve the problem虽然标签是二分查找，但是用到了一些位操作的技巧。
+
+判断结果的符号。在第6行中，用到了异或操作，即两个条件中有且仅有一个条件为真，才为真。
+左移操作。左移即乘以2。
+
+e.g. dividend = 100, divisor = 3(1) temp = 96, num = 32, end = 4, ans = 32(2) temp = 3, num = 1, en">
+<meta property="og:updated_time" content="2015-08-25T14:35:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ZigZag Conversion">
-<meta name="twitter:description" content="https://leetcode.com/problems/zigzag-conversion/题目本身可能有啥数学解法，但是，我不喜欢数学解法。做这题的时候挂在一个corner case上，如果numRows = 1, 则立即返回原来的字符串。基本思路如下：定义一个string类型的数组，数组长度为numRows，可以把这个数组看成是从上到下排列的。然后开始遍历整个字符串，同时将字符填到数组中。">
+<meta name="twitter:title" content="Divide Two Integers ">
+<meta name="twitter:description" content="Solve the problem虽然标签是二分查找，但是用到了一些位操作的技巧。
+
+判断结果的符号。在第6行中，用到了异或操作，即两个条件中有且仅有一个条件为真，才为真。
+左移操作。左移即乘以2。
+
+e.g. dividend = 100, divisor = 3(1) temp = 96, num = 32, end = 4, ans = 32(2) temp = 3, num = 1, en">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -54,7 +69,7 @@
   };
 </script>
 
-  <title> ZigZag Conversion | Just-Zzz </title>
+  <title> Divide Two Integers  | Just-Zzz </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -170,7 +185,7 @@
           
           
             
-              ZigZag Conversion
+              Divide Two Integers 
             
           
         </h1>
@@ -179,8 +194,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-24T10:34:11-04:00" content="2015-08-24">
-            2015-08-24
+          <time itemprop="dateCreated" datetime="2015-08-25T10:22:54-04:00" content="2015-08-25">
+            2015-08-25
           </time>
         </span>
 
@@ -198,8 +213,13 @@
       
 
       
-        <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/zigzag-conversion/" target="_blank" rel="external">https://leetcode.com/problems/zigzag-conversion/</a><br>题目本身可能有啥数学解法，但是，我不喜欢数学解法。<br>做这题的时候挂在一个corner case上，如果numRows = 1, 则立即返回原来的字符串。<br>基本思路如下：<br>定义一个string类型的数组，数组长度为numRows，可以把这个数组看成是从上到下排列的。<br>然后开始遍历整个字符串，同时将字符填到数组中。数组的index在［0 ～ numRows］之间，根据向上移动或者向下移动来改变index的值。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">convert</span><span class="params">(<span class="built_in">string</span> s, <span class="keyword">int</span> numRows)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Note</span></span><br><span class="line">    <span class="keyword">if</span> (numRows == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; <span class="built_in">array</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numRows; ++i) &#123;</span><br><span class="line">        <span class="built_in">array</span>.push_back(<span class="string">""</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">bool</span> up = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">int</span> row = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); ++i) &#123;</span><br><span class="line">        <span class="built_in">array</span>[row] += s[i];</span><br><span class="line">        <span class="keyword">if</span> (up == <span class="literal">true</span>) &#123;</span><br><span class="line">            --row;</span><br><span class="line">            <span class="keyword">if</span> (row &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                row = <span class="number">1</span>;</span><br><span class="line">                up = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// go down</span></span><br><span class="line">            ++row;</span><br><span class="line">            <span class="keyword">if</span> (row == numRows) &#123;</span><br><span class="line">                up = <span class="literal">true</span>;</span><br><span class="line">                row = numRows - <span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">string</span> ans = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">string</span> str : <span class="built_in">array</span>) &#123;</span><br><span class="line">        ans += str;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/divide-two-integers/" target="_blank" rel="external">Solve the problem</a><br>虽然标签是二分查找，但是用到了一些位操作的技巧。</p>
+<ol>
+<li>判断结果的符号。在第6行中，用到了异或操作，即两个条件中有且仅有一个条件为真，才为真。</li>
+<li>左移操作。左移即乘以2。</li>
+</ol>
+<p>e.g. dividend = 100, divisor = 3<br>(1) temp = 96, num = 32, end = 4, ans = 32<br>(2) temp = 3, num = 1, end = 1, ans = 33</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">divide</span><span class="params">(<span class="keyword">int</span> dividend, <span class="keyword">int</span> divisor)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (divisor == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> dividend;</span><br><span class="line">    <span class="keyword">if</span> (dividend == Integer.MIN_VALUE &amp;&amp; divisor == -<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> Integer.MAX_VALUE;</span><br><span class="line">    <span class="keyword">int</span> sign = (dividend &gt; <span class="number">0</span> ^ divisor &gt; <span class="number">0</span>) ? -<span class="number">1</span> : <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">long</span> begin = Math.abs((<span class="keyword">long</span>)divisor);</span><br><span class="line">    <span class="keyword">long</span> end = Math.abs((<span class="keyword">long</span>)dividend);</span><br><span class="line">    <span class="keyword">while</span> (begin &lt;= end) &#123;</span><br><span class="line">        <span class="keyword">long</span> temp = begin;</span><br><span class="line">        <span class="keyword">long</span> num = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> ((temp &lt;&lt; <span class="number">1</span>) &lt; end) &#123;</span><br><span class="line">            temp &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">            num &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ans += num;</span><br><span class="line">        end -= temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)(sign * ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </span>
       
     </div>
@@ -208,7 +228,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/string/" rel="tag">#string</a>
+            <a href="/tags/Binary-Search/" rel="tag">#Binary Search</a>
           
         </div>
       
@@ -217,13 +237,13 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/08/24/Container-With-Most-Water/" rel="prev">Container With Most Water</a>
+              <a href="/2015/08/25/Substring-with-Concatenation-of-All-Words/" rel="prev">Substring with Concatenation of All Words</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/08/23/Longest-Substring-Without-Repeating-Characters/" rel="next">Longest Substring Without Repeating Characters</a>
+              <a href="/2015/08/24/Remove-Duplicates-from-Sorted-Array/" rel="next">Remove Duplicates from Sorted Array</a>
             
           </div>
         </div>
