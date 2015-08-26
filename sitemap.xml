@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zhaoze1991.github.io/2015/08/26/Combination-Sum-I-II/</loc>
+    <lastmod>2015-08-26T19:00:02.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://zhaoze1991.github.io/2015/08/26/Sudoku-Solver/</loc>
+    <lastmod>2015-08-26T18:04:15.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://zhaoze1991.github.io/2015/08/26/Search-for-a-Range/</loc>
+    <lastmod>2015-08-26T16:55:04.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://zhaoze1991.github.io/2015/08/25/Longest-Valid-Parentheses/</loc>
     <lastmod>2015-08-25T17:15:57.000Z</lastmod>
   </url>

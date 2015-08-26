@@ -26,7 +26,7 @@
 
 
 
-  <meta name="keywords" content="OOP," />
+  <meta name="keywords" content="Binary Search," />
 
 
 
@@ -35,16 +35,31 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="Definition of PolymorphismPolymorphism is the ability of an object to take on many forms. The most common useof polymorphism in OOP occurs when a parent class reference is used to refer to achild clas">
+<meta name="description" content="Problem Description这题要求时间复杂度是O(logn), 能想到最简单的方法就是做一次二分查找， 找到一个target，然后向两边扩展，找到两端的分界。但是，如果数组中所有的数字都是相同的，那么这种方法的时间复杂度就是O(n)。所以，这题可以做两次二分查找。
+
+找到最左边的等于target的数字
+找到最右边等于target的数字
+
+注意代码中，当nums[mid] == targ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Polymorphism">
-<meta property="og:url" content="http://zhaoze1991.github.io/2015/08/23/polymorphism/index.html">
+<meta property="og:title" content="Search for a Range">
+<meta property="og:url" content="http://zhaoze1991.github.io/2015/08/26/Search-for-a-Range/index.html">
 <meta property="og:site_name" content="Just-Zzz">
-<meta property="og:description" content="Definition of PolymorphismPolymorphism is the ability of an object to take on many forms. The most common useof polymorphism in OOP occurs when a parent class reference is used to refer to achild clas">
-<meta property="og:updated_time" content="2015-08-23T17:01:19.000Z">
+<meta property="og:description" content="Problem Description这题要求时间复杂度是O(logn), 能想到最简单的方法就是做一次二分查找， 找到一个target，然后向两边扩展，找到两端的分界。但是，如果数组中所有的数字都是相同的，那么这种方法的时间复杂度就是O(n)。所以，这题可以做两次二分查找。
+
+找到最左边的等于target的数字
+找到最右边等于target的数字
+
+注意代码中，当nums[mid] == targ">
+<meta property="og:updated_time" content="2015-08-26T16:55:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Polymorphism">
-<meta name="twitter:description" content="Definition of PolymorphismPolymorphism is the ability of an object to take on many forms. The most common useof polymorphism in OOP occurs when a parent class reference is used to refer to achild clas">
+<meta name="twitter:title" content="Search for a Range">
+<meta name="twitter:description" content="Problem Description这题要求时间复杂度是O(logn), 能想到最简单的方法就是做一次二分查找， 找到一个target，然后向两边扩展，找到两端的分界。但是，如果数组中所有的数字都是相同的，那么这种方法的时间复杂度就是O(n)。所以，这题可以做两次二分查找。
+
+找到最左边的等于target的数字
+找到最右边等于target的数字
+
+注意代码中，当nums[mid] == targ">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -54,7 +69,7 @@
   };
 </script>
 
-  <title> Polymorphism | Just-Zzz </title>
+  <title> Search for a Range | Just-Zzz </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -170,7 +185,7 @@
           
           
             
-              Polymorphism
+              Search for a Range
             
           
         </h1>
@@ -179,8 +194,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-23T12:30:09-04:00" content="2015-08-23">
-            2015-08-23
+          <time itemprop="dateCreated" datetime="2015-08-26T12:46:42-04:00" content="2015-08-26">
+            2015-08-26
           </time>
         </span>
 
@@ -198,21 +213,13 @@
       
 
       
-        <span itemprop="articleBody"><h3 id="Definition_of_Polymorphism">Definition of Polymorphism</h3><p>Polymorphism is the ability of an object to take on many forms. The most common use<br>of polymorphism in OOP occurs when a parent class reference is used to refer to a<br>child class object.</p>
-<h3 id="例子">例子</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Instrument</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Instrument play"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Piano</span> <span class="keyword">extends</span> <span class="title">Instrument</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Piano play"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Violin</span> <span class="keyword">extends</span> <span class="title">Instrument</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Violin play"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>定义了Piano和Violin类，每个类override父类的play() method</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Good_Example</span> </span>&#123;</span><br><span class="line">    <span class="comment">// if you add more new class, you can still use this interface</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tune</span><span class="params">(Instrument i)</span> </span>&#123;</span><br><span class="line">        i.play();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Piano piano = <span class="keyword">new</span> Piano();</span><br><span class="line">        Violin violin = <span class="keyword">new</span> Violin();</span><br><span class="line">        ArrayList&lt;Instrument&gt; instrument = <span class="keyword">new</span> ArrayList&lt;Instrument&gt;();</span><br><span class="line">        instrument.add(piano);</span><br><span class="line">        instrument.add(violin)</span><br><span class="line">        <span class="comment">// you can add more for different class</span></span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">        <span class="keyword">for</span> (Instrument i : instrument) &#123;</span><br><span class="line">            tune(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bad_Example</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tune</span><span class="params">(Violin v)</span> </span>&#123;</span><br><span class="line">        v.play();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tune</span><span class="params">(Piano p)</span> </span>&#123;</span><br><span class="line">        p.play();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// if you want to add more new subclass, you need to implement</span></span><br><span class="line">    <span class="comment">// the new tune() method</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Piano piano = <span class="keyword">new</span> Piano();</span><br><span class="line">        Violin violin = <span class="keyword">new</span> Violin();</span><br><span class="line">        tune(piano);</span><br><span class="line">        tune(violin);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Benefits_of_Polymorphism">Benefits of Polymorphism</h3><ul>
-<li>Simplicity<ul>
-<li>less code</li>
-</ul>
-</li>
-<li>Extensibility<ul>
-<li>Other subclass could be added later to family of types</li>
-</ul>
-</li>
-</ul>
+        <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/search-for-a-range/" target="_blank" rel="external">Problem Description</a><br>这题要求时间复杂度是O(logn), 能想到最简单的方法就是做一次二分查找， 找到一个target，然后向两边扩展，找到两端的分界。但是，如果数组中所有的数字都是相同的，那么这种方法的时间复杂度就是O(n)。<br>所以，这题可以做两次二分查找。</p>
+<ol>
+<li>找到最左边的等于target的数字</li>
+<li>找到最右边等于target的数字</li>
+</ol>
+<p>注意代码中，当nums[mid] == target 时候的处理，如果找左边，则将mid赋值给end，右边反之。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] searchRange(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">    <span class="keyword">int</span>[]ans = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">    ans[<span class="number">0</span>] = -<span class="number">1</span>;</span><br><span class="line">    ans[<span class="number">1</span>] = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> begin = <span class="number">0</span>, end = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// find the first target</span></span><br><span class="line">    <span class="keyword">while</span> (begin + <span class="number">1</span> &lt; end) &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = begin + (end - begin) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums[mid] == target) &#123;</span><br><span class="line">            end = mid;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target) &#123;</span><br><span class="line">            begin = mid;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            end = mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (nums[begin] == target) &#123;</span><br><span class="line">        ans[<span class="number">0</span>] = begin;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(nums[end] == target) &#123;</span><br><span class="line">        ans[<span class="number">0</span>] = end;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// no target in the array</span></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// find the second target</span></span><br><span class="line">    end = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (begin + <span class="number">1</span> &lt; end) &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = begin + (end - begin) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums[mid] == target) &#123;</span><br><span class="line">            begin = mid;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target) &#123;</span><br><span class="line">            begin = mid;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            end = mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (nums[end] == target) &#123;</span><br><span class="line">        ans[<span class="number">1</span>] = end;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ans[<span class="number">1</span>] = begin;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </span>
       
     </div>
@@ -221,7 +228,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/OOP/" rel="tag">#OOP</a>
+            <a href="/tags/Binary-Search/" rel="tag">#Binary Search</a>
           
         </div>
       
@@ -230,13 +237,13 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/08/23/Data-Stream-Median/" rel="prev">Data Stream Median</a>
+              <a href="/2015/08/26/Sudoku-Solver/" rel="prev">Sudoku Solver</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/08/23/Permutation-Template/" rel="next">Permutation Template</a>
+              <a href="/2015/08/25/Longest-Valid-Parentheses/" rel="next">Longest Valid Parentheses</a>
             
           </div>
         </div>
@@ -340,7 +347,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition_of_Polymorphism"><span class="nav-number">1.</span> <span class="nav-text">Definition of Polymorphism</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">2.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Benefits_of_Polymorphism"><span class="nav-number">3.</span> <span class="nav-text">Benefits of Polymorphism</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

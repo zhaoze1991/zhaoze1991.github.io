@@ -26,7 +26,7 @@
 
 
 
-  <meta name="keywords" content="OOP," />
+  <meta name="keywords" content="Backtracking,HashTable," />
 
 
 
@@ -35,16 +35,19 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="Definition of PolymorphismPolymorphism is the ability of an object to take on many forms. The most common useof polymorphism in OOP occurs when a parent class reference is used to refer to achild clas">
+<meta name="description" content="Problem Description这种回朔的题目都不怎么难，感觉关键点在于短时间内能不能写出bug-free来。
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849public void solveSudoku(char[][] board) &amp;#123;    if">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Polymorphism">
-<meta property="og:url" content="http://zhaoze1991.github.io/2015/08/23/polymorphism/index.html">
+<meta property="og:title" content="Sudoku Solver">
+<meta property="og:url" content="http://zhaoze1991.github.io/2015/08/26/Sudoku-Solver/index.html">
 <meta property="og:site_name" content="Just-Zzz">
-<meta property="og:description" content="Definition of PolymorphismPolymorphism is the ability of an object to take on many forms. The most common useof polymorphism in OOP occurs when a parent class reference is used to refer to achild clas">
-<meta property="og:updated_time" content="2015-08-23T17:01:19.000Z">
+<meta property="og:description" content="Problem Description这种回朔的题目都不怎么难，感觉关键点在于短时间内能不能写出bug-free来。
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849public void solveSudoku(char[][] board) &amp;#123;    if">
+<meta property="og:updated_time" content="2015-08-26T18:04:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Polymorphism">
-<meta name="twitter:description" content="Definition of PolymorphismPolymorphism is the ability of an object to take on many forms. The most common useof polymorphism in OOP occurs when a parent class reference is used to refer to achild clas">
+<meta name="twitter:title" content="Sudoku Solver">
+<meta name="twitter:description" content="Problem Description这种回朔的题目都不怎么难，感觉关键点在于短时间内能不能写出bug-free来。
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849public void solveSudoku(char[][] board) &amp;#123;    if">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -54,7 +57,7 @@
   };
 </script>
 
-  <title> Polymorphism | Just-Zzz </title>
+  <title> Sudoku Solver | Just-Zzz </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -170,7 +173,7 @@
           
           
             
-              Polymorphism
+              Sudoku Solver
             
           
         </h1>
@@ -179,8 +182,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-23T12:30:09-04:00" content="2015-08-23">
-            2015-08-23
+          <time itemprop="dateCreated" datetime="2015-08-26T13:58:35-04:00" content="2015-08-26">
+            2015-08-26
           </time>
         </span>
 
@@ -198,21 +201,8 @@
       
 
       
-        <span itemprop="articleBody"><h3 id="Definition_of_Polymorphism">Definition of Polymorphism</h3><p>Polymorphism is the ability of an object to take on many forms. The most common use<br>of polymorphism in OOP occurs when a parent class reference is used to refer to a<br>child class object.</p>
-<h3 id="例子">例子</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Instrument</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Instrument play"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Piano</span> <span class="keyword">extends</span> <span class="title">Instrument</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Piano play"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Violin</span> <span class="keyword">extends</span> <span class="title">Instrument</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Violin play"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>定义了Piano和Violin类，每个类override父类的play() method</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Good_Example</span> </span>&#123;</span><br><span class="line">    <span class="comment">// if you add more new class, you can still use this interface</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tune</span><span class="params">(Instrument i)</span> </span>&#123;</span><br><span class="line">        i.play();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Piano piano = <span class="keyword">new</span> Piano();</span><br><span class="line">        Violin violin = <span class="keyword">new</span> Violin();</span><br><span class="line">        ArrayList&lt;Instrument&gt; instrument = <span class="keyword">new</span> ArrayList&lt;Instrument&gt;();</span><br><span class="line">        instrument.add(piano);</span><br><span class="line">        instrument.add(violin)</span><br><span class="line">        <span class="comment">// you can add more for different class</span></span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">        <span class="keyword">for</span> (Instrument i : instrument) &#123;</span><br><span class="line">            tune(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bad_Example</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tune</span><span class="params">(Violin v)</span> </span>&#123;</span><br><span class="line">        v.play();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tune</span><span class="params">(Piano p)</span> </span>&#123;</span><br><span class="line">        p.play();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// if you want to add more new subclass, you need to implement</span></span><br><span class="line">    <span class="comment">// the new tune() method</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Piano piano = <span class="keyword">new</span> Piano();</span><br><span class="line">        Violin violin = <span class="keyword">new</span> Violin();</span><br><span class="line">        tune(piano);</span><br><span class="line">        tune(violin);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Benefits_of_Polymorphism">Benefits of Polymorphism</h3><ul>
-<li>Simplicity<ul>
-<li>less code</li>
-</ul>
-</li>
-<li>Extensibility<ul>
-<li>Other subclass could be added later to family of types</li>
-</ul>
-</li>
-</ul>
+        <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/sudoku-solver/" target="_blank" rel="external">Problem Description</a><br>这种回朔的题目都不怎么难，感觉关键点在于短时间内能不能写出bug-free来。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">solveSudoku</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (board == <span class="keyword">null</span> || board.length != <span class="number">9</span> || board[<span class="number">0</span>].length != <span class="number">9</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    dfs(board);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dfs</span><span class="params">(<span class="keyword">char</span>[][]board)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; board[<span class="number">0</span>].length; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (board[i][j] == <span class="string">'.'</span>) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">char</span> c = <span class="string">'1'</span>; c &lt;= <span class="string">'9'</span>; ++c) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (valid(board, i, j, c)) &#123;</span><br><span class="line">                        board[i][j] = c;</span><br><span class="line">                        <span class="keyword">if</span> (dfs(board)) &#123;</span><br><span class="line">                            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">                        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                            <span class="comment">// note, you must recover it, and back tracking</span></span><br><span class="line">                            <span class="comment">// the previous level</span></span><br><span class="line">                            board[i][j] = <span class="string">'.'</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">valid</span><span class="params">(<span class="keyword">char</span>[][]board, <span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">char</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// check row and column</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; <span class="number">9</span>; ++index) &#123;</span><br><span class="line">        <span class="keyword">char</span> c = board[i][index];</span><br><span class="line">        <span class="keyword">if</span> (c == target)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        c = board[index][j];</span><br><span class="line">        <span class="keyword">if</span> (c == target)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> row = (i / <span class="number">3</span>) * <span class="number">3</span>, column = (j / <span class="number">3</span>) * <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">for</span> (i = row; i &lt; row + <span class="number">3</span>; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (j = column; j &lt; column + <span class="number">3</span>; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (board[i][j] == target) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </span>
       
     </div>
@@ -221,7 +211,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/OOP/" rel="tag">#OOP</a>
+            <a href="/tags/Backtracking/" rel="tag">#Backtracking</a>
+          
+            <a href="/tags/HashTable/" rel="tag">#HashTable</a>
           
         </div>
       
@@ -230,13 +222,13 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/08/23/Data-Stream-Median/" rel="prev">Data Stream Median</a>
+              <a href="/2015/08/26/Combination-Sum-I-II/" rel="prev">Combination Sum I, II</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/08/23/Permutation-Template/" rel="next">Permutation Template</a>
+              <a href="/2015/08/26/Search-for-a-Range/" rel="next">Search for a Range</a>
             
           </div>
         </div>
@@ -340,7 +332,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition_of_Polymorphism"><span class="nav-number">1.</span> <span class="nav-text">Definition of Polymorphism</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">2.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Benefits_of_Polymorphism"><span class="nav-number">3.</span> <span class="nav-text">Benefits of Polymorphism</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
