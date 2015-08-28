@@ -2,6 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zhaoze1991.github.io/2015/08/28/Minimum-Window-Substring/</loc>
+    <lastmod>2015-08-28T21:28:38.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://zhaoze1991.github.io/2015/08/28/sort-colors/</loc>
+    <lastmod>2015-08-28T17:36:47.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://zhaoze1991.github.io/2015/08/28/Search-a-2D-Matrix-I-II/</loc>
+    <lastmod>2015-08-28T16:46:23.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://zhaoze1991.github.io/2015/08/27/Sqrt-x/</loc>
+    <lastmod>2015-08-27T21:21:16.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://zhaoze1991.github.io/2015/08/27/Add-Binary/</loc>
+    <lastmod>2015-08-27T21:05:50.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://zhaoze1991.github.io/2015/08/27/Simplify-Path/</loc>
     <lastmod>2015-08-27T20:27:34.000Z</lastmod>
   </url>
