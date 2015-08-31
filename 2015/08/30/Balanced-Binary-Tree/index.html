@@ -35,19 +35,19 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="Balanced Binary Tree关键点在于减少重复计算。如果当前的子树不平衡，直接返回-1
-1234567891011121314151617public boolean isBalanced(TreeNode root) &amp;#123;    return getHeight(root) != -1;&amp;#125;public int getHeight(TreeNode root) &amp;#1">
+<meta name="description" content="Balanced Binary Tree关键点在于减少重复计算。如果当前的子树不平衡，直接返回-1。
+1234567891011121314151617public boolean isBalanced(TreeNode root) &amp;#123;    return getHeight(root) != -1;&amp;#125;public int getHeight(TreeNode root) &amp;#">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Balanced Binary Tree">
 <meta property="og:url" content="http://zhaoze1991.github.io/2015/08/30/Balanced-Binary-Tree/index.html">
 <meta property="og:site_name" content="Just-Zzz">
-<meta property="og:description" content="Balanced Binary Tree关键点在于减少重复计算。如果当前的子树不平衡，直接返回-1
-1234567891011121314151617public boolean isBalanced(TreeNode root) &amp;#123;    return getHeight(root) != -1;&amp;#125;public int getHeight(TreeNode root) &amp;#1">
-<meta property="og:updated_time" content="2015-08-31T03:04:57.000Z">
+<meta property="og:description" content="Balanced Binary Tree关键点在于减少重复计算。如果当前的子树不平衡，直接返回-1。
+1234567891011121314151617public boolean isBalanced(TreeNode root) &amp;#123;    return getHeight(root) != -1;&amp;#125;public int getHeight(TreeNode root) &amp;#">
+<meta property="og:updated_time" content="2015-08-31T03:34:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Balanced Binary Tree">
-<meta name="twitter:description" content="Balanced Binary Tree关键点在于减少重复计算。如果当前的子树不平衡，直接返回-1
-1234567891011121314151617public boolean isBalanced(TreeNode root) &amp;#123;    return getHeight(root) != -1;&amp;#125;public int getHeight(TreeNode root) &amp;#1">
+<meta name="twitter:description" content="Balanced Binary Tree关键点在于减少重复计算。如果当前的子树不平衡，直接返回-1。
+1234567891011121314151617public boolean isBalanced(TreeNode root) &amp;#123;    return getHeight(root) != -1;&amp;#125;public int getHeight(TreeNode root) &amp;#">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -222,7 +222,7 @@
       
 
       
-        <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/balanced-binary-tree/" target="_blank" rel="external">Balanced Binary Tree</a><br>关键点在于减少重复计算。如果当前的子树不平衡，直接返回-1</p>
+        <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/balanced-binary-tree/" target="_blank" rel="external">Balanced Binary Tree</a><br>关键点在于减少重复计算。如果当前的子树不平衡，直接返回-1。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBalanced</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getHeight(root) != -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getHeight</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> left = getHeight(root.left);</span><br><span class="line">    <span class="keyword">if</span> (left == -<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> right = getHeight(root.right);</span><br><span class="line">    <span class="keyword">if</span> (right == -<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (Math.abs(right - left) &gt; <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> Math.max(left, right) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </span>
       
@@ -309,7 +309,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-count">58</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

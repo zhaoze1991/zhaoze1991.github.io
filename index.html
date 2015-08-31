@@ -192,6 +192,134 @@
           
           
             
+              <a class="post-title-link" href="/2015/08/31/Populating-Next-Right-Pointers-in-Each-Node/" itemprop="url">
+                Populating Next Right Pointers in Each Node
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-08-31T14:04:46-04:00" content="2015-08-31">
+            2015-08-31
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/populating-next-right-pointers-in-each-node/" target="_blank" rel="external">Populating Next Right Pointers in Each Node</a><br>一次过了之后，不理解为啥这题会被标记为medium。后来仔细一看，要求contant space！下面这个naive的方法不符合题意。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connect</span><span class="params">(TreeLinkNode root)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">         <span class="keyword">return</span>;</span><br><span class="line">     List&lt;TreeLinkNode&gt; parents = <span class="keyword">new</span> LinkedList&lt;TreeLinkNode&gt;();</span><br><span class="line">     parents.add(root);</span><br><span class="line">     <span class="keyword">while</span> (parents.size() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; parents.size() - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">             parents.get(i).next = parents.get(i + <span class="number">1</span>);</span><br><span class="line">         &#125;</span><br><span class="line">         List&lt;TreeLinkNode&gt; children = <span class="keyword">new</span> LinkedList&lt;TreeLinkNode&gt;();</span><br><span class="line">         <span class="keyword">for</span> (TreeLinkNode node : parents) &#123;</span><br><span class="line">             <span class="keyword">if</span> (node.left != <span class="keyword">null</span>)</span><br><span class="line">                 children.add(node.left);</span><br><span class="line">             <span class="keyword">if</span> (node.right != <span class="keyword">null</span>)</span><br><span class="line">                 children.add(node.right);</span><br><span class="line">         &#125;</span><br><span class="line">         parents = children;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/08/31/Flatten-Binary-Tree-to-Linked-List/" itemprop="url">
+                Flatten Binary Tree to Linked List
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-08-31T13:30:32-04:00" content="2015-08-31">
+            2015-08-31
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/flatten-binary-tree-to-linked-list/" target="_blank" rel="external">Flatten Binary Tree to Linked List</a><br>题目中给了提示可能用pre-order 来做。我们用一个prev来记录先序遍历中之前的点。<br>在递归过程中，保持先序遍历队形。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">preorder</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">    <span class="comment">// root do something</span></span><br><span class="line">    preorder(root.left);</span><br><span class="line">    preorder(root.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码大致是这样一个结构。这题，我们要将prev的right改成prev的左子树，而prev的左子树得清空，所以我们得用变量来记录left和right。然后再做先序遍历。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> TreeNode prev = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">flatten</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    helper(root);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">preorder</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span> (prev == <span class="keyword">null</span>)</span><br><span class="line">        prev = root;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        prev.right = root;</span><br><span class="line">        prev = root;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    TreeNode left = root.left;</span><br><span class="line">    TreeNode right = root.right;</span><br><span class="line">    root.left = <span class="keyword">null</span>;</span><br><span class="line">    preorder(left);</span><br><span class="line">    preorder(right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/08/30/Minimum-Depth-of-Binary-Tree/" itemprop="url">
                 Minimum Depth of Binary Tree
               </a>
@@ -287,7 +415,7 @@
 
       
         
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/balanced-binary-tree/" target="_blank" rel="external">Balanced Binary Tree</a><br>关键点在于减少重复计算。如果当前的子树不平衡，直接返回-1</p>
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/balanced-binary-tree/" target="_blank" rel="external">Balanced Binary Tree</a><br>关键点在于减少重复计算。如果当前的子树不平衡，直接返回-1。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBalanced</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getHeight(root) != -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getHeight</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> left = getHeight(root.left);</span><br><span class="line">    <span class="keyword">if</span> (left == -<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> right = getHeight(root.right);</span><br><span class="line">    <span class="keyword">if</span> (right == -<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (Math.abs(right - left) &gt; <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> Math.max(left, right) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </span>
         
@@ -350,7 +478,8 @@
 
       
         
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/" target="_blank" rel="external">Convert Sorted List to Binary Search Tree</a><br>naive的方法，把所有的node放到一个数组里，这样就能实现random access。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">sortedListToBST</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    ListNode ptr = head;</span><br><span class="line">    <span class="keyword">while</span> (ptr != <span class="keyword">null</span>) &#123;</span><br><span class="line">        count++;</span><br><span class="line">        ptr = ptr.next;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode[] nodes = <span class="keyword">new</span> ListNode[count];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; ++i) &#123;</span><br><span class="line">        nodes[i] = head;</span><br><span class="line">        head = head.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> build(nodes, <span class="number">0</span>, count - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">build</span><span class="params">(ListNode[] nodes, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin &gt; end)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (begin == end) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> TreeNode(nodes[begin].val);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid = begin + (end - begin) / <span class="number">2</span>;</span><br><span class="line">    TreeNode root = <span class="keyword">new</span> TreeNode(nodes[mid].val);</span><br><span class="line">    root.left = build(nodes, begin, mid - <span class="number">1</span>);</span><br><span class="line">    root.right = build(nodes, mid + <span class="number">1</span>, end);</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/" target="_blank" rel="external">Convert Sorted List to Binary Search Tree</a><br>naive的方法，把所有的node放到一个数组里，这样就能实现random access。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">sortedListToBST</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    ListNode ptr = head;</span><br><span class="line">    <span class="keyword">while</span> (ptr != <span class="keyword">null</span>) &#123;</span><br><span class="line">        count++;</span><br><span class="line">        ptr = ptr.next;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode[] nodes = <span class="keyword">new</span> ListNode[count];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; ++i) &#123;</span><br><span class="line">        nodes[i] = head;</span><br><span class="line">        head = head.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> build(nodes, <span class="number">0</span>, count - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">build</span><span class="params">(ListNode[] nodes, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin &gt; end)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (begin == end) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> TreeNode(nodes[begin].val);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid = begin + (end - begin) / <span class="number">2</span>;</span><br><span class="line">    TreeNode root = <span class="keyword">new</span> TreeNode(nodes[mid].val);</span><br><span class="line">    root.left = build(nodes, begin, mid - <span class="number">1</span>);</span><br><span class="line">    root.right = build(nodes, mid + <span class="number">1</span>, end);</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>非naive的方法，假设我们没有这个数组，怎么去实现in－order？ 递归何时终止何时返回？<br>我们需要两个变量begin和end，表示当前区间的开头和结尾，我们并不需要这两个变量来帮助去access链表中的元素，而是用这两个变量来控制递归结束。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">ListNode node = <span class="keyword">null</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">sortedListToBST</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    ListNode ptr = head;</span><br><span class="line">    <span class="keyword">while</span> (ptr != <span class="keyword">null</span>) &#123;</span><br><span class="line">        ptr = ptr.next;</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    node = head;</span><br><span class="line">    <span class="keyword">return</span> build(<span class="number">0</span>, count - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">build</span><span class="params">(<span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin &gt; end)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (begin == end) &#123;</span><br><span class="line">        <span class="keyword">int</span> val = node.val;</span><br><span class="line">        node = node.next;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> TreeNode(val);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid = begin + (end - begin) / <span class="number">2</span>;</span><br><span class="line">    TreeNode left = build(begin, mid - <span class="number">1</span>);</span><br><span class="line">    TreeNode root = <span class="keyword">new</span> TreeNode(node.val);</span><br><span class="line">    node = node.next;</span><br><span class="line">    root.left = left;</span><br><span class="line">    root.right = build(mid + <span class="number">1</span>, end);</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </span>
@@ -709,132 +838,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/30/Validate-Binary-Search-Tree/" itemprop="url">
-                Validate Binary Search Tree
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-30T02:08:58-04:00" content="2015-08-30">
-            2015-08-30
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/validate-binary-search-tree/" target="_blank" rel="external">Validate Binary Search Tree</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">TreeNode prev = <span class="keyword">null</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValidBST</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (isValidBST(root.left) == <span class="keyword">false</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (prev != <span class="keyword">null</span> &amp;&amp; prev.val &gt;= root.val)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    prev = root;</span><br><span class="line">    <span class="keyword">return</span> isValidBST(root.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/30/Tree-Traversal/" itemprop="url">
-                Tree Traversal
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-30T01:57:10-04:00" content="2015-08-30">
-            2015-08-30
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p>理解并背诵全文<br><a href="https://leetcode.com/problems/binary-tree-inorder-traversal/" target="_blank" rel="external">Binary Tree Inorder Traversal</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">inorderTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;TreeNode&gt;();</span><br><span class="line">    <span class="keyword">while</span> (root != <span class="keyword">null</span>) &#123;</span><br><span class="line">        stack.push(root);</span><br><span class="line">        root = root.left;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (!stack.isEmpty()) &#123;</span><br><span class="line">        root = stack.pop();</span><br><span class="line">        ans.add(root.val);</span><br><span class="line">        root = root.right;</span><br><span class="line">        <span class="keyword">while</span> (root != <span class="keyword">null</span>) &#123;</span><br><span class="line">            stack.push(root);</span><br><span class="line">            root = root.left;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><a href="https://leetcode.com/problems/binary-tree-preorder-traversal/" target="_blank" rel="external">Binary Tree Preorder Traversal</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">preorderTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;TreeNode&gt;();</span><br><span class="line">    stack.push(root);</span><br><span class="line">    <span class="keyword">while</span> (!stack.isEmpty()) &#123;</span><br><span class="line">        root = stack.pop();</span><br><span class="line">        ans.add(root.val);</span><br><span class="line">        <span class="keyword">if</span> (root.right != <span class="keyword">null</span>) &#123;</span><br><span class="line">            stack.push(root.right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (root.left != <span class="keyword">null</span>) &#123;</span><br><span class="line">            stack.push(root.left);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><a href="https://leetcode.com/problems/binary-tree-postorder-traversal/" target="_blank" rel="external">Binary Tree Postorder Traversal</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">postorderTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;TreeNode&gt;();</span><br><span class="line">    stack.push(root);</span><br><span class="line">    <span class="keyword">while</span> (!stack.isEmpty()) &#123;</span><br><span class="line">        root = stack.pop();</span><br><span class="line">        ans.add(root.val);</span><br><span class="line">        <span class="keyword">if</span> (root.left != <span class="keyword">null</span>) &#123;</span><br><span class="line">            stack.push(root.left);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (root.right != <span class="keyword">null</span>) &#123;</span><br><span class="line">            stack.push(root.right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    Collections.reverse(ans);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -873,7 +876,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-count">58</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

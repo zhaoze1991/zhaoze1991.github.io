@@ -26,7 +26,7 @@
 
 
 
-  <meta name="keywords" content="Dynamic Programming," />
+  <meta name="keywords" content="Binary Tree," />
 
 
 
@@ -35,34 +35,19 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="Problem Description这种题，就是男默女泪。超时。大致思路如下：
-
-如果string和pattern都是空，直接返回true
-比较string和pattern的第一个字符，如果pattern的第一个字符不等于 ‘*’，则比较该字符和string中得第一个字符
-如果pattern的第一个字符等于 ‘*’，则一点一点对string做subtring() 操作并比较
-
-123456789">
+<meta name="description" content="Populating Next Right Pointers in Each Node一次过了之后，不理解为啥这题会被标记为medium。后来仔细一看，要求contant space！下面这个naive的方法不符合题意。
+12345678910111213141516171819public void connect(TreeLinkNode root) &amp;#123;     if (root =">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Wildcard Matching">
-<meta property="og:url" content="http://zhaoze1991.github.io/2015/08/26/Wildcard-Matching/index.html">
+<meta property="og:title" content="Populating Next Right Pointers in Each Node">
+<meta property="og:url" content="http://zhaoze1991.github.io/2015/08/31/Populating-Next-Right-Pointers-in-Each-Node/index.html">
 <meta property="og:site_name" content="Just-Zzz">
-<meta property="og:description" content="Problem Description这种题，就是男默女泪。超时。大致思路如下：
-
-如果string和pattern都是空，直接返回true
-比较string和pattern的第一个字符，如果pattern的第一个字符不等于 ‘*’，则比较该字符和string中得第一个字符
-如果pattern的第一个字符等于 ‘*’，则一点一点对string做subtring() 操作并比较
-
-123456789">
-<meta property="og:updated_time" content="2015-08-27T04:12:54.000Z">
+<meta property="og:description" content="Populating Next Right Pointers in Each Node一次过了之后，不理解为啥这题会被标记为medium。后来仔细一看，要求contant space！下面这个naive的方法不符合题意。
+12345678910111213141516171819public void connect(TreeLinkNode root) &amp;#123;     if (root =">
+<meta property="og:updated_time" content="2015-08-31T18:06:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wildcard Matching">
-<meta name="twitter:description" content="Problem Description这种题，就是男默女泪。超时。大致思路如下：
-
-如果string和pattern都是空，直接返回true
-比较string和pattern的第一个字符，如果pattern的第一个字符不等于 ‘*’，则比较该字符和string中得第一个字符
-如果pattern的第一个字符等于 ‘*’，则一点一点对string做subtring() 操作并比较
-
-123456789">
+<meta name="twitter:title" content="Populating Next Right Pointers in Each Node">
+<meta name="twitter:description" content="Populating Next Right Pointers in Each Node一次过了之后，不理解为啥这题会被标记为medium。后来仔细一看，要求contant space！下面这个naive的方法不符合题意。
+12345678910111213141516171819public void connect(TreeLinkNode root) &amp;#123;     if (root =">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -72,7 +57,7 @@
   };
 </script>
 
-  <title> Wildcard Matching | Just-Zzz </title>
+  <title> Populating Next Right Pointers in Each Node | Just-Zzz </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -209,7 +194,7 @@
           
           
             
-              Wildcard Matching
+              Populating Next Right Pointers in Each Node
             
           
         </h1>
@@ -218,8 +203,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-26T23:14:13-04:00" content="2015-08-26">
-            2015-08-26
+          <time itemprop="dateCreated" datetime="2015-08-31T14:04:46-04:00" content="2015-08-31">
+            2015-08-31
           </time>
         </span>
 
@@ -237,13 +222,8 @@
       
 
       
-        <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/wildcard-matching/" target="_blank" rel="external">Problem Description</a><br>这种题，就是男默女泪。超时。<br>大致思路如下：</p>
-<ol>
-<li>如果string和pattern都是空，直接返回true</li>
-<li>比较string和pattern的第一个字符，如果pattern的第一个字符不等于 ‘*’，则比较该字符和string中得第一个字符</li>
-<li>如果pattern的第一个字符等于 ‘*’，则一点一点对string做subtring() 操作并比较</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isMatch</span><span class="params">(String s, String p)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write your code here</span></span><br><span class="line">    <span class="keyword">if</span> (s.length() == <span class="number">0</span> &amp;&amp; p.length() == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (p.length() == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">char</span> c = p.charAt(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (s.length() != <span class="number">0</span> &amp;&amp; (c == <span class="string">'?'</span> || c == s.charAt(<span class="number">0</span>)))</span><br><span class="line">        <span class="keyword">return</span> isMatch(s.substring(<span class="number">1</span>), p.substring(<span class="number">1</span>));</span><br><span class="line">    <span class="keyword">if</span> (c == <span class="string">'*'</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= s.length(); ++i) &#123;</span><br><span class="line">            String strLeft = s.substring(i);</span><br><span class="line">            <span class="keyword">if</span> (isMatch(strLeft, p.substring(<span class="number">1</span>)))</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+        <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/populating-next-right-pointers-in-each-node/" target="_blank" rel="external">Populating Next Right Pointers in Each Node</a><br>一次过了之后，不理解为啥这题会被标记为medium。后来仔细一看，要求contant space！下面这个naive的方法不符合题意。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connect</span><span class="params">(TreeLinkNode root)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">         <span class="keyword">return</span>;</span><br><span class="line">     List&lt;TreeLinkNode&gt; parents = <span class="keyword">new</span> LinkedList&lt;TreeLinkNode&gt;();</span><br><span class="line">     parents.add(root);</span><br><span class="line">     <span class="keyword">while</span> (parents.size() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; parents.size() - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">             parents.get(i).next = parents.get(i + <span class="number">1</span>);</span><br><span class="line">         &#125;</span><br><span class="line">         List&lt;TreeLinkNode&gt; children = <span class="keyword">new</span> LinkedList&lt;TreeLinkNode&gt;();</span><br><span class="line">         <span class="keyword">for</span> (TreeLinkNode node : parents) &#123;</span><br><span class="line">             <span class="keyword">if</span> (node.left != <span class="keyword">null</span>)</span><br><span class="line">                 children.add(node.left);</span><br><span class="line">             <span class="keyword">if</span> (node.right != <span class="keyword">null</span>)</span><br><span class="line">                 children.add(node.right);</span><br><span class="line">         &#125;</span><br><span class="line">         parents = children;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 </span>
       
     </div>
@@ -252,7 +232,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Dynamic-Programming/" rel="tag">#Dynamic Programming</a>
+            <a href="/tags/Binary-Tree/" rel="tag">#Binary Tree</a>
           
         </div>
       
@@ -261,13 +241,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/08/27/Group-Anagrams/" rel="prev">Group Anagrams</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/08/26/Rotate-Image/" rel="next">Rotate Image</a>
+              <a href="/2015/08/31/Flatten-Binary-Tree-to-Linked-List/" rel="next">Flatten Binary Tree to Linked List</a>
             
           </div>
         </div>
