@@ -26,7 +26,7 @@
 
 
 
-  <meta name="keywords" content="Two Pointers," />
+  <meta name="keywords" content="Binary Tree," />
 
 
 
@@ -35,16 +35,16 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="Sort Colors计数排序，计算每种color的个数1234567891011121314public void sortColors(int[] nums) &amp;#123;    int[] colors = new int[3];    for (int i : nums) &amp;#123;        colors[i]++;    &amp;#125;    int index = 0;    i">
+<meta name="description" content="123456789101112131415public int minDepth(TreeNode root) &amp;#123;    if (root == null)        return 0;    return helper(root);&amp;#125;public int helper(TreeNode root) &amp;#123;    if (root == null)        re">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sort colors">
-<meta property="og:url" content="http://zhaoze1991.github.io/2015/08/28/sort-colors/index.html">
+<meta property="og:title" content="Minimum Depth of Binary Tree">
+<meta property="og:url" content="http://zhaoze1991.github.io/2015/08/30/Minimum-Depth-of-Binary-Tree/index.html">
 <meta property="og:site_name" content="Just-Zzz">
-<meta property="og:description" content="Sort Colors计数排序，计算每种color的个数1234567891011121314public void sortColors(int[] nums) &amp;#123;    int[] colors = new int[3];    for (int i : nums) &amp;#123;        colors[i]++;    &amp;#125;    int index = 0;    i">
-<meta property="og:updated_time" content="2015-08-28T17:37:16.000Z">
+<meta property="og:description" content="123456789101112131415public int minDepth(TreeNode root) &amp;#123;    if (root == null)        return 0;    return helper(root);&amp;#125;public int helper(TreeNode root) &amp;#123;    if (root == null)        re">
+<meta property="og:updated_time" content="2015-08-31T03:29:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sort colors">
-<meta name="twitter:description" content="Sort Colors计数排序，计算每种color的个数1234567891011121314public void sortColors(int[] nums) &amp;#123;    int[] colors = new int[3];    for (int i : nums) &amp;#123;        colors[i]++;    &amp;#125;    int index = 0;    i">
+<meta name="twitter:title" content="Minimum Depth of Binary Tree">
+<meta name="twitter:description" content="123456789101112131415public int minDepth(TreeNode root) &amp;#123;    if (root == null)        return 0;    return helper(root);&amp;#125;public int helper(TreeNode root) &amp;#123;    if (root == null)        re">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -54,7 +54,7 @@
   };
 </script>
 
-  <title> sort colors | Just-Zzz </title>
+  <title> Minimum Depth of Binary Tree | Just-Zzz </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -191,7 +191,7 @@
           
           
             
-              sort colors
+              Minimum Depth of Binary Tree
             
           
         </h1>
@@ -200,8 +200,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-28T13:34:34-04:00" content="2015-08-28">
-            2015-08-28
+          <time itemprop="dateCreated" datetime="2015-08-30T23:19:15-04:00" content="2015-08-30">
+            2015-08-30
           </time>
         </span>
 
@@ -219,9 +219,9 @@
       
 
       
-        <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/sort-colors/" target="_blank" rel="external">Sort Colors</a><br>计数排序，计算每种color的个数<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] colors = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : nums) &#123;</span><br><span class="line">        colors[i]++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> color = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : colors) &#123;</span><br><span class="line">        <span class="keyword">while</span> (i-- &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            nums[index++] = color;</span><br><span class="line">        &#125;</span><br><span class="line">        ++color;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>可以用双指针的方法去做，把 0 全部交换到左边， 2 全部交换到右边。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length;) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[i] == <span class="number">2</span> &amp;&amp; i &lt; right) &#123;</span><br><span class="line">            swap(nums, i, right);</span><br><span class="line">            --right;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[i] == <span class="number">0</span> &amp;&amp; i &gt; left) &#123;</span><br><span class="line">            swap(nums, i, left);</span><br><span class="line">            ++left;</span><br><span class="line">        &#125; <span class="keyword">else</span></span><br><span class="line">            ++i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp = nums[i];</span><br><span class="line">    nums[i] = nums[j];</span><br><span class="line">    nums[j] = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <span itemprop="articleBody"><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> helper(root);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">helper</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> Integer.MAX_VALUE;</span><br><span class="line">    <span class="keyword">if</span> (root.left == <span class="keyword">null</span> &amp;&amp; root.right == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>; <span class="comment">// this is a leaf node</span></span><br><span class="line">    <span class="keyword">int</span> left = helper(root.left);</span><br><span class="line">    <span class="keyword">int</span> right = helper(root.right);</span><br><span class="line">    <span class="keyword">return</span> Math.min(left, right) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面的代码是错误的<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> left = minDepth(root.left);</span><br><span class="line">    <span class="keyword">int</span> right = minDepth(root.right);</span><br><span class="line">    <span class="keyword">return</span> Math.min(left, right) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>原因在于如果 1-&gt;null 这种，null不是叶子结点。那为啥求最大depth就不会出错？ 因为最大depth的操作是取最大值，如果子树是null，返回0，取最大值的操作就会把这个0跳过了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> left = maxDepth(root.left);</span><br><span class="line">    <span class="keyword">int</span> right = maxDepth(root.right);</span><br><span class="line">    <span class="keyword">return</span> Math.max(left, right) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </span>
       
     </div>
@@ -230,7 +230,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Two-Pointers/" rel="tag">#Two Pointers</a>
+            <a href="/tags/Binary-Tree/" rel="tag">#Binary Tree</a>
           
         </div>
       
@@ -239,13 +239,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/08/28/Minimum-Window-Substring/" rel="prev">Minimum Window Substring</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/08/28/Search-a-2D-Matrix-I-II/" rel="next">Search a 2D Matrix I, II</a>
+              <a href="/2015/08/30/Balanced-Binary-Tree/" rel="next">Balanced Binary Tree</a>
             
           </div>
         </div>

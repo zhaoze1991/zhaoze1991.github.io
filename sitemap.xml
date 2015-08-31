@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zhaoze1991.github.io/2015/08/30/Minimum-Depth-of-Binary-Tree/</loc>
+    <lastmod>2015-08-31T03:29:43.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://zhaoze1991.github.io/2015/08/30/Balanced-Binary-Tree/</loc>
+    <lastmod>2015-08-31T03:04:57.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://zhaoze1991.github.io/2015/08/30/Convert-Sorted-List-to-Binary-Search-Tree/</loc>
+    <lastmod>2015-08-31T02:36:25.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://zhaoze1991.github.io/2015/08/30/Binary-Tree-Zigzag-Level-Order-Traversal/</loc>
     <lastmod>2015-08-30T20:51:04.000Z</lastmod>
   </url>
