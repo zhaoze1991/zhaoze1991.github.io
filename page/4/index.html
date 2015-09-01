@@ -192,6 +192,71 @@
           
           
             
+              <a class="post-title-link" href="/2015/08/27/Spiral-Matrix/" itemprop="url">
+                Spiral Matrix I, II
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-08-27T13:56:25-04:00" content="2015-08-27">
+            2015-08-27
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/spiral-matrix/" target="_blank" rel="external">Spiral Matrix I</a><br>感觉这题就属于，肯定会写，但是就是很难bug-free类型的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">spiralOrder</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    <span class="keyword">if</span> (matrix == <span class="keyword">null</span> || matrix.length == <span class="number">0</span> || matrix[<span class="number">0</span>] == <span class="keyword">null</span> || matrix[<span class="number">0</span>].length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    <span class="keyword">int</span> rBegin = <span class="number">0</span>, cBegin = <span class="number">0</span>, rEnd = matrix.length - <span class="number">1</span>, cEnd = matrix[<span class="number">0</span>].length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (rBegin &lt;= rEnd &amp;&amp; cBegin &lt;= cEnd) &#123;</span><br><span class="line">        <span class="comment">// go right</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = cBegin; i &lt;= cEnd; ++i) &#123;</span><br><span class="line">            ans.add(matrix[rBegin][i]);</span><br><span class="line">        &#125;</span><br><span class="line">        rBegin += <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// go down</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = rBegin; i &lt;= rEnd; ++i) &#123;</span><br><span class="line">            ans.add(matrix[i][cEnd]);</span><br><span class="line">        &#125;</span><br><span class="line">        cEnd -= <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// go left</span></span><br><span class="line">        <span class="keyword">if</span> (rBegin &gt; rEnd)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = cEnd; i &gt;= cBegin; --i)</span><br><span class="line">            ans.add(matrix[rEnd][i]);</span><br><span class="line">        rEnd -= <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// go up</span></span><br><span class="line">        <span class="keyword">if</span> (cBegin &gt; cEnd || rBegin &gt; rEnd)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = rEnd; i &gt;= rBegin; --i)</span><br><span class="line">            ans.add(matrix[i][cBegin]);</span><br><span class="line">        cBegin += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://leetcode.com/problems/spiral-matrix-ii/" target="_blank" rel="external">Spiral Matrix II</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[][] generateMatrix(<span class="keyword">int</span> n) &#123;</span><br><span class="line">    <span class="keyword">int</span>[][] board = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">    <span class="keyword">int</span> rBegin = <span class="number">0</span>, rEnd = n - <span class="number">1</span>, cBegin = <span class="number">0</span>, cEnd = n - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (rBegin &lt;= rEnd &amp;&amp; cBegin &lt;= cEnd) &#123;</span><br><span class="line">        <span class="comment">// go right</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = cBegin; i &lt;= cEnd; ++i) &#123;</span><br><span class="line">            board[rBegin][i] = num++;</span><br><span class="line">        &#125;</span><br><span class="line">        rBegin += <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// go down</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = rBegin; i &lt;= rEnd; ++i) &#123;</span><br><span class="line">            board[i][cEnd] = num++;</span><br><span class="line">        &#125;</span><br><span class="line">        cEnd -= <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// go left</span></span><br><span class="line">        <span class="keyword">if</span> (rBegin &gt; rEnd || cBegin &gt; cEnd)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = cEnd; i &gt;= cBegin; --i) &#123;</span><br><span class="line">            board[rEnd][i] = num++;</span><br><span class="line">        &#125;</span><br><span class="line">        rEnd -= <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (rBegin &gt; rEnd || cBegin &gt; cEnd)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = rEnd; i &gt;= rBegin; --i) &#123;</span><br><span class="line">            board[i][cBegin] = num++;</span><br><span class="line">        &#125;</span><br><span class="line">        cBegin += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> board;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/08/27/Maximum-Subarray/" itemprop="url">
                 Maximum Subarray
               </a>
@@ -775,70 +840,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/26/Trapping-Rain-Water/" itemprop="url">
-                Trapping Rain Water
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-26T20:18:17-04:00" content="2015-08-26">
-            2015-08-26
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/trapping-rain-water/" target="_blank" rel="external">Problem Description</a></p>
-<p></p><p align="center"><br><img src="/images/rainwatertrap.png" alt="image"><br></p><br>这种题就是属于不看答案就呵呵的。<br>如图所示，每个bar能顶住水，取决于这块bar两侧的bar是否都高于它，如果这块bar能够顶住水，这块bar能顶住水的容积为，两侧最小的高度－自己的高度，遍历累加每块bar能装的容积，就能得到答案。<br>如何求每块bar两侧最大的bar呢？<br>设两个数组，left和right，left[i]表示bar i左边最大的bar，right[i]表示bar i 右边最大的bar, 我们可以得到以下两个关系式：<p></p>
-<p></p><p align="center"><br>left[i] = max(left[i - 1], height[i]);<br>right[i] = max(right[i + 1], height[i]);<br></p><br>得到每个bar对应的两边最大的bar之后，我们再从头到尾扫描一次数组，求能够累计的水容积。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (height == <span class="keyword">null</span> || height.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span>[] left = <span class="keyword">new</span> <span class="keyword">int</span>[height.length];</span><br><span class="line">    <span class="keyword">int</span>[] right = <span class="keyword">new</span> <span class="keyword">int</span>[height.length];</span><br><span class="line">    left[<span class="number">0</span>] = height[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; height.length; ++i)</span><br><span class="line">        left[i] = Math.max(left[i-<span class="number">1</span>], height[i]);</span><br><span class="line">    right[height.length - <span class="number">1</span>] = height[height.length - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = height.length - <span class="number">2</span>; i &gt;= <span class="number">0</span>; --i)</span><br><span class="line">        right[i] = Math.max(right[i + <span class="number">1</span>], height[i]);</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; height.length - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> lowbar = Math.min(left[i], right[i]);</span><br><span class="line">        <span class="keyword">if</span> (lowbar &gt; height[i])</span><br><span class="line">            ans += (lowbar - height[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p></p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -877,7 +878,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">62</span>
+              <span class="site-state-item-count">63</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -891,7 +892,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-count">21</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

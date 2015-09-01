@@ -26,7 +26,7 @@
 
 
 
-  <meta name="keywords" content="String," />
+  <meta name="keywords" content="sql," />
 
 
 
@@ -35,19 +35,22 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="Add Binary难得一次AC
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849public String addBinary(String a, String b) &amp;#123;    int[] ans = new int[a.length() + b.lengt">
+<meta name="description" content="碰到有过山炮电话里直接问啥啥操作SQL怎么写的，这几年没写过，连syntax都忘记了。记下来备用。
+insert 的两种形式12INSERT INTO table_nameVALUES (value1,value2,value3,...);
+12INSERT INTO table_name (column1,column2,column3,...)VALUES (value1,value2,val">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Add Binary">
-<meta property="og:url" content="http://zhaoze1991.github.io/2015/08/27/Add-Binary/index.html">
+<meta property="og:title" content="Basic SQL Operation">
+<meta property="og:url" content="http://zhaoze1991.github.io/2015/09/01/sql/index.html">
 <meta property="og:site_name" content="Just-Zzz">
-<meta property="og:description" content="Add Binary难得一次AC
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849public String addBinary(String a, String b) &amp;#123;    int[] ans = new int[a.length() + b.lengt">
-<meta property="og:updated_time" content="2015-08-27T21:05:50.000Z">
+<meta property="og:description" content="碰到有过山炮电话里直接问啥啥操作SQL怎么写的，这几年没写过，连syntax都忘记了。记下来备用。
+insert 的两种形式12INSERT INTO table_nameVALUES (value1,value2,value3,...);
+12INSERT INTO table_name (column1,column2,column3,...)VALUES (value1,value2,val">
+<meta property="og:updated_time" content="2015-09-01T18:10:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Add Binary">
-<meta name="twitter:description" content="Add Binary难得一次AC
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849public String addBinary(String a, String b) &amp;#123;    int[] ans = new int[a.length() + b.lengt">
+<meta name="twitter:title" content="Basic SQL Operation">
+<meta name="twitter:description" content="碰到有过山炮电话里直接问啥啥操作SQL怎么写的，这几年没写过，连syntax都忘记了。记下来备用。
+insert 的两种形式12INSERT INTO table_nameVALUES (value1,value2,value3,...);
+12INSERT INTO table_name (column1,column2,column3,...)VALUES (value1,value2,val">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -57,7 +60,7 @@
   };
 </script>
 
-  <title> Add Binary | Just-Zzz </title>
+  <title> Basic SQL Operation | Just-Zzz </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -194,7 +197,7 @@
           
           
             
-              Add Binary
+              Basic SQL Operation
             
           
         </h1>
@@ -203,8 +206,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-27T17:04:42-04:00" content="2015-08-27">
-            2015-08-27
+          <time itemprop="dateCreated" datetime="2015-09-01T13:47:14-04:00" content="2015-09-01">
+            2015-09-01
           </time>
         </span>
 
@@ -222,8 +225,15 @@
       
 
       
-        <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/add-binary/" target="_blank" rel="external">Add Binary</a><br>难得一次AC</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">addBinary</span><span class="params">(String a, String b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[a.length() + b.length() + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> ia = a.length() - <span class="number">1</span>, ib = b.length() - <span class="number">1</span>, i = ans.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> carry = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (ia &gt;= <span class="number">0</span> &amp;&amp; ib &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> sum = carry + a.charAt(ia--) - <span class="string">'0'</span> + b.charAt(ib--) - <span class="string">'0'</span>;</span><br><span class="line">        <span class="keyword">if</span> (sum == <span class="number">3</span>) &#123;</span><br><span class="line">            carry = <span class="number">1</span>;</span><br><span class="line">            ans[i--] = <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (sum  == <span class="number">2</span>) &#123;</span><br><span class="line">            carry = <span class="number">1</span>;</span><br><span class="line">            ans[i--] = <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ans [i--] = sum;</span><br><span class="line">            carry = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (ia &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> sum = carry + a.charAt(ia--) - <span class="string">'0'</span>;</span><br><span class="line">        <span class="keyword">if</span> (sum == <span class="number">2</span>) &#123;</span><br><span class="line">            carry = <span class="number">1</span>;</span><br><span class="line">            ans[i--] = <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            carry = <span class="number">0</span>;</span><br><span class="line">            ans[i--] = sum;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (ib &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> sum = carry + b.charAt(ib--) - <span class="string">'0'</span>;</span><br><span class="line">        <span class="keyword">if</span> (sum == <span class="number">2</span>) &#123;</span><br><span class="line">            carry = <span class="number">1</span>;</span><br><span class="line">            ans[i--] = <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            carry = <span class="number">0</span>;</span><br><span class="line">            ans[i--] = sum;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (carry != <span class="number">0</span>) &#123;</span><br><span class="line">        ans[i--] = carry;</span><br><span class="line">    &#125;</span><br><span class="line">    i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; ans.length &amp;&amp; ans[i] == <span class="number">0</span>)</span><br><span class="line">        ++i;</span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    <span class="keyword">while</span> (i&lt; ans.length) &#123;</span><br><span class="line">        sb.append(ans[i++]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sb.length() == <span class="number">0</span> ?  <span class="string">"0"</span> : sb.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <span itemprop="articleBody"><p>碰到有过山炮电话里直接问啥啥操作SQL怎么写的，这几年没写过，连syntax都忘记了。记下来备用。</p>
+<p>insert 的两种形式<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name</span><br><span class="line"><span class="keyword">VALUES</span> (value1,value2,value3,...);</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name (column1,column2,column3,...)</span><br><span class="line"><span class="keyword">VALUES</span> (value1,value2,value3,...);</span></span><br></pre></td></tr></table></figure>
+<p>SQL UPDATE Syntax<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">UPDATE</span> table_name</span><br><span class="line"><span class="keyword">SET</span> column1=value1,column2=value2,...</span><br><span class="line"><span class="keyword">WHERE</span> some_column=some_value;</span></span><br></pre></td></tr></table></figure></p>
+<p>SQL IN Syntax<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column_name(s)</span><br><span class="line">FROM table_name</span><br><span class="line"><span class="keyword">WHERE</span> column_name <span class="keyword">IN</span> (value1,value2,<span class="attribute">...</span>);</span><br></pre></td></tr></table></figure></p>
+<p>Different SQL JOINs<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">INNER JOIN: Returns all rows when there is <span class="keyword">at</span> least <span class="constant">one</span> match <span class="operator">in</span> BOTH tables</span><br><span class="line">LEFT JOIN: Return all rows <span class="built_in">from</span> <span class="operator">the</span> left table, <span class="operator">and</span> <span class="operator">the</span> matched rows <span class="built_in">from</span> <span class="operator">the</span> <span class="constant">right</span> table</span><br><span class="line"><span class="constant">RIGHT</span> JOIN: Return all rows <span class="built_in">from</span> <span class="operator">the</span> <span class="constant">right</span> table, <span class="operator">and</span> <span class="operator">the</span> matched rows <span class="built_in">from</span> <span class="operator">the</span> left table</span><br><span class="line">FULL JOIN: Return all rows when there is <span class="operator">a</span> match <span class="operator">in</span> <span class="constant">ONE</span> <span class="operator">of</span> <span class="operator">the</span> tables</span><br></pre></td></tr></table></figure></p>
+<p>The UNION operator is used to combine the result-set of two or more SELECT statements.</p>
+<p>Notice that each SELECT statement within the UNION must have the same number of columns. The columns must also have similar data types. Also, the columns in each SELECT statement must be in the same order.</p>
+<p>SQL UNION Syntax<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">SELECT column_name(s) <span class="keyword">FROM</span> table1</span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line">SELECT column_name(s) <span class="keyword">FROM</span> table2;</span></span><br></pre></td></tr></table></figure></p>
 </span>
       
     </div>
@@ -232,7 +242,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/String/" rel="tag">#String</a>
+            <a href="/tags/sql/" rel="tag">#sql</a>
           
         </div>
       
@@ -241,13 +251,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/08/27/Sqrt-x/" rel="prev">Sqrt(x)</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/08/27/Simplify-Path/" rel="next">Simplify Path</a>
+              <a href="/2015/09/01/Binary-Tree-Maximum-Path-Sum/" rel="next">Binary Tree Maximum Path Sum</a>
             
           </div>
         </div>
