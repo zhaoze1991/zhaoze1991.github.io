@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zhaoze1991.github.io/2015/08/31/ascii/</loc>
+    <lastmod>2015-09-01T03:01:41.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://zhaoze1991.github.io/2015/08/31/Pascal-s-Triangle-I-II/</loc>
+    <lastmod>2015-09-01T02:15:34.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://zhaoze1991.github.io/2015/08/31/Populating-Next-Right-Pointers-in-Each-Node/</loc>
     <lastmod>2015-08-31T18:06:29.000Z</lastmod>
   </url>
