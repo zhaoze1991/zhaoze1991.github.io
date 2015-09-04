@@ -2,6 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zhaoze1991.github.io/2015/09/03/Palindrome-Partitioning/</loc>
+    <lastmod>2015-09-04T03:18:39.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://zhaoze1991.github.io/2015/09/03/Longest-Increasing-Continuous-subsequence/</loc>
+    <lastmod>2015-09-04T02:51:15.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://zhaoze1991.github.io/2015/09/03/Word-Break/</loc>
+    <lastmod>2015-09-04T00:34:00.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://zhaoze1991.github.io/2015/09/03/H-Index/</loc>
+    <lastmod>2015-09-03T17:28:34.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://zhaoze1991.github.io/2015/09/03/Surrounded-Regions/</loc>
+    <lastmod>2015-09-03T14:41:42.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://zhaoze1991.github.io/2015/09/03/Sum-Root-to-Leaf-Numbers/</loc>
+    <lastmod>2015-09-03T13:32:47.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://zhaoze1991.github.io/2015/09/03/Word-Ladder/</loc>
     <lastmod>2015-09-03T05:57:40.000Z</lastmod>
   </url>

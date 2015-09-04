@@ -192,6 +192,392 @@
           
           
             
+              <a class="post-title-link" href="/2015/09/03/Longest-Increasing-Continuous-subsequence/" itemprop="url">
+                Longest Increasing Continuous subsequence
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-03T22:48:34-04:00" content="2015-09-03">
+            2015-09-03
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="http://www.lintcode.com/en/problem/longest-increasing-continuous-subsequence/" target="_blank" rel="external">Longest Increasing Continuous subsequence</a><br>这题要注意的是index要连续，并且数值是递增的。所以，每次如果数值不递增，要把continuous的值更新为1。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestIncreasingContinuousSubsequence</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (A == <span class="keyword">null</span> || A.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> max = <span class="number">1</span>, continuous = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; A.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (A[i] &gt; A[i - <span class="number">1</span>]) &#123;</span><br><span class="line">            continuous += <span class="number">1</span>;</span><br><span class="line">            max = Math.max(continuous, max);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            continuous = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = A.length - <span class="number">1</span>; i &gt;= <span class="number">1</span>; --i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (A[i - <span class="number">1</span>] &gt; A[i]) &#123;</span><br><span class="line">            continuous += <span class="number">1</span>;</span><br><span class="line">            max = Math.max(continuous, max);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            continuous = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/03/Palindrome-Partitioning/" itemprop="url">
+                Palindrome Partitioning
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-03T21:56:39-04:00" content="2015-09-03">
+            2015-09-03
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/palindrome-partitioning/" target="_blank" rel="external">Palindrome Partitioning</a><br>DFS，简单题。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">List&lt;List&lt;String&gt;&gt; ans = <span class="keyword">new</span> ArrayList&lt;List&lt;String&gt;&gt;();</span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;String&gt;&gt; partition(String s) &#123;</span><br><span class="line">    <span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    List&lt;String&gt; path = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">    dfs(s, <span class="number">0</span>, path);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(String s, <span class="keyword">int</span> begin, List&lt;String&gt; path)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin == s.length()) &#123;</span><br><span class="line">        ans.add(<span class="keyword">new</span> ArrayList&lt;String&gt;(path));</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = begin; i &lt; s.length(); ++i) &#123;</span><br><span class="line">        String str = s.substring(begin, i + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (check(str) == <span class="keyword">false</span>)</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        path.add(str);</span><br><span class="line">        dfs(s, i + <span class="number">1</span>, path);</span><br><span class="line">        path.remove(path.size() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">check</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> begin  = <span class="number">0</span>, end = str.length() -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (begin &lt;= end) &#123;</span><br><span class="line">        <span class="keyword">if</span> (str.charAt(begin) != str.charAt(end))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        ++begin; --end;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://leetcode.com/problems/palindrome-partitioning-ii/" target="_blank" rel="external">Palindrome Partitioning II</a><br>这题用了两次dp。<br>开一个二维数组，valid[i][j]，意思是在字符串中第i个点到第j个点构成的字符串是不是回文。也得用DP的方法来求。<br>先把valid[i][i]标记为true，因为每个字母本身就是一个回文。<br>然后我们再去检查长度为2的情况，如果s[i]==s[i+1],则表示i和i+1构成的字符串也是回文。<br>最后，我们再检查len ＝ 2~s.length()情况。这里用到了递归表达式，如果s[i] == s[i+len] 并且valid[i+1][i+len-1] == true, 那么valid[i][i+len] = true</p>
+<p>第二部分递归，我们开一个一维数组，dp[n]，表示从0～n需要的嘴笑cut。<br>首先我们来初始化这个数组，dp[i]最差的情况需要i次cut</p>
+<p>然后我们根据前面的到的valid数组，来更新这个一维数组。<br>如果valid[j][i] == true, 意思是s[j..i]构成的字符串是一个回文串，那么需要的切割次数就是dp[j-1] + 1<br>dp[i] = min(dp[i], dp[j-1] + 1)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minCut</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = s.length();</span><br><span class="line">    <span class="keyword">boolean</span>[][] valid = <span class="keyword">new</span> <span class="keyword">boolean</span>[n][n];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); ++i)</span><br><span class="line">        valid[i][i] = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length() - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (s.charAt(i) == s.charAt(i + <span class="number">1</span>)) &#123;</span><br><span class="line">            valid[i][i + <span class="number">1</span>] = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> len = <span class="number">2</span>; len &lt; s.length(); ++len) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length() - len; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s.charAt(i) == s.charAt(i + len) &amp;&amp; valid[i + <span class="number">1</span>][i + len - <span class="number">1</span>])</span><br><span class="line">                valid[i][i + len] = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        dp[i] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= i; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (valid[j][i]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j == <span class="number">0</span>)</span><br><span class="line">                    dp[i] = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    dp[i] = Math.min(dp[i], dp[j - <span class="number">1</span>] + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[n - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/03/Word-Break/" itemprop="url">
+                Word Break
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-03T14:39:29-04:00" content="2015-09-03">
+            2015-09-03
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/word-break/" target="_blank" rel="external">Word Break I</a><br>先来个naive的解法，做递归。超时。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">wordBreak</span><span class="params">(String s, Set&lt;String&gt; wordDict)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> dfs(s, <span class="number">0</span>, wordDict);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dfs</span><span class="params">(String s, <span class="keyword">int</span> begin, Set&lt;String&gt; wordSet)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin &gt;= s.length()) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = begin; i &lt; s.length(); ++i) &#123;</span><br><span class="line">        String str = s.substring(begin, i + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (!wordSet.contains(str))</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span> (check(s, i + <span class="number">1</span>, wordSet))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>加一个cache，还是过了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boolean</span>[][] board;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">wordBreak</span><span class="params">(String s, Set&lt;String&gt; wordDict)</span> </span>&#123;</span><br><span class="line">    board = <span class="keyword">new</span> <span class="keyword">boolean</span>[s.length()][s.length()];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board.length; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; board[<span class="number">0</span>].length; ++j)</span><br><span class="line">            board[i][j] = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">return</span> check(s, <span class="number">0</span>, wordDict);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">check</span><span class="params">(String s, <span class="keyword">int</span> begin, Set&lt;String&gt; wordSet)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin &gt;= s.length()) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = begin; i &lt; s.length(); ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (board[begin][i] == <span class="keyword">false</span>)</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        String str = s.substring(begin, i + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (!wordSet.contains(str)) &#123;</span><br><span class="line">            board[begin][i] = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (check(s, i + <span class="number">1</span>, wordSet))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            board[begin][i] = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再来一段DP的做法。<br>开一个boolean的数组dp[n + 1]，dp[i]， 表示s[0 ～ i]能否被dictionary中的词所分割。初始化dp[0]等于true<br>dp[i] = true, if dp[j] == ture &amp;&amp; s[j~i]是dictionary中的一个词</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">wordBreak</span><span class="params">(String s, Set&lt;String&gt; wordDict)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span>[] dp =<span class="keyword">new</span> <span class="keyword">boolean</span>[s.length() + <span class="number">1</span>];</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= s.length(); ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; ++j) &#123;</span><br><span class="line">            String str = s.substring(j, i);</span><br><span class="line">            <span class="keyword">if</span> (dp[j] &amp;&amp; wordDict.contains(str)) &#123;</span><br><span class="line">                dp[i] = <span class="keyword">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[s.length()];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://leetcode.com/problems/word-break-ii/" target="_blank" rel="external">Word Break II</a><br>这种题，肯定是得用到DFS的。直接上DFS。超时了。<br>咋办呢。首先，我们做一次Word Break I中的判断，判断输入的数据能否被完全break， 即dp[s.length()] = true.<br>然后。。我以为要加个啥cache来避免些重复计算。。结果。直接过了。那就这样吧。不折腾了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; ans = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">wordBreak</span><span class="params">(String s, Set&lt;String&gt; wordDict)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span>[] dp = <span class="keyword">new</span> <span class="keyword">boolean</span>[s.length() + <span class="number">1</span>];</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= s.length(); ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; ++j) &#123;</span><br><span class="line">            String str = s.substring(j, i);</span><br><span class="line">            <span class="keyword">if</span> (dp[j] == <span class="keyword">true</span> &amp;&amp; wordDict.contains(str)) &#123;</span><br><span class="line">                dp[i] = <span class="keyword">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (dp[s.length()] == <span class="keyword">false</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    dfs(s, <span class="keyword">new</span> ArrayList&lt;String&gt;(), <span class="number">0</span>, wordDict);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(String s, List&lt;String&gt; path, <span class="keyword">int</span> begin, Set&lt;String&gt; wordDict)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin &gt;= s.length()) &#123;</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span> (String str : path) &#123;</span><br><span class="line">            sb.append(str + <span class="string">" "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        sb.deleteCharAt(sb.length() - <span class="number">1</span>);</span><br><span class="line">        ans.add(sb.toString());</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = begin; i &lt; s.length(); ++i) &#123;</span><br><span class="line">        String str = s.substring(begin, i + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (wordDict.contains(str) == <span class="keyword">false</span>)</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        path.add(str);</span><br><span class="line">        dfs(s, path, i + <span class="number">1</span>, wordDict);</span><br><span class="line">        path.remove(path.size() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/03/H-Index/" itemprop="url">
+                H-Index
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-03T13:15:14-04:00" content="2015-09-03">
+            2015-09-03
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/h-index/" target="_blank" rel="external">H-Index</a><br>新题就跪。蛋疼<br>首先，得知道啥是<a href="https://en.wikipedia.org/wiki/H-index" target="_blank" rel="external">H-index</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hIndex</span><span class="params">(<span class="keyword">int</span>[] citations)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (citations == <span class="keyword">null</span> || citations.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">    Arrays.sort(citations);</span><br><span class="line">    <span class="keyword">int</span> n = citations.length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">        <span class="keyword">int</span> min = Math.min(citations[i], n - i);</span><br><span class="line">        max = Math.max(max, min);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/03/Surrounded-Regions/" itemprop="url">
+                Surrounded Regions
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-03T10:21:37-04:00" content="2015-09-03">
+            2015-09-03
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p>这题的思路比较有意思，既然中间被外面如果包着，就会被变成X，那么，我们从最外面的一层开始去搜索，如果能跟最外面一层连通，那么这个元素就不会被变成X。我们这样的元素改成一个中间值，比如说 “Z”, 用BFS或者DFS把所有能与最外层连通的元素都变成 “Z”。<br>然后再遍历一次整个board，如果该元素是 “O” 则这个元素是不与最外层连通的，标记为 “X”,如果这个元素是 “Z”,那么重新标记为 “O”.<br><strong>注意</strong>这个操作的顺序，首先判断是否是 “O”，再判断是否是 “Z”.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// long-painful null check</span></span><br><span class="line">    <span class="keyword">if</span> (board == <span class="keyword">null</span> || board.length == <span class="number">0</span> || board[<span class="number">0</span>] == <span class="keyword">null</span> || board[<span class="number">0</span>].length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> m = board.length, n = board[<span class="number">0</span>].length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (board[<span class="number">0</span>][i] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            bfs(board,  <span class="number">0</span>, i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (board[m - <span class="number">1</span>][i] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            bfs(board, m - <span class="number">1</span>, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; m; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (board[i][<span class="number">0</span>] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            bfs(board, i, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (board[i][n - <span class="number">1</span>] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            bfs(board, i, n - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (board[i][j] == <span class="string">'O'</span>)</span><br><span class="line">                board[i][j] = <span class="string">'X'</span>;</span><br><span class="line">            <span class="keyword">if</span> (board[i][j] == <span class="string">'Z'</span>)</span><br><span class="line">                board[i][j] = <span class="string">'O'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>bfs<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pair</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j;</span><br><span class="line">    Pair(<span class="keyword">int</span> i, <span class="keyword">int</span> j) &#123;</span><br><span class="line">        <span class="keyword">this</span>.i = i;</span><br><span class="line">        <span class="keyword">this</span>.j = j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bfs</span><span class="params">(<span class="keyword">char</span>[][]board, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// bfs since dfs will stack overflow</span></span><br><span class="line">    Queue&lt;Pair&gt; q = <span class="keyword">new</span> LinkedList&lt;Pair&gt;();</span><br><span class="line">    board[i][j] = <span class="string">'Z'</span>;</span><br><span class="line">    q.offer(<span class="keyword">new</span> Pair(i, j));</span><br><span class="line">    <span class="keyword">while</span> (q.isEmpty() == <span class="keyword">false</span>) &#123;</span><br><span class="line">        Pair cur = q.poll();</span><br><span class="line">        i = cur.i;</span><br><span class="line">        j = cur.j;</span><br><span class="line">        <span class="keyword">if</span> (i+<span class="number">1</span> &lt; board.length &amp;&amp; board[i+<span class="number">1</span>][j] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            board[i+<span class="number">1</span>][j] = <span class="string">'Z'</span>;</span><br><span class="line">            q.offer(<span class="keyword">new</span> Pair(i + <span class="number">1</span>, j));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (i - <span class="number">1</span> &gt;= <span class="number">0</span> &amp;&amp; board[i - <span class="number">1</span>][j] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            board[i-<span class="number">1</span>][j] = <span class="string">'Z'</span>;</span><br><span class="line">            q.offer(<span class="keyword">new</span> Pair(i - <span class="number">1</span>, j));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (j+<span class="number">1</span> &lt; board[<span class="number">0</span>].length &amp;&amp; board[i][j+<span class="number">1</span>] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            board[i][j+<span class="number">1</span>] = <span class="string">'Z'</span>;</span><br><span class="line">            q.offer(<span class="keyword">new</span> Pair(i, j + <span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (j-<span class="number">1</span> &gt;= <span class="number">0</span> &amp;&amp; board[i][j-<span class="number">1</span>] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            board[i][j-<span class="number">1</span>] = <span class="string">'Z'</span>;</span><br><span class="line">            q.offer(<span class="keyword">new</span> Pair(i, j-<span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>DFS版本的搜索，代码好些一些，但是栈溢出了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">char</span>[][]board, <span class="keyword">boolean</span>[][] visited, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">0</span> || j &lt; <span class="number">0</span> || i &gt;= board.length || j &gt;= board[<span class="number">0</span>].length)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span> (visited[i][j] || board[i][j] != <span class="string">'O'</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    visited[i][j] = <span class="keyword">true</span>;</span><br><span class="line">    board[i][j] = <span class="string">'Z'</span>;</span><br><span class="line">    <span class="comment">//note</span></span><br><span class="line">    dfs(board, visited, i + <span class="number">1</span>, j);</span><br><span class="line">    dfs(board, visited, i - <span class="number">1</span>, j);</span><br><span class="line">    dfs(board, visited, i, j - <span class="number">1</span>);</span><br><span class="line">    dfs(board, visited, i, j + <span class="number">1</span>);</span><br><span class="line">    <span class="comment">// visited[i][j] = false;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/03/Sum-Root-to-Leaf-Numbers/" itemprop="url">
+                Sum Root to Leaf Numbers
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-03T09:31:52-04:00" content="2015-09-03">
+            2015-09-03
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/sum-root-to-leaf-numbers/" target="_blank" rel="external">Sum Root to Leaf Numbers</a><br>这题要是做不对，还是洗洗睡好了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sumNumbers</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    dfs(root, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode root, <span class="keyword">int</span> sum)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> val = root.val;</span><br><span class="line">    <span class="keyword">if</span> (root.left == <span class="keyword">null</span> &amp;&amp; root.right == <span class="keyword">null</span>) &#123;</span><br><span class="line">        ans += (sum * <span class="number">10</span> + val);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    dfs(root.left, sum * <span class="number">10</span> + val);</span><br><span class="line">    dfs(root.right, sum * <span class="number">10</span> + val);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/09/03/Word-Ladder/" itemprop="url">
                 Word Ladder
               </a>
@@ -444,419 +830,11 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/01/Binary-Tree-Maximum-Path-Sum/" itemprop="url">
-                Binary Tree Maximum Path Sum
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-01T11:34:34-04:00" content="2015-09-01">
-            2015-09-01
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/binary-tree-maximum-path-sum/" target="_blank" rel="external">Binary Tree Maximum Path Sum</a><br>我们来看一个完整点儿的例子<br>&nbsp;&nbsp;&nbsp;&nbsp;1<br>&nbsp;&nbsp;&nbsp;/&nbsp;\<br>&nbsp;&nbsp;2&nbsp;&nbsp;3<br>&nbsp;/ \&nbsp;&nbsp;|<br>4&nbsp;&nbsp;5 1<br>在这样一棵二叉树中，path-sum 等于 5 + 2 + 1 + 3 + 1 路径每次从底向上走，然后再向下走，向下了就不能再往上走了.<br>helper(TreeNode root)表示以root为根结点，能得到的最大pathsum<br>因为这个max可能再遍历过程中产生的，所以我们把max设置为全局变量。<br>当遍历到4时，pathsum = 4, 到2时，pathsum ＝ 2＋4＋5 ＝11<br>因此我们在更新max的时候，注意max ＝ {left + right + root.val, left + root.val, right + val}<br>大牛们给了条活路， 在计算left/right 的时候和0最比较，这样计算max比较方便。<br>因为我们计算的pathsum是以root为根的，所以左和右必须穿过根。在计算max的时候必须得加上根的值。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> max = Integer.MIN_VALUE;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxPathSum</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    helper(root);</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">helper</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// the path sum of left sub-tree, or 0 if it's negative</span></span><br><span class="line">    <span class="keyword">int</span> left = Math.max(<span class="number">0</span>, helper(root.left));</span><br><span class="line">    <span class="comment">// the path sum of right sub-tree, or 0 if it's negative</span></span><br><span class="line">    <span class="keyword">int</span> right = Math.max(<span class="number">0</span>, helper(root.right));</span><br><span class="line">    <span class="keyword">int</span> val = root.val;</span><br><span class="line">    max = Math.max(left + right + val, max);</span><br><span class="line">    <span class="keyword">return</span> Math.max(left, right) + val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="https://leetcode.com/discuss/14190/accepted-short-solution-in-java" target="_blank" rel="external">Reference: https://leetcode.com/discuss/14190/accepted-short-solution-in-java</a></p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/01/Best-Time-to-Buy-and-Sell-Stock/" itemprop="url">
-                Best Time to Buy and Sell Stock
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-01T09:40:31-04:00" content="2015-09-01">
-            2015-09-01
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/" target="_blank" rel="external">Best Time to Buy and Sell Stock</a><br>画画图。股票价格可能呈现一个没啥规律的折线。<br>用一遍变量min来记录0～i之间的最小值，那么 profit ＝ prices[i] - min就是在i点能获得的最大利润，对profit做取最大值操作。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> min = Integer.MAX_VALUE;</span><br><span class="line">    <span class="keyword">int</span> profit = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : prices) &#123;</span><br><span class="line">        min = Math.min(i, min);</span><br><span class="line">        profit = Math.max(profit, i - min);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> profit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/" target="_blank" rel="external">Best Time to Buy and Sell Stock II</a><br>举个栗子，对于序列[5,1,2,3,4,1]<br>对于上升序列，[1,2,3,4] 我们可以这么买：</p>
-<ol>
-<li>1买入，4卖出， 收益是3</li>
-<li>1买入，2卖出，2买入，3卖出，3买入，4卖出，收益也是3</li>
-</ol>
-<p>所以我们可以扫描一边数组。然后累加profit即可。有点像贪心法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> profit = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; prices.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (prices[i] &gt; prices[i-<span class="number">1</span>])</span><br><span class="line">            profit += (prices[i] - prices[i-<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> profit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/" target="_blank" rel="external">Best Time to Buy and Sell Stock III</a><br>这题比较好。<br>设left[i] 为0～i之间，交易1次能得到的最大利润，设right[i]为i～n之间交易能得到的最大利润。<br>那么最大profit = max{profit, left[i] + right[i]}<br>如何求left[i] 和right[i]?<br>对于left[i],我们定义一个左边的最小值，</p>
-<p align="center">left[i] = max(left[i - 1], prices[i] - min)</p>
-
-<p>对于right[i],我们定义一个右边的最大值，</p>
-<p align="center">right[i] = max(right[i + 1], max - prices[i]);</p>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (prices == <span class="keyword">null</span> || prices.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> n = prices.length;</span><br><span class="line">    <span class="keyword">int</span>[] left = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">    <span class="keyword">int</span>[] right = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">    <span class="keyword">int</span> min = prices[<span class="number">0</span>];</span><br><span class="line">    left[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        min = Math.min(min, prices[i]);</span><br><span class="line">        left[i] = Math.max(left[i-<span class="number">1</span>], prices[i] - min);</span><br><span class="line">    &#125;</span><br><span class="line">    right[n - <span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> max = prices[n - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">2</span>; i &gt;=<span class="number">0</span>; --i) &#123;</span><br><span class="line">        max = Math.max(max, prices[i]);</span><br><span class="line">        right[i] = Math.max(right[i+<span class="number">1</span>], max - prices[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        ans = Math.max(ans, left[i] + right[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/31/ascii/" itemprop="url">
-                Interesting ascii
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-31T22:54:47-04:00" content="2015-08-31">
-            2015-08-31
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p>转载自: <a href="http://shiyousan.com/post/635479912728885400" target="_blank" rel="external">http://shiyousan.com/post/635479912728885400</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line">                   _ooOoo_</span><br><span class="line">                  o8888888o</span><br><span class="line">                  88" . "88</span><br><span class="line">                  (| -_- |)</span><br><span class="line">                  O\  =  /O</span><br><span class="line">               ____/`---'\____</span><br><span class="line">             .'  \\|     |//  `.</span><br><span class="line">            /  \\|||  :  |||//  \</span><br><span class="line">           /  _||||| -:- |||||-  \</span><br><span class="line">           |   | \\\  -  /// |   |</span><br><span class="line">           | \_|  ''\---/''  |   |</span><br><span class="line">           \  .-\__  `-`  ___/-. /</span><br><span class="line">         ___`. .'  /--.--\  `. . __</span><br><span class="line">      ."" '&lt;  `.___\_&lt;|&gt;_/___.'  &gt;'"".</span><br><span class="line">     | | :  `- \`.;`\ _ /`;.`/ - ` : | |</span><br><span class="line">     \  \ `-.   \_ __\ /__ _/   .-` /  /</span><br><span class="line">======`-.____`-.___\_____/___.-`____.-'======</span><br><span class="line">                   `=---='</span><br><span class="line">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span><br><span class="line">         佛祖保佑       永无BUG</span><br><span class="line">*/</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line">*</span><br><span class="line">*          ┌─┐       ┌─┐</span><br><span class="line">*       ┌──┘ ┴───────┘ ┴──┐</span><br><span class="line">*       │                 │</span><br><span class="line">*       │       ───       │</span><br><span class="line">*       │  ─┬┘       └┬─  │</span><br><span class="line">*       │                 │</span><br><span class="line">*       │       ─┴─       │</span><br><span class="line">*       │                 │</span><br><span class="line">*       └───┐         ┌───┘</span><br><span class="line">*           │         │</span><br><span class="line">*           │         │</span><br><span class="line">*           │         │</span><br><span class="line">*           │         └──────────────┐</span><br><span class="line">*           │                        │</span><br><span class="line">*           │                        ├─┐</span><br><span class="line">*           │                        ┌─┘</span><br><span class="line">*           │                        │</span><br><span class="line">*           └─┐  ┐  ┌───────┬──┐  ┌──┘</span><br><span class="line">*             │ ─┤ ─┤       │ ─┤ ─┤</span><br><span class="line">*             └──┴──┘       └──┴──┘</span><br><span class="line">*                 神兽保佑</span><br><span class="line">*                 代码无BUG!</span><br><span class="line">*/</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> *   ┏┓　　　┏┓</span><br><span class="line"> * ┏┛┻━━━┛┻┓</span><br><span class="line"> * ┃　　　　　　　┃</span><br><span class="line"> * ┃　　　━　　　┃</span><br><span class="line"> * ┃　┳┛　┗┳　┃</span><br><span class="line"> * ┃　　　　　　　┃</span><br><span class="line"> * ┃　　　┻　　　┃</span><br><span class="line"> * ┃　　　　　　　┃</span><br><span class="line"> * ┗━┓　　　┏━┛</span><br><span class="line"> *    ┃　　　┃</span><br><span class="line"> *    ┃　　　┃</span><br><span class="line"> *    ┃　　　┗━━━┓</span><br><span class="line"> *    ┃　　　　　　　┣┓</span><br><span class="line"> *    ┃　　　　　　　┏┛</span><br><span class="line"> *    ┗┓┓┏━┳┓┏┛</span><br><span class="line"> *      ┃┫┫　┃┫┫</span><br><span class="line"> *      ┗┻┛　┗┻┛</span><br><span class="line"> *        神兽保佑</span><br><span class="line"> *        代码无BUG!</span><br><span class="line"> */</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//                      d*##$.</span></span><br><span class="line"><span class="comment">// zP"""""$e.           $"    $o</span></span><br><span class="line"><span class="comment">//4$       '$          $"      $</span></span><br><span class="line"><span class="comment">//'$        '$        J$       $F</span></span><br><span class="line"><span class="comment">// 'b        $k       $&gt;       $</span></span><br><span class="line"><span class="comment">//  $k        $r     J$       d$</span></span><br><span class="line"><span class="comment">//  '$         $     $"       $~</span></span><br><span class="line"><span class="comment">//   '$        "$   '$E       $</span></span><br><span class="line"><span class="comment">//    $         $L   $"      $F ...</span></span><br><span class="line"><span class="comment">//     $.       4B   $      $$$*"""*b</span></span><br><span class="line"><span class="comment">//     '$        $.  $$     $$      $F</span></span><br><span class="line"><span class="comment">//      "$       R$  $F     $"      $</span></span><br><span class="line"><span class="comment">//       $k      ?$ u*     dF      .$</span></span><br><span class="line"><span class="comment">//       ^$.      $$"     z$      u$$$$e</span></span><br><span class="line"><span class="comment">//        #$b             $E.dW@e$"    ?$</span></span><br><span class="line"><span class="comment">//         #$           .o$$# d$$$$c    ?F</span></span><br><span class="line"><span class="comment">//          $      .d$$#" . zo$&gt;   #$r .uF</span></span><br><span class="line"><span class="comment">//          $L .u$*"      $&amp;$$$k   .$$d$$F</span></span><br><span class="line"><span class="comment">//           $$"            ""^"$$$P"$P9$</span></span><br><span class="line"><span class="comment">//          JP              .o$$$$u:$P $$</span></span><br><span class="line"><span class="comment">//          $          ..ue$"      ""  $"</span></span><br><span class="line"><span class="comment">//         d$          $F              $</span></span><br><span class="line"><span class="comment">//         $$     ....udE             4B</span></span><br><span class="line"><span class="comment">//          #$    """"` $r            @$</span></span><br><span class="line"><span class="comment">//           ^$L        '$            $F</span></span><br><span class="line"><span class="comment">//             RN        4N           $</span></span><br><span class="line"><span class="comment">//              *$b                  d$</span></span><br><span class="line"><span class="comment">//               $$k                 $F</span></span><br><span class="line"><span class="comment">//               $$b                $F</span></span><br><span class="line"><span class="comment">//                 $""               $F</span></span><br><span class="line"><span class="comment">//                 '$                $</span></span><br><span class="line"><span class="comment">//                  $L               $</span></span><br><span class="line"><span class="comment">//                  '$               $</span></span><br><span class="line"><span class="comment">//                   $               $</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//                             _______________________________________</span></span><br><span class="line"><span class="comment">//                            /  ___________________________________  \</span></span><br><span class="line"><span class="comment">//     _--""""--_            /  /_/_/_/_/_|_|_|_|_|_|_|_|_|_\_\_\_\_\  \</span></span><br><span class="line"><span class="comment">//    /          \          /  /_/_/_/_J__L_L_L_|_|_|_J_J_J__L_\_\_\_\  \</span></span><br><span class="line"><span class="comment">//   /\          /\        /  /_/_/_J__L_J__L_L_|_|_|_J_J__L_J__L_\_\_\  \</span></span><br><span class="line"><span class="comment">//   L ""-____-"" J       /  /_/_J__L_J__L_J_J__L_|_J__L_L_J__L_J__L_\_\  \</span></span><br><span class="line"><span class="comment">//   \            /      /  /_/__L_/__L_J__L_J__L_|_J__L_J__L_J__\_J__\_\  \</span></span><br><span class="line"><span class="comment">//    \_        _/      /  /_J__/_J__/__L_J__|__L_|_J__|__L_J__\__L_\__L_\  \</span></span><br><span class="line"><span class="comment">//  _--"""""--_"       /  /  F /  F J  J  |  F J  |  F J  |  F  F J  \ J  \  \</span></span><br><span class="line"><span class="comment">// /           \      /  /--/-J--/--L--|--L-J--J--|--L--L-J--|--J--\--L-\--\  \</span></span><br><span class="line"><span class="comment">///\           /\    /  /__/__L_J__J___L_J__J__|__|__|__L__L_J___L__L_J__\__\  \</span></span><br><span class="line"><span class="comment">//L ""-_____-"" J   /  /  /  /  F  F  J  J  |  |  |  |  |  F  F  J  J  \  \  \  \</span></span><br><span class="line"><span class="comment">//\             /  /  /--/--/--/--J---L--|--|--|--o--|--|--|--J---L--\--\--\--\  \</span></span><br><span class="line"><span class="comment">// \_         _/  /  /__/__J__J___L__J___L__L__L__|__J__J__J___L__J___L__L__\__\  \</span></span><br><span class="line"><span class="comment">//   "--___--"   /  /  /   F  F  J   F  J  J   F  |  J   F  F  J   F  J  J   \  \  \</span></span><br><span class="line"><span class="comment">//              /  /--/---/--J---L--J---L--|--J---|---L--|--J---L--J---L--\---\--\  \</span></span><br><span class="line"><span class="comment">//             /  /__J___/___L__/___L__J___L__J___|___L__J___L__J___\__J___\___L__\  \</span></span><br><span class="line"><span class="comment">//            /  /   F  J   /  J   J   |  J   J   |   F   F  |   F   F  \   F  J   \  \</span></span><br><span class="line"><span class="comment">//           /  /---/---L--J---L---L---L--|---|---|---|---|--J---J---J---L--J---\---\  \</span></span><br><span class="line"><span class="comment">//          /  /___/___/___L__J___J___J___|___|___|___|___|___L___L___L__J___\___\___\  \</span></span><br><span class="line"><span class="comment">//         /  /   /   /   /   F   F   F   F   F   |   J   J   J   J   J   \   \   \   \  \</span></span><br><span class="line"><span class="comment">//        /  /___/___J___J___J___J___J____L___L___|___J___J____L___L___L___L___L___\___\  \</span></span><br><span class="line"><span class="comment">//       /  /   /    F   F   F   |   |   J    F   |   J    F   |   |   J   J   J    \   \  \</span></span><br><span class="line"><span class="comment">//      /  /___J____/___/___J____L___L___|___J____|____L___|___J___J____L___\___\____L___\  \</span></span><br><span class="line"><span class="comment">//     /  /    F   /   J    F   J   J    |   J    |    F   |    F   F   J    F   \   J    \  \</span></span><br><span class="line"><span class="comment">//    /  /____/___J____L___/____L___|____L___|____|____|___J____|___J____\___J____L___\____\  \</span></span><br><span class="line"><span class="comment">//   /  /    /    F   /   J    J    F   J    F    |    J    F   J    F    F   \   J    \    \  \</span></span><br><span class="line"><span class="comment">//  /  /____/____/___J____L____|____L___J____L____|____J____L___J____|____J____L___\____\____\  \</span></span><br><span class="line"><span class="comment">// /                                                                                             \</span></span><br><span class="line"><span class="comment">///_______________________________________________________________________________________________\</span></span><br><span class="line"><span class="comment">//|                                                                                               |</span></span><br><span class="line"><span class="comment">//| hs                                                                                            |</span></span><br><span class="line"><span class="comment">//|_______________________________________________________________________________________________|</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line">                 __</span><br><span class="line">            ,-~¨^  ^¨-,           _,</span><br><span class="line">           /          / ;^-._...,¨/</span><br><span class="line">          /          / /         /</span><br><span class="line">         /          / /         /</span><br><span class="line">        /          / /         /</span><br><span class="line">       /,.-:''-,_ / /         /</span><br><span class="line">       _,.-:--._ ^ ^:-._ __../</span><br><span class="line">     /^         / /¨:.._¨__.;</span><br><span class="line">    /          / /      ^  /</span><br><span class="line">   /          / /         /</span><br><span class="line">  /          / /         /</span><br><span class="line"> /_,.--:^-._/ /         /</span><br><span class="line">^            ^¨¨-.___.:^  (R) - G33K</span><br><span class="line"></span><br><span class="line">*/</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line">  ___                _</span><br><span class="line"> / __|___  ___  __ _| |___</span><br><span class="line">| (_ / _ \/ _ \/ _` |   -_)</span><br><span class="line"> \___\___/\___/\__, |_\___|</span><br><span class="line">               |___/</span><br><span class="line"></span><br><span class="line">*/</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line">      _.-"""""-._         _.-"""""-._         _.-"""""-._</span><br><span class="line">   ,'           `.     ,'           `.     ,'           `.</span><br><span class="line">  /               \   /               \   /               \</span><br><span class="line"> |                 | |                 | |                 |</span><br><span class="line">|                   |                   |                   |</span><br><span class="line">|                   |                   |                   |</span><br><span class="line"> |             _.-"|"|"-._         _.-"|"|"-._             |</span><br><span class="line">  \          ,'   /   \   `.     ,'   /   \   `.          /</span><br><span class="line">   `.       /   ,'     `.   \   /   ,'     `.   \       ,'</span><br><span class="line">     `-..__|..-'         `-..|_|..-'         `-..|__..-'</span><br><span class="line">          |                   |                   |</span><br><span class="line">          |                   |                   |</span><br><span class="line">           |                 | |                 |</span><br><span class="line">            \               /   \               /</span><br><span class="line">             `.           ,'     `.           ,'</span><br><span class="line">               `-..___..-'         `-..___..-'</span><br><span class="line"></span><br><span class="line"> */</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line">               _.---..._</span><br><span class="line">           ./^         ^-._</span><br><span class="line">         ./^C===.         ^\.   /\</span><br><span class="line">        .|'     \\        _ ^|.^.|</span><br><span class="line">   ___.--'_     ( )  .      ./ /||</span><br><span class="line">  /.---^T\      ,     |     / /|||</span><br><span class="line"> C'   ._`|  ._ /  __,-/    / /-,||</span><br><span class="line">      \ \/    ;  /O  / _    |) )|,</span><br><span class="line">       i \./^O\./_,-^/^    ,;-^,'</span><br><span class="line">        \ |`--/ ..-^^      |_-^</span><br><span class="line">         `|  \^-           /|:</span><br><span class="line">          i.  .--         / '|.</span><br><span class="line">           i   =='       /'  |\._</span><br><span class="line">         _./`._        //    |.  ^-ooo.._</span><br><span class="line">  _.oo../'  |  ^-.__./X/   . `|    |#######b</span><br><span class="line"> d####     |'      ^^^^   /   |    _\#######</span><br><span class="line"> #####b ^^^^^^^^--. ...--^--^^^^^^^_.d######</span><br><span class="line"> ######b._         Y            _.d#########</span><br><span class="line"> ##########b._     |        _.d#############</span><br><span class="line"></span><br><span class="line">                                "Piccolo" no. 2</span><br><span class="line">                                   (from Dragonball Z)</span><br><span class="line">                                        --- Steven J. Simmons</span><br><span class="line"> */</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line">                      /^_.-^  _  --^=_</span><br><span class="line">                   ./'-^__    _&gt;=\^^==^-.</span><br><span class="line">                   |'/^^_/  /^    \ \.^\\\/\</span><br><span class="line">                  ,|/| '  /'  _____\ `\|.^.|</span><br><span class="line">                  |'/   /_--^^ .   ^^-./ /||</span><br><span class="line">                  |/,--^  ,     |     / /||'</span><br><span class="line">                ._|/   \ /  __,-/    / /-,||</span><br><span class="line">                \ '/    ;  /O  / _    |) )|,</span><br><span class="line">                 i \./^O\./_,-^/^    ,;-^,'</span><br><span class="line">                  \ |`--/ ..-^^      |_-^</span><br><span class="line">                   `|  \^-_,/^Y\      | ^^\</span><br><span class="line">                   _i.  \".--V_/     /| \. ^\._____...--.&gt;^^^^^^-------...._</span><br><span class="line">                  /  i   ^--^^     /'|' |\. |./'        |                  ;</span><br><span class="line">___...----/^^^^---|.  `._\  /^   /' |'_/' \ `|         |'               ,/'</span><br><span class="line">         |'        \   _|^-.__./'__.^^\     .|        ,|            _.-^</span><br><span class="line">         `\       ,|`_./^^-----^^._    ` ./ /        /^        _.-^^/</span><br><span class="line">                  |'  ^                  /-^                ./^    /</span><br><span class="line">\                 `\_     __.-&lt;       _,/                 ./'     |'</span><br><span class="line"> `\.        `i       ^^--/._____...--^            .      ./       |.</span><br><span class="line">   `|        |                                   /       /        `|</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                                "Piccolo"</span><br><span class="line">                                   (from Dragonball Z)</span><br><span class="line">                                        --- Steven J. Simmons</span><br><span class="line">*/</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line">                           _</span><br><span class="line">                           \"-._ _.--"~~"--._</span><br><span class="line">                            \   "            ^.    ___</span><br><span class="line">                            /                  \.-~_.-~</span><br><span class="line">                     .-----'     /\/"\ /~-._      /</span><br><span class="line">                    /  __      _/\-.__\L_.-/\     "-.</span><br><span class="line">                   /.-"  \    ( ` \_o&gt;"&lt;o_/  \  .--._\</span><br><span class="line">                  /'      \    \:     "     :/_/     "`</span><br><span class="line">                          /  /\ "\    ~    /~"</span><br><span class="line">                          \ I  \/]"-._ _.-"[</span><br><span class="line">                       ___ \|___/ ./    l   \___   ___</span><br><span class="line">                  .--v~   "v` ( `-.__   __.-' ) ~v"   ~v--.</span><br><span class="line">               .-&#123;   |     :   \_    "~"    _/   :     |   &#125;-.</span><br><span class="line">              /   \  |           ~-.,___,.-~           |  /   \</span><br><span class="line">             ]     \ |                                 | /     [</span><br><span class="line">             /\     \|     :                     :     |/     /\</span><br><span class="line">            /  ^._  _K.___,^                     ^.___,K_  _.^  \</span><br><span class="line">           /   /  "~/  "\                           /"  \~"  \   \</span><br><span class="line">          /   /    /     \ _          :          _ /     \    \   \</span><br><span class="line">        .^--./    /       Y___________l___________Y       \    \.--^.</span><br><span class="line">        [    \   /        |        [/    ]        |        \   /    ]</span><br><span class="line">        |     "v"         l________[____/]________j  -Row   &#125;r"     /</span><br><span class="line">        &#125;------t          /                       \       /`-.     /</span><br><span class="line">        |      |         Y                         Y     /    "-._/</span><br><span class="line">        &#125;-----v'         |         :               |     7-.     /</span><br><span class="line">        |   |_|          |         l               |    / . "-._/</span><br><span class="line">        l  .[_]          :          \              :  r[]/_.  /</span><br><span class="line">         \_____]                     "--.             "-.____/</span><br><span class="line"></span><br><span class="line">                                            "Dragonball Z"</span><br><span class="line">                                                        ---Row</span><br><span class="line"></span><br><span class="line">        */</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line">                        MMMMM</span><br><span class="line">                          MMMMMM</span><br><span class="line">                            MMMMMMM</span><br><span class="line">                             MMMMMMMM     .</span><br><span class="line">                              MMMMMMMMM</span><br><span class="line">                              HMMMMMMMMMM</span><br><span class="line">                               MMMMMMMMMMMM  M</span><br><span class="line">                               MMMMMMMMMMMMM  M</span><br><span class="line">                                MMMMMMMMMMMMM  M</span><br><span class="line">                                MMMMMMMMMMMMM:</span><br><span class="line">                                oMMMMMMMMMMMMMM</span><br><span class="line">      .MMMMMMMMMMMMMMo           MMMMMMMMMMMMMMM M</span><br><span class="line">MMMMMMMMMMMMMMMMMMMMMMMMMMM      MMMMMMMMMMMMMMMM</span><br><span class="line">  MMMMMMMMMMMMMMMMMMMMMMMMMMMM.  oMMMMMMMMMMMMMMM.M</span><br><span class="line">    MMMMMMMMMMMMMMMMMMMMMMMMMMMM  MMMMMMMMMMMMMMMM</span><br><span class="line">      MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM</span><br><span class="line">        oMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM</span><br><span class="line">          MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM</span><br><span class="line">            MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:                     H</span><br><span class="line">             MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM                  .         MMM</span><br><span class="line">              MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM              M       MMMMMM</span><br><span class="line">               .MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM          M   MMMMMMMMMM</span><br><span class="line">        MM.      MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM       M MMMMMMMMMMMM</span><br><span class="line">            MM    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM    .MMMMMMMMMMMMMM</span><br><span class="line">              MM  MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM</span><br><span class="line">                MM MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM</span><br><span class="line">       .MMMMMMMMM MMMMMMMMMMMMMMMMMMMMMMMM.MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM</span><br><span class="line">          HMMMMMMMMMMMMMMMMMMMMM.MMMMMMMMM.MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM</span><br><span class="line">             MMMMMMMMMMMMMMM MMM.oMMMMMMM..MMMMMMMMM:MMMMMMMMMMMMMMMMMMMMMMM</span><br><span class="line">               MMMMMMMMMMMMMM MM..MMMMMMM...MMMMMMM. MMMMMMMMMMMMMMMMMMMMM</span><br><span class="line">                 MMMMMMMMMMMMMMM ..MMMMMM...MMMMMM ..MMMMMMMMMMMMMMMMMMM</span><br><span class="line">                  MMMMMMM:M.MMM.M.. MMMMM M..MMMMM...MMMMMMMMMMMMMMMMMM  MMM</span><br><span class="line">                    MMMM. .M..MM.M...MMMMMM..MMMMM.. MMMMMMMMMMMMMMMMMMMMMMMMMMMMMM .</span><br><span class="line">                     MMMM..M....M.....:MMM .MMMMMM..MMMMMMM...MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM</span><br><span class="line">                      MMM.M.. ...M......MM.MMMMM.......MHM.M  .MMMMMMMMMMMMMMMMMMMMMMMMM</span><br><span class="line">                 MMMMMMMM..MM. . MMM.....MMMMMM.M.....M ..MM..M MMMMMMMMMMMMMMMMMMM</span><br><span class="line">                    .MMMMMHMM. ..MMMM. MMM............o..... . .MMMMMMMMMMMMMMM</span><br><span class="line">                       MMM. M... .........................M..:.MMMMMMMMMMMM</span><br><span class="line">                         oMMM............ .................M.M.MMMMMMMMM</span><br><span class="line">                            .....MM........................ . MMMMMM</span><br><span class="line">                           M.....M.....................o.MM.MMMMMMMM.</span><br><span class="line">                            M........................M.. ...MMMMMMMMMMMMMo</span><br><span class="line">                              :....MMM..............MMM..oMMMMMMM</span><br><span class="line">                               M...MMM.............MMMMMMM</span><br><span class="line">                                  .............:MMMMMMMM</span><br><span class="line">                                  M..... MMM.....M</span><br><span class="line">                                  M M.............</span><br><span class="line">                                  ................M</span><br><span class="line">                               ooM.................MM  MoMMMMMoooM</span><br><span class="line">                          MMoooM......................MoooooooH..oMM</span><br><span class="line">                      MHooooMoM.....................MMooooooM........M</span><br><span class="line">                    oooooooMoooM......... o........MoooooooM............</span><br><span class="line">                    Mooooooooooo.......M.........Moooooooo:..............M</span><br><span class="line">                   MooMoooooooooM...M........:Mooooooooooo:..............M</span><br><span class="line">                  M..oooooooooooo .........Mooooooooooooooo..............M</span><br><span class="line">                 M...Mooo:oooooooo.M....ooooooooooooooooooo..M...........M</span><br><span class="line">                  ...oooooMoooooooM..Mooooooooooooo:oooooooM.M...........M.</span><br><span class="line">                 M...ooooooMoo:ooooMoooooooooooooHoooooooooH:M. ...........:</span><br><span class="line">                 M..MoooooooMoooooooooooooooooo:ooooooMooooMoM..............M</span><br><span class="line">                 M..ooooooooooMooooooooooooooHoooooooMooHooooM...............M</span><br><span class="line">                 ...ooooooooooooooooooo:MooooooooooooooMoMoooM................</span><br><span class="line">                M...oooooooooooooooooooooooooooooooooooooMooMM................M</span><br><span class="line">                ...MooooooooooooooooooooooooooooooooooooooooMo ................</span><br><span class="line">                ...MooooooooooooooooooooooooooooooooooooooooM M................M</span><br><span class="line">               M...ooooooooooooooooooooooooooooooooooooooooM   ................M</span><br><span class="line">               ...MoooooooooooooooooooooooooooooooooooooooMM   .:...............</span><br><span class="line">               .....MooooooooooooooooooooooooooooooooooooMoo       .............M</span><br><span class="line">               M...... ooooooooooooooooooooooooooooooooooooM       M..............M</span><br><span class="line">               M........MooooMMM MM MM  MMMMMMMMMooooooooM         M...............M</span><br><span class="line">               .........HM     M:  MM :MMMMMM          M           M...............</span><br><span class="line">              M..........M     M   MoM M                           M................M</span><br><span class="line">              M.........:M  MoH  M M M MooooHoooMM.   M             M...............M</span><br><span class="line">              M..........Moooo MMooM    oooooMooooooooM              M..............H</span><br><span class="line">              M.........MooooM  Mooo  : ooooooMooooMoooM              M........ . .o.M</span><br><span class="line">              H..  .....ooooo   oooo  M MooooooooooooooM               M... MMMMMMMMMMM</span><br><span class="line">              MMMMMMMMMMooooM M oooo  .  ooooooMooooooooM              .MMMMMMMMMMMMMMM</span><br><span class="line">              MMMMMMMMMMooooH : ooooH    oooooooooooooooo               MMMMMMMMMMMMMMM</span><br><span class="line">              MMMMMMMMMMoooo    ooooM    Moooooooooooooooo              .MMMMMMMMMMMMMMM</span><br><span class="line">              MMMMMMMMMMoooo    ooooM    MooooooooooooooooM              MMMMMMMMMMMMMMM</span><br><span class="line">              MMMMMMMMMMoooM    ooooM     ooooooooooooooooo               MMMMMMMMMMM:M</span><br><span class="line">              MMMMMMMMMMoooM   MooooM     oooooooooooMoooooo               MH...........</span><br><span class="line">               . ......Mooo.   MooooM     oooooooooooooooooo              M............M</span><br><span class="line">              M.M......oooo    MooooM     Moooooooooooooooooo:           .........M.....</span><br><span class="line">              M.M.....Moooo    MooooM      ooooooooooooooooooM            .M............</span><br><span class="line">              .......MooooH    MooooM      oooooooooMoooooooooo          M..o...M..o....M</span><br><span class="line">              .o....HMooooM    MooooH      MooooooooMooooooooooM          .:M...M.......M</span><br><span class="line">             M..M.....MoooM    :oooo:    .MooooooooHooMoooooooooM         M M... ..oM.M</span><br><span class="line">              M...M.:.Mooo. MMMMooooo   oooooooooooMoooooooooooooM          ....M. M</span><br><span class="line">               M:M..o.Moooooooooooooo MooooooooooooooMooooooooooooM          .Mo</span><br><span class="line">                      MooooooooooooooMooooooooooooMoMoooooooooooooo</span><br><span class="line">                      Mooooooooooooooo:ooooooooooooooooooooooooooooo</span><br><span class="line">                      ooooooooooooooooMooooooooooMoooooooooooooooooo</span><br><span class="line">                      ooooooooooooooooMoooooooooooMooooooooooooooooHo</span><br><span class="line">                      ooMooooooooooooooMoooooooooooooooooooooooooooMoM</span><br><span class="line">                     MooMoooooooooooooo.ooooooooooooooooooooooooooo:oM</span><br><span class="line">                     MoooooooooooooooooooooooooooooooooooooooooooooooM</span><br><span class="line">                     MoooMooooooooooooooMooooooooooooooooooooooooooooo.</span><br><span class="line">                     MoooMooooooooooooooMoooooooooooooooooooooooooMooooM</span><br><span class="line">                     MooooooooooooooooooMoooooooooooooooooooooooooMoooooM</span><br><span class="line">                     MooooMoooooooooooooMoooooooooooooooooooooooooMoHooooM</span><br><span class="line">                     ooooooMooooooooooooooooooooooooooooooooooooooooMoMoooM</span><br><span class="line">                    MooooooooooooooooooooMooooooooooooooooooooooooooMoooooH:</span><br><span class="line">                    MoooooooMooooooooooooMoooooooooooooooooooooooooooooHoooM</span><br><span class="line">                    MooooooooMoooooooooooMoooooooooooooooooooooooooMoooMooooM</span><br><span class="line">                    Moooooooooooooooooooooooooooooooooooooooooooooo.oooMooooo</span><br><span class="line">                    MoooooooooooooooooooooooooooooooooooooooooooooMoooooooooM</span><br><span class="line">                     MooooooooooooooooooooMoooooooooooooooooooooooooooooooooM</span><br><span class="line">                      MooooooooooooooooooooMHooooooooooooooooooooMoooo:ooooo</span><br><span class="line">                       MMooooooooooooooooooMoMHoooooooooooooooooooooooMooooo</span><br><span class="line">                        MMoooooooooooooooMMooo MMooooooooooooooooooooooooooM</span><br><span class="line">                        MMMoooooooooooooMooooo  oooooooooooooooooooooMooooo</span><br><span class="line">                        MooMMoooooooooMoooMMoM  ooooHooooooooooooooooMooooM</span><br><span class="line">                        MooooMooooooMooooMoooM  MoooooMoooooooooooooMooooo</span><br><span class="line">                        ooooooMMooooooooMooooM  MoooooooooMooooooooooooooM</span><br><span class="line">                        HooooooMoooooooMooooM    HoooooooHooMooooooooooooo</span><br><span class="line">                         oooMoooooooooHoooM         MoooooooooMoooooooooM</span><br><span class="line">                          HooooooooooooHM             MooooooooMMoooooooM</span><br><span class="line">                           MMMMMMMMMMMMMM                Moooooo:MooooHMM</span><br><span class="line">                            MMMMMMM: ...                  MMMMMMMMMMMMMM</span><br><span class="line">                           M............M                  MMMMMMMMM ....</span><br><span class="line">                           M.MM..........                  M.............M</span><br><span class="line">                        M ..............MM                 M..............</span><br><span class="line">                     MMMMM............MMMM                 ..MMMMMMMM ....M</span><br><span class="line">                   MMMMMMMMMMMMMMMMMMMMMMMM               MMMMMMMMMMMMM...M</span><br><span class="line">                .MMMMMMMMMMMMMMMMMMMMMMMMMM               MMMMMMMMMMMMMMMMMM</span><br><span class="line">                MMMMMMMMMMMMMMMMMMMMMMMMM                MMMMMMMMMMMMMMMMMMM</span><br><span class="line">                :MMMMMMMMMMMMMMMMMMH                     MMMMMMMMMMMMMMMMMMM</span><br><span class="line">                   By EBEN Jérôme                        MMMMMMMMMMMMMMMMMM</span><br><span class="line">                                                         MMMMMMMMMMMMMMM</span><br><span class="line">                                                          HMMMMMM</span><br><span class="line"></span><br><span class="line">*/</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line"> quu..__</span><br><span class="line">  $$$b  `---.__</span><br><span class="line">   "$$b        `--.                          ___.---uuudP</span><br><span class="line">    `$$b           `.__.------.__     __.---'      $$$$"              .</span><br><span class="line">      "$b          -'            `-.-'            $$$"              .'|</span><br><span class="line">        ".                                       d$"             _.'  |</span><br><span class="line">          `.   /                              ..."             .'     |</span><br><span class="line">            `./                           ..::-'            _.'       |</span><br><span class="line">             /                         .:::-'            .-'         .'</span><br><span class="line">            :                          ::''\          _.'            |</span><br><span class="line">           .' .-.             .-.           `.      .'               |</span><br><span class="line">           : /'$$|           .@"$\           `.   .'              _.-'</span><br><span class="line">          .'|$u$$|          |$$,$$|           |  &lt;            _.-'</span><br><span class="line">          | `:$$:'          :$$$$$:           `.  `.       .-'</span><br><span class="line">          :                  `"--'             |    `-.     \</span><br><span class="line">         :##.       ==             .###.       `.      `.    `\</span><br><span class="line">         |##:                      :###:        |        &gt;     &gt;</span><br><span class="line">         |#'     `..'`..'          `###'        x:      /     /</span><br><span class="line">          \                                   xXX|     /    ./</span><br><span class="line">           \                                x<span class="label">XXX'|    /   ./</span></span><br><span class="line">           /`-.                                  `.  /   /</span><br><span class="line">          :    `-  ...........,                   | /  .'</span><br><span class="line">          |         ``:::::::'       .            |&lt;    `.</span><br><span class="line">          |             ```          |           x| \ `.:``.</span><br><span class="line">          |                         .'    /'   xXX|  `:`M`M':.</span><br><span class="line">          |    |                    ;    /:' x<span class="label">XXX'|  -'MMMMM:'</span></span><br><span class="line">          `.  .'                   :    /:'       |-'MMMM.-'</span><br><span class="line">           |  |                   .'   /'        .'MMM.-'</span><br><span class="line">           `'`'                   :  ,'          |MMM&lt;</span><br><span class="line">             |                     `'            |tbap\</span><br><span class="line">              \                                  :MM.-'</span><br><span class="line">               \                 |              .''</span><br><span class="line">                \.               `.            /</span><br><span class="line">                 /     .:::::::.. :           /</span><br><span class="line">                |     .:::::::::::`.         /</span><br><span class="line">                |   .:::------------\       /</span><br><span class="line">               /   .''               &gt;::'  /</span><br><span class="line">               `',:                 :    .'</span><br><span class="line">                                    `:.:'</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> */</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line">             ,----------------,              ,---------,</span><br><span class="line">        ,-----------------------,          ,"        ,"|</span><br><span class="line">      ,"                      ,"|        ,"        ,"  |</span><br><span class="line">     +-----------------------+  |      ,"        ,"    |</span><br><span class="line">     |  .-----------------.  |  |     +---------+      |</span><br><span class="line">     |  |                 |  |  |     | -==----'|      |</span><br><span class="line">     |  |  I LOVE DOS!    |  |  |     |         |      |</span><br><span class="line">     |  |  Bad command or |  |  |/----|`---=    |      |</span><br><span class="line">     |  |  C:\&gt;_          |  |  |   ,/|==== ooo |      ;</span><br><span class="line">     |  |                 |  |  |  // |(((( [33]|    ,"</span><br><span class="line">     |  `-----------------'  |," .;'| |((((     |  ,"</span><br><span class="line">     +-----------------------+  ;;  | |         |,"</span><br><span class="line">        /_)______________(_/  //'   | +---------+</span><br><span class="line">   ___________________________/___  `,</span><br><span class="line">  /  oooooooooooooooo  .o.  oooo /,   \,"-----------</span><br><span class="line"> / ==ooooooooooooooo==.o.  ooo= //   ,`\--&#123;)B     ,"</span><br><span class="line">/_==__==========__==_ooo__ooo=_/'   /___________,"</span><br><span class="line"></span><br><span class="line">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line">                            _________</span><br><span class="line">                           /         /.</span><br><span class="line">    .-------------.       /_________/ |</span><br><span class="line">   /             / |      |         | |</span><br><span class="line">  /+============+\ |      | |====|  | |</span><br><span class="line">  ||C:\&gt;        || |      |         | |</span><br><span class="line">  ||            || |      | |====|  | |</span><br><span class="line">  ||            || |      |   ___   | |</span><br><span class="line">  ||            || |      |  |166|  | |</span><br><span class="line">  ||            ||/@@@    |   ---   | |</span><br><span class="line">  \+============+/    @   |_________|./.</span><br><span class="line">                     @          ..  ....'</span><br><span class="line">  ..................@     __.'.'  ''</span><br><span class="line"> /oooooooooooooooo//     ///</span><br><span class="line">/................//     /_/</span><br><span class="line">------------------</span><br><span class="line">*/</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">/*</span><br><span class="line">        11111111111111111111111111111111111111001111111111111111111111111</span><br><span class="line">        11111111111111111111111111111111111100011111111111111111111111111</span><br><span class="line">        11111111111111111111111111111111100001111111111111111111111111111</span><br><span class="line">        11111111111111111111111111111110000111111111111111111111111111111</span><br><span class="line">        11111111111111111111111111111000000111111111111111111111111111111</span><br><span class="line">        11111111111111111111111111100000011110001100000000000000011111111</span><br><span class="line">        11111111111111111100000000000000000000000000000000011111111111111</span><br><span class="line">        11111111111111110111000000000000000000000000000011111111111111111</span><br><span class="line">        11111111111111111111111000000000000000000000000000000000111111111</span><br><span class="line">        11111111111111111110000000000000000000000000000000111111111111111</span><br><span class="line">        11111111111111111100011100000000000000000000000000000111111111111</span><br><span class="line">        11111111111111100000110000000000011000000000000000000011111111111</span><br><span class="line">        11111111111111000000000000000100111100000000000001100000111111111</span><br><span class="line">        11111111110000000000000000001110111110000000000000111000011111111</span><br><span class="line">        11111111000000000000000000011111111100000000000000011110001111111</span><br><span class="line">        11111110000000011111111111111111111100000000000000001111100111111</span><br><span class="line">        11111111000001111111111111111111110000000000000000001111111111111</span><br><span class="line">        11111111110111111111111111111100000000000000000000000111111111111</span><br><span class="line">        11111111111111110000000000000000000000000000000000000111111111111</span><br><span class="line">        11111111111111111100000000000000000000000000001100000111111111111</span><br><span class="line">        11111111111111000000000000000000000000000000111100000111111111111</span><br><span class="line">        11111111111000000000000000000000000000000001111110000111111111111</span><br><span class="line">        11111111100000000000000000000000000000001111111110000111111111111</span><br><span class="line">        11111110000000000000000000000000000000111111111110000111111111111</span><br><span class="line">        11111100000000000000000001110000001111111111111110001111111111111</span><br><span class="line">        11111000000000000000011111111111111111111111111110011111111111111</span><br><span class="line">        11110000000000000001111111111111111100111111111111111111111111111</span><br><span class="line">        11100000000000000011111111111111111111100001111111111111111111111</span><br><span class="line">        11100000000001000111111111111111111111111000001111111111111111111</span><br><span class="line">        11000000000001100111111111111111111111111110000000111111111111111</span><br><span class="line">        11000000000000111011111111111100011111000011100000001111111111111</span><br><span class="line">        11000000000000011111111111111111000111110000000000000011111111111</span><br><span class="line">        11000000000000000011111111111111000000000000000000000000111111111</span><br><span class="line">        11001000000000000000001111111110000000000000000000000000001111111</span><br><span class="line">        11100110000000000001111111110000000000000000111000000000000111111</span><br><span class="line">        11110110000000000000000000000000000000000111111111110000000011111</span><br><span class="line">        11111110000000000000000000000000000000001111111111111100000001111</span><br><span class="line">        11111110000010000000000000000001100000000111011111111110000001111</span><br><span class="line">        11111111000111110000000000000111110000000000111111111110110000111</span><br><span class="line">        11111110001111111100010000000001111100000111111111111111110000111</span><br><span class="line">        11111110001111111111111110000000111111100000000111111111111000111</span><br><span class="line">        11111111001111111111111111111000000111111111111111111111111100011</span><br><span class="line">        11111111101111111111111111111110000111111111111111111111111001111</span><br><span class="line">        11111111111111111111111111111110001111111111111111111111100111111</span><br><span class="line">        11111111111111111111111111111111001111111111111111111111001111111</span><br><span class="line">        11111111111111111111111111111111100111111111111111111111111111111</span><br><span class="line">        11111111111111111111111111111111110111111111111111111111111111111</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        */</span></span><br><span class="line">        <span class="comment">/*</span><br><span class="line">                                                     __----~~~~~~~~~~~------___</span><br><span class="line">                                          .  .   ~~//====......          __--~ ~~</span><br><span class="line">                          -.            \_|//     |||\\  ~~~~~~::::... /~</span><br><span class="line">                       ___-==_       _-~o~  \/    |||  \\            _/~~-</span><br><span class="line">               __---~~~.==~||\=_    -_--~/_-~|-   |\\   \\        _/~</span><br><span class="line">           _-~~     .=~    |  \\-_    '-~7  /-   /  ||    \      /</span><br><span class="line">         .~       .~       |   \\ -_    /  /-   /   ||      \   /</span><br><span class="line">        /  ____  /         |     \\ ~-_/  /|- _/   .||       \ /</span><br><span class="line">        |~~    ~~|--~~~~--_ \     ~==-/   | \~--===~~        .\</span><br><span class="line">                 '         ~-|      /|    |-~\~~       __--~~</span><br><span class="line">                             |-~~-_/ |    |   ~\_   _-~            /\</span><br><span class="line">                                  /  \     \__   \/~                \__</span><br><span class="line">                              _--~ _/ | .-~~____--~-/                  ~~==.</span><br><span class="line">                             ((-&gt;/~   '.|||' -_|    ~~-/ ,              . _||</span><br><span class="line">                                        -_     ~\      ~~---l__i__i__i--~~_/</span><br><span class="line">                                        _-~-__   ~)  \--______________--~~</span><br><span class="line">                                      //.-~~~-~_--~- |-------~~~~~~~~</span><br><span class="line">                                             //.-~~~--\</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        */</span></span><br><span class="line"><span class="comment">//                       )      (</span></span><br><span class="line"><span class="comment">//                  /+++=))    ((=+++\</span></span><br><span class="line"><span class="comment">//             /++++++++//      \\+++++++++\</span></span><br><span class="line"><span class="comment">//          /++++++++++//(  /\  )\\++++++++++\</span></span><br><span class="line"><span class="comment">//        /+++++++++++//  \\^^//  \\+++++++++++\</span></span><br><span class="line"><span class="comment">//     _/++++++++++++//  &#123;&#123;@::@&#125;&#125;  \\++++++++++++\_</span></span><br><span class="line"><span class="comment">//    /+++++++++++++((     &#123;\/&#125;     ))+++++++++++++\</span></span><br><span class="line"><span class="comment">//   /+++++++++++++++\\    &lt;**&gt;    //+++++++++++++++\</span></span><br><span class="line"><span class="comment">//  /+++++++++++++++++\\  / VV \  //+++++++++++++++++\</span></span><br><span class="line"><span class="comment">// /+++++++++++++++++++\\/******\//+++++++++++++++++++\</span></span><br><span class="line"><span class="comment">//|+/|++++++++++/\++++++(***/\***)++++++/\++++++++++|\+\</span></span><br><span class="line"><span class="comment">//|/ |+/\+/\+/\/  \+/\++\**|**|**/++/\+/  \/\+/\+/\+| \|</span></span><br><span class="line"><span class="comment">//v  |/  V  V  V   V  \+\|*|**|*|/+/  V   v  V  V  \|  v</span></span><br><span class="line"><span class="comment">//   v                 /*|*|**|*|*\...              v</span></span><br><span class="line"><span class="comment">//                    (**|*|**|*|**). .</span></span><br><span class="line"><span class="comment">//                   __\*|*|**|*|*/__. .</span></span><br><span class="line"><span class="comment">//                  (vvv(VVV)(VVV)vvv). .</span></span><br><span class="line"><span class="comment">//                      ............../ /</span></span><br><span class="line"><span class="comment">//                     / ............../</span></span><br><span class="line"><span class="comment">//                     ((</span></span><br><span class="line"><span class="comment">/*</span><br><span class="line">                 ___====-_  _-====___</span><br><span class="line">           _--^^^#####//      \\#####^^^--_</span><br><span class="line">        _-^##########// (    ) \\##########^-_</span><br><span class="line">       -############//  |\^^/|  \\############-</span><br><span class="line">     _/############//   (@::@)   \\############\_</span><br><span class="line">    /#############((     \\//     ))#############\</span><br><span class="line">   -###############\\    (oo)    //###############-</span><br><span class="line">  -#################\\  / VV \  //#################-</span><br><span class="line"> -###################\\/      \//###################-</span><br><span class="line">_#/|##########/\######(   /\   )######/\##########|\#_</span><br><span class="line">|/ |#/\#/\#/\/  \#/\##\  |  |  /##/\#/  \/\#/\#/\#| \|</span><br><span class="line">`  |/  V  V  `   V  \#\| |  | |/#/  V   '  V  V  \|  '</span><br><span class="line">   `   `  `      `   / | |  | | \   '      '  '   '</span><br><span class="line">                    (  | |  | |  )</span><br><span class="line">                   __\ | |  | | /__</span><br><span class="line">                  (vvv(VVV)(VVV)vvv)</span><br><span class="line"></span><br><span class="line">*/</span></span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/31/Pascal-s-Triangle-I-II/" itemprop="url">
-                Pascal's Triangle I, II
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-31T22:06:57-04:00" content="2015-08-31">
-            2015-08-31
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/pascals-triangle/" target="_blank" rel="external">Pascal’s Triangle</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; generate(<span class="keyword">int</span> numRows) &#123;</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> ArrayList&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line">    <span class="keyword">if</span> (numRows == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    List&lt;Integer&gt; parent = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    parent.add(<span class="number">1</span>);</span><br><span class="line">    ans.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;(parent));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; numRows; ++i) &#123;</span><br><span class="line">        List&lt;Integer&gt; children = <span class="keyword">new</span> ArrayList&lt;Integer&gt;(i + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i + <span class="number">1</span>; ++j)</span><br><span class="line">            children.add(<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; parent.size(); ++j) &#123;</span><br><span class="line">            children.set(j, parent.get(j) + parent.get(j-<span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        parent = children;</span><br><span class="line">        ans.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;(parent));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><a href="https://leetcode.com/problems/pascals-triangle-ii/" target="_blank" rel="external">Pascal’s Triangle II</a><br>这题恶心人的地方在于，k-th竟然 k从0开始计数的。wtf!<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">getRow</span><span class="params">(<span class="keyword">int</span> rowIndex)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    ans.add(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (rowIndex == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= rowIndex; ++i) &#123;</span><br><span class="line">        List&lt;Integer&gt; children = <span class="keyword">new</span> ArrayList&lt;Integer&gt;(i + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i + <span class="number">1</span>; ++j)</span><br><span class="line">            children.add(<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; ans.size(); ++j) &#123;</span><br><span class="line">            children.set(j, ans.get(j) + ans.get(j-<span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        ans = children;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/31/Populating-Next-Right-Pointers-in-Each-Node/" itemprop="url">
-                Populating Next Right Pointers in Each Node
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-31T14:04:46-04:00" content="2015-08-31">
-            2015-08-31
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/populating-next-right-pointers-in-each-node/" target="_blank" rel="external">Populating Next Right Pointers in Each Node</a><br>一次过了之后，不理解为啥这题会被标记为medium。后来仔细一看，要求contant space！下面这个naive的方法不符合题意。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connect</span><span class="params">(TreeLinkNode root)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">         <span class="keyword">return</span>;</span><br><span class="line">     List&lt;TreeLinkNode&gt; parents = <span class="keyword">new</span> LinkedList&lt;TreeLinkNode&gt;();</span><br><span class="line">     parents.add(root);</span><br><span class="line">     <span class="keyword">while</span> (parents.size() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; parents.size() - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">             parents.get(i).next = parents.get(i + <span class="number">1</span>);</span><br><span class="line">         &#125;</span><br><span class="line">         List&lt;TreeLinkNode&gt; children = <span class="keyword">new</span> LinkedList&lt;TreeLinkNode&gt;();</span><br><span class="line">         <span class="keyword">for</span> (TreeLinkNode node : parents) &#123;</span><br><span class="line">             <span class="keyword">if</span> (node.left != <span class="keyword">null</span>)</span><br><span class="line">                 children.add(node.left);</span><br><span class="line">             <span class="keyword">if</span> (node.right != <span class="keyword">null</span>)</span><br><span class="line">                 children.add(node.right);</span><br><span class="line">         &#125;</span><br><span class="line">         parents = children;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/31/Flatten-Binary-Tree-to-Linked-List/" itemprop="url">
-                Flatten Binary Tree to Linked List
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-31T13:30:32-04:00" content="2015-08-31">
-            2015-08-31
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/flatten-binary-tree-to-linked-list/" target="_blank" rel="external">Flatten Binary Tree to Linked List</a><br>题目中给了提示可能用pre-order 来做。我们用一个prev来记录先序遍历中之前的点。<br>在递归过程中，保持先序遍历队形。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">preorder</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">    <span class="comment">// root do something</span></span><br><span class="line">    preorder(root.left);</span><br><span class="line">    preorder(root.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>代码大致是这样一个结构。这题，我们要将prev的right改成prev的左子树，而prev的左子树得清空，所以我们得用变量来记录left和right。然后再做先序遍历。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> TreeNode prev = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">flatten</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    helper(root);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">preorder</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span> (prev == <span class="keyword">null</span>)</span><br><span class="line">        prev = root;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        prev.right = root;</span><br><span class="line">        prev = root;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    TreeNode left = root.left;</span><br><span class="line">    TreeNode right = root.right;</span><br><span class="line">    root.left = <span class="keyword">null</span>;</span><br><span class="line">    preorder(left);</span><br><span class="line">    preorder(right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">&raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">&raquo;</a>
   </nav>
 
  </div>
@@ -890,7 +868,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">66</span>
+              <span class="site-state-item-count">72</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
