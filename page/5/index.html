@@ -192,6 +192,138 @@
           
           
             
+              <a class="post-title-link" href="/2015/08/27/Jump-Game-I-II/" itemprop="url">
+                Jump Game I, II
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-08-27T14:06:46-04:00" content="2015-08-27">
+            2015-08-27
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/jump-game/" target="_blank" rel="external">Jump Game I</a><br>贪心法不好做啥总结，所以干脆就用dp来做，当然时间效率肯定不咋滴。<br>dp[i] 表示第i个位置是否可以到达。 我们可以有这样的关系是，<br>if dp[j] = true and nums[j] + j &gt;= i, 则dp[i] = true;<br>首先初始化，dp[0] = true;<br>然后从i = 1开始遍历。注意，我们推断dp[i]时，从i - 1 开始推，恰巧没有超时。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canJump</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">boolean</span>[] dp = <span class="keyword">new</span> <span class="keyword">boolean</span>[nums.length];</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i -<span class="number">1</span>; j &gt;= <span class="number">0</span>; --j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (dp[j] == <span class="keyword">true</span> &amp;&amp; nums[j] + j &gt;= i) &#123;</span><br><span class="line">                dp[i] = <span class="keyword">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[nums.length - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://leetcode.com/problems/jump-game-ii/" target="_blank" rel="external">Jump Game II</a><br>设dp[i]为跳到第i的位置需要的最小次数。我们可以得到这样的关系式：<br>dp[i] = min(dp[i], dp[j] + 1) j可以跳到i<br>跟jump game I 一样的做法，超时。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">jump</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">        dp[i] = Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (j + nums[j] &gt;= i) &#123;</span><br><span class="line">                dp[i] = Math.min(dp[i], dp[j] + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[nums.length - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>改一改。做法有点BFS的意思。<br>设dp[i]为跳到第i的位置需要的最小次数。<br>把从第i个点 能跳的范围看成一个window， 那么在这window中，每个位置需要的最小跳跃次数为dp[i] + 1<br>遍历这个window的过程中，找到下一次跳能到达的最远的点。这样时间复杂度就是O(n), 因为每个点被访问一次。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">jump</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length &lt;= <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; nums.length) &#123;</span><br><span class="line">        <span class="keyword">int</span> right = i + nums[i];</span><br><span class="line">        <span class="keyword">if</span> (right &gt;= nums.length - <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> dp[i] + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> maxJump = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> nextIndex = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">            dp[left] = dp[i] + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (maxJump &lt; nums[left] + left) &#123;</span><br><span class="line">                maxJump = nums[left] + left;</span><br><span class="line">                nextIndex = left;</span><br><span class="line">            &#125;</span><br><span class="line">            ++left;</span><br><span class="line">        &#125;</span><br><span class="line">        i = nextIndex;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[nums.length - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/08/27/Spiral-Matrix/" itemprop="url">
+                Spiral Matrix I, II
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-08-27T13:56:25-04:00" content="2015-08-27">
+            2015-08-27
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/spiral-matrix/" target="_blank" rel="external">Spiral Matrix I</a><br>感觉这题就属于，肯定会写，但是就是很难bug-free类型的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">spiralOrder</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    <span class="keyword">if</span> (matrix == <span class="keyword">null</span> || matrix.length == <span class="number">0</span> || matrix[<span class="number">0</span>] == <span class="keyword">null</span> || matrix[<span class="number">0</span>].length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    <span class="keyword">int</span> rBegin = <span class="number">0</span>, cBegin = <span class="number">0</span>, rEnd = matrix.length - <span class="number">1</span>, cEnd = matrix[<span class="number">0</span>].length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (rBegin &lt;= rEnd &amp;&amp; cBegin &lt;= cEnd) &#123;</span><br><span class="line">        <span class="comment">// go right</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = cBegin; i &lt;= cEnd; ++i) &#123;</span><br><span class="line">            ans.add(matrix[rBegin][i]);</span><br><span class="line">        &#125;</span><br><span class="line">        rBegin += <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// go down</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = rBegin; i &lt;= rEnd; ++i) &#123;</span><br><span class="line">            ans.add(matrix[i][cEnd]);</span><br><span class="line">        &#125;</span><br><span class="line">        cEnd -= <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// go left</span></span><br><span class="line">        <span class="keyword">if</span> (rBegin &gt; rEnd)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = cEnd; i &gt;= cBegin; --i)</span><br><span class="line">            ans.add(matrix[rEnd][i]);</span><br><span class="line">        rEnd -= <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// go up</span></span><br><span class="line">        <span class="keyword">if</span> (cBegin &gt; cEnd || rBegin &gt; rEnd)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = rEnd; i &gt;= rBegin; --i)</span><br><span class="line">            ans.add(matrix[i][cBegin]);</span><br><span class="line">        cBegin += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://leetcode.com/problems/spiral-matrix-ii/" target="_blank" rel="external">Spiral Matrix II</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[][] generateMatrix(<span class="keyword">int</span> n) &#123;</span><br><span class="line">    <span class="keyword">int</span>[][] board = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">    <span class="keyword">int</span> rBegin = <span class="number">0</span>, rEnd = n - <span class="number">1</span>, cBegin = <span class="number">0</span>, cEnd = n - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (rBegin &lt;= rEnd &amp;&amp; cBegin &lt;= cEnd) &#123;</span><br><span class="line">        <span class="comment">// go right</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = cBegin; i &lt;= cEnd; ++i) &#123;</span><br><span class="line">            board[rBegin][i] = num++;</span><br><span class="line">        &#125;</span><br><span class="line">        rBegin += <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// go down</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = rBegin; i &lt;= rEnd; ++i) &#123;</span><br><span class="line">            board[i][cEnd] = num++;</span><br><span class="line">        &#125;</span><br><span class="line">        cEnd -= <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// go left</span></span><br><span class="line">        <span class="keyword">if</span> (rBegin &gt; rEnd || cBegin &gt; cEnd)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = cEnd; i &gt;= cBegin; --i) &#123;</span><br><span class="line">            board[rEnd][i] = num++;</span><br><span class="line">        &#125;</span><br><span class="line">        rEnd -= <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (rBegin &gt; rEnd || cBegin &gt; cEnd)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = rEnd; i &gt;= rBegin; --i) &#123;</span><br><span class="line">            board[i][cBegin] = num++;</span><br><span class="line">        &#125;</span><br><span class="line">        cBegin += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> board;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/08/27/Maximum-Subarray/" itemprop="url">
                 Maximum Subarray
               </a>
@@ -712,133 +844,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/26/Longest-Consecutive-Sequence/" itemprop="url">
-                Longest Consecutive Sequence
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-26T20:54:09-04:00" content="2015-08-26">
-            2015-08-26
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/longest-consecutive-sequence/" target="_blank" rel="external">Problem Description</a><br>算法时间复杂度要求是O(n), 则肯定不能排序，咋办呢？用哈希表吧。<br>定义一个哈希表，key为数字，value是一个boolean类型的，表示是否访问过这个数字。<br>首先，初始化哈希表，将每个数字加入到哈希表中，value都是false，在这个过程中，遇到重复的数字也没关系。<br>然后，遍历数组，每次访问一个数字时，在哈希表中将它标记为true，即已访问。然后对这个数字向两边扩展，看左右有多少相邻的数字，扩展完后，更新len。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestConsecutive</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    HashMap&lt;Integer, Boolean&gt; map = <span class="keyword">new</span> HashMap&lt;Integer, Boolean&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : nums)</span><br><span class="line">        map.put(i, <span class="keyword">false</span>);</span><br><span class="line">    <span class="keyword">int</span> len = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : nums) &#123;</span><br><span class="line">        <span class="keyword">if</span> (map.get(i) == <span class="keyword">true</span>)</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">        map.put(i, <span class="keyword">true</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> right = i + <span class="number">1</span>; map.containsKey(right); ++right) &#123;</span><br><span class="line">            map.put(right, <span class="keyword">true</span>);</span><br><span class="line">            count += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> left = i  - <span class="number">1</span>; map.containsKey(left); --left) &#123;</span><br><span class="line">            map.put(left, <span class="keyword">true</span>);</span><br><span class="line">            count += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        len = Math.max(count, len);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> len;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/26/Trapping-Rain-Water/" itemprop="url">
-                Trapping Rain Water
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-26T20:18:17-04:00" content="2015-08-26">
-            2015-08-26
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/trapping-rain-water/" target="_blank" rel="external">Problem Description</a></p>
-<p></p><p align="center"><br><img src="/images/rainwatertrap.png" alt="image"><br></p><br>这种题就是属于不看答案就呵呵的。<br>如图所示，每个bar能顶住水，取决于这块bar两侧的bar是否都高于它，如果这块bar能够顶住水，这块bar能顶住水的容积为，两侧最小的高度－自己的高度，遍历累加每块bar能装的容积，就能得到答案。<br>如何求每块bar两侧最大的bar呢？<br>设两个数组，left和right，left[i]表示bar i左边最大的bar，right[i]表示bar i 右边最大的bar, 我们可以得到以下两个关系式：<p></p>
-<p></p><p align="center"><br>left[i] = max(left[i - 1], height[i]);<br>right[i] = max(right[i + 1], height[i]);<br></p><br>得到每个bar对应的两边最大的bar之后，我们再从头到尾扫描一次数组，求能够累计的水容积。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (height == <span class="keyword">null</span> || height.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span>[] left = <span class="keyword">new</span> <span class="keyword">int</span>[height.length];</span><br><span class="line">    <span class="keyword">int</span>[] right = <span class="keyword">new</span> <span class="keyword">int</span>[height.length];</span><br><span class="line">    left[<span class="number">0</span>] = height[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; height.length; ++i)</span><br><span class="line">        left[i] = Math.max(left[i-<span class="number">1</span>], height[i]);</span><br><span class="line">    right[height.length - <span class="number">1</span>] = height[height.length - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = height.length - <span class="number">2</span>; i &gt;= <span class="number">0</span>; --i)</span><br><span class="line">        right[i] = Math.max(right[i + <span class="number">1</span>], height[i]);</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; height.length - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> lowbar = Math.min(left[i], right[i]);</span><br><span class="line">        <span class="keyword">if</span> (lowbar &gt; height[i])</span><br><span class="line">            ans += (lowbar - height[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p></p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -877,7 +882,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">72</span>
+              <span class="site-state-item-count">74</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

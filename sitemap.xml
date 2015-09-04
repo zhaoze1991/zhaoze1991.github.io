@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zhaoze1991.github.io/2015/09/04/Gas-Station/</loc>
+    <lastmod>2015-09-04T05:02:01.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://zhaoze1991.github.io/2015/09/03/Clone-Graph/</loc>
+    <lastmod>2015-09-04T04:33:34.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://zhaoze1991.github.io/2015/09/03/Palindrome-Partitioning/</loc>
     <lastmod>2015-09-04T03:18:39.000Z</lastmod>
   </url>
