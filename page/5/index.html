@@ -192,6 +192,389 @@
           
           
             
+              <a class="post-title-link" href="/2015/08/28/sort-colors/" itemprop="url">
+                sort colors
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-08-28T13:34:34-04:00" content="2015-08-28">
+            2015-08-28
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/sort-colors/" target="_blank" rel="external">Sort Colors</a><br>计数排序，计算每种color的个数<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] colors = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : nums) &#123;</span><br><span class="line">        colors[i]++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> color = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : colors) &#123;</span><br><span class="line">        <span class="keyword">while</span> (i-- &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            nums[index++] = color;</span><br><span class="line">        &#125;</span><br><span class="line">        ++color;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以用双指针的方法去做，把 0 全部交换到左边， 2 全部交换到右边。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= right;) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[i] == <span class="number">2</span>) &#123;</span><br><span class="line">            swap(nums, i, right);</span><br><span class="line">            --right;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[i] == <span class="number">0</span>) &#123;</span><br><span class="line">            swap(nums, i, left);</span><br><span class="line">            ++left;</span><br><span class="line">            ++i;</span><br><span class="line">        &#125; <span class="keyword">else</span></span><br><span class="line">            ++i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp = nums[i];</span><br><span class="line">    nums[i] = nums[j];</span><br><span class="line">    nums[j] = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/08/28/Search-a-2D-Matrix-I-II/" itemprop="url">
+                Search a 2D Matrix I, II
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-08-28T12:10:11-04:00" content="2015-08-28">
+            2015-08-28
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/search-a-2d-matrix/" target="_blank" rel="external">Search a 2D Matrix I</a><br>注意矩阵坐标的转换。时间复杂度是O(log(m * n))<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">searchMatrix</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m = matrix.length, n = matrix[<span class="number">0</span>].length;</span><br><span class="line">    <span class="keyword">int</span> begin = <span class="number">0</span>, end = m * n - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (begin + <span class="number">1</span> &lt; end) &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = begin + (end - begin) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> i = mid / n;</span><br><span class="line">        <span class="keyword">int</span> j = mid % n;</span><br><span class="line">        <span class="keyword">int</span> val = matrix[i][j];</span><br><span class="line">        <span class="keyword">if</span> (val == target) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (val &lt; target) &#123;</span><br><span class="line">            begin = mid;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            end = mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> i = begin / n, j = begin % n;</span><br><span class="line">    <span class="keyword">if</span> (matrix[i][j] == target)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    i = end / n; j = end % n;</span><br><span class="line">    <span class="keyword">if</span> (matrix[i][j] == target)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://leetcode.com/problems/search-a-2d-matrix-ii/" target="_blank" rel="external">Search a 2D Matrix II</a><br>这题有O(m + n)的解法<br>观察可得，矩阵最右边的元素，左边的都小于它，下面的都大于它。 于是我们可以做这样的操作：<br>起始位置为第一行矩阵最右边，<br>如果这个数字小于target, 那么targe不可能在这一行。跳到下一行。<br>如果这个数字大于target，那么将这个位置左移。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">searchMatrix</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m = matrix.length, n = matrix[<span class="number">0</span>].length;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = n - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; m &amp;&amp; j &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> val = matrix[i][j];</span><br><span class="line">        <span class="keyword">if</span> (val == target)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (val &lt; target)</span><br><span class="line">            ++i;</span><br><span class="line">        <span class="keyword">else</span>  <span class="comment">// val &gt; target</span></span><br><span class="line">            --j;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/08/27/Sqrt-x/" itemprop="url">
+                Sqrt(x)
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-08-27T17:19:32-04:00" content="2015-08-27">
+            2015-08-27
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/sqrtx/" target="_blank" rel="external">Problem Description</a><br>又做的坑坑洼洼的.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">mySqrt</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x == <span class="number">1</span> || x == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    <span class="keyword">long</span> begin = <span class="number">0</span>, end = x / <span class="number">2</span> ;</span><br><span class="line">    <span class="keyword">while</span> (begin + <span class="number">1</span> &lt; end) &#123;</span><br><span class="line">        <span class="keyword">long</span> mid = begin + (end - begin) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">long</span> mul = mid * mid;</span><br><span class="line">        <span class="keyword">if</span> (mul == x)</span><br><span class="line">            <span class="keyword">return</span> (<span class="keyword">int</span>)mid;</span><br><span class="line">        <span class="keyword">if</span> (mul &lt; x)</span><br><span class="line">            begin = (<span class="keyword">int</span>)mid;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            end = (<span class="keyword">int</span>)mid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (end * end &lt;= x)</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>)end;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)begin;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">mySqrt</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> begin = <span class="number">0</span>, end = x;</span><br><span class="line">    <span class="keyword">while</span> (begin + <span class="number">1</span> &lt; end) &#123;</span><br><span class="line">        <span class="keyword">long</span> mid = begin + (end - begin) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">long</span> mul = mid * mid;</span><br><span class="line">        <span class="keyword">if</span> (mul == x)</span><br><span class="line">            <span class="keyword">return</span> (<span class="keyword">int</span>)mid;</span><br><span class="line">        <span class="keyword">if</span> (mul &lt; x)</span><br><span class="line">            begin = (<span class="keyword">int</span>)mid;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            end = (<span class="keyword">int</span>)mid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (end * end &lt;= x)</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>)end;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)begin;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/08/27/Add-Binary/" itemprop="url">
+                Add Binary
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-08-27T17:04:42-04:00" content="2015-08-27">
+            2015-08-27
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/add-binary/" target="_blank" rel="external">Add Binary</a><br>难得一次AC</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">addBinary</span><span class="params">(String a, String b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[a.length() + b.length() + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> ia = a.length() - <span class="number">1</span>, ib = b.length() - <span class="number">1</span>, i = ans.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> carry = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (ia &gt;= <span class="number">0</span> &amp;&amp; ib &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> sum = carry + a.charAt(ia--) - <span class="string">'0'</span> + b.charAt(ib--) - <span class="string">'0'</span>;</span><br><span class="line">        <span class="keyword">if</span> (sum == <span class="number">3</span>) &#123;</span><br><span class="line">            carry = <span class="number">1</span>;</span><br><span class="line">            ans[i--] = <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (sum  == <span class="number">2</span>) &#123;</span><br><span class="line">            carry = <span class="number">1</span>;</span><br><span class="line">            ans[i--] = <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ans [i--] = sum;</span><br><span class="line">            carry = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (ia &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> sum = carry + a.charAt(ia--) - <span class="string">'0'</span>;</span><br><span class="line">        <span class="keyword">if</span> (sum == <span class="number">2</span>) &#123;</span><br><span class="line">            carry = <span class="number">1</span>;</span><br><span class="line">            ans[i--] = <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            carry = <span class="number">0</span>;</span><br><span class="line">            ans[i--] = sum;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (ib &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> sum = carry + b.charAt(ib--) - <span class="string">'0'</span>;</span><br><span class="line">        <span class="keyword">if</span> (sum == <span class="number">2</span>) &#123;</span><br><span class="line">            carry = <span class="number">1</span>;</span><br><span class="line">            ans[i--] = <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            carry = <span class="number">0</span>;</span><br><span class="line">            ans[i--] = sum;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (carry != <span class="number">0</span>) &#123;</span><br><span class="line">        ans[i--] = carry;</span><br><span class="line">    &#125;</span><br><span class="line">    i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; ans.length &amp;&amp; ans[i] == <span class="number">0</span>)</span><br><span class="line">        ++i;</span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    <span class="keyword">while</span> (i&lt; ans.length) &#123;</span><br><span class="line">        sb.append(ans[i++]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sb.length() == <span class="number">0</span> ?  <span class="string">"0"</span> : sb.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/08/27/Simplify-Path/" itemprop="url">
+                Simplify Path
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-08-27T16:23:21-04:00" content="2015-08-27">
+            2015-08-27
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/simplify-path/" target="_blank" rel="external">Problem Description</a><br>还是没有一次AC。挂在了出栈那个地方。因为输入可能是些奇奇怪怪的路径，所以，出栈之前先对栈做一下判断。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">simplifyPath</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (path == <span class="keyword">null</span> || path.length() == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> path;</span><br><span class="line">    Stack&lt;String&gt; stack = <span class="keyword">new</span> Stack&lt;String&gt;();</span><br><span class="line">    String[] strs = path.split(<span class="string">"/"</span>);</span><br><span class="line">    <span class="comment">// example of split("/")</span></span><br><span class="line">    <span class="comment">// (/a/./b/../../c/).split("/")</span></span><br><span class="line">    <span class="comment">// -&gt; &#123;, a, ., b, .., .., c&#125;</span></span><br><span class="line">    <span class="keyword">for</span> (String str : strs) &#123;</span><br><span class="line">        <span class="keyword">if</span> (str.equals(<span class="string">""</span>) || str.equals(<span class="string">"."</span>))</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (str.equals(<span class="string">".."</span>)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!stack.isEmpty())</span><br><span class="line">                stack.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            stack.push(str);</span><br><span class="line">    &#125;</span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    <span class="keyword">while</span> (!stack.isEmpty()) &#123;</span><br><span class="line">        sb.insert(<span class="number">0</span>,stack.pop());</span><br><span class="line">        sb.insert(<span class="number">0</span>, <span class="string">"/"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sb.length() == <span class="number">0</span> ? <span class="string">"/"</span> : sb.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/08/27/Merge-Insert-Interval/" itemprop="url">
+                Merge/Insert Interval
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-08-27T15:16:26-04:00" content="2015-08-27">
+            2015-08-27
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/merge-intervals/" target="_blank" rel="external">Merge Intervals</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Interval&gt; <span class="title">merge</span><span class="params">(List&lt;Interval&gt; intervals)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (intervals == <span class="keyword">null</span> || intervals.size() &lt;= <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> intervals;</span><br><span class="line">    List&lt;Interval&gt; ans = <span class="keyword">new</span> ArrayList&lt;Interval&gt;();</span><br><span class="line">    Collections.sort(intervals, <span class="keyword">new</span> Comparator&lt;Interval&gt;()&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Interval i1, Interval i2)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> i1.start - i2.start;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">int</span> start = intervals.get(<span class="number">0</span>).start;</span><br><span class="line">    <span class="keyword">int</span> end = intervals.get(<span class="number">0</span>).end;</span><br><span class="line">    <span class="keyword">for</span> (Interval it : intervals) &#123;</span><br><span class="line">        <span class="keyword">if</span> (it.start &lt;= end) &#123;</span><br><span class="line">            <span class="comment">// overlap</span></span><br><span class="line">            end = Math.max(end, it.end);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ans.add(<span class="keyword">new</span> Interval(start, end));</span><br><span class="line">            start = it.start;</span><br><span class="line">            end = it.end;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ans.add(<span class="keyword">new</span> Interval(start, end));</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://leetcode.com/problems/insert-interval/" target="_blank" rel="external">Insert Interval</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Interval&gt; <span class="title">insert</span><span class="params">(List&lt;Interval&gt; intervals, Interval newInterval)</span> </span>&#123;</span><br><span class="line">    intervals.add(newInterval);</span><br><span class="line">    <span class="keyword">if</span> (intervals.size() == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> intervals;</span><br><span class="line">    List&lt;Interval&gt; ans = <span class="keyword">new</span> ArrayList&lt;Interval&gt;();</span><br><span class="line">    Collections.sort(intervals, <span class="keyword">new</span> Comparator&lt;Interval&gt;()&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Interval i1, Interval i2)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> i1.start - i2.start;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">int</span> start = intervals.get(<span class="number">0</span>).start;</span><br><span class="line">    <span class="keyword">int</span> end = intervals.get(<span class="number">0</span>).end;</span><br><span class="line">    <span class="keyword">for</span> (Interval it : intervals) &#123;</span><br><span class="line">        <span class="keyword">if</span> (it.start &lt;= end) &#123;</span><br><span class="line">            <span class="comment">// overlap</span></span><br><span class="line">            end = Math.max(end, it.end);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ans.add(<span class="keyword">new</span> Interval(start, end));</span><br><span class="line">            start = it.start;</span><br><span class="line">            end = it.end;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ans.add(<span class="keyword">new</span> Interval(start, end));</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/08/27/Jump-Game-I-II/" itemprop="url">
                 Jump Game I, II
               </a>
@@ -445,405 +828,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/27/Pow-x-n/" itemprop="url">
-                Pow(x, n)
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-27T11:19:03-04:00" content="2015-08-27">
-            2015-08-27
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/powx-n/" target="_blank" rel="external">Problem Description</a><br>二分法。这篇blog加载了mathjax的javascript，果然反应就慢了很多。</p>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
-<ol>
-<li>首先判断x的值，如果 x ＝ 0 或者 x ＝ 1， 则直接返回。否则，如果x ＝ 0， n &lt; 1， 1 / x 就挂了。</li>
-<li>首先判断n的符号，如果n是负数，则 x = 1 / x， 然后再把n变成正数。</li>
-<li>根据如下关系式进行二分:<br>$$ x ^ 4 = (x ^ 2) * (x ^ 2), x ^ 8 = ((x ^ 2) ^ 2) ^ 2 $$</li>
-</ol>
-<p>则，当 n 为偶数的时候， x ＝ x ^ 2, n /= 2; 当 n 为奇数的时候，n -= 1, ans *= x</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">myPow</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x == <span class="number">0</span> || x == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    <span class="keyword">if</span> (n &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        n *= -<span class="number">1</span>;</span><br><span class="line">        x = <span class="number">1</span> / x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">double</span> ans = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (n &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (n % <span class="number">2</span>  == <span class="number">0</span>)&#123;</span><br><span class="line">            n /= <span class="number">2</span>;</span><br><span class="line">            x *= x;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            n -= <span class="number">1</span>;</span><br><span class="line">            ans *= x;</span><br><span class="line">            <span class="comment">// x *= x;</span></span><br><span class="line">            <span class="comment">// n /= 2;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/27/Group-Anagrams/" itemprop="url">
-                Group Anagrams
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-27T01:11:27-04:00" content="2015-08-27">
-            2015-08-27
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/anagrams/" target="_blank" rel="external">Problem Description</a><br>题目很简单，写blog的意义在于，记住如何使用map的iterator，如何对String做排序。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;List&lt;String&gt;&gt; groupAnagrams(String[] strs) &#123;</span><br><span class="line">    List&lt;List&lt;String&gt;&gt; ans = <span class="keyword">new</span> ArrayList&lt;List&lt;String&gt;&gt;();</span><br><span class="line">    <span class="keyword">if</span> (strs == <span class="keyword">null</span> || strs.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    HashMap&lt;String, List&lt;String&gt;&gt; map = <span class="keyword">new</span> HashMap&lt;String, List&lt;String&gt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (String str : strs) &#123;</span><br><span class="line">        String key = sort(str);</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(key)) &#123;</span><br><span class="line">            map.get(key).add(str);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">            list.add(str);</span><br><span class="line">            map.put(key, list);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    Iterator it = map.entrySet().iterator();</span><br><span class="line">    <span class="keyword">while</span> (it.hasNext()) &#123;</span><br><span class="line">        Map.Entry pair = (Map.Entry)it.next();</span><br><span class="line">        Collections.sort((List)pair.getValue());</span><br><span class="line">        ans.add((List)pair.getValue());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">sort</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span>[] array = str.toCharArray();</span><br><span class="line">    Arrays.sort(array);</span><br><span class="line">    String ans = <span class="keyword">new</span> String(array);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/26/Wildcard-Matching/" itemprop="url">
-                Wildcard Matching
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-26T23:14:13-04:00" content="2015-08-26">
-            2015-08-26
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/wildcard-matching/" target="_blank" rel="external">Problem Description</a><br>这种题，就是男默女泪。超时。<br>大致思路如下：</p>
-<ol>
-<li>如果string和pattern都是空，直接返回true</li>
-<li>比较string和pattern的第一个字符，如果pattern的第一个字符不等于 ‘*’，则比较该字符和string中得第一个字符</li>
-<li>如果pattern的第一个字符等于 ‘*’，则一点一点对string做subtring() 操作并比较</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isMatch</span><span class="params">(String s, String p)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write your code here</span></span><br><span class="line">    <span class="keyword">if</span> (s.length() == <span class="number">0</span> &amp;&amp; p.length() == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (p.length() == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">char</span> c = p.charAt(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (s.length() != <span class="number">0</span> &amp;&amp; (c == <span class="string">'?'</span> || c == s.charAt(<span class="number">0</span>)))</span><br><span class="line">        <span class="keyword">return</span> isMatch(s.substring(<span class="number">1</span>), p.substring(<span class="number">1</span>));</span><br><span class="line">    <span class="keyword">if</span> (c == <span class="string">'*'</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= s.length(); ++i) &#123;</span><br><span class="line">            String strLeft = s.substring(i);</span><br><span class="line">            <span class="keyword">if</span> (isMatch(strLeft, p.substring(<span class="number">1</span>)))</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/26/Rotate-Image/" itemprop="url">
-                Rotate Image
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-26T22:45:43-04:00" content="2015-08-26">
-            2015-08-26
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/rotate-image/" target="_blank" rel="external">Problem Description</a><br>这题按照CC150上的做法，我是死活写不对。幸好大牛给了条活路，先把矩阵上下行交换，然后，沿着对角线交换<br>图片引用自：<a href="http://fisherlei.blogspot.com/2013/01/leetcode-rotate-image.html" target="_blank" rel="external">http://fisherlei.blogspot.com/2013/01/leetcode-rotate-image.html</a></p>
-<p></p><p align="center"><br><img src="/images/rotate_image.png" alt="image"><br></p><br>略微有点不一样，结果都一样的。<p></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (matrix == <span class="keyword">null</span> || matrix.length == <span class="number">0</span> || matrix[<span class="number">0</span>] == <span class="keyword">null</span> || matrix[<span class="number">0</span>].length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> n = matrix.length - <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// reverse</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrix.length / <span class="number">2</span> ; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; matrix[<span class="number">0</span>].length; ++j) &#123;</span><br><span class="line">            <span class="keyword">int</span> temp = matrix[i][j];</span><br><span class="line">            matrix[i][j] = matrix[n - i][j];</span><br><span class="line">            matrix[n - i][j] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// symmetry swap</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrix.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; matrix[<span class="number">0</span>].length; ++j) &#123;</span><br><span class="line">            <span class="keyword">int</span> temp = matrix[i][j];</span><br><span class="line">            matrix[i][j] = matrix[j][i];</span><br><span class="line">            matrix[j][i] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/26/Permutations-I-II/" itemprop="url">
-                Permutations I, II
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-26T22:27:23-04:00" content="2015-08-26">
-            2015-08-26
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/permutations/" target="_blank" rel="external">Permutations I</a><br>写题的时候画画树状图，还是能得到不少的启发的。这里我们用了一个visited的哈希集合，之前我做的时候，这个集合里存的都是已经访问过的数字，但是这样不好扩展 Permutation II, 发现这个visited来存已经访问过的index反而好些，很容易扩展到Permutation II.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> ArrayList&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; permute(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    HashSet&lt;Integer&gt; visited = <span class="keyword">new</span> HashSet&lt;Integer&gt;();</span><br><span class="line">    List&lt;Integer&gt; path = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    dfs(nums, <span class="number">0</span>, path, visited);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> begin, List&lt;Integer&gt; path, HashSet&lt;Integer&gt; visited)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin == nums.length) &#123;</span><br><span class="line">        ans.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;(path));</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> val = nums[i];</span><br><span class="line">        <span class="keyword">if</span> (visited.contains(i))</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        visited.add(i);</span><br><span class="line">        path.add(val);</span><br><span class="line">        dfs(nums, begin + <span class="number">1</span>, path, visited);</span><br><span class="line">        path.remove(path.size() - <span class="number">1</span>);</span><br><span class="line">        visited.remove(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="https://leetcode.com/problems/permutations-ii/" target="_blank" rel="external">Permutation II</a><br>代码与第一个基本上差不多，在第5行多了个排序，方便后面跳过重复的。 第25行是跳过当前这层循环中，重复的数字。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> ArrayList&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; permuteUnique(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    Arrays.sort(nums);</span><br><span class="line">    HashSet&lt;Integer&gt; visited = <span class="keyword">new</span> HashSet&lt;Integer&gt;();</span><br><span class="line">    List&lt;Integer&gt; path = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    dfs(nums, <span class="number">0</span>, path, visited);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> begin, List&lt;Integer&gt; path, HashSet&lt;Integer&gt; visited)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin == nums.length) &#123;</span><br><span class="line">        ans.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;(path));</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> val = nums[i];</span><br><span class="line">        <span class="keyword">if</span> (visited.contains(i))</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        visited.add(i);</span><br><span class="line">        path.add(val);</span><br><span class="line">        dfs(nums, begin + <span class="number">1</span>, path, visited);</span><br><span class="line">        path.remove(path.size() - <span class="number">1</span>);</span><br><span class="line">        visited.remove(i);</span><br><span class="line">        <span class="keyword">while</span> (i + <span class="number">1</span> &lt; nums.length &amp;&amp; nums[i] == nums[i + <span class="number">1</span>]) <span class="comment">// skip duplicates</span></span><br><span class="line">            ++i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/26/Multiply-Strings/" itemprop="url">
-                Multiply Strings
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-26T21:31:55-04:00" content="2015-08-26">
-            2015-08-26
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/multiply-strings/" target="_blank" rel="external">Problem Description</a><br>如果直接把字符串转成数字进行乘，肯定会溢出，所以只能一位一位来。这题就是传说中的“大数相乘”<br>自己写的每次都出bug，<a href="https://leetcodenotes.wordpress.com/2013/10/20/leetcode-multiply-strings-%E5%A4%A7%E6%95%B4%E6%95%B0%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B9%98%E6%B3%95/" target="_blank" rel="external">参考答案</a>写的很巧妙，膜拜啊，背答案也要背这种简单好记的。<br>思路大致如下：</p>
-<ol>
-<li>将字符串反转过来。因为我们构建的新的数组中，个位的index ＝ 0， 十位的index ＝ 1， 如果个位在后面，就不好做了。</li>
-<li>用一个数组来存储每一位数的和。举个栗子，123 ＊ 123， 个位 ＝ 3 ＊ 3， 十位 ＝ 2 ＊ 3 ＋ 3 ＊ 2， 百位 ＝ 1 ＊ 3 ＋ 2 ＊ 2 ＋ 3 ＊ 1， 转换到数组的index上就是<p><br>ans[1] = num1[0] * num2[1] + num1[1] * num2[0]<br></p></li>
-<li>最后遍历一次数组，将结果输出。</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">multiply</span><span class="params">(String num1, String num2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (num1 == <span class="keyword">null</span> || num1.length() == <span class="number">0</span> || num2 == <span class="keyword">null</span> || num2.length() == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"0"</span>;</span><br><span class="line">    num1 = <span class="keyword">new</span> StringBuilder(num1).reverse().toString();</span><br><span class="line">    num2 = <span class="keyword">new</span> StringBuilder(num2).reverse().toString();</span><br><span class="line">    <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[num1.length() + num2.length()];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num1.length(); ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> a = num1.charAt(i) - <span class="string">'0'</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; num2.length(); ++j) &#123;</span><br><span class="line">            <span class="keyword">int</span> b = num2.charAt(j) - <span class="string">'0'</span>;</span><br><span class="line">            ans[i + j] += a * b;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; ans.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> digit = ans[i] % <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">int</span> carry = ans[i] / <span class="number">10</span>;</span><br><span class="line">        <span class="comment">// insert digit to the head</span></span><br><span class="line">        sb.insert(<span class="number">0</span>, digit);</span><br><span class="line">        <span class="keyword">if</span> (i + <span class="number">1</span> &lt; ans.length)</span><br><span class="line">            ans[i + <span class="number">1</span>] += carry;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (sb.length() &gt; <span class="number">0</span> &amp;&amp; sb.charAt(<span class="number">0</span>) == <span class="string">'0'</span>)</span><br><span class="line">        sb.deleteCharAt(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (sb.length() == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"0"</span>;</span><br><span class="line">    <span class="keyword">return</span> sb.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -882,7 +866,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">74</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -896,7 +880,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">21</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

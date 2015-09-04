@@ -192,6 +192,387 @@
           
           
             
+              <a class="post-title-link" href="/2015/09/04/Insertion-Sort-List/" itemprop="url">
+                Insertion Sort List
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-04T12:30:26-04:00" content="2015-09-04">
+            2015-09-04
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/insertion-sort-list/" target="_blank" rel="external">Insertion Sort List</a><br><strong>再次强调</strong> 这种可能变动head的题，要用dummy node，省时省力多了。<br>思路如下，用两根指针，一个head，一个prev，表示head之前的元素，分情况讨论：</p>
+<ol>
+<li>如果head的值大于等于prev的值，就继续向后移动，prev指向head，head指向head.next</li>
+<li>如果head的值小于prev的值，那我们就要把head插入到它应该在的地方。首先，得把head从当前位置给删掉，然后从头开始扫描，把它放在正确的位置。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">insertionSortList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</span><br><span class="line">    dummy.next = head;</span><br><span class="line">    ListNode prev = head;</span><br><span class="line">    head = head.next;</span><br><span class="line">    <span class="keyword">while</span> (head != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (head.val &lt; prev.val) &#123;</span><br><span class="line">            <span class="comment">// delete</span></span><br><span class="line">            ListNode next = head.next;</span><br><span class="line">            prev.next = next;</span><br><span class="line">            <span class="comment">// swap</span></span><br><span class="line">            ListNode node = dummy;</span><br><span class="line">            <span class="keyword">while</span> (head.val &gt; node.next.val) &#123;</span><br><span class="line">                node = node.next;</span><br><span class="line">            &#125;</span><br><span class="line">            ListNode nextNode = node.next;</span><br><span class="line">            node.next = head;</span><br><span class="line">            head.next = nextNode;</span><br><span class="line">            head = next;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            prev = head;</span><br><span class="line">            head = head.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dummy.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/04/Sort-List/" itemprop="url">
+                Sort List
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-04T11:46:11-04:00" content="2015-09-04">
+            2015-09-04
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/sort-list/" target="_blank" rel="external">Sort List</a><br>O(nlogn)的排序算法也就那么几个，对于这题，还是感觉merge sort比较趁手。<br>问题在于如何用O(1)的时间复杂度，去找到对应的元素？如果是数组，很好办，直接用index就能访问。但是对于链表，我们能想到的naive的方法就是每次去遍历，然后找到第k个元素。这样显然不符合题意。咋办？我们只能在递归过程中，对head做些手脚。在split过程中，如果当前递归区间的长度是1，即begin == end， 那么我们就把head断开，然后head向后移动一位，再返回断开之前的那个点。<br>这题没有一次AC，主要原因在于split的时候，左边的区间取的有问题，左边的end ＝ mid， 而不是mid－1， 查了下mergesort的算法，好像也是左边的end ＝ mid。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">ListNode node;</span><br><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">sortList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    node = head;</span><br><span class="line">    <span class="keyword">while</span> (head != <span class="keyword">null</span>) &#123;</span><br><span class="line">        count++;</span><br><span class="line">        head = head.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> split(<span class="number">0</span>, count - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">split</span><span class="params">(<span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin &gt; end)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (begin == end) &#123;</span><br><span class="line">        ListNode ans = node;</span><br><span class="line">        node = node.next;</span><br><span class="line">        ans.next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid = begin + (end - begin) / <span class="number">2</span>;</span><br><span class="line">    <span class="comment">// node, the end of left part should be mid</span></span><br><span class="line">    ListNode left = split(begin, mid);</span><br><span class="line">    ListNode right = split(mid + <span class="number">1</span>, end);</span><br><span class="line">    <span class="keyword">return</span> merge(left, right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">merge</span><span class="params">(ListNode head1, ListNode head2)</span> </span>&#123;</span><br><span class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</span><br><span class="line">    ListNode ptr = dummy;</span><br><span class="line">    <span class="keyword">while</span> (head1 != <span class="keyword">null</span> &amp;&amp; head2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (head1.val &lt; head2.val) &#123;</span><br><span class="line">            ptr.next = head1;</span><br><span class="line">            head1 = head1.next;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ptr.next = head2;</span><br><span class="line">            head2 = head2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        ptr = ptr.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (head1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        ptr.next = head1;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (head2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        ptr.next = head2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dummy.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/04/LRU-cache/" itemprop="url">
+                LRU cache
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-04T11:15:36-04:00" content="2015-09-04">
+            2015-09-04
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/lru-cache/" target="_blank" rel="external">LRU cache</a><br>这题用一个双向的链表来做。如果一个元素被hit到，就把这个元素放到链表的头部。如果元素不存在，就添加。添加之前先检查cache的大小，如果cache满了，那么就删掉双向链表中尾部的元素，然后同时删掉哈希表中对应的元素。<br>做的时候又没有一次AC，原因在于开始写Unit的时候，没把key考虑进去，导致后来删除哈希表里的数据时，找不到key了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> capacity;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Unit</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> val, key;</span><br><span class="line">        Unit prev, next;</span><br><span class="line">        Unit(<span class="keyword">int</span> k, <span class="keyword">int</span> v) &#123;</span><br><span class="line">            <span class="keyword">this</span>.key = k;</span><br><span class="line">            <span class="keyword">this</span>.val = v;</span><br><span class="line">            <span class="keyword">this</span>.prev = <span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">this</span>.next = <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    HashMap&lt;Integer, Unit&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    Unit head;</span><br><span class="line">    Unit tail;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.capacity = capacity;</span><br><span class="line">        head = <span class="keyword">new</span> Unit(-<span class="number">1</span>, -<span class="number">1</span>);</span><br><span class="line">        tail = <span class="keyword">new</span> Unit(-<span class="number">1</span>, -<span class="number">1</span>);</span><br><span class="line">        head.next = tail;</span><br><span class="line">        tail.prev = head;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// always put the recently used element to the head</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(key) == <span class="keyword">false</span>)</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        Unit e = map.get(key);</span><br><span class="line">        <span class="comment">// delete</span></span><br><span class="line">        Unit prev = e.prev, next = e.next;</span><br><span class="line">        prev.next = next;</span><br><span class="line">        next.prev = prev;</span><br><span class="line">        move(e);</span><br><span class="line">        <span class="keyword">return</span> e.val;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">(Unit u)</span> </span>&#123;</span><br><span class="line">        Unit next = head.next;</span><br><span class="line">        u.next = next;</span><br><span class="line">        next.prev = u;</span><br><span class="line">        head.next = u;</span><br><span class="line">        u.prev = head;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (get(key) == -<span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (map.size() &gt;= capacity) &#123;</span><br><span class="line">                <span class="comment">// delete the tail</span></span><br><span class="line">                Unit u = tail.prev;</span><br><span class="line">                <span class="comment">// note we need to store the key of the value,</span></span><br><span class="line">                <span class="comment">// otherwise, we don't know how to delete from the map</span></span><br><span class="line">                <span class="keyword">int</span> val = u.key;</span><br><span class="line">                map.remove(val);</span><br><span class="line">                Unit prev = u.prev;</span><br><span class="line">                prev.next = tail;</span><br><span class="line">                tail.prev = prev;</span><br><span class="line">            &#125;</span><br><span class="line">            map.put(key, <span class="keyword">new</span> Unit(key, value));</span><br><span class="line">            move(map.get(key));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            map.get(key).val = value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/04/Reorder-List/" itemprop="url">
+                Reorder List
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-04T10:40:07-04:00" content="2015-09-04">
+            2015-09-04
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/reorder-list/" target="_blank" rel="external">Reorder List</a><br>思路简单，关键看实现。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reorderList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="comment">// get the mid of the LinkedList</span></span><br><span class="line">    ListNode slow = head, fast = head.next;</span><br><span class="line">    <span class="keyword">while</span> (fast != <span class="keyword">null</span> &amp;&amp; fast.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">        fast = fast.next.next;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode ptr = slow.next;</span><br><span class="line">    slow.next = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">// reverse the second part</span></span><br><span class="line">    ListNode prev = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">while</span> (ptr != <span class="keyword">null</span>) &#123;</span><br><span class="line">        ListNode temp = ptr.next;</span><br><span class="line">        ptr.next = prev;</span><br><span class="line">        prev = ptr;</span><br><span class="line">        ptr = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// combine the two</span></span><br><span class="line">    ListNode first = head, second = prev;</span><br><span class="line">    <span class="keyword">while</span> (first != <span class="keyword">null</span> &amp;&amp; second != <span class="keyword">null</span>) &#123;</span><br><span class="line">        ListNode firstNext = first.next;</span><br><span class="line">        ListNode secondNext = second.next;</span><br><span class="line">        first.next = second;</span><br><span class="line">        second.next = firstNext;</span><br><span class="line">        first = firstNext;</span><br><span class="line">        second = secondNext;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/04/Linked-List-Cycle-II/" itemprop="url">
+                Linked List Cycle II
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-04T10:11:36-04:00" content="2015-09-04">
+            2015-09-04
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/linked-list-cycle-ii/" target="_blank" rel="external">Linked List Cycle II</a><br><img src="/images/linkedlistcycleII.png" alt="images"><br>&nbsp;t = X + mY + k<br>2t = X + nY + k<br>=&gt; X + k = (m - 2n)Y 那么X＋k关于Y互补，现在我们已经走了k步，再把其中一个指针指到head，再走X步就好了<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">detectCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    ListNode slow = head, fast = head;</span><br><span class="line">    <span class="keyword">while</span> (fast != <span class="keyword">null</span> &amp;&amp; fast.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">        fast = fast.next.next;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">        <span class="keyword">if</span> (fast != <span class="keyword">null</span> &amp;&amp; fast == slow) &#123;</span><br><span class="line">            slow = head;</span><br><span class="line">            <span class="keyword">while</span> (slow != fast) &#123;</span><br><span class="line">                fast = fast.next;</span><br><span class="line">                slow = slow.next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> slow;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://fisherlei.blogspot.com/2013/11/leetcode-linked-list-cycle-ii-solution.html" target="_blank" rel="external">Reference 水中的鱼</a></p>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/04/Copy-List-with-Random-Pointer/" itemprop="url">
+                Copy List with Random Pointer
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-04T09:51:53-04:00" content="2015-09-04">
+            2015-09-04
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/copy-list-with-random-pointer/" target="_blank" rel="external">Copy List with Random Pointer</a><br>不明白为啥标记为Hard。 如果不用哈希表，实现起来却是挺麻烦。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> RandomListNode <span class="title">copyRandomList</span><span class="params">(RandomListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    HashMap&lt;RandomListNode, RandomListNode&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    RandomListNode ptr = head;</span><br><span class="line">    map.put(ptr, <span class="keyword">new</span> RandomListNode(ptr.label));</span><br><span class="line">    <span class="keyword">while</span> (ptr != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span>(ptr.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            map.put(ptr.next, <span class="keyword">new</span> RandomListNode(ptr.next.label));</span><br><span class="line">            map.get(ptr).next = map.get(ptr.next);</span><br><span class="line">        &#125;</span><br><span class="line">        ptr = ptr.next;</span><br><span class="line">    &#125;</span><br><span class="line">    ptr = head;</span><br><span class="line">    <span class="keyword">while</span> (ptr != <span class="keyword">null</span>) &#123;</span><br><span class="line">        RandomListNode rand = ptr.random;</span><br><span class="line">        <span class="keyword">if</span> (rand != <span class="keyword">null</span>)</span><br><span class="line">            map.get(ptr).random = map.get(rand);</span><br><span class="line">        ptr = ptr.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> map.get(head);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/09/04/Gas-Station/" itemprop="url">
                 Gas Station
               </a>
@@ -436,392 +817,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/03/Word-Break/" itemprop="url">
-                Word Break
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-03T14:39:29-04:00" content="2015-09-03">
-            2015-09-03
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/word-break/" target="_blank" rel="external">Word Break I</a><br>先来个naive的解法，做递归。超时。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">wordBreak</span><span class="params">(String s, Set&lt;String&gt; wordDict)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> dfs(s, <span class="number">0</span>, wordDict);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dfs</span><span class="params">(String s, <span class="keyword">int</span> begin, Set&lt;String&gt; wordSet)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin &gt;= s.length()) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = begin; i &lt; s.length(); ++i) &#123;</span><br><span class="line">        String str = s.substring(begin, i + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (!wordSet.contains(str))</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span> (check(s, i + <span class="number">1</span>, wordSet))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>加一个cache，还是过了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boolean</span>[][] board;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">wordBreak</span><span class="params">(String s, Set&lt;String&gt; wordDict)</span> </span>&#123;</span><br><span class="line">    board = <span class="keyword">new</span> <span class="keyword">boolean</span>[s.length()][s.length()];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board.length; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; board[<span class="number">0</span>].length; ++j)</span><br><span class="line">            board[i][j] = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">return</span> check(s, <span class="number">0</span>, wordDict);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">check</span><span class="params">(String s, <span class="keyword">int</span> begin, Set&lt;String&gt; wordSet)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin &gt;= s.length()) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = begin; i &lt; s.length(); ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (board[begin][i] == <span class="keyword">false</span>)</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        String str = s.substring(begin, i + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (!wordSet.contains(str)) &#123;</span><br><span class="line">            board[begin][i] = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (check(s, i + <span class="number">1</span>, wordSet))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            board[begin][i] = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>再来一段DP的做法。<br>开一个boolean的数组dp[n + 1]，dp[i]， 表示s[0 ～ i]能否被dictionary中的词所分割。初始化dp[0]等于true<br>dp[i] = true, if dp[j] == ture &amp;&amp; s[j~i]是dictionary中的一个词</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">wordBreak</span><span class="params">(String s, Set&lt;String&gt; wordDict)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span>[] dp =<span class="keyword">new</span> <span class="keyword">boolean</span>[s.length() + <span class="number">1</span>];</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= s.length(); ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; ++j) &#123;</span><br><span class="line">            String str = s.substring(j, i);</span><br><span class="line">            <span class="keyword">if</span> (dp[j] &amp;&amp; wordDict.contains(str)) &#123;</span><br><span class="line">                dp[i] = <span class="keyword">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[s.length()];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="https://leetcode.com/problems/word-break-ii/" target="_blank" rel="external">Word Break II</a><br>这种题，肯定是得用到DFS的。直接上DFS。超时了。<br>咋办呢。首先，我们做一次Word Break I中的判断，判断输入的数据能否被完全break， 即dp[s.length()] = true.<br>然后。。我以为要加个啥cache来避免些重复计算。。结果。直接过了。那就这样吧。不折腾了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; ans = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">wordBreak</span><span class="params">(String s, Set&lt;String&gt; wordDict)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span>[] dp = <span class="keyword">new</span> <span class="keyword">boolean</span>[s.length() + <span class="number">1</span>];</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= s.length(); ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; ++j) &#123;</span><br><span class="line">            String str = s.substring(j, i);</span><br><span class="line">            <span class="keyword">if</span> (dp[j] == <span class="keyword">true</span> &amp;&amp; wordDict.contains(str)) &#123;</span><br><span class="line">                dp[i] = <span class="keyword">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (dp[s.length()] == <span class="keyword">false</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    dfs(s, <span class="keyword">new</span> ArrayList&lt;String&gt;(), <span class="number">0</span>, wordDict);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(String s, List&lt;String&gt; path, <span class="keyword">int</span> begin, Set&lt;String&gt; wordDict)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin &gt;= s.length()) &#123;</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span> (String str : path) &#123;</span><br><span class="line">            sb.append(str + <span class="string">" "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        sb.deleteCharAt(sb.length() - <span class="number">1</span>);</span><br><span class="line">        ans.add(sb.toString());</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = begin; i &lt; s.length(); ++i) &#123;</span><br><span class="line">        String str = s.substring(begin, i + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (wordDict.contains(str) == <span class="keyword">false</span>)</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        path.add(str);</span><br><span class="line">        dfs(s, path, i + <span class="number">1</span>, wordDict);</span><br><span class="line">        path.remove(path.size() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/03/H-Index/" itemprop="url">
-                H-Index
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-03T13:15:14-04:00" content="2015-09-03">
-            2015-09-03
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/h-index/" target="_blank" rel="external">H-Index</a><br>新题就跪。蛋疼<br>首先，得知道啥是<a href="https://en.wikipedia.org/wiki/H-index" target="_blank" rel="external">H-index</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hIndex</span><span class="params">(<span class="keyword">int</span>[] citations)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (citations == <span class="keyword">null</span> || citations.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">    Arrays.sort(citations);</span><br><span class="line">    <span class="keyword">int</span> n = citations.length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">        <span class="keyword">int</span> min = Math.min(citations[i], n - i);</span><br><span class="line">        max = Math.max(max, min);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/03/Surrounded-Regions/" itemprop="url">
-                Surrounded Regions
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-03T10:21:37-04:00" content="2015-09-03">
-            2015-09-03
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p>这题的思路比较有意思，既然中间被外面如果包着，就会被变成X，那么，我们从最外面的一层开始去搜索，如果能跟最外面一层连通，那么这个元素就不会被变成X。我们这样的元素改成一个中间值，比如说 “Z”, 用BFS或者DFS把所有能与最外层连通的元素都变成 “Z”。<br>然后再遍历一次整个board，如果该元素是 “O” 则这个元素是不与最外层连通的，标记为 “X”,如果这个元素是 “Z”,那么重新标记为 “O”.<br><strong>注意</strong>这个操作的顺序，首先判断是否是 “O”，再判断是否是 “Z”.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// long-painful null check</span></span><br><span class="line">    <span class="keyword">if</span> (board == <span class="keyword">null</span> || board.length == <span class="number">0</span> || board[<span class="number">0</span>] == <span class="keyword">null</span> || board[<span class="number">0</span>].length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> m = board.length, n = board[<span class="number">0</span>].length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (board[<span class="number">0</span>][i] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            bfs(board,  <span class="number">0</span>, i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (board[m - <span class="number">1</span>][i] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            bfs(board, m - <span class="number">1</span>, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; m; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (board[i][<span class="number">0</span>] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            bfs(board, i, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (board[i][n - <span class="number">1</span>] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            bfs(board, i, n - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (board[i][j] == <span class="string">'O'</span>)</span><br><span class="line">                board[i][j] = <span class="string">'X'</span>;</span><br><span class="line">            <span class="keyword">if</span> (board[i][j] == <span class="string">'Z'</span>)</span><br><span class="line">                board[i][j] = <span class="string">'O'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>bfs<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pair</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j;</span><br><span class="line">    Pair(<span class="keyword">int</span> i, <span class="keyword">int</span> j) &#123;</span><br><span class="line">        <span class="keyword">this</span>.i = i;</span><br><span class="line">        <span class="keyword">this</span>.j = j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bfs</span><span class="params">(<span class="keyword">char</span>[][]board, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// bfs since dfs will stack overflow</span></span><br><span class="line">    Queue&lt;Pair&gt; q = <span class="keyword">new</span> LinkedList&lt;Pair&gt;();</span><br><span class="line">    board[i][j] = <span class="string">'Z'</span>;</span><br><span class="line">    q.offer(<span class="keyword">new</span> Pair(i, j));</span><br><span class="line">    <span class="keyword">while</span> (q.isEmpty() == <span class="keyword">false</span>) &#123;</span><br><span class="line">        Pair cur = q.poll();</span><br><span class="line">        i = cur.i;</span><br><span class="line">        j = cur.j;</span><br><span class="line">        <span class="keyword">if</span> (i+<span class="number">1</span> &lt; board.length &amp;&amp; board[i+<span class="number">1</span>][j] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            board[i+<span class="number">1</span>][j] = <span class="string">'Z'</span>;</span><br><span class="line">            q.offer(<span class="keyword">new</span> Pair(i + <span class="number">1</span>, j));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (i - <span class="number">1</span> &gt;= <span class="number">0</span> &amp;&amp; board[i - <span class="number">1</span>][j] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            board[i-<span class="number">1</span>][j] = <span class="string">'Z'</span>;</span><br><span class="line">            q.offer(<span class="keyword">new</span> Pair(i - <span class="number">1</span>, j));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (j+<span class="number">1</span> &lt; board[<span class="number">0</span>].length &amp;&amp; board[i][j+<span class="number">1</span>] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            board[i][j+<span class="number">1</span>] = <span class="string">'Z'</span>;</span><br><span class="line">            q.offer(<span class="keyword">new</span> Pair(i, j + <span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (j-<span class="number">1</span> &gt;= <span class="number">0</span> &amp;&amp; board[i][j-<span class="number">1</span>] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            board[i][j-<span class="number">1</span>] = <span class="string">'Z'</span>;</span><br><span class="line">            q.offer(<span class="keyword">new</span> Pair(i, j-<span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>DFS版本的搜索，代码好些一些，但是栈溢出了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">char</span>[][]board, <span class="keyword">boolean</span>[][] visited, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">0</span> || j &lt; <span class="number">0</span> || i &gt;= board.length || j &gt;= board[<span class="number">0</span>].length)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span> (visited[i][j] || board[i][j] != <span class="string">'O'</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    visited[i][j] = <span class="keyword">true</span>;</span><br><span class="line">    board[i][j] = <span class="string">'Z'</span>;</span><br><span class="line">    <span class="comment">//note</span></span><br><span class="line">    dfs(board, visited, i + <span class="number">1</span>, j);</span><br><span class="line">    dfs(board, visited, i - <span class="number">1</span>, j);</span><br><span class="line">    dfs(board, visited, i, j - <span class="number">1</span>);</span><br><span class="line">    dfs(board, visited, i, j + <span class="number">1</span>);</span><br><span class="line">    <span class="comment">// visited[i][j] = false;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/03/Sum-Root-to-Leaf-Numbers/" itemprop="url">
-                Sum Root to Leaf Numbers
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-03T09:31:52-04:00" content="2015-09-03">
-            2015-09-03
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/sum-root-to-leaf-numbers/" target="_blank" rel="external">Sum Root to Leaf Numbers</a><br>这题要是做不对，还是洗洗睡好了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sumNumbers</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    dfs(root, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode root, <span class="keyword">int</span> sum)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> val = root.val;</span><br><span class="line">    <span class="keyword">if</span> (root.left == <span class="keyword">null</span> &amp;&amp; root.right == <span class="keyword">null</span>) &#123;</span><br><span class="line">        ans += (sum * <span class="number">10</span> + val);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    dfs(root.left, sum * <span class="number">10</span> + val);</span><br><span class="line">    dfs(root.right, sum * <span class="number">10</span> + val);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/03/Word-Ladder/" itemprop="url">
-                Word Ladder
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-03T00:45:37-04:00" content="2015-09-03">
-            2015-09-03
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/word-ladder/" target="_blank" rel="external">Word Ladder</a><br>这种想的出来，但是一直超时的题，真想大吼一声，你特么山炮啊。<br>这题就是一个BFS，看是否能达到end即可。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">ladderLength</span><span class="params">(String beginWord, String endWord, Set&lt;String&gt; wordDict)</span> </span>&#123;</span><br><span class="line">    Queue&lt;String&gt; q = <span class="keyword">new</span> LinkedList&lt;String&gt;();</span><br><span class="line">    q.offer(beginWord);</span><br><span class="line">    HashSet&lt;String&gt; visited = <span class="keyword">new</span> HashSet&lt;String&gt;();</span><br><span class="line">    visited.add(beginWord);</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (q.isEmpty() == <span class="keyword">false</span>) &#123;</span><br><span class="line">        count += <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> size = q.size();</span><br><span class="line">        <span class="keyword">while</span> (size-- &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            String word = q.poll();</span><br><span class="line">            <span class="keyword">if</span> (word.equals(endWord))</span><br><span class="line">                <span class="keyword">return</span> count;</span><br><span class="line">            <span class="keyword">for</span> (String str: getNext(word, wordDict)) &#123;</span><br><span class="line">                <span class="keyword">if</span> (str.equals(endWord))</span><br><span class="line">                    <span class="keyword">return</span> count + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (!visited.contains(str)) &#123;</span><br><span class="line">                    q.offer(str);</span><br><span class="line">                    visited.add(str);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">getNext</span><span class="params">(String str, Set&lt;String&gt; dict)</span> </span>&#123;</span><br><span class="line">    List&lt;String&gt; ans = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> c = <span class="string">'a'</span>; c &lt;= <span class="string">'z'</span>; ++c) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; str.length(); ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (c == str.charAt(i))</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">char</span>[] temp = str.toCharArray();</span><br><span class="line">            temp[i] = c;</span><br><span class="line">            String next = <span class="keyword">new</span> String(temp);</span><br><span class="line">            <span class="keyword">if</span> (dict.contains(next)) &#123;</span><br><span class="line">                ans.add(next);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="https://leetcode.com/problems/word-ladder-ii/" target="_blank" rel="external">Word Ladder II</a><br>这题。就巨复杂。如果说要输出所有组合的话，我们能想到的就是DFS。那怎么去做DFS？怎么从一个词到另一个词，并且递归回来？<br>我们需要两个东西，一个来表示string的所有可能的下一跳。一个表示下一跳的那个词的距离。<br>如何得到？我们先做一次BFS。开一个哈希表map，key为string，value为string的下一跳所有肯能的词。<br>再开一个哈希表distance，key为string，value为这个string到start的最短距离。<br>得到上述两个关键的变量后，我们就可以开始dfs了。首先，递归的终点是，start ＝＝ end，但是，<strong>注意</strong>首先得初始化path，在path中加入start的值。何时往下递归呢？如果next的distance等于cur的distance ＋ 1，就递归下去。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">List&lt;List&lt;String&gt;&gt; ans = <span class="keyword">new</span> ArrayList&lt;List&lt;String&gt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;String&gt;&gt; findLadders(String start, String end, Set&lt;String&gt; dict) &#123;</span><br><span class="line">    HashMap&lt;String, List&lt;String&gt;&gt; map = <span class="keyword">new</span> HashMap&lt;String, List&lt;String&gt;&gt;();</span><br><span class="line">    HashMap&lt;String, Integer&gt; distance = <span class="keyword">new</span> HashMap&lt;String, Integer&gt;();</span><br><span class="line">    dict.add(end);</span><br><span class="line">    bfs(start, distance, map, dict);</span><br><span class="line">    List&lt;String&gt; path = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">    path.add(start);</span><br><span class="line">    dfs(path, start, end, map, distance);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(List&lt;String&gt; path, String start, String end, HashMap&lt;String, List&lt;String&gt;&gt; map, HashMap&lt;String, Integer&gt; dist)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (start.equals(end)) &#123;</span><br><span class="line">        ans.add(<span class="keyword">new</span> ArrayList&lt;String&gt;(path));</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (String str : map.get(start)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (dist.get(str) == dist.get(start) + <span class="number">1</span>) &#123;</span><br><span class="line">            path.add(str);</span><br><span class="line">            dfs(path, str, end, map, dist);</span><br><span class="line">            path.remove(path.size() - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bfs</span><span class="params">(String start, HashMap&lt;String, Integer&gt; dist, HashMap&lt;String, List&lt;String&gt;&gt; map, Set&lt;String&gt; dict)</span> </span>&#123;</span><br><span class="line">    Queue&lt;String&gt; q = <span class="keyword">new</span> LinkedList&lt;String&gt;();</span><br><span class="line">    q.offer(start);</span><br><span class="line">    dist.put(start, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">while</span> (q.isEmpty() == <span class="keyword">false</span>) &#123;</span><br><span class="line">        String cur = q.poll();</span><br><span class="line">        map.put(cur, <span class="keyword">new</span> ArrayList&lt;String&gt;());</span><br><span class="line">        <span class="keyword">int</span> len = dist.get(cur) + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (String str : getNext(cur, dict)) &#123;</span><br><span class="line">            map.get(cur).add(str);</span><br><span class="line">            <span class="keyword">if</span> (dist.containsKey(str))</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            dist.put(str, len);</span><br><span class="line">            q.offer(str);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">getNext</span><span class="params">(String str, Set&lt;String&gt; dict)</span> </span>&#123;</span><br><span class="line">    List&lt;String&gt; ans = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> c = <span class="string">'a'</span>; c &lt;= <span class="string">'z'</span>; ++c) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; str.length(); ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (str.charAt(i) == c)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            String next = str.substring(<span class="number">0</span>, i) + c + str.substring(i + <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span> (dict.contains(next))</span><br><span class="line">                ans.add(next);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/02/Sliding-Window-Maximum/" itemprop="url">
-                Sliding Window Maximum
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-02T21:28:25-04:00" content="2015-09-02">
-            2015-09-02
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/sliding-window-maximum/" target="_blank" rel="external">Sliding Window Maximum</a><br>hint中说用Deque，而且每次不必存储k个元素。<br>关键问题在于我们如何去维护这个Deque。<br>首先解决这个deque的left问题。因为不是寸k个元素，所以我们没法从size上去移动left，那么deque中存的，应该是坐标i。<br>如果deque中最左边的坐标小于i-k+1，那么我们就把这个左边移出去。<br>解决了left之后，如何解决当前区间最大值的问题？这里的思路有点像heap。就是在deque的队列头部的元素，就是当前区间中最大的一个数字。怎么实现呢？我们比较nums[i]和deque中尾巴的元素，如果nums[i]&gt;deque尾部的元素，那么deque尾部的元素不可能是最大值，把它弹出。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] maxSlidingWindow(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span> || k &lt;= <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> n = nums.length;</span><br><span class="line">    <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[n - k + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">    Deque&lt;Integer&gt; q = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (q.isEmpty() == <span class="keyword">false</span> &amp;&amp; q.peek() &lt; i - k + <span class="number">1</span>) &#123;</span><br><span class="line">            q.poll();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (q.isEmpty() == <span class="keyword">false</span> &amp;&amp; nums[q.peekLast()] &lt; nums[i])</span><br><span class="line">            q.pollLast();</span><br><span class="line">        q.offer(i);</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= k - <span class="number">1</span>) &#123;</span><br><span class="line">            ans[index++] = nums[q.peek()];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我比较喜欢这个heap的做法。维护一个大小为k的最大堆，那么栈顶元素就是当前区间最大的值。<br>注意，每次删除栈中的元素时，不是弹出栈顶的元素，而是找到最左边的元素，然后弹出。这个操作需要的时间复杂度时O(logk)<br>所以总的时间复杂度是O(n*logk)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] maxSlidingWindow(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span> || k &lt;= <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">0</span>];</span><br><span class="line">    <span class="comment">// maximum heap</span></span><br><span class="line">    PriorityQueue&lt;Integer&gt; q = <span class="keyword">new</span> PriorityQueue&lt;Integer&gt;(<span class="keyword">new</span> Comparator&lt;Integer&gt;()&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Integer i1, Integer i2)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> i2 - i1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; ++i) &#123;</span><br><span class="line">        q.add(nums[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length - k + <span class="number">1</span>];</span><br><span class="line">    ans[<span class="number">0</span>] = q.peek();</span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = k; i &lt; nums.length; ++i) &#123;</span><br><span class="line">        q.remove(nums[i - k]);</span><br><span class="line">        q.add(nums[i]);</span><br><span class="line">        ans[index++] = q.peek();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -860,7 +855,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">74</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -874,7 +869,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">21</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
