@@ -192,6 +192,136 @@
           
           
             
+              <a class="post-title-link" href="/2015/09/04/Max-Points-on-a-Line/" itemprop="url">
+                Max Points on a Line
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-04T13:49:21-04:00" content="2015-09-04">
+            2015-09-04
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/max-points-on-a-line/" target="_blank" rel="external">Max Points on a Line</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxPoints</span><span class="params">(Point[] points)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (points == <span class="keyword">null</span> || points.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; points.length; ++i) &#123;</span><br><span class="line">        HashMap&lt;Float, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> x1 = points[i].x, y1 = points[i].y;</span><br><span class="line">        <span class="keyword">int</span> same = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> vertical = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> horizontal = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; points.length; ++j) &#123;</span><br><span class="line">            <span class="keyword">int</span> x2 = points[j].x, y2 = points[j].y;</span><br><span class="line">            <span class="keyword">if</span> (x1 == x2 &amp;&amp; y1 == y2) &#123;</span><br><span class="line">                same += <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (x1 == x2) &#123;</span><br><span class="line">                vertical += <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (y1 == y2) &#123;</span><br><span class="line">                horizontal += <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">float</span> slope = slope(points[i], points[j]);</span><br><span class="line">            <span class="keyword">if</span> (map.containsKey(slope)) &#123;</span><br><span class="line">                map.put(slope, map.get(slope) + <span class="number">1</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                map.put(slope, <span class="number">2</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> localMax = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> val : map.values()) &#123;</span><br><span class="line">            localMax = Math.max(localMax, val);</span><br><span class="line">        &#125;</span><br><span class="line">        localMax = Math.max(localMax, Math.max(vertical, horizontal));</span><br><span class="line">        localMax += same;</span><br><span class="line">        ans = Math.max(localMax, ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">slope</span><span class="params">(Point p1, Point p2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (p1.y - p2.y) / (<span class="keyword">float</span>)(p1.x - p2.x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/04/Insertion-Sort-List/" itemprop="url">
+                Insertion Sort List
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-04T12:30:26-04:00" content="2015-09-04">
+            2015-09-04
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/insertion-sort-list/" target="_blank" rel="external">Insertion Sort List</a><br><strong>再次强调</strong> 这种可能变动head的题，要用dummy node，省时省力多了。<br>思路如下，用两根指针，一个head，一个prev，表示head之前的元素，分情况讨论：</p>
+<ol>
+<li>如果head的值大于等于prev的值，就继续向后移动，prev指向head，head指向head.next</li>
+<li>如果head的值小于prev的值，那我们就要把head插入到它应该在的地方。首先，得把head从当前位置给删掉，然后从头开始扫描，把它放在正确的位置。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">insertionSortList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</span><br><span class="line">    dummy.next = head;</span><br><span class="line">    ListNode prev = head;</span><br><span class="line">    head = head.next;</span><br><span class="line">    <span class="keyword">while</span> (head != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (head.val &lt; prev.val) &#123;</span><br><span class="line">            <span class="comment">// delete</span></span><br><span class="line">            ListNode next = head.next;</span><br><span class="line">            prev.next = next;</span><br><span class="line">            <span class="comment">// swap</span></span><br><span class="line">            ListNode node = dummy;</span><br><span class="line">            <span class="keyword">while</span> (head.val &gt; node.next.val) &#123;</span><br><span class="line">                node = node.next;</span><br><span class="line">            &#125;</span><br><span class="line">            ListNode nextNode = node.next;</span><br><span class="line">            node.next = head;</span><br><span class="line">            head.next = nextNode;</span><br><span class="line">            head = next;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            prev = head;</span><br><span class="line">            head = head.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dummy.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/09/04/Sort-List/" itemprop="url">
                 Sort List
               </a>
@@ -684,146 +814,11 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/03/Palindrome-Partitioning/" itemprop="url">
-                Palindrome Partitioning
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-03T21:56:39-04:00" content="2015-09-03">
-            2015-09-03
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/palindrome-partitioning/" target="_blank" rel="external">Palindrome Partitioning</a><br>DFS，简单题。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">List&lt;List&lt;String&gt;&gt; ans = <span class="keyword">new</span> ArrayList&lt;List&lt;String&gt;&gt;();</span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;String&gt;&gt; partition(String s) &#123;</span><br><span class="line">    <span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    List&lt;String&gt; path = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">    dfs(s, <span class="number">0</span>, path);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(String s, <span class="keyword">int</span> begin, List&lt;String&gt; path)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin == s.length()) &#123;</span><br><span class="line">        ans.add(<span class="keyword">new</span> ArrayList&lt;String&gt;(path));</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = begin; i &lt; s.length(); ++i) &#123;</span><br><span class="line">        String str = s.substring(begin, i + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (check(str) == <span class="keyword">false</span>)</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        path.add(str);</span><br><span class="line">        dfs(s, i + <span class="number">1</span>, path);</span><br><span class="line">        path.remove(path.size() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">check</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> begin  = <span class="number">0</span>, end = str.length() -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (begin &lt;= end) &#123;</span><br><span class="line">        <span class="keyword">if</span> (str.charAt(begin) != str.charAt(end))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        ++begin; --end;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><a href="https://leetcode.com/problems/palindrome-partitioning-ii/" target="_blank" rel="external">Palindrome Partitioning II</a><br>这题用了两次dp。<br>开一个二维数组，valid[i][j]，意思是在字符串中第i个点到第j个点构成的字符串是不是回文。也得用DP的方法来求。<br>先把valid[i][i]标记为true，因为每个字母本身就是一个回文。<br>然后我们再去检查长度为2的情况，如果s[i]==s[i+1],则表示i和i+1构成的字符串也是回文。<br>最后，我们再检查len ＝ 2~s.length()情况。这里用到了递归表达式，如果s[i] == s[i+len] 并且valid[i+1][i+len-1] == true, 那么valid[i][i+len] = true</p>
-<p>第二部分递归，我们开一个一维数组，dp[n]，表示从0～n需要的嘴笑cut。<br>首先我们来初始化这个数组，dp[i]最差的情况需要i次cut</p>
-<p>然后我们根据前面的到的valid数组，来更新这个一维数组。<br>如果valid[j][i] == true, 意思是s[j..i]构成的字符串是一个回文串，那么需要的切割次数就是dp[j-1] + 1<br>dp[i] = min(dp[i], dp[j-1] + 1)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minCut</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = s.length();</span><br><span class="line">    <span class="keyword">boolean</span>[][] valid = <span class="keyword">new</span> <span class="keyword">boolean</span>[n][n];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); ++i)</span><br><span class="line">        valid[i][i] = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length() - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (s.charAt(i) == s.charAt(i + <span class="number">1</span>)) &#123;</span><br><span class="line">            valid[i][i + <span class="number">1</span>] = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> len = <span class="number">2</span>; len &lt; s.length(); ++len) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length() - len; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s.charAt(i) == s.charAt(i + len) &amp;&amp; valid[i + <span class="number">1</span>][i + len - <span class="number">1</span>])</span><br><span class="line">                valid[i][i + len] = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        dp[i] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= i; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (valid[j][i]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j == <span class="number">0</span>)</span><br><span class="line">                    dp[i] = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    dp[i] = Math.min(dp[i], dp[j - <span class="number">1</span>] + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[n - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/03/Word-Break/" itemprop="url">
-                Word Break
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-03T14:39:29-04:00" content="2015-09-03">
-            2015-09-03
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/word-break/" target="_blank" rel="external">Word Break I</a><br>先来个naive的解法，做递归。超时。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">wordBreak</span><span class="params">(String s, Set&lt;String&gt; wordDict)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> dfs(s, <span class="number">0</span>, wordDict);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dfs</span><span class="params">(String s, <span class="keyword">int</span> begin, Set&lt;String&gt; wordSet)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin &gt;= s.length()) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = begin; i &lt; s.length(); ++i) &#123;</span><br><span class="line">        String str = s.substring(begin, i + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (!wordSet.contains(str))</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span> (check(s, i + <span class="number">1</span>, wordSet))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>加一个cache，还是过了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boolean</span>[][] board;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">wordBreak</span><span class="params">(String s, Set&lt;String&gt; wordDict)</span> </span>&#123;</span><br><span class="line">    board = <span class="keyword">new</span> <span class="keyword">boolean</span>[s.length()][s.length()];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board.length; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; board[<span class="number">0</span>].length; ++j)</span><br><span class="line">            board[i][j] = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">return</span> check(s, <span class="number">0</span>, wordDict);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">check</span><span class="params">(String s, <span class="keyword">int</span> begin, Set&lt;String&gt; wordSet)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin &gt;= s.length()) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = begin; i &lt; s.length(); ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (board[begin][i] == <span class="keyword">false</span>)</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        String str = s.substring(begin, i + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (!wordSet.contains(str)) &#123;</span><br><span class="line">            board[begin][i] = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (check(s, i + <span class="number">1</span>, wordSet))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            board[begin][i] = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>再来一段DP的做法。<br>开一个boolean的数组dp[n + 1]，dp[i]， 表示s[0 ～ i]能否被dictionary中的词所分割。初始化dp[0]等于true<br>dp[i] = true, if dp[j] == ture &amp;&amp; s[j~i]是dictionary中的一个词</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">wordBreak</span><span class="params">(String s, Set&lt;String&gt; wordDict)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span>[] dp =<span class="keyword">new</span> <span class="keyword">boolean</span>[s.length() + <span class="number">1</span>];</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= s.length(); ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; ++j) &#123;</span><br><span class="line">            String str = s.substring(j, i);</span><br><span class="line">            <span class="keyword">if</span> (dp[j] &amp;&amp; wordDict.contains(str)) &#123;</span><br><span class="line">                dp[i] = <span class="keyword">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[s.length()];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="https://leetcode.com/problems/word-break-ii/" target="_blank" rel="external">Word Break II</a><br>这种题，肯定是得用到DFS的。直接上DFS。超时了。<br>咋办呢。首先，我们做一次Word Break I中的判断，判断输入的数据能否被完全break， 即dp[s.length()] = true.<br>然后。。我以为要加个啥cache来避免些重复计算。。结果。直接过了。那就这样吧。不折腾了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; ans = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">wordBreak</span><span class="params">(String s, Set&lt;String&gt; wordDict)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span>[] dp = <span class="keyword">new</span> <span class="keyword">boolean</span>[s.length() + <span class="number">1</span>];</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= s.length(); ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; ++j) &#123;</span><br><span class="line">            String str = s.substring(j, i);</span><br><span class="line">            <span class="keyword">if</span> (dp[j] == <span class="keyword">true</span> &amp;&amp; wordDict.contains(str)) &#123;</span><br><span class="line">                dp[i] = <span class="keyword">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (dp[s.length()] == <span class="keyword">false</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    dfs(s, <span class="keyword">new</span> ArrayList&lt;String&gt;(), <span class="number">0</span>, wordDict);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(String s, List&lt;String&gt; path, <span class="keyword">int</span> begin, Set&lt;String&gt; wordDict)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin &gt;= s.length()) &#123;</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span> (String str : path) &#123;</span><br><span class="line">            sb.append(str + <span class="string">" "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        sb.deleteCharAt(sb.length() - <span class="number">1</span>);</span><br><span class="line">        ans.add(sb.toString());</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = begin; i &lt; s.length(); ++i) &#123;</span><br><span class="line">        String str = s.substring(begin, i + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (wordDict.contains(str) == <span class="keyword">false</span>)</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        path.add(str);</span><br><span class="line">        dfs(s, path, i + <span class="number">1</span>, wordDict);</span><br><span class="line">        path.remove(path.size() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/">&raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/4/">&raquo;</a>
   </nav>
 
  </div>
@@ -857,7 +852,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">99</span>
+              <span class="site-state-item-count">101</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
