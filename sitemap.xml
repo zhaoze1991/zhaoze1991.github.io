@@ -2,8 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zhaoze1991.github.io/2015/09/10/Find-the-Connected-Component-in-the-Undirected-Graph/</loc>
+    <lastmod>2015-09-10T05:24:08.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://zhaoze1991.github.io/2015/09/09/Longest-Increasing-Continuous-subsequence-1/</loc>
-    <lastmod>2015-09-09T18:42:52.000Z</lastmod>
+    <lastmod>2015-09-10T04:46:19.000Z</lastmod>
   </url>
   
   <url>
@@ -169,11 +174,6 @@
   <url>
     <loc>http://zhaoze1991.github.io/2015/09/03/Palindrome-Partitioning/</loc>
     <lastmod>2015-09-04T03:18:39.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://zhaoze1991.github.io/2015/09/03/Longest-Increasing-Continuous-subsequence/</loc>
-    <lastmod>2015-09-04T02:51:15.000Z</lastmod>
   </url>
   
   <url>
