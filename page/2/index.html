@@ -192,6 +192,211 @@
           
           
             
+              <a class="post-title-link" href="/2015/09/07/Partition-Array/" itemprop="url">
+                Partition Array
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-07T20:30:01-04:00" content="2015-09-07">
+            2015-09-07
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="http://www.lintcode.com/en/problem/partition-array/" target="_blank" rel="external">Partition Array</a><br>双指针，begin和end。<br><del>在遍历数组的时候，分情况讨论:</del><br><del>1. 如果nums[begin] &lt; k, 不用管，直接begin++</del><br><del>2. 如果nums[begin] &gt;= k, 开始交换，但是交换的时候， 右边的end指针先移动，移动到第一个小于k的数字上</del><br>看了别人写的答案，觉得好多了。有点quick sort的思想。begin为第一个nums[begin] &gt;= k的index， end 为第一个nums[end] &lt; k的index，然后swap</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">partitionArray</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//write your code here</span></span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> begin = <span class="number">0</span>, end = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (begin &lt;= end) &#123;</span><br><span class="line">        <span class="keyword">while</span> (begin &lt;= end &amp;&amp; nums[begin] &lt; k) &#123;</span><br><span class="line">            ++begin;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (begin &lt;= end &amp;&amp; nums[end] &gt;= k)</span><br><span class="line">            --end;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span> (begin &lt;= end)</span><br><span class="line">           swap(nums, begin, end);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> begin;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp = nums[i];</span><br><span class="line">    nums[i] = nums[j];</span><br><span class="line">    nums[j] = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.lintcode.com/en/problem/sort-letters-by-case/" target="_blank" rel="external">Sort Letters by Case</a><br>和上面一题是一样的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortLetters</span><span class="params">(<span class="keyword">char</span>[] chars)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//write your code here</span></span><br><span class="line">    <span class="keyword">if</span> (chars == <span class="keyword">null</span> || chars.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> ptr1 = <span class="number">0</span>, ptr2 = chars.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (ptr1 &lt;= ptr2) &#123;</span><br><span class="line">        <span class="keyword">while</span> (ptr1 &lt;= ptr2 &amp;&amp; Character.isLowerCase(chars[ptr1]))</span><br><span class="line">            ++ptr1;</span><br><span class="line">        <span class="keyword">while</span> (ptr1 &lt;= ptr2 &amp;&amp;  Character.isUpperCase(chars[ptr2]))</span><br><span class="line">            --ptr2;</span><br><span class="line">        <span class="keyword">if</span> (ptr1 &lt;= ptr2)</span><br><span class="line">            swap(chars, ptr1, ptr2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">char</span>[] ch, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span> temp = ch[i];</span><br><span class="line">    ch[i] = ch[j];</span><br><span class="line">    ch[j] = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/07/SubArray/" itemprop="url">
+                SubArray
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-07T18:02:16-04:00" content="2015-09-07">
+            2015-09-07
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="http://www.lintcode.com/en/problem/maximum-subarray/" target="_blank" rel="external">Maximum SubArray</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(ArrayList&lt;Integer&gt; nums)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write your code</span></span><br><span class="line">    <span class="keyword">int</span> global = nums.get(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> local = nums.get(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.size(); ++i) &#123;</span><br><span class="line">        local = Math.max(local + nums.get(i), nums.get(i));</span><br><span class="line">        global = Math.max(global, local);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> global;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.lintcode.com/en/problem/maximum-subarray-ii/" target="_blank" rel="external">Maximum Subarray II</a><br>left和right在做dp的时候，策略不同.<br>left[i] 表示，在[0~i]区间上，最大的sub-array, ending with i<br>right[i],表示，在[i~n-1]区间上，最大的sub-array</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxTwoSubArrays</span><span class="params">(ArrayList&lt;Integer&gt; nums)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write your code</span></span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.size() == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> n = nums.size();</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> nums.get(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span>[] left = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">    <span class="keyword">int</span>[] right = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">    <span class="keyword">int</span> local = nums.get(<span class="number">0</span>), global = nums.get(<span class="number">0</span>); left[<span class="number">0</span>] = nums.get(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        local = Math.max(local + nums.get(i), nums.get(i));</span><br><span class="line">        left[i] = local;</span><br><span class="line">    &#125;</span><br><span class="line">    local = nums.get(n - <span class="number">1</span>); global = nums.get(n - <span class="number">1</span>); right[n - <span class="number">1</span>] = nums.get(n - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">2</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">        local = Math.max(nums.get(i), nums.get(i) + local);</span><br><span class="line">        global = Math.max(global, local);</span><br><span class="line">        right[i] = global;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> ans = Integer.MIN_VALUE;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">        ans = Math.max(ans, left[i]  + right[i + <span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.lintcode.com/en/problem/minimum-subarray/" target="_blank" rel="external">Minimum Subarray</a><br>没啥好说了，跟max差不多。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minSubArray</span><span class="params">(ArrayList&lt;Integer&gt; nums)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write your code</span></span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.size() == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> n = nums.size();</span><br><span class="line">    <span class="keyword">int</span> local = nums.get(<span class="number">0</span>), global = nums.get(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.size(); ++i) &#123;</span><br><span class="line">        local = Math.min(nums.get(i), local + nums.get(i));</span><br><span class="line">        global = Math.min(local, global);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> global;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.lintcode.com/en/problem/maximum-subarray-difference/" target="_blank" rel="external">Maximum Subarray Difference</a><br>可能的解为:左边最小，减去右边最大，或者左边最大，减去右边最小<br>所以，思路跟Maximum Subarray II一样，区别在于多了两组变量</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxDiffSubArrays</span><span class="params">(ArrayList&lt;Integer&gt; nums)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write your code</span></span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.size() == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums.size() == <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> nums.get(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">int</span>[] leftMax = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">        <span class="keyword">int</span>[] leftMin = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">        <span class="keyword">int</span> val = nums.get(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">int</span> localMin = val, localMax = val; leftMax[<span class="number">0</span>] = val; leftMin[<span class="number">0</span>] = val;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            val = nums.get(i);</span><br><span class="line">            localMin = Math.min(val, val + localMin);</span><br><span class="line">            localMax = Math.max(val, val + localMax);</span><br><span class="line">            leftMax[i] = localMax;</span><br><span class="line">            leftMin[i] = localMin;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[] rightMax = <span class="keyword">new</span> <span class="keyword">int</span>[n], rightMin = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">        val = nums.get(n - <span class="number">1</span>);</span><br><span class="line">        localMin = val; localMax = val; rightMax[n - <span class="number">1</span>] = val; rightMin[n - <span class="number">1</span>] = val;</span><br><span class="line">        <span class="keyword">int</span> globalMin = val, globalMax = val;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">2</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">            val = nums.get(i);</span><br><span class="line">            localMin = Math.min(val, val + localMin);</span><br><span class="line">            globalMin = Math.min(globalMin, localMin);</span><br><span class="line">            rightMin[i] = globalMin;</span><br><span class="line">            localMax = Math.max(val, val + localMax);</span><br><span class="line">            globalMax = Math.max(globalMax, localMax);</span><br><span class="line">            rightMax[i] = globalMax;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> diff = Math.max(Math.abs(leftMin[i] - rightMax[i + <span class="number">1</span>]), Math.abs(leftMax[i] - rightMin[i + <span class="number">1</span>]));</span><br><span class="line">            ans = Math.max(ans, diff);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.lintcode.com/en/problem/subarray-sum/" target="_blank" rel="external">Subarray Sum</a><br>sum[index]表示[0~i]之间的和。<br>sum[index1] == sum[index2]， 则，在index1+1~index2之间的和为0.<br>用一个Map来记录index和sum，如果遇到两个index相同的sum时，表示index1 + 1 到index2的sum是0.<br><strong>注意</strong>，需要添加一个虚拟index＝-1，这样我们才能记录index1=0的情况<br>举个栗子，<br>nums:&nbsp;&nbsp;&nbsp;-3, 1, 2, -3<br>sum: 0, -3, -2, 0, -3</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">subarraySum</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write your code here</span></span><br><span class="line">    ArrayList&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    <span class="comment">// sum, index</span></span><br><span class="line">    HashMap&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">    <span class="comment">//   -3 1 2 -3 4</span></span><br><span class="line">    <span class="comment">// 0 -3 -2 0 -3 1</span></span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    map.put(<span class="number">0</span>, -<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">        sum += nums[i];</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(sum)) &#123;</span><br><span class="line">            res.add(map.get(sum) + <span class="number">1</span>);</span><br><span class="line">            res.add(i);</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        map.put(sum, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.lintcode.com/en/problem/subarray-sum-closest/" target="_blank" rel="external">Subarray Sum Closest</a><br>题目给了O(nlogn)的时间复杂度要求，那么应该就是要排序了。<br>sum[i]表示在[0~i]上的和。如果i&lt;j 那么sum[j]-sum[i] 表示nums[i+1]到nums[j]的和，如果sum[j]-sum[i]的值为最小，则就是解。<br>栗子<br>nums: -3, 1, 0, 1, -3, 5<br>sums: -3, -2, -2, -1, -4, 1<br>排序之后，－2和－2之间的diff为0， 表示nums[1+1] 到nums[2]之间的和为0<br><strong>注意</strong>要加入一个dummy pair， 否则0那个位置就取不到了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pair</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> index;</span><br><span class="line">    <span class="keyword">int</span> sum;</span><br><span class="line"></span><br><span class="line">    Pair(<span class="keyword">int</span> i, <span class="keyword">int</span> s) &#123;</span><br><span class="line">        <span class="keyword">this</span>.index = i;</span><br><span class="line">        <span class="keyword">this</span>.sum = s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">subarraySumClosest</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write your code here</span></span><br><span class="line">    ArrayList&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    <span class="keyword">int</span> n = nums.length;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</span><br><span class="line">        ans.add(<span class="number">0</span>);</span><br><span class="line">        ans.add(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    Pair[] sums = <span class="keyword">new</span> Pair[n + <span class="number">1</span>];</span><br><span class="line">    sums[<span class="number">0</span>] = <span class="keyword">new</span> Pair(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        sum += nums[i - <span class="number">1</span>];</span><br><span class="line">        sums[i] = <span class="keyword">new</span> Pair(i, sum);</span><br><span class="line">    &#125;</span><br><span class="line">    Arrays.sort(sums, <span class="keyword">new</span> Comparator&lt;Pair&gt;() &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Pair p1, Pair p2)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> p1.sum - p2.sum;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">int</span> min = Integer.MAX_VALUE;</span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> diff = Math.abs(sums[i].sum - sums[i - <span class="number">1</span>].sum);</span><br><span class="line">        <span class="keyword">if</span> (min &gt; diff) &#123;</span><br><span class="line">            min = diff;</span><br><span class="line">            index = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>[] temp = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;sums[index].index - <span class="number">1</span>, sums[index - <span class="number">1</span>].index - <span class="number">1</span>&#125;;</span><br><span class="line">    Arrays.sort(temp);</span><br><span class="line">    ans.add(temp[<span class="number">0</span>] + <span class="number">1</span>);</span><br><span class="line">    ans.add(temp[<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/07/Majority-Number/" itemprop="url">
+                Majority Number
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-07T17:03:31-04:00" content="2015-09-07">
+            2015-09-07
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/majority-element/" target="_blank" rel="external">Majority Element</a><br><a href="https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_majority_vote_algorithm" target="_blank" rel="external">Boyer–Moore majority vote algorithm</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> major = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (count == <span class="number">0</span>) &#123;</span><br><span class="line">            major = nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (major == nums[i])</span><br><span class="line">            count++;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            count--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> major;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://leetcode.com/problems/majority-element-ii/" target="_blank" rel="external">Majority Element II</a><br>注意，哈希表不能一边遍历一边删除。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    <span class="keyword">int</span> count1 = <span class="number">0</span>, count2 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> major1 = <span class="number">0</span>, major2 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (count1 == <span class="number">0</span>) &#123;</span><br><span class="line">            major1 = nums[i];</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (count2 == <span class="number">0</span>) &#123;</span><br><span class="line">            major2 = nums[i];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (major1 == nums[i]) &#123;</span><br><span class="line">            count1++;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (major2 == nums[i])</span><br><span class="line">            count2++;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            count1--;</span><br><span class="line">            count2--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    count1 = count2 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : nums) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i == major1) &#123;</span><br><span class="line">            count1++;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (i == major2)</span><br><span class="line">            count2++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (count1 &gt; nums.length / <span class="number">3</span>)</span><br><span class="line">        ans.add(major1);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (count2 &gt; nums.length / <span class="number">3</span>)</span><br><span class="line">        ans.add(major2);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.lintcode.com/en/problem/majority-number-iii/" target="_blank" rel="external">Majority Element III</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">majorityNumber</span><span class="params">(ArrayList&lt;Integer&gt; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write your code</span></span><br><span class="line">    HashMap&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : nums) &#123;</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(i)) &#123;</span><br><span class="line">            map.put(i, map.get(i) + <span class="number">1</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span></span><br><span class="line">            map.put(i, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (map.size() &gt;= k)</span><br><span class="line">            remove(map);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : map.keySet()) &#123;</span><br><span class="line">        map.put(i, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : nums) &#123;</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(i))</span><br><span class="line">            map.put(i, map.get(i) + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> max = <span class="number">0</span>, ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : map.keySet()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (max &lt; map.get(i)) &#123;</span><br><span class="line">            ans = i;</span><br><span class="line">            max = map.get(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(HashMap&lt;Integer, Integer&gt; map)</span> </span>&#123;</span><br><span class="line">    Set&lt;Integer&gt; set = map.keySet();</span><br><span class="line">    HashSet&lt;Integer&gt; delete = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : set) &#123;</span><br><span class="line">        map.put(i, map.get(i) - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (map.get(i) == <span class="number">0</span>)</span><br><span class="line">            delete.add(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : delete) &#123;</span><br><span class="line">        map.remove(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/09/07/Largest-Rectangle-in-Histogram/" itemprop="url">
                 Largest Rectangle in Histogram
               </a>
@@ -643,217 +848,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/06/Text-Justification/" itemprop="url">
-                Text Justification
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-06T10:56:14-04:00" content="2015-09-06">
-            2015-09-06
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/text-justification/" target="_blank" rel="external">Text Justification</a><br>这题就是实现起来比较蛋疼。<br>我觉得这题有点维护一个window的意思，所以就用把变量的名字搞成left，表示当前window中最左边的一个单词的坐标。curLen表示当前window中所有单词的长度。注意，维护这个curLen的时候不要急于加入空格的长度，会搞的比较麻烦。所以我们在判断时候超过给定的最大长度时，有这样的关系式：curLen ＋ words[i] + (i - left) &gt; maxWidth. 如果要加入第i个词，那么长度就变成了curLen+…如果这个长度大于maxWidth，那么我们就开始Build new String。</p>
-<p>首先我们得知道一共剩下多少的空间拿来填充space，所以spaceCount ＝ maxWidth － curLen，然后我们得计算出一共有多少个slot可以查space。slot ＝ (i-1) - left.<br>计算出上述变量之后，我们还得对slot做判断。</p>
-<ol>
-<li>如果一个slot都没发插，比如有一个超级长的词,那么我们直接在新的string中插入单词.</li>
-<li>此时i==n（注意，最后一行可能有多个单词）我们就插入一个单词，然后跟一个空格，</li>
-</ol>
-<p>对于1和2， 最后，我们再用空格把剩余空间补齐</p>
-<ol>
-<li>如果我们有多个slot可以插空格，我们先来计算每个slot能插几个空格，each = spaceCount / spaceSlots， 但是这可能不能被整出，还剩下几个空格，咋办呢，再计算extra ＝ spaceCount ％ spaceSlots。我们在构建新的字符串的时候，先插入单词，然后添加空格，空格的长度为each ＋ 1 或者 ＋ 0， 取决于此时extra是否小于0，在循环中，每次对extra做减1的操作。</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">fullJustify</span><span class="params">(String[] words, <span class="keyword">int</span> maxWidth)</span> </span>&#123;</span><br><span class="line">    List&lt;String&gt; ans = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">    <span class="keyword">int</span> n = words.length, left = <span class="number">0</span>, curLen = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i == n || curLen +  words[i].length() + (i - left) &gt; maxWidth) &#123;</span><br><span class="line">            StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">            <span class="keyword">int</span> spaceCount = maxWidth - curLen;</span><br><span class="line">            <span class="keyword">int</span> spaceSlots = (i - <span class="number">1</span>) - left;</span><br><span class="line">            <span class="keyword">if</span> (spaceSlots == <span class="number">0</span> || i == n) &#123;</span><br><span class="line">                <span class="comment">// the last line may contains multiple words.</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = left; j &lt; i; ++j) &#123;</span><br><span class="line">                    sb.append(words[j]);</span><br><span class="line">                    <span class="keyword">if</span> (j != i - <span class="number">1</span>)</span><br><span class="line">                        sb.append(<span class="string">" "</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                add(sb, maxWidth - sb.length());</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">int</span> each = spaceCount / spaceSlots;</span><br><span class="line">                <span class="keyword">int</span> extra = spaceCount % spaceSlots;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = left; j &lt; i; ++j) &#123;</span><br><span class="line">                    sb.append(words[j]);</span><br><span class="line">                    <span class="keyword">if</span> (j != i - <span class="number">1</span>) &#123;</span><br><span class="line">                        add(sb, each + (extra &gt; <span class="number">0</span> ? <span class="number">1</span> : <span class="number">0</span>));</span><br><span class="line">                        extra--;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ans.add(sb.toString());</span><br><span class="line">            left = i;</span><br><span class="line">            curLen = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; n)</span><br><span class="line">            curLen += words[i].length();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(StringBuilder sb, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">        sb.append(<span class="string">" "</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (spaceSlots == <span class="number">0</span>) &#123;</span><br><span class="line">    sb.append(words[left]);</span><br><span class="line">    add(sb, maxWidth - sb.length());</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (i == n)&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = left; j &lt; i; ++j) &#123;</span><br><span class="line">        sb.append(words[j]);</span><br><span class="line">        <span class="keyword">if</span> (j != i - <span class="number">1</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">" "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    add(sb, maxWidth - sb.length());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/04/Median-of-Two-Sorted-Arrays/" itemprop="url">
-                Median of Two Sorted Arrays
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-04T21:07:26-04:00" content="2015-09-04">
-            2015-09-04
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/median-of-two-sorted-arrays/" target="_blank" rel="external">Median of Two Sorted Arrays</a><br>本来准备这题放弃了。后来发现面试出现频率实在太高，不得不重新做一做然后记一记。</p>
-<ol>
-<li>如果begin大于数组长度，就返回另一个数组的第k个数值</li>
-<li>如果k＝＝1，那么我们直接返回两个数组中小的数字</li>
-<li>开始重头戏，如果数组1的长度不够k／2，砍掉数组2的前半部分。栗子<br>数组1: 6，7， 8<br>数组2: 1， 2， 3， 4， 5<br>k ＝ 8<br>同理，如果数组2长度不够k／2， 砍掉数组1的前半部分</li>
-<li>如果num1[mid] &lt; nums2[mid] (mid是k／2-1处的元素index), 砍掉num1的前半部分。<br>数组1: 1，2<br>数组2: 3，4，5，6，7<br>k ＝ 4</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">findMedianSortedArrays</span><span class="params">(<span class="keyword">int</span>[] nums1, <span class="keyword">int</span>[] nums2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = nums1.length + nums2.length;</span><br><span class="line">    <span class="keyword">if</span> (len % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> (findkth(nums1, <span class="number">0</span>, nums2, <span class="number">0</span>, len / <span class="number">2</span>) + findkth(nums1, <span class="number">0</span>, nums2, <span class="number">0</span>, len / <span class="number">2</span> + <span class="number">1</span>)) / <span class="number">2.0</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// this function will find the k-th, so we need to add 1.</span></span><br><span class="line">        <span class="keyword">return</span> findkth(nums1, <span class="number">0</span>, nums2, <span class="number">0</span>, len / <span class="number">2</span> + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findkth</span><span class="params">(<span class="keyword">int</span>[] nums1, <span class="keyword">int</span> begin1, <span class="keyword">int</span>[] nums2, <span class="keyword">int</span> begin2, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin1 &gt;= nums1.length)</span><br><span class="line">        <span class="keyword">return</span> nums2[begin2 + k - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span> (begin2 &gt;= nums2.length)</span><br><span class="line">        <span class="keyword">return</span> nums1[begin1 + k - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span> (k == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> Math.min(nums1[begin1], nums2[begin2]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> num1_val = begin1 + k / <span class="number">2</span> - <span class="number">1</span> &lt; nums1.length ? nums1[begin1 + k / <span class="number">2</span> - <span class="number">1</span>] : Integer.MAX_VALUE;</span><br><span class="line">    <span class="keyword">int</span> num2_val = begin2 + k / <span class="number">2</span> - <span class="number">1</span> &lt; nums2.length ? nums2[begin2 + k / <span class="number">2</span> - <span class="number">1</span>] : Integer.MAX_VALUE;</span><br><span class="line">    <span class="keyword">if</span> (num1_val &lt; num2_val) &#123;</span><br><span class="line">        <span class="keyword">return</span> findkth(nums1, begin1 + k / <span class="number">2</span>, nums2, begin2, k - k / <span class="number">2</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> findkth(nums1, begin1, nums2, begin2 + k / <span class="number">2</span>, k - k / <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findkth</span><span class="params">(<span class="keyword">int</span>[] nums1, <span class="keyword">int</span> begin1, <span class="keyword">int</span>[] nums2, <span class="keyword">int</span> begin2, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin1 &gt;= nums1.length)</span><br><span class="line">        <span class="keyword">return</span> nums2[begin2 + k - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span> (begin2 &gt;= nums2.length)</span><br><span class="line">        <span class="keyword">return</span> nums1[begin1 + k - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span> (k == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> Math.min(nums1[begin1], nums2[begin2]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (begin1 + k / <span class="number">2</span> - <span class="number">1</span> &gt;= nums1.length)</span><br><span class="line">        <span class="keyword">return</span> findkth(nums1, begin1, nums2, begin2 + k / <span class="number">2</span>, k - k / <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">if</span> (begin2 + k / <span class="number">2</span> - <span class="number">1</span> &gt;= nums2.length)</span><br><span class="line">        <span class="keyword">return</span> findkth(nums1, begin1 + k / <span class="number">2</span>, nums2, begin2, k - k / <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> num1_val = nums1[begin1 + k / <span class="number">2</span> - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> num2_val = nums2[begin2 + k / <span class="number">2</span> - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span> (num1_val &lt; num2_val) &#123;</span><br><span class="line">        <span class="keyword">return</span> findkth(nums1, begin1 + k / <span class="number">2</span>, nums2, begin2, k - k / <span class="number">2</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> findkth(nums1, begin1, nums2, begin2 + k / <span class="number">2</span>, k - k / <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/04/Roman-to-Integer/" itemprop="url">
-                Roman to Integer
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-04T16:31:54-04:00" content="2015-09-04">
-            2015-09-04
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/roman-to-integer/" target="_blank" rel="external">Roman to Integer</a><br>把罗马数字转成十进制的数字。<br>我们可以一个个扫描每一位罗马数字。然后再检测每一段的数字。</p>
-<ol>
-<li>如果当前的数字比前一个大，比如 IV， 那么这一段的值就是当前的值减去前一个值</li>
-<li>如果当前的数字比前一个小，比如VI，直接将当前的数值加入到结果中即可。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">romanToInt</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    HashMap&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    map.put(<span class="string">'I'</span>, <span class="number">1</span>);</span><br><span class="line">    map.put(<span class="string">'V'</span>, <span class="number">5</span>);</span><br><span class="line">    map.put(<span class="string">'X'</span>, <span class="number">10</span>);</span><br><span class="line">    map.put(<span class="string">'L'</span>, <span class="number">50</span>);</span><br><span class="line">    map.put(<span class="string">'C'</span>, <span class="number">100</span>);</span><br><span class="line">    map.put(<span class="string">'D'</span>, <span class="number">500</span>);</span><br><span class="line">    map.put(<span class="string">'M'</span>, <span class="number">1000</span>);</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); ++i) &#123;</span><br><span class="line">        <span class="keyword">char</span> c = s.charAt(i);</span><br><span class="line">        <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; map.get(c) &gt; map.get(s.charAt(i - <span class="number">1</span>))) &#123;</span><br><span class="line">            <span class="keyword">int</span> prev = map.get(s.charAt(i - <span class="number">1</span>));</span><br><span class="line">            <span class="keyword">int</span> cur = map.get(c);</span><br><span class="line">            ans -= prev;</span><br><span class="line">            ans += cur - prev;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ans += map.get(c);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><a href="https://leetcode.com/problems/integer-to-roman/" target="_blank" rel="external">Integer to Roman</a><br>先把所有的罗马数组组合和对应的数值存起来。<br>然后开始对input的num做减法。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">intToRoman</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">    String[] table = &#123; <span class="string">"M"</span>, <span class="string">"CM"</span>, <span class="string">"D"</span>, <span class="string">"CD"</span>, <span class="string">"C"</span>, <span class="string">"XC"</span>, <span class="string">"L"</span>, <span class="string">"XL"</span>, <span class="string">"X"</span>,</span><br><span class="line">            <span class="string">"IX"</span>, <span class="string">"V"</span>, <span class="string">"IV"</span>, <span class="string">"I"</span> &#125;;</span><br><span class="line">    <span class="keyword">int</span>[] value = &#123; <span class="number">1000</span>, <span class="number">900</span>, <span class="number">500</span>, <span class="number">400</span>, <span class="number">100</span>, <span class="number">90</span>, <span class="number">50</span>, <span class="number">40</span>, <span class="number">10</span>, <span class="number">9</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">1</span> &#125;;</span><br><span class="line">    String result = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; num != <span class="number">0</span> &amp;&amp; i &lt; value.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">while</span> (num &gt;= value[i]) &#123;</span><br><span class="line">            result += table[i];</span><br><span class="line">            num -= value[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -892,7 +886,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">101</span>
+              <span class="site-state-item-count">104</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -906,7 +900,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
