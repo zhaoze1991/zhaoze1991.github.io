@@ -35,18 +35,18 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="给一颗BST，注意，BST的value是一个private的东西，我们拿不到。我啥也不想说了，这题面试没写好，真得挺不开心的。
+<meta name="description" content="给一棵BST，注意，BST的value是一个private的东西，我们拿不到。我啥也不想说了，这题面试没写好，真得挺不开心的。
 1234567891011121314151617181920212223242526272829303132333435class Node &amp;#123;    Node left;    Node right;&amp;#125;public Node nextLargest">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Next Node">
 <meta property="og:url" content="http://zhaoze1991.github.io/2015/09/11/Next-Node/index.html">
 <meta property="og:site_name" content="Just-Zzz">
-<meta property="og:description" content="给一颗BST，注意，BST的value是一个private的东西，我们拿不到。我啥也不想说了，这题面试没写好，真得挺不开心的。
+<meta property="og:description" content="给一棵BST，注意，BST的value是一个private的东西，我们拿不到。我啥也不想说了，这题面试没写好，真得挺不开心的。
 1234567891011121314151617181920212223242526272829303132333435class Node &amp;#123;    Node left;    Node right;&amp;#125;public Node nextLargest">
-<meta property="og:updated_time" content="2015-09-12T02:34:37.000Z">
+<meta property="og:updated_time" content="2015-09-13T21:12:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Next Node">
-<meta name="twitter:description" content="给一颗BST，注意，BST的value是一个private的东西，我们拿不到。我啥也不想说了，这题面试没写好，真得挺不开心的。
+<meta name="twitter:description" content="给一棵BST，注意，BST的value是一个private的东西，我们拿不到。我啥也不想说了，这题面试没写好，真得挺不开心的。
 1234567891011121314151617181920212223242526272829303132333435class Node &amp;#123;    Node left;    Node right;&amp;#125;public Node nextLargest">
 
 
@@ -222,7 +222,7 @@
       
 
       
-        <span itemprop="articleBody"><p>给一颗BST，注意，BST的value是一个private的东西，我们拿不到。我啥也不想说了，这题面试没写好，真得挺不开心的。</p>
+        <span itemprop="articleBody"><p>给一棵BST，注意，BST的value是一个private的东西，我们拿不到。我啥也不想说了，这题面试没写好，真得挺不开心的。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">    Node left;</span><br><span class="line">    Node right;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> Node <span class="title">nextLargest</span><span class="params">(Node node, Node root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span> || node == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    Node ans = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (node.right != <span class="keyword">null</span>) &#123;</span><br><span class="line">        node = node.right;</span><br><span class="line">        <span class="keyword">while</span> (node.left != <span class="keyword">null</span>) &#123;</span><br><span class="line">            node = node.left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">    Stack&lt;Node&gt; s = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    <span class="keyword">while</span> (root != <span class="keyword">null</span>) &#123;</span><br><span class="line">        s.push(root);</span><br><span class="line">        root = root.left;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (!s.isEmpty()) &#123;</span><br><span class="line">        Node cur = s.pop();</span><br><span class="line">        Node right = cur.right;</span><br><span class="line">        <span class="keyword">while</span> (right != <span class="keyword">null</span>) &#123;</span><br><span class="line">            s.push(right);</span><br><span class="line">            right = right.left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (cur == node) &#123;</span><br><span class="line">            ans = s.isEmpty() ? <span class="keyword">null</span> : s.pop();</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </span>
       
@@ -234,6 +234,8 @@
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/09/13/Perfect-Squares/" rel="prev">Perfect Squares</a>
             
           </div>
 
@@ -301,7 +303,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">104</span>
+              <span class="site-state-item-count">105</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

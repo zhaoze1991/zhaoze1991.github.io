@@ -192,6 +192,69 @@
           
           
             
+              <a class="post-title-link" href="/2015/09/04/Linked-List-Cycle-II/" itemprop="url">
+                Linked List Cycle II
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-04T10:11:36-04:00" content="2015-09-04">
+            2015-09-04
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/linked-list-cycle-ii/" target="_blank" rel="external">Linked List Cycle II</a><br><img src="/images/linkedlistcycleII.png" alt="images"><br>&nbsp;t = X + mY + k<br>2t = X + nY + k<br>=&gt; X + k = (m - 2n)Y 那么X＋k关于Y互补，现在我们已经走了k步，再把其中一个指针指到head，再走X步就好了<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">detectCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    ListNode slow = head, fast = head;</span><br><span class="line">    <span class="keyword">while</span> (fast != <span class="keyword">null</span> &amp;&amp; fast.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">        fast = fast.next.next;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">        <span class="keyword">if</span> (fast != <span class="keyword">null</span> &amp;&amp; fast == slow) &#123;</span><br><span class="line">            slow = head;</span><br><span class="line">            <span class="keyword">while</span> (slow != fast) &#123;</span><br><span class="line">                fast = fast.next;</span><br><span class="line">                slow = slow.next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> slow;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://fisherlei.blogspot.com/2013/11/leetcode-linked-list-cycle-ii-solution.html" target="_blank" rel="external">Reference 水中的鱼</a></p>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/09/04/Copy-List-with-Random-Pointer/" itemprop="url">
                 Copy List with Random Pointer
               </a>
@@ -758,70 +821,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/02/Sliding-Window-Maximum/" itemprop="url">
-                Sliding Window Maximum
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-02T21:28:25-04:00" content="2015-09-02">
-            2015-09-02
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/sliding-window-maximum/" target="_blank" rel="external">Sliding Window Maximum</a><br>hint中说用Deque，而且每次不必存储k个元素。<br>关键问题在于我们如何去维护这个Deque。<br>首先解决这个deque的left问题。因为不是寸k个元素，所以我们没法从size上去移动left，那么deque中存的，应该是坐标i。<br>如果deque中最左边的坐标小于i-k+1，那么我们就把这个左边移出去。<br>解决了left之后，如何解决当前区间最大值的问题？这里的思路有点像heap。就是在deque的队列头部的元素，就是当前区间中最大的一个数字。怎么实现呢？我们比较nums[i]和deque中尾巴的元素，如果nums[i]&gt;deque尾部的元素，那么deque尾部的元素不可能是最大值，把它弹出。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] maxSlidingWindow(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span> || k &lt;= <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> n = nums.length;</span><br><span class="line">    <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[n - k + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">    Deque&lt;Integer&gt; q = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (q.isEmpty() == <span class="keyword">false</span> &amp;&amp; q.peek() &lt; i - k + <span class="number">1</span>) &#123;</span><br><span class="line">            q.poll();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (q.isEmpty() == <span class="keyword">false</span> &amp;&amp; nums[q.peekLast()] &lt; nums[i])</span><br><span class="line">            q.pollLast();</span><br><span class="line">        q.offer(i);</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= k - <span class="number">1</span>) &#123;</span><br><span class="line">            ans[index++] = nums[q.peek()];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我比较喜欢这个heap的做法。维护一个大小为k的最大堆，那么栈顶元素就是当前区间最大的值。<br>注意，每次删除栈中的元素时，不是弹出栈顶的元素，而是找到最左边的元素，然后弹出。这个操作需要的时间复杂度时O(logk)<br>所以总的时间复杂度是O(n*logk)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] maxSlidingWindow(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span> || k &lt;= <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">0</span>];</span><br><span class="line">    <span class="comment">// maximum heap</span></span><br><span class="line">    PriorityQueue&lt;Integer&gt; q = <span class="keyword">new</span> PriorityQueue&lt;Integer&gt;(<span class="keyword">new</span> Comparator&lt;Integer&gt;()&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Integer i1, Integer i2)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> i2 - i1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; ++i) &#123;</span><br><span class="line">        q.add(nums[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length - k + <span class="number">1</span>];</span><br><span class="line">    ans[<span class="number">0</span>] = q.peek();</span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = k; i &lt; nums.length; ++i) &#123;</span><br><span class="line">        q.remove(nums[i - k]);</span><br><span class="line">        q.add(nums[i]);</span><br><span class="line">        ans[index++] = q.peek();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -860,7 +859,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">104</span>
+              <span class="site-state-item-count">105</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
