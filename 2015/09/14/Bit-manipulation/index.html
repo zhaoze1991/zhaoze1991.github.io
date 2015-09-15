@@ -35,19 +35,20 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="Number of 1 Bitsn&amp;amp;1判断最后一位是不是1
-12345678public int hammingWeight(int n) &amp;#123;    int ans = 0;    while (n != 0) &amp;#123;        ans += (n &amp;amp; 1);        n = n &amp;gt;&amp;gt;&amp;gt; 1;    &amp;#125;    return an">
+<meta name="description" content="从matrix67那儿抄来的，每天拜一拜。Number of 1 Bitsn&amp;amp;1判断最后一位是不是1
+12345678public int hammingWeight(int n) &amp;#123;    int ans = 0;    while (n != 0) &amp;#123;        ans += (n &amp;amp; 1);        n = n &amp;gt;&amp;gt;&amp;gt; 1;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bit Manipulation">
 <meta property="og:url" content="http://zhaoze1991.github.io/2015/09/14/Bit-manipulation/index.html">
 <meta property="og:site_name" content="Just-Zzz">
-<meta property="og:description" content="Number of 1 Bitsn&amp;amp;1判断最后一位是不是1
-12345678public int hammingWeight(int n) &amp;#123;    int ans = 0;    while (n != 0) &amp;#123;        ans += (n &amp;amp; 1);        n = n &amp;gt;&amp;gt;&amp;gt; 1;    &amp;#125;    return an">
-<meta property="og:updated_time" content="2015-09-15T05:23:19.000Z">
+<meta property="og:description" content="从matrix67那儿抄来的，每天拜一拜。Number of 1 Bitsn&amp;amp;1判断最后一位是不是1
+12345678public int hammingWeight(int n) &amp;#123;    int ans = 0;    while (n != 0) &amp;#123;        ans += (n &amp;amp; 1);        n = n &amp;gt;&amp;gt;&amp;gt; 1;">
+<meta property="og:image" content="http://zhaoze1991.github.io/images/bitmanip.png">
+<meta property="og:updated_time" content="2015-09-15T05:28:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bit Manipulation">
-<meta name="twitter:description" content="Number of 1 Bitsn&amp;amp;1判断最后一位是不是1
-12345678public int hammingWeight(int n) &amp;#123;    int ans = 0;    while (n != 0) &amp;#123;        ans += (n &amp;amp; 1);        n = n &amp;gt;&amp;gt;&amp;gt; 1;    &amp;#125;    return an">
+<meta name="twitter:description" content="从matrix67那儿抄来的，每天拜一拜。Number of 1 Bitsn&amp;amp;1判断最后一位是不是1
+12345678public int hammingWeight(int n) &amp;#123;    int ans = 0;    while (n != 0) &amp;#123;        ans += (n &amp;amp; 1);        n = n &amp;gt;&amp;gt;&amp;gt; 1;">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -222,7 +223,7 @@
       
 
       
-        <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/number-of-1-bits/" target="_blank" rel="external">Number of 1 Bits</a><br>n&amp;1判断最后一位是不是1</p>
+        <span itemprop="articleBody"><p>从<a href="http://www.matrix67.com/" target="_blank" rel="external">matrix67</a>那儿抄来的，每天拜一拜。<br><img src="/images/bitmanip.png" alt="image"><br><a href="https://leetcode.com/problems/number-of-1-bits/" target="_blank" rel="external">Number of 1 Bits</a><br>n&amp;1判断最后一位是不是1</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hammingWeight</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (n != <span class="number">0</span>) &#123;</span><br><span class="line">        ans += (n &amp; <span class="number">1</span>);</span><br><span class="line">        n = n &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><a href="https://leetcode.com/problems/reverse-bits/" target="_blank" rel="external">Reverse Bits</a></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reverseBits</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; ++i) &#123;</span><br><span class="line">        ans += (n &amp; <span class="number">1</span>);</span><br><span class="line">        n &gt;&gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">31</span>)</span><br><span class="line">            ans &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
