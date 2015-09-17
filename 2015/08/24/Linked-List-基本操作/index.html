@@ -38,10 +38,13 @@
 <meta name="description" content="整个链表的题，逃不出如下几种基本操作:
 
 Insert a node
-remove ad node
+remove a node
 reverse a linked list
 find the middle of a linked list
-merge two linked lists">
+merge two linked lists
+
+find the middle of a linked list
+12345678public ListNode mid(ListNode he">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linked List 基本操作">
 <meta property="og:url" content="http://zhaoze1991.github.io/2015/08/24/Linked-List-基本操作/index.html">
@@ -49,20 +52,26 @@ merge two linked lists">
 <meta property="og:description" content="整个链表的题，逃不出如下几种基本操作:
 
 Insert a node
-remove ad node
+remove a node
 reverse a linked list
 find the middle of a linked list
-merge two linked lists">
-<meta property="og:updated_time" content="2015-08-25T00:46:45.000Z">
+merge two linked lists
+
+find the middle of a linked list
+12345678public ListNode mid(ListNode he">
+<meta property="og:updated_time" content="2015-09-17T02:18:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linked List 基本操作">
 <meta name="twitter:description" content="整个链表的题，逃不出如下几种基本操作:
 
 Insert a node
-remove ad node
+remove a node
 reverse a linked list
 find the middle of a linked list
-merge two linked lists">
+merge two linked lists
+
+find the middle of a linked list
+12345678public ListNode mid(ListNode he">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -240,11 +249,13 @@ merge two linked lists">
         <span itemprop="articleBody"><p>整个链表的题，逃不出如下几种基本操作:</p>
 <ol>
 <li>Insert a node</li>
-<li>remove ad node</li>
+<li>remove a node</li>
 <li>reverse a linked list</li>
 <li>find the middle of a linked list</li>
 <li>merge two linked lists</li>
 </ol>
+<p>find the middle of a linked list</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">mid</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    ListNode slow = head, fast = head.next;</span><br><span class="line">    <span class="keyword">while</span> (head != <span class="keyword">null</span> &amp;&amp; head.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">        head = head.next.next;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> slow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </span>
       
     </div>

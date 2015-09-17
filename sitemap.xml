@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zhaoze1991.github.io/2015/08/24/Linked-List-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</loc>
+    <lastmod>2015-09-17T02:18:15.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://zhaoze1991.github.io/2015/09/14/Bit-manipulation/</loc>
     <lastmod>2015-09-15T05:28:07.000Z</lastmod>
   </url>
@@ -504,11 +509,6 @@
   <url>
     <loc>http://zhaoze1991.github.io/2015/08/24/Generate-Parentheses/</loc>
     <lastmod>2015-08-25T01:05:35.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://zhaoze1991.github.io/2015/08/24/Linked-List-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</loc>
-    <lastmod>2015-08-25T00:46:45.000Z</lastmod>
   </url>
   
   <url>
