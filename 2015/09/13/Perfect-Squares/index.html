@@ -35,19 +35,19 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="Perfect Squaresmin[i]表示数字i所需的最少的perfect square.我们可以得到这样的状态关系 min[i] = min(min[i], min[i - j &amp;#215; j] + 1)注意，如果i - j&amp;#215;j == 0, 那么min[i] = 1， 所以初始化的时候，min[0] = 0;
-1234567891011public int numSquares(">
+<meta name="description" content="Perfect Squaresmin[i]表示数字i所需的最少的perfect square.我们可以得到这样的状态关系 min[i] = min(min[i], min[i - j &amp;#215; j] + 1)注意，如果i - j&amp;#215;j == 0, 那么min[i] = 1， 所以初始化的时候，min[0] = 0; j从1开始计数.
+1234567891011public int nu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Perfect Squares">
 <meta property="og:url" content="http://zhaoze1991.github.io/2015/09/13/Perfect-Squares/index.html">
 <meta property="og:site_name" content="Just-Zzz">
-<meta property="og:description" content="Perfect Squaresmin[i]表示数字i所需的最少的perfect square.我们可以得到这样的状态关系 min[i] = min(min[i], min[i - j &amp;#215; j] + 1)注意，如果i - j&amp;#215;j == 0, 那么min[i] = 1， 所以初始化的时候，min[0] = 0;
-1234567891011public int numSquares(">
-<meta property="og:updated_time" content="2015-09-13T21:18:38.000Z">
+<meta property="og:description" content="Perfect Squaresmin[i]表示数字i所需的最少的perfect square.我们可以得到这样的状态关系 min[i] = min(min[i], min[i - j &amp;#215; j] + 1)注意，如果i - j&amp;#215;j == 0, 那么min[i] = 1， 所以初始化的时候，min[0] = 0; j从1开始计数.
+1234567891011public int nu">
+<meta property="og:updated_time" content="2015-09-19T20:03:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Perfect Squares">
-<meta name="twitter:description" content="Perfect Squaresmin[i]表示数字i所需的最少的perfect square.我们可以得到这样的状态关系 min[i] = min(min[i], min[i - j &amp;#215; j] + 1)注意，如果i - j&amp;#215;j == 0, 那么min[i] = 1， 所以初始化的时候，min[0] = 0;
-1234567891011public int numSquares(">
+<meta name="twitter:description" content="Perfect Squaresmin[i]表示数字i所需的最少的perfect square.我们可以得到这样的状态关系 min[i] = min(min[i], min[i - j &amp;#215; j] + 1)注意，如果i - j&amp;#215;j == 0, 那么min[i] = 1， 所以初始化的时候，min[0] = 0; j从1开始计数.
+1234567891011public int nu">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -222,7 +222,7 @@
       
 
       
-        <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/perfect-squares/" target="_blank" rel="external">Perfect Squares</a><br>min[i]表示数字i所需的最少的perfect square.<br>我们可以得到这样的状态关系 min[i] = min(min[i], min[i - j &#215; j] + 1)<br><strong>注意</strong>，如果i - j&#215;j == 0, 那么min[i] = 1， 所以初始化的时候，min[0] = 0;</p>
+        <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/perfect-squares/" target="_blank" rel="external">Perfect Squares</a><br>min[i]表示数字i所需的最少的perfect square.<br>我们可以得到这样的状态关系 min[i] = min(min[i], min[i - j &#215; j] + 1)<br><strong>注意</strong>，如果i - j&#215;j == 0, 那么min[i] = 1， 所以初始化的时候，min[0] = 0; j从1开始计数.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numSquares</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] min = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">    min[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        min[i] = Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j * j &lt;= i; ++j) &#123;</span><br><span class="line">            min[i] = Math.min(min[i], min[i - j * j] + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> min[n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </span>
       
