@@ -192,6 +192,134 @@
           
           
             
+              <a class="post-title-link" href="/2015/09/19/Compare-Version-Numbers/" itemprop="url">
+                Compare Version Numbers
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-19T20:48:06-04:00" content="2015-09-19">
+            2015-09-19
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/compare-version-numbers/" target="_blank" rel="external">Compare Version Numbers</a><br><strong>⚠️注意</strong>要把两个字符串全遍历完。因为有”1.0.1”和”1”这种情况，如果early return就出问题了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareVersion</span><span class="params">(String version1, String version2)</span> </span>&#123;</span><br><span class="line">    String[] v1 = version1.split(<span class="string">"\\."</span>);</span><br><span class="line">    String[] v2 = version2.split(<span class="string">"\\."</span>);</span><br><span class="line">    <span class="keyword">int</span> len = v1.length &gt; v2.length ? v1.length : v2.length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> num1 = i &lt; v1.length ? Integer.parseInt(v1[i]) : <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> num2 = i &lt; v2.length ? Integer.parseInt(v2[i]) : <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (num1 &lt; num2)</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (num1 &gt; num2)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/19/Find-Minimum-in-Rotated-Sorted-Array/" itemprop="url">
+                Find Minimum in Rotated Sorted Array
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-19T19:41:58-04:00" content="2015-09-19">
+            2015-09-19
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/" target="_blank" rel="external">Find Minimum in Rotated Sorted Array</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMin</span><span class="params">(<span class="keyword">int</span>[] num)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> begin = <span class="number">0</span>, end = num.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (begin + <span class="number">1</span> &lt; end) &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = begin + (end - begin) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> val = num[mid];</span><br><span class="line">        <span class="keyword">if</span> (val &lt; num[end]) &#123;</span><br><span class="line">            <span class="comment">// the right part is sorted</span></span><br><span class="line">            end = mid;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// the right part is not sorted</span></span><br><span class="line">            begin = mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (num[begin] &lt; num[end])</span><br><span class="line">        <span class="keyword">return</span> num[begin];</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> num[end];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/" target="_blank" rel="external">Find Minimum in Rotated Sorted Array II</a><br><strong>⚠️注意</strong>如果中间的数值等于尾部的数值，我们只能右边减减。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMin</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> begin = <span class="number">0</span>, end = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (begin + <span class="number">1</span> &lt; end) &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = begin + (end - begin) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> val = nums[mid];</span><br><span class="line">        <span class="keyword">if</span> (val &lt; nums[end]) &#123;</span><br><span class="line">            <span class="comment">// right part is sorted</span></span><br><span class="line">            end = mid;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (val &gt; nums[end]) &#123;</span><br><span class="line">            begin = mid;</span><br><span class="line">        &#125; <span class="keyword">else</span></span><br><span class="line">            <span class="comment">// if val == nums[end]</span></span><br><span class="line">            --end;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (nums[begin] &lt; nums[end])</span><br><span class="line">        <span class="keyword">return</span> nums[begin];</span><br><span class="line">    <span class="keyword">return</span> nums[end];</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/09/14/Bit-manipulation/" itemprop="url">
                 Bit Manipulation
               </a>
@@ -489,7 +617,7 @@
 
       
         
-          <span itemprop="articleBody"><p>刚开始写的版本没这么简洁。然后修修改改就这样了。这类双指针的题，关键在于如何移动左指针。对于这题，如果sum大于等于给的值，我们就开始移动左指针，直到sum小于给出的值。</p>
+          <span itemprop="articleBody"><p>刚开始写的版本没这么简洁。然后修修改改就这样了。这类双指针的题，关键在于如何移动左指针。对于这题，如果sum大于等于给的值，我们就开始移动左指针，直到sum小于给出的值。<br><a href="https://leetcode.com/problems/minimum-size-subarray-sum/" target="_blank" rel="external">Minimum Size Subarray Sum</a></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>, min = Integer.MAX_VALUE, sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">        sum += nums[i];</span><br><span class="line">        <span class="keyword">while</span> (sum &gt;= s) &#123;</span><br><span class="line">            min = Math.min(min, i - left + <span class="number">1</span>);</span><br><span class="line">            sum -= nums[left++];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> min == Integer.MAX_VALUE ? <span class="number">0</span> : min;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </span>
         
@@ -699,133 +827,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/11/Fraction-to-Recurring-Decimal/" itemprop="url">
-                Fraction to Recurring Decimal
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-11T11:02:17-04:00" content="2015-09-11">
-            2015-09-11
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/fraction-to-recurring-decimal/" target="_blank" rel="external">Fraction to Recurring Decimal</a><br>不看<a href="https://www.khanacademy.org/math/pre-algebra/fractions-pre-alg/decimals-fractions-pre-alg/v/converting-a-fraction-to-a-repeating-decimal" target="_blank" rel="external">Khan Academy</a>根本不知道怎么去入手啊。<br>首先，处理整数部分。然后再处理小数部分。处理步骤如下：<br>对num先取余数，然后乘以10，检测这个数是否出现过，如果出现过，则说明我们进入了循环部分，添加括号，然后跳出。<br>如果这个数枚出现过，把这个数字除以denominator,加入到结果中。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">fractionToDecimal</span><span class="params">(<span class="keyword">int</span> numerator, <span class="keyword">int</span> denominator)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (numerator == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"0"</span>;</span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    String sign = (numerator &lt; <span class="number">0</span>) ^ (denominator &lt; <span class="number">0</span>) ? <span class="string">"-"</span> : <span class="string">""</span>;</span><br><span class="line">    sb.append(sign);</span><br><span class="line">    <span class="keyword">long</span> num = Math.abs((<span class="keyword">long</span>)numerator);</span><br><span class="line">    <span class="keyword">long</span> deno = Math.abs((<span class="keyword">long</span>)denominator);</span><br><span class="line">    sb.append(num / deno);</span><br><span class="line">    <span class="keyword">if</span> (num % deno == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line">    sb.append(<span class="string">"."</span>);</span><br><span class="line">    HashMap&lt;Long, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    num %= deno;</span><br><span class="line">    <span class="keyword">while</span> (num != <span class="number">0</span>) &#123;</span><br><span class="line">        num *= <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(num)) &#123;</span><br><span class="line">            sb.insert(map.get(num), <span class="string">"("</span>);</span><br><span class="line">            sb.append(<span class="string">")"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        map.put(num, sb.length());</span><br><span class="line">        sb.append(num / deno);</span><br><span class="line">        num %= deno;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sb.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/10/Kth-Largest-Element-in-an-Array/" itemprop="url">
-                Kth Largest Element in an Array
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-10T16:34:01-04:00" content="2015-09-10">
-            2015-09-10
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/kth-largest-element-in-an-array/" target="_blank" rel="external">Kth Largest Element in an Array</a><br>先上最naive的解法，先把数组排序了，然后返回第num.length - k个数值<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    Arrays.sort(nums);</span><br><span class="line">    <span class="keyword">return</span> nums[nums.length - k];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>再来用heap做的.维护一个大小为k的最小堆，在遍历过程中，不断将数据压入堆中，如果堆的大小大于k，那么就把堆顶元素拿出来。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    PriorityQueue&lt;Integer&gt; q = <span class="keyword">new</span> PriorityQueue&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> val : nums) &#123;</span><br><span class="line">        q.offer(val);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(q.size() &gt; k) &#123;</span><br><span class="line">            q.poll();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> q.peek();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>最后再来一中时间复杂度是O(n)的算法。用到了quick sort的思想。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> begin = <span class="number">0</span>, end = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> position = partition(nums, begin, end);</span><br><span class="line">        <span class="keyword">if</span> (position == k - <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> nums[position];</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (position &lt; k - <span class="number">1</span>) &#123;</span><br><span class="line">            begin = position + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span></span><br><span class="line">            end = position - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> pivot = nums[begin];</span><br><span class="line">    <span class="keyword">int</span> left = begin + <span class="number">1</span>, right = end;</span><br><span class="line">    <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">        <span class="keyword">while</span> (left &lt;= right &amp;&amp; nums[left] &gt;= pivot)</span><br><span class="line">            ++left;</span><br><span class="line">        <span class="keyword">while</span> (left &lt;= right &amp;&amp; nums[right] &lt;= pivot)</span><br><span class="line">            --right;</span><br><span class="line">        <span class="keyword">if</span> (left &lt;= right)</span><br><span class="line">            swap(nums, left, right);</span><br><span class="line">    &#125;</span><br><span class="line">    swap(nums, begin, right);</span><br><span class="line">    <span class="keyword">return</span> right;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp = nums[i];</span><br><span class="line">    nums[i] = nums[j];</span><br><span class="line">    nums[j] = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -864,7 +865,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">111</span>
+              <span class="site-state-item-count">113</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
