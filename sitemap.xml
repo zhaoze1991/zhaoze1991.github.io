@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zhaoze1991.github.io/2015/09/20/Longest-Substring-with-At-Most-K-Distinct-Characters/</loc>
+    <lastmod>2015-09-21T03:49:33.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://zhaoze1991.github.io/2015/09/20/Peeking-Iterator/</loc>
+    <lastmod>2015-09-21T02:12:53.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://zhaoze1991.github.io/2015/09/20/Interleving-two-linked-list/</loc>
     <lastmod>2015-09-21T00:51:18.000Z</lastmod>
   </url>
