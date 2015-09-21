@@ -192,6 +192,132 @@
           
           
             
+              <a class="post-title-link" href="/2015/09/13/Perfect-Squares/" itemprop="url">
+                Perfect Squares
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-13T17:06:36-04:00" content="2015-09-13">
+            2015-09-13
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/perfect-squares/" target="_blank" rel="external">Perfect Squares</a><br>min[i]表示数字i所需的最少的perfect square.<br>我们可以得到这样的状态关系 min[i] = min(min[i], min[i - j &#215; j] + 1)<br><strong>注意</strong>，如果i - j&#215;j == 0, 那么min[i] = 1， 所以初始化的时候，min[0] = 0; j从1开始计数.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numSquares</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] min = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">    min[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        min[i] = Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j * j &lt;= i; ++j) &#123;</span><br><span class="line">            min[i] = Math.min(min[i], min[i - j * j] + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> min[n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/11/Next-Node/" itemprop="url">
+                Next Node
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-11T21:35:47-04:00" content="2015-09-11">
+            2015-09-11
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p>给一棵BST，注意，BST的value是一个private的东西，我们拿不到。我啥也不想说了，这题面试没写好，真得挺不开心的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">    Node left;</span><br><span class="line">    Node right;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> Node <span class="title">nextLargest</span><span class="params">(Node node, Node root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span> || node == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    Node ans = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (node.right != <span class="keyword">null</span>) &#123;</span><br><span class="line">        node = node.right;</span><br><span class="line">        <span class="keyword">while</span> (node.left != <span class="keyword">null</span>) &#123;</span><br><span class="line">            node = node.left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">    Stack&lt;Node&gt; s = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    <span class="keyword">while</span> (root != <span class="keyword">null</span>) &#123;</span><br><span class="line">        s.push(root);</span><br><span class="line">        root = root.left;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (!s.isEmpty()) &#123;</span><br><span class="line">        Node cur = s.pop();</span><br><span class="line">        Node right = cur.right;</span><br><span class="line">        <span class="keyword">while</span> (right != <span class="keyword">null</span>) &#123;</span><br><span class="line">            s.push(right);</span><br><span class="line">            right = right.left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (cur == node) &#123;</span><br><span class="line">            ans = s.isEmpty() ? <span class="keyword">null</span> : s.pop();</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/09/11/Fraction-to-Recurring-Decimal/" itemprop="url">
                 Fraction to Recurring Decimal
               </a>
@@ -694,133 +820,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/07/Interleaving-Positive-and-Negative-Numbers/" itemprop="url">
-                Interleaving Positive and Negative Numbers
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-07T21:02:29-04:00" content="2015-09-07">
-            2015-09-07
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="http://www.lintcode.com/en/problem/interleaving-positive-and-negative-numbers/" target="_blank" rel="external">Interleaving Positive and Negative Numbers</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rerange</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write your code here</span></span><br><span class="line">    <span class="keyword">int</span> n = A.length;</span><br><span class="line">    <span class="keyword">int</span> positive = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> begin = <span class="number">0</span>, end = n - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : A)</span><br><span class="line">        <span class="keyword">if</span> (i &gt; <span class="number">0</span>)</span><br><span class="line">            positive += <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (begin &lt;= end) &#123;</span><br><span class="line">        <span class="keyword">while</span> (begin &lt;= end &amp;&amp; A[begin] &lt; <span class="number">0</span>)</span><br><span class="line">            ++begin;</span><br><span class="line">        <span class="keyword">while</span> (begin &lt;= end &amp;&amp; A[end] &gt; <span class="number">0</span>)</span><br><span class="line">            --end;</span><br><span class="line">        <span class="keyword">if</span> (begin &lt;= end)</span><br><span class="line">            swap(A, begin, end);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> negative = n - positive;</span><br><span class="line">    begin = <span class="number">1</span>; end = n - <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (negative &gt; positive) &#123;</span><br><span class="line">        swap(A, <span class="number">1</span>, n - <span class="number">1</span>);</span><br><span class="line">        begin += <span class="number">2</span>;</span><br><span class="line">        end = n - <span class="number">3</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (negative &lt; positive) &#123;</span><br><span class="line">        swap(A, <span class="number">0</span>, n - <span class="number">2</span>);</span><br><span class="line">        begin = <span class="number">2</span>;</span><br><span class="line">        end = n - <span class="number">4</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (begin + <span class="number">1</span> &lt;= end) &#123;</span><br><span class="line">        swap(A, begin, end);</span><br><span class="line">        begin += <span class="number">2</span>;</span><br><span class="line">        end -= <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp = nums[i];</span><br><span class="line">    nums[i] = nums[j];</span><br><span class="line">    nums[j] = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/07/Partition-Array/" itemprop="url">
-                Partition Array
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-07T20:30:01-04:00" content="2015-09-07">
-            2015-09-07
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="http://www.lintcode.com/en/problem/partition-array/" target="_blank" rel="external">Partition Array</a><br>双指针，begin和end。<br><del>在遍历数组的时候，分情况讨论:</del><br><del>1. 如果nums[begin] &lt; k, 不用管，直接begin++</del><br><del>2. 如果nums[begin] &gt;= k, 开始交换，但是交换的时候， 右边的end指针先移动，移动到第一个小于k的数字上</del><br>看了别人写的答案，觉得好多了。有点quick sort的思想。begin为第一个nums[begin] &gt;= k的index， end 为第一个nums[end] &lt; k的index，然后swap</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">partitionArray</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//write your code here</span></span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> begin = <span class="number">0</span>, end = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (begin &lt;= end) &#123;</span><br><span class="line">        <span class="keyword">while</span> (begin &lt;= end &amp;&amp; nums[begin] &lt; k) &#123;</span><br><span class="line">            ++begin;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (begin &lt;= end &amp;&amp; nums[end] &gt;= k)</span><br><span class="line">            --end;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span> (begin &lt;= end)</span><br><span class="line">           swap(nums, begin, end);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> begin;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp = nums[i];</span><br><span class="line">    nums[i] = nums[j];</span><br><span class="line">    nums[j] = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="http://www.lintcode.com/en/problem/sort-letters-by-case/" target="_blank" rel="external">Sort Letters by Case</a><br>和上面一题是一样的。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortLetters</span><span class="params">(<span class="keyword">char</span>[] chars)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//write your code here</span></span><br><span class="line">    <span class="keyword">if</span> (chars == <span class="keyword">null</span> || chars.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> ptr1 = <span class="number">0</span>, ptr2 = chars.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (ptr1 &lt;= ptr2) &#123;</span><br><span class="line">        <span class="keyword">while</span> (ptr1 &lt;= ptr2 &amp;&amp; Character.isLowerCase(chars[ptr1]))</span><br><span class="line">            ++ptr1;</span><br><span class="line">        <span class="keyword">while</span> (ptr1 &lt;= ptr2 &amp;&amp;  Character.isUpperCase(chars[ptr2]))</span><br><span class="line">            --ptr2;</span><br><span class="line">        <span class="keyword">if</span> (ptr1 &lt;= ptr2)</span><br><span class="line">            swap(chars, ptr1, ptr2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">char</span>[] ch, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span> temp = ch[i];</span><br><span class="line">    ch[i] = ch[j];</span><br><span class="line">    ch[j] = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -859,7 +858,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">113</span>
+              <span class="site-state-item-count">115</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

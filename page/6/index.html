@@ -192,6 +192,136 @@
           
           
             
+              <a class="post-title-link" href="/2015/09/02/Sliding-Window-Maximum/" itemprop="url">
+                Sliding Window Maximum
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-02T21:28:25-04:00" content="2015-09-02">
+            2015-09-02
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/sliding-window-maximum/" target="_blank" rel="external">Sliding Window Maximum</a><br>hint中说用Deque，而且每次不必存储k个元素。<br>关键问题在于我们如何去维护这个Deque。<br>首先解决这个deque的left问题。因为不是寸k个元素，所以我们没法从size上去移动left，那么deque中存的，应该是坐标i。<br>如果deque中最左边的坐标小于i-k+1，那么我们就把这个左边移出去。<br>解决了left之后，如何解决当前区间最大值的问题？这里的思路有点像heap。就是在deque的队列头部的元素，就是当前区间中最大的一个数字。怎么实现呢？我们比较nums[i]和deque中尾巴的元素，如果nums[i]&gt;deque尾部的元素，那么deque尾部的元素不可能是最大值，把它弹出。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] maxSlidingWindow(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span> || k &lt;= <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> n = nums.length;</span><br><span class="line">    <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[n - k + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">    Deque&lt;Integer&gt; q = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (q.isEmpty() == <span class="keyword">false</span> &amp;&amp; q.peek() &lt; i - k + <span class="number">1</span>) &#123;</span><br><span class="line">            q.poll();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (q.isEmpty() == <span class="keyword">false</span> &amp;&amp; nums[q.peekLast()] &lt; nums[i])</span><br><span class="line">            q.pollLast();</span><br><span class="line">        q.offer(i);</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= k - <span class="number">1</span>) &#123;</span><br><span class="line">            ans[index++] = nums[q.peek()];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我比较喜欢这个heap的做法。维护一个大小为k的最大堆，那么栈顶元素就是当前区间最大的值。<br>注意，每次删除栈中的元素时，不是弹出栈顶的元素，而是找到最左边的元素，然后弹出。这个操作需要的时间复杂度时O(logk)<br>所以总的时间复杂度是O(n*logk)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] maxSlidingWindow(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span> || k &lt;= <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">0</span>];</span><br><span class="line">    <span class="comment">// maximum heap</span></span><br><span class="line">    PriorityQueue&lt;Integer&gt; q = <span class="keyword">new</span> PriorityQueue&lt;Integer&gt;(<span class="keyword">new</span> Comparator&lt;Integer&gt;()&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Integer i1, Integer i2)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> i2 - i1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; ++i) &#123;</span><br><span class="line">        q.add(nums[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length - k + <span class="number">1</span>];</span><br><span class="line">    ans[<span class="number">0</span>] = q.peek();</span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = k; i &lt; nums.length; ++i) &#123;</span><br><span class="line">        q.remove(nums[i - k]);</span><br><span class="line">        q.add(nums[i]);</span><br><span class="line">        ans[index++] = q.peek();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/02/Contains-Duplicate/" itemprop="url">
+                Contains Duplicate
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-02T19:19:58-04:00" content="2015-09-02">
+            2015-09-02
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/contains-duplicate-iii/" target="_blank" rel="external">Contains Duplicate III</a><br>这题我能想到的也就O(n^2)的解。参考了别人的答案。<br>如果我们用一个BST的话，就可以记录之前k个点，并且以log(k)的时间进行查询。<br>Java的BST数据结构我还真是第一次用。这题很巧妙的用了floor(val)和ceiling(val)这两个函数。<br>floor(val) will return the greatest number which is less or equal to val<br>ceiling(val) will return the least number which is greater or equal to val<br><strong>注意</strong>，我们在找到floor的时候，要和val做一次比较，如果floor小于val那就不符合我们想要的。<br>同理，ceiling也要和val做一次比较， 如果ceiling大于val就舍掉。</p>
+<p>下面这段代码没有考虑溢出问题，即如果val + t &gt; Integer.MAX_VALUE 或者 val - t &lt; Integer.MIN_VALUE<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">containsNearbyAlmostDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k, <span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span> || k &lt;= <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    TreeSet&lt;Integer&gt; bst = <span class="keyword">new</span> TreeSet&lt;Integer&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> val = nums[i];</span><br><span class="line">        Integer floor = bst.floor(val + t);</span><br><span class="line">        Integer ceil = bst.ceiling(val - t);</span><br><span class="line">        <span class="keyword">if</span> ((floor != <span class="keyword">null</span> &amp;&amp; floor &gt;= val) || (ceil != <span class="keyword">null</span> &amp;&amp; ceil &lt;= val))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        bst.add(val);</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= k) &#123;</span><br><span class="line">            bst.remove(nums[i - k]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">containsNearbyAlmostDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k, <span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span> || k &lt;= <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    TreeSet&lt;Long&gt; bst = <span class="keyword">new</span> TreeSet&lt;Long&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">long</span> val = nums[i];</span><br><span class="line">        <span class="comment">// return the greatest which is less or equal than val + t</span></span><br><span class="line">        Long floor = bst.floor((<span class="keyword">long</span>)val + t);</span><br><span class="line">        <span class="comment">// return the least which is greater or equal than val - t</span></span><br><span class="line">        Long ceil = bst.ceiling((<span class="keyword">long</span>)val - t);</span><br><span class="line">        <span class="keyword">if</span> ((floor != <span class="keyword">null</span> &amp;&amp; floor &gt;= val) || (ceil != <span class="keyword">null</span> &amp;&amp; ceil &lt;= val))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        bst.add(val);</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= k) &#123;</span><br><span class="line">            bst.remove((<span class="keyword">long</span>)nums[i - k]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>更新</strong><br>不得不背这个O(n)的解法。<br>因为数据可能是负数，所以我们得把这些数都转成整数，否则做除法就很蛋疼。每个bucket的size是t+1，否则，t如果等于0就蛋疼了。还要注意t+1不能越界。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">containsNearbyAlmostDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k, <span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span> || k &lt;= <span class="number">0</span> || t &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    HashMap&lt;Long, Long&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">long</span> num = (<span class="keyword">long</span>)nums[i] - Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">long</span> pos = num / ((<span class="keyword">long</span>)t + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(pos) ||</span><br><span class="line">            (map.containsKey(pos - <span class="number">1</span>) &amp;&amp; num - map.get(pos - <span class="number">1</span>) &lt;= t) ||</span><br><span class="line">            (map.containsKey(pos + <span class="number">1</span>) &amp;&amp; map.get(pos + <span class="number">1</span>) - num &lt;= t))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (map.size() &gt;= k) &#123;</span><br><span class="line">            <span class="keyword">long</span> _pos = ((<span class="keyword">long</span>)nums[i - k] - Integer.MIN_VALUE) / ((<span class="keyword">long</span>)t + <span class="number">1</span>);</span><br><span class="line">            map.remove(_pos);</span><br><span class="line">        &#125;</span><br><span class="line">        map.put(pos, num);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/09/01/sql/" itemprop="url">
                 Basic SQL Operation
               </a>
@@ -227,11 +357,11 @@
 <p>insert 的两种形式<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name</span><br><span class="line"><span class="keyword">VALUES</span> (value1,value2,value3,...);</span></span><br></pre></td></tr></table></figure></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name (column1,column2,column3,...)</span><br><span class="line"><span class="keyword">VALUES</span> (value1,value2,value3,...);</span></span><br></pre></td></tr></table></figure>
 <p>SQL UPDATE Syntax<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">UPDATE</span> table_name</span><br><span class="line"><span class="keyword">SET</span> column1=value1,column2=value2,...</span><br><span class="line"><span class="keyword">WHERE</span> some_column=some_value;</span></span><br></pre></td></tr></table></figure></p>
-<p>SQL IN Syntax<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column_name(s)</span><br><span class="line">FROM table_name</span><br><span class="line"><span class="keyword">WHERE</span> column_name <span class="keyword">IN</span> (value1,value2,<span class="attribute">...</span>);</span><br></pre></td></tr></table></figure></p>
+<p>SQL IN Syntax<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> column_name(s)</span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">WHERE</span> column_name <span class="keyword">IN</span> (value1,value2,...);</span></span><br></pre></td></tr></table></figure></p>
 <p>Different SQL JOINs<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">INNER JOIN: Returns all rows when there is <span class="keyword">at</span> least <span class="constant">one</span> match <span class="operator">in</span> BOTH tables</span><br><span class="line">LEFT JOIN: Return all rows <span class="built_in">from</span> <span class="operator">the</span> left table, <span class="operator">and</span> <span class="operator">the</span> matched rows <span class="built_in">from</span> <span class="operator">the</span> <span class="constant">right</span> table</span><br><span class="line"><span class="constant">RIGHT</span> JOIN: Return all rows <span class="built_in">from</span> <span class="operator">the</span> <span class="constant">right</span> table, <span class="operator">and</span> <span class="operator">the</span> matched rows <span class="built_in">from</span> <span class="operator">the</span> left table</span><br><span class="line">FULL JOIN: Return all rows when there is <span class="operator">a</span> match <span class="operator">in</span> <span class="constant">ONE</span> <span class="operator">of</span> <span class="operator">the</span> tables</span><br></pre></td></tr></table></figure></p>
 <p>The UNION operator is used to combine the result-set of two or more SELECT statements.</p>
 <p>Notice that each SELECT statement within the UNION must have the same number of columns. The columns must also have similar data types. Also, the columns in each SELECT statement must be in the same order.</p>
-<p>SQL UNION Syntax<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">SELECT column_name(s) <span class="keyword">FROM</span> table1</span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line">SELECT column_name(s) <span class="keyword">FROM</span> table2;</span></span><br></pre></td></tr></table></figure></p>
+<p>SQL UNION Syntax<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> column_name(s) <span class="keyword">FROM</span> table1</span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span> column_name(s) <span class="keyword">FROM</span> table2;</span></span><br></pre></td></tr></table></figure></p>
 </span>
         
       
@@ -723,134 +853,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/30/Balanced-Binary-Tree/" itemprop="url">
-                Balanced Binary Tree
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-30T23:02:12-04:00" content="2015-08-30">
-            2015-08-30
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/balanced-binary-tree/" target="_blank" rel="external">Balanced Binary Tree</a><br>关键点在于减少重复计算。如果当前的子树不平衡，直接返回-1。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBalanced</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getHeight(root) != -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getHeight</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> left = getHeight(root.left);</span><br><span class="line">    <span class="keyword">if</span> (left == -<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> right = getHeight(root.right);</span><br><span class="line">    <span class="keyword">if</span> (right == -<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (Math.abs(right - left) &gt; <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> Math.max(left, right) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/30/Convert-Sorted-List-to-Binary-Search-Tree/" itemprop="url">
-                Convert Sorted List to Binary Search Tree
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-30T21:50:52-04:00" content="2015-08-30">
-            2015-08-30
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/" target="_blank" rel="external">Convert Sorted List to Binary Search Tree</a><br>naive的方法，把所有的node放到一个数组里，这样就能实现random access。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">sortedListToBST</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    ListNode ptr = head;</span><br><span class="line">    <span class="keyword">while</span> (ptr != <span class="keyword">null</span>) &#123;</span><br><span class="line">        count++;</span><br><span class="line">        ptr = ptr.next;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode[] nodes = <span class="keyword">new</span> ListNode[count];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; ++i) &#123;</span><br><span class="line">        nodes[i] = head;</span><br><span class="line">        head = head.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> build(nodes, <span class="number">0</span>, count - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">build</span><span class="params">(ListNode[] nodes, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin &gt; end)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (begin == end) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> TreeNode(nodes[begin].val);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid = begin + (end - begin) / <span class="number">2</span>;</span><br><span class="line">    TreeNode root = <span class="keyword">new</span> TreeNode(nodes[mid].val);</span><br><span class="line">    root.left = build(nodes, begin, mid - <span class="number">1</span>);</span><br><span class="line">    root.right = build(nodes, mid + <span class="number">1</span>, end);</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>非naive的方法，假设我们没有这个数组，怎么去实现in－order？ 递归何时终止何时返回？<br>我们需要两个变量begin和end，表示当前区间的开头和结尾，我们并不需要这两个变量来帮助去access链表中的元素，而是用这两个变量来控制递归结束。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">ListNode node = <span class="keyword">null</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">sortedListToBST</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    ListNode ptr = head;</span><br><span class="line">    <span class="keyword">while</span> (ptr != <span class="keyword">null</span>) &#123;</span><br><span class="line">        ptr = ptr.next;</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    node = head;</span><br><span class="line">    <span class="keyword">return</span> build(<span class="number">0</span>, count - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">build</span><span class="params">(<span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin &gt; end)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (begin == end) &#123;</span><br><span class="line">        <span class="keyword">int</span> val = node.val;</span><br><span class="line">        node = node.next;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> TreeNode(val);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid = begin + (end - begin) / <span class="number">2</span>;</span><br><span class="line">    TreeNode left = build(begin, mid - <span class="number">1</span>);</span><br><span class="line">    TreeNode root = <span class="keyword">new</span> TreeNode(node.val);</span><br><span class="line">    node = node.next;</span><br><span class="line">    root.left = left;</span><br><span class="line">    root.right = build(mid + <span class="number">1</span>, end);</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -889,7 +891,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">113</span>
+              <span class="site-state-item-count">115</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
