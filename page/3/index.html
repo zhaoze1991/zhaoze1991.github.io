@@ -192,6 +192,139 @@
           
           
             
+              <a class="post-title-link" href="/2015/09/09/Coins-in-a-Line-II/" itemprop="url">
+                Coins in a Line
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-09T09:36:53-04:00" content="2015-09-09">
+            2015-09-09
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="http://www.lintcode.com/en/problem/coins-in-a-line/" target="_blank" rel="external">Coins in a Line</a><br>一排硬币，按次序拿，每次拿一枚或者两枚，谁拿到最后的一枚硬币谁就赢。<strong>注意</strong>，如果n＝0，先拿的的人也没拿到最后一枚，所以应该返回false。<br>我们来定义子问题dp[i]，表示有i枚硬币的时候，先拿的人是否赢。<br>我们先来看初始化条件，如果只有一枚或者两枚硬币，那么第一个拿的人肯定赢，如果有三枚硬币，第一个人稳输，如果没有硬币，算第一个人输。<br>我们可以得到这样的关系式<br>dp[i] = (dp[i-2] &amp;&amp; dp[i-3]) || (dp[i-3] &amp;&amp; dp[i-4])<br>啥意思呢，如果A拿了第i枚硬币，那么对手B可能拿i-1，或者拿了i-1和i-2枚，那么下一枚A能拿到的就是i-2或者i-3,那么我的策略就要求A不管下一枚拿到i-2或者i-3，都得能赢，否则，对手肯定会拿A不能赢的策略<br>如果A那了第i枚和i-1枚，那么对手B可能拿了i-2, 或者拿了i-2和i-3枚。那么下一枚A能拿到的就是i-3或者i-4，我们得保证i-3或者i-4都能赢，否则对手B肯定会做出不让A赢的拿法。<br>这里还用了一个哈希来记录已经计算过的拿法，否则这种指数级的计算肯定超时。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">HashSet&lt;Integer&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">firstWillWin</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write your code here</span></span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (n &lt;= <span class="number">2</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">3</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">boolean</span>[] dp = <span class="keyword">new</span> <span class="keyword">boolean</span>[n + <span class="number">1</span>];</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="keyword">false</span>;</span><br><span class="line">    dp[<span class="number">1</span>] = <span class="keyword">true</span>;</span><br><span class="line">    dp[<span class="number">2</span>] = <span class="keyword">true</span>;</span><br><span class="line">    dp[<span class="number">3</span>] = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">return</span> helper(n, dp);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">helper</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">boolean</span>[] dp)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (i &lt;= <span class="number">2</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (i == <span class="number">3</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (set.contains(i))</span><br><span class="line">        <span class="keyword">return</span> dp[i];</span><br><span class="line">    <span class="keyword">if</span> ((helper(i - <span class="number">2</span>, dp) &amp;&amp; helper(i - <span class="number">3</span>,  dp)) || (helper(i - <span class="number">3</span>, dp) &amp;&amp; helper(i - <span class="number">4</span>, dp)))</span><br><span class="line">        dp[i] = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        dp[i] = <span class="keyword">false</span>;</span><br><span class="line">    set.add(i);</span><br><span class="line">    <span class="keyword">return</span> dp[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.lintcode.com/en/problem/coins-in-a-line-ii/" target="_blank" rel="external">Coins in a Line II</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">firstWillWin</span><span class="params">(<span class="keyword">int</span>[] values)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write your code here</span></span><br><span class="line">    <span class="keyword">int</span> n = values.length;</span><br><span class="line">    <span class="comment">// dp[i][j] means the value can get from i to j</span></span><br><span class="line">    <span class="comment">// dp[i][j] = max(v[i] + min(dp[i+2][j],dp[i+3][j]),</span></span><br><span class="line">    <span class="comment">//                v[i] + v[i+1] + min(dp[i+3][j], dp[i+4][j]))</span></span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : values)</span><br><span class="line">        sum += i;</span><br><span class="line">    <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">    <span class="keyword">return</span>  helper(dp, values, <span class="number">0</span>, n - <span class="number">1</span>) * <span class="number">2</span> &gt; sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">helper</span><span class="params">(<span class="keyword">int</span>[][]dp, <span class="keyword">int</span>[]vals, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (j &gt;= vals.length)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (i &gt; j)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (dp[i][j] &gt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> dp[i][j];</span><br><span class="line">    <span class="keyword">int</span> w = (i + <span class="number">1</span>) &lt;= j ?  vals[i + <span class="number">1</span>] : <span class="number">0</span>;</span><br><span class="line">    dp[i][j] = Math.max(vals[i] + Math.min(helper(dp, vals, i + <span class="number">2</span>, j), helper(dp, vals, i + <span class="number">3</span>, j)),</span><br><span class="line">        vals[i] + w + Math.min(helper(dp, vals, i + <span class="number">3</span>, j), helper(dp, vals, i + <span class="number">4</span>, j)));</span><br><span class="line">    <span class="keyword">return</span> dp[i][j];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://www.lintcode.com/en/problem/coins-in-a-line-iii/" target="_blank" rel="external">Coins in a Line III</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">firstWillWin</span><span class="params">(<span class="keyword">int</span>[] values)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write your code here</span></span><br><span class="line">    <span class="keyword">int</span> n = values.length;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : values)</span><br><span class="line">        sum += i;</span><br><span class="line">    <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">    <span class="comment">// dp[i][j] = max(val[i] + min(dp[i+2][j], dp[i+1][j-1]),</span></span><br><span class="line">    <span class="comment">//            val[j] + min(dp[i+1][j-1], dp[i][j-2])</span></span><br><span class="line">    <span class="comment">// return dp[0][n - 1] * 2 &gt; sum;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> helper(dp, values, <span class="number">0</span>, n - <span class="number">1</span>) * <span class="number">2</span> &gt; sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">helper</span><span class="params">(<span class="keyword">int</span>[][] dp, <span class="keyword">int</span>[] vals, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (j &gt;= vals.length)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (i &gt; j)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (i == j) &#123;</span><br><span class="line">        dp[i][j] = vals[i];</span><br><span class="line">        <span class="keyword">return</span> dp[i][j];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// memorized</span></span><br><span class="line">    <span class="keyword">if</span> (dp[i][j] &gt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> dp[i][j];</span><br><span class="line">    dp[i][j] = Math.max(vals[i] + Math.min(helper(dp, vals, i + <span class="number">2</span>, j), helper(dp, vals, i + <span class="number">1</span>, j - <span class="number">1</span>)), vals[j] + Math.min(helper(dp, vals, i + <span class="number">1</span>, j - <span class="number">1</span>), helper(dp, vals, i, j - <span class="number">2</span>)));</span><br><span class="line">    <span class="keyword">return</span> dp[i][j];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/08/Max-Tree/" itemprop="url">
+                Max Tree
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-08T15:55:32-04:00" content="2015-09-08">
+            2015-09-08
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="http://www.lintcode.com/en/problem/max-tree/" target="_blank" rel="external">Max Tree</a><br>维护一个递减的栈。</p>
+<ol>
+<li>如果当前的值小于栈顶元素，则入栈。</li>
+<li>如果当前的值大于栈顶的元素，开始做出栈操作，直到栈顶元素大于当前的值。新出栈的结点以旧出栈的结点为右子树。因为这是一个递减的栈，所以旧弹出的结点值比新弹出的要小，并且index比新弹出的要大。当前值的左子树，就是刚刚弹出的最后一个结点，因为它最大，然后再把当前值构成的树入栈。</li>
+<li>最后，对栈做判断空操作，如果非空，则一直做2中的操作，新弹出的结点的右子树是旧弹出的结点。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">maxTree</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write your code here</span></span><br><span class="line">    <span class="keyword">if</span> (A == <span class="keyword">null</span> || A.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">// decreasing tree</span></span><br><span class="line">    Stack&lt;TreeNode&gt; s = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    s.push(<span class="keyword">new</span> TreeNode(A[<span class="number">0</span>]));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; A.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> val = A[i];</span><br><span class="line">        <span class="keyword">if</span> (val &gt; s.peek().val) &#123;</span><br><span class="line">            TreeNode prev = s.pop();</span><br><span class="line">            <span class="keyword">while</span> (s.isEmpty() == <span class="keyword">false</span> &amp;&amp; s.peek().val &lt; val) &#123;</span><br><span class="line">                TreeNode tmp = s.pop();</span><br><span class="line">                tmp.right = prev;</span><br><span class="line">                prev = tmp;</span><br><span class="line">            &#125;</span><br><span class="line">            TreeNode node = <span class="keyword">new</span> TreeNode(val);</span><br><span class="line">            node.left = prev;</span><br><span class="line">            s.push(node);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            s.push(<span class="keyword">new</span> TreeNode(val));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    TreeNode root = s.pop();</span><br><span class="line">    <span class="keyword">while</span> (s.isEmpty() == <span class="keyword">false</span>) &#123;</span><br><span class="line">        TreeNode tmp = s.pop();</span><br><span class="line">        tmp.right = root;</span><br><span class="line">        root = tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/09/08/Find-the-Missing-Number/" itemprop="url">
                 Find the Missing Number
               </a>
@@ -551,9 +684,11 @@
         
           <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/majority-element/" target="_blank" rel="external">Majority Element</a><br><a href="https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_majority_vote_algorithm" target="_blank" rel="external">Boyer–Moore majority vote algorithm</a></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> major = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (count == <span class="number">0</span>) &#123;</span><br><span class="line">            major = nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (major == nums[i])</span><br><span class="line">            count++;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            count--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> major;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="https://leetcode.com/problems/majority-element-ii/" target="_blank" rel="external">Majority Element II</a><br>注意，哈希表不能一边遍历一边删除。</p>
+<p><a href="https://leetcode.com/problems/majority-element-ii/" target="_blank" rel="external">Majority Element II</a></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    <span class="keyword">int</span> count1 = <span class="number">0</span>, count2 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> major1 = <span class="number">0</span>, major2 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (count1 == <span class="number">0</span>) &#123;</span><br><span class="line">            major1 = nums[i];</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (count2 == <span class="number">0</span>) &#123;</span><br><span class="line">            major2 = nums[i];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (major1 == nums[i]) &#123;</span><br><span class="line">            count1++;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (major2 == nums[i])</span><br><span class="line">            count2++;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            count1--;</span><br><span class="line">            count2--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    count1 = count2 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : nums) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i == major1) &#123;</span><br><span class="line">            count1++;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (i == major2)</span><br><span class="line">            count2++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (count1 &gt; nums.length / <span class="number">3</span>)</span><br><span class="line">        ans.add(major1);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (count2 &gt; nums.length / <span class="number">3</span>)</span><br><span class="line">        ans.add(major2);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="http://www.lintcode.com/en/problem/majority-number-iii/" target="_blank" rel="external">Majority Element III</a></p>
+<p>改一改，我觉得这个版本好些。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    <span class="keyword">int</span> n1 = <span class="number">0</span>, n2 = <span class="number">0</span>, c1 = <span class="number">0</span>, c2 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : nums) &#123;</span><br><span class="line">        <span class="keyword">if</span> (n1 == i)</span><br><span class="line">            ++c1;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (n2 == i)</span><br><span class="line">            ++c2;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (c1 == <span class="number">0</span>) &#123;</span><br><span class="line">            c1 = <span class="number">1</span>; n1 = i;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (c2 == <span class="number">0</span>) &#123;</span><br><span class="line">            c2 = <span class="number">1</span>; n2 = i;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            --c1; --c2;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    c1 = <span class="number">0</span>; c2 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : nums) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i == n1)</span><br><span class="line">            ++c1;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (i == n2)</span><br><span class="line">            ++c2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (c1 &gt; nums.length / <span class="number">3</span>)</span><br><span class="line">        ans.add(n1);</span><br><span class="line">    <span class="keyword">if</span> (c2 &gt; nums.length / <span class="number">3</span>)</span><br><span class="line">        ans.add(n2);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.lintcode.com/en/problem/majority-number-iii/" target="_blank" rel="external">Majority Element III</a><br><strong>注意</strong>，哈希表不能一边遍历一边删除。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">majorityNumber</span><span class="params">(ArrayList&lt;Integer&gt; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write your code</span></span><br><span class="line">    HashMap&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : nums) &#123;</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(i)) &#123;</span><br><span class="line">            map.put(i, map.get(i) + <span class="number">1</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span></span><br><span class="line">            map.put(i, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (map.size() &gt;= k)</span><br><span class="line">            remove(map);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : map.keySet()) &#123;</span><br><span class="line">        map.put(i, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : nums) &#123;</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(i))</span><br><span class="line">            map.put(i, map.get(i) + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> max = <span class="number">0</span>, ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : map.keySet()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (max &lt; map.get(i)) &#123;</span><br><span class="line">            ans = i;</span><br><span class="line">            max = map.get(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(HashMap&lt;Integer, Integer&gt; map)</span> </span>&#123;</span><br><span class="line">    Set&lt;Integer&gt; set = map.keySet();</span><br><span class="line">    HashSet&lt;Integer&gt; delete = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : set) &#123;</span><br><span class="line">        map.put(i, map.get(i) - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (map.get(i) == <span class="number">0</span>)</span><br><span class="line">            delete.add(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : delete) &#123;</span><br><span class="line">        map.remove(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </span>
         
@@ -720,131 +855,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/06/Longest-Common-Substring/" itemprop="url">
-                Longest Common Substring
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-06T21:02:35-04:00" content="2015-09-06">
-            2015-09-06
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="http://www.lintcode.com/en/problem/longest-common-substring/" target="_blank" rel="external">Longest Common Substring</a></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestCommonSubstring</span><span class="params">(String A, String B)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write your code here</span></span><br><span class="line">    <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[A.length() + <span class="number">1</span>][B.length() + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= A.length(); ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= B.length(); ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (A.charAt(i-<span class="number">1</span>) == B.charAt(j-<span class="number">1</span>)) &#123;</span><br><span class="line">                dp[i][j] = dp[i-<span class="number">1</span>][j-<span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">                max = Math.max(max, dp[i][j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/06/Largest-Number/" itemprop="url">
-                Largest Number
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-06T18:01:01-04:00" content="2015-09-06">
-            2015-09-06
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/largest-number/" target="_blank" rel="external">Largest Number</a><br>有点贪心法的思想。把数组排序后，取能组成最大数字的数。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">largestNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">    String[] str = Arrays.toString(nums).split(<span class="string">"[\\[\\]]"</span>)[<span class="number">1</span>].split(<span class="string">", "</span>);</span><br><span class="line">    Arrays.sort(str, <span class="keyword">new</span> Comparator&lt;String&gt;()&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(String str1, String str2)</span> </span>&#123;</span><br><span class="line">            String s1 = str1 + str2, s2 = str2 + str1;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span> * s1.compareTo(s2);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">if</span> (str[<span class="number">0</span>].equals(<span class="string">"0"</span>))</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"0"</span>;</span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    <span class="keyword">for</span> (String s : str)</span><br><span class="line">        sb.append(s);</span><br><span class="line">    <span class="keyword">return</span> sb.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -883,7 +893,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">117</span>
+              <span class="site-state-item-count">119</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

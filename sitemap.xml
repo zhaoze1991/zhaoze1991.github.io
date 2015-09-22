@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zhaoze1991.github.io/2015/09/21/Ugly-Number/</loc>
+    <lastmod>2015-09-22T03:59:06.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://zhaoze1991.github.io/2015/09/21/Different-Ways-to-Add-Parentheses/</loc>
+    <lastmod>2015-09-21T19:34:59.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://zhaoze1991.github.io/2015/09/07/Majority-Number/</loc>
+    <lastmod>2015-09-21T14:32:45.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://zhaoze1991.github.io/2015/09/20/Longest-Substring-with-At-Most-K-Distinct-Characters/</loc>
     <lastmod>2015-09-21T03:49:33.000Z</lastmod>
   </url>
@@ -154,11 +169,6 @@
   <url>
     <loc>http://zhaoze1991.github.io/2015/09/07/SubArray/</loc>
     <lastmod>2015-09-08T00:13:56.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://zhaoze1991.github.io/2015/09/07/Majority-Number/</loc>
-    <lastmod>2015-09-07T21:53:41.000Z</lastmod>
   </url>
   
   <url>
