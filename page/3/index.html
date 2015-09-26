@@ -192,6 +192,70 @@
           
           
             
+              <a class="post-title-link" href="/2015/09/09/Longest-Increasing-Continuous-subsequence-1/" itemprop="url">
+                Longest Increasing Continuous subsequence
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-09T14:41:20-04:00" content="2015-09-09">
+            2015-09-09
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="http://www.lintcode.com/en/problem/longest-increasing-continuous-subsequence/" target="_blank" rel="external">Longest Increasing Continuous subsequence</a><br>这题要注意的是index要连续，并且数值是递增的。所以，每次如果数值不递增，要把continuous的值更新为1。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestIncreasingContinuousSubsequence</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Write your code here</span></span><br><span class="line">    <span class="keyword">if</span> (A == <span class="keyword">null</span> || A.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> max = <span class="number">1</span>, continuous = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; A.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (A[i] &gt; A[i - <span class="number">1</span>]) &#123;</span><br><span class="line">            continuous += <span class="number">1</span>;</span><br><span class="line">            max = Math.max(continuous, max);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            continuous = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    continuous = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = A.length - <span class="number">1</span>; i &gt;= <span class="number">1</span>; --i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (A[i - <span class="number">1</span>] &gt; A[i]) &#123;</span><br><span class="line">            continuous += <span class="number">1</span>;</span><br><span class="line">            max = Math.max(continuous, max);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            continuous = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.lintcode.com/en/problem/longest-increasing-continuous-subsequence-ii/" target="_blank" rel="external">Longest Increasing Continuous subsequence II</a><br>记忆+DP. dp[i][j]表示以i,j为起始点，能到达的最大的增长序列。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestIncreasingContinuousSubsequenceII</span><span class="params">(<span class="keyword">int</span>[][] A)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Write your code here</span></span><br><span class="line">    <span class="keyword">if</span> (A == <span class="keyword">null</span> || A.length == <span class="number">0</span> || A[<span class="number">0</span>].length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[A.length][A[<span class="number">0</span>].length];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; A.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; A[<span class="number">0</span>].length; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (dp[i][j] != <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            dfs(A, dp, i, j);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] nums, <span class="keyword">int</span>[][] dp, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (dp[i][j] &gt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> dp[i][j];</span><br><span class="line">    <span class="keyword">int</span> val = nums[i][j];</span><br><span class="line">    <span class="keyword">int</span>[] vals = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">4</span>];</span><br><span class="line">    <span class="keyword">if</span> (j - <span class="number">1</span> &gt;= <span class="number">0</span> &amp;&amp; nums[i][j - <span class="number">1</span>] &gt; val)</span><br><span class="line">        vals[<span class="number">0</span>] = dfs(nums, dp, i, j - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (j + <span class="number">1</span> &lt; nums[<span class="number">0</span>].length &amp;&amp; nums[i][j + <span class="number">1</span>] &gt; val)</span><br><span class="line">        vals[<span class="number">1</span>] = dfs(nums, dp, i, j + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (i - <span class="number">1</span> &gt;= <span class="number">0</span> &amp;&amp; nums[i - <span class="number">1</span>][j] &gt; val)</span><br><span class="line">        vals[<span class="number">2</span>] = dfs(nums, dp, i - <span class="number">1</span>, j);</span><br><span class="line">    <span class="keyword">if</span> (i + <span class="number">1</span> &lt; nums.length &amp;&amp; nums[i + <span class="number">1</span>][j] &gt; val)</span><br><span class="line">        vals[<span class="number">3</span>] = dfs(nums, dp, i + <span class="number">1</span>, j);</span><br><span class="line">    dp[i][j] = <span class="number">1</span> + Math.max(vals[<span class="number">0</span>], Math.max(vals[<span class="number">1</span>], Math.max(vals[<span class="number">2</span>], vals[<span class="number">3</span>])));</span><br><span class="line">    max = Math.max(dp[i][j], max);</span><br><span class="line">    <span class="keyword">return</span> dp[i][j];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/09/09/Coins-in-a-Line-II/" itemprop="url">
                 Coins in a Line
               </a>
@@ -780,81 +844,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/06/Edit-Distance/" itemprop="url">
-                Edit Distance
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-06T21:20:56-04:00" content="2015-09-06">
-            2015-09-06
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/edit-distance/" target="_blank" rel="external">Edit Distance</a><br>老头子上算法课反复讲了这题，我都能把代码背下来了。<br>dp[i][j] 表示A[0~i]转换成B[0~j]所需要的最少的次数。<br>初始化：</p>
-<ol>
-<li>dp[0][0] ＝ 0，2个字符串都为空，不需要转换</li>
-<li>dp[i][0] = i, 第二个字符串为空，转换需要i次</li>
-<li>dp[0][i] = i, 第一个字符串为空，转换需要i次</li>
-</ol>
-<p>操作含义：</p>
-<ol>
-<li>dp[i-1][j-1]: A, B不算当前的字符，把A转成B需要最小次数</li>
-<li>dp[i-1][j]: A不算当前的字符，把A转成B需要的最小次数</li>
-<li>dp[i][j-1]: A转成B不算当前字符，所需要的最少次数</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDistance</span><span class="params">(String word1, String word2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[word1.length() + <span class="number">1</span>][word2.length() + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= word1.length(); ++i) &#123;</span><br><span class="line">        dp[i][<span class="number">0</span>] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= word2.length(); ++i) &#123;</span><br><span class="line">        dp[<span class="number">0</span>][i] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= word1.length(); ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= word2.length(); ++j) &#123;</span><br><span class="line">            <span class="keyword">int</span> diff = word1.charAt(i-<span class="number">1</span>) == word2.charAt(j-<span class="number">1</span>) ? <span class="number">0</span> : <span class="number">1</span>;</span><br><span class="line">            dp[i][j] = Math.min(dp[i-<span class="number">1</span>][j] + <span class="number">1</span>, Math.min(dp[i][j-<span class="number">1</span>] + <span class="number">1</span>, dp[i-<span class="number">1</span>][j-<span class="number">1</span>] + diff));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[word1.length()][word2.length()];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="http://www.cnblogs.com/yuzhangcmu/p/4190264.html" target="_blank" rel="external">Reference http://www.cnblogs.com/yuzhangcmu/p/4190264.html</a></p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -893,7 +882,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">119</span>
+              <span class="site-state-item-count">120</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -907,7 +896,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

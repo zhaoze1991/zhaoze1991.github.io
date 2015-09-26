@@ -192,6 +192,77 @@
           
           
             
+              <a class="post-title-link" href="/2015/08/27/Pow-x-n/" itemprop="url">
+                Pow(x, n)
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-08-27T11:19:03-04:00" content="2015-08-27">
+            2015-08-27
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/powx-n/" target="_blank" rel="external">Problem Description</a><br>二分法。这篇blog加载了mathjax的javascript，果然反应就慢了很多。</p>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+<ol>
+<li>首先判断x的值，如果 x ＝ 0 或者 x ＝ 1， 则直接返回。否则，如果x ＝ 0， n &lt; 1， 1 / x 就挂了。</li>
+<li>首先判断n的符号，如果n是负数，则 x = 1 / x， 然后再把n变成正数。</li>
+<li>根据如下关系式进行二分:<br>$$ x ^ 4 = (x ^ 2) * (x ^ 2), x ^ 8 = ((x ^ 2) ^ 2) ^ 2 $$</li>
+</ol>
+<p>则，当 n 为偶数的时候， x ＝ x ^ 2, n /= 2; 当 n 为奇数的时候，n -= 1, ans *= x</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">myPow</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x == <span class="number">0</span> || x == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    <span class="keyword">if</span> (n &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        n *= -<span class="number">1</span>;</span><br><span class="line">        x = <span class="number">1</span> / x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">double</span> ans = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (n &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (n % <span class="number">2</span>  == <span class="number">0</span>)&#123;</span><br><span class="line">            n /= <span class="number">2</span>;</span><br><span class="line">            x *= x;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            n -= <span class="number">1</span>;</span><br><span class="line">            ans *= x;</span><br><span class="line">            <span class="comment">// x *= x;</span></span><br><span class="line">            <span class="comment">// n /= 2;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/08/27/Group-Anagrams/" itemprop="url">
                 Group Anagrams
               </a>
@@ -774,69 +845,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/26/Sudoku-Solver/" itemprop="url">
-                Sudoku Solver
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-26T13:58:35-04:00" content="2015-08-26">
-            2015-08-26
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/sudoku-solver/" target="_blank" rel="external">Problem Description</a><br>这种回朔的题目都不怎么难，感觉关键点在于短时间内能不能写出bug-free来。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">solveSudoku</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (board == <span class="keyword">null</span> || board.length != <span class="number">9</span> || board[<span class="number">0</span>].length != <span class="number">9</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    dfs(board);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dfs</span><span class="params">(<span class="keyword">char</span>[][]board)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; board[<span class="number">0</span>].length; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (board[i][j] == <span class="string">'.'</span>) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">char</span> c = <span class="string">'1'</span>; c &lt;= <span class="string">'9'</span>; ++c) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (valid(board, i, j, c)) &#123;</span><br><span class="line">                        board[i][j] = c;</span><br><span class="line">                        <span class="keyword">if</span> (dfs(board)) &#123;</span><br><span class="line">                            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">                        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                            <span class="comment">// note, you must recover it, and back tracking</span></span><br><span class="line">                            <span class="comment">// the previous level</span></span><br><span class="line">                            board[i][j] = <span class="string">'.'</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">valid</span><span class="params">(<span class="keyword">char</span>[][]board, <span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">char</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// check row and column</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; <span class="number">9</span>; ++index) &#123;</span><br><span class="line">        <span class="keyword">char</span> c = board[i][index];</span><br><span class="line">        <span class="keyword">if</span> (c == target)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        c = board[index][j];</span><br><span class="line">        <span class="keyword">if</span> (c == target)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> row = (i / <span class="number">3</span>) * <span class="number">3</span>, column = (j / <span class="number">3</span>) * <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">for</span> (i = row; i &lt; row + <span class="number">3</span>; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (j = column; j &lt; column + <span class="number">3</span>; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (board[i][j] == target) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -875,7 +883,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">119</span>
+              <span class="site-state-item-count">120</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -889,7 +897,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
