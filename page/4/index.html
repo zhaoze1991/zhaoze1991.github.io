@@ -192,6 +192,77 @@
           
           
             
+              <a class="post-title-link" href="/2015/09/07/Largest-Rectangle-in-Histogram/" itemprop="url">
+                Largest Rectangle in Histogram
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-07T13:29:05-04:00" content="2015-09-07">
+            2015-09-07
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/largest-rectangle-in-histogram/" target="_blank" rel="external">Largest Rectangle in Histogram</a><br>维护一个递增的栈，每次比较栈顶元素和当前元素，如果当前元素小于栈顶元素，则出栈。如果当前元素大于栈顶元素，则入栈。<br>我们来看个栗子:</p>
+<p></p><p align="center"><br><img src="/images/histogram_area.png" alt="images"><br>2, 1, 5, 6, 2, 3<br></p><p></p>
+<ol>
+<li>push(2)</li>
+<li>1 &lt; 2, 表示index＝0的这个直方图的右边的边界到了，我们可以开始计算以它为高度的最大直方。那么这个宽度怎么算？i = 1, 2 出栈后，栈为空，宽度就是i到最左边（因为这是一个递增栈，如果栈为空，表示我们取出的当前的直方是最低的，它的宽度可以一直扩展到最左边。）假如栈不空，则宽度等于 i - s.peek() - 1(因为要减去s.peek() 这个直方，它比s.pop()要低，阻止了s.pop()这个直方向左扩展)</li>
+<li>1, 5, 6 这是一个递增的序列，入栈</li>
+<li>碰到2，2比6小，6出栈，width = 6的本身；5出栈，宽度是2; 2入栈<br>5， 3入栈</li>
+<li>这时候栈里面还剩1，2，3，这时候，我们的val ＝ －1(很巧妙的写法)，3出栈，宽度是1； 2出栈，宽度是4; 1出栈，宽度是6</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">largestRectangleArea</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (height == <span class="keyword">null</span> || height.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    Stack&lt;Integer&gt; s = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">    <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= height.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> val = (i == height.length? -<span class="number">1</span> : height[i]);</span><br><span class="line">        <span class="comment">// basic idea, find the left node smaller than i</span></span><br><span class="line">        <span class="comment">// and val is the right node smaller than i</span></span><br><span class="line">        <span class="keyword">while</span> (s.isEmpty() == <span class="keyword">false</span> &amp;&amp; val &lt; height[s.peek()]) &#123;</span><br><span class="line">            <span class="keyword">int</span> h = height[s.pop()];</span><br><span class="line">            <span class="keyword">int</span> w = s.isEmpty() ? i : i - s.peek() - <span class="number">1</span>;</span><br><span class="line">            max = Math.max(max, h * w);</span><br><span class="line">        &#125;</span><br><span class="line">        s.push(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/09/06/Edit-Distance/" itemprop="url">
                 Edit Distance
               </a>
@@ -783,75 +854,11 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/04/Maximum-Product-Subarray/" itemprop="url">
-                Maximum Product Subarray
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-04T13:59:15-04:00" content="2015-09-04">
-            2015-09-04
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/maximum-product-subarray/" target="_blank" rel="external">Maximum Product Subarray</a></p>
-<p>有些蛋疼的面试官非得让你把空间减少到O(1), 先来看看空间O(1)的<a href="../../../08/27/Maximum-Subarray/index.html">Maximum Subarray</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> localmax = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> globalmax = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">        localmax = Math.max(localmax + nums[i], nums[i]);</span><br><span class="line">        globalmax = Math.max(globalmax, localmax);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> globalmax;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>在上面的代码中，我们用一个localmax的变量，记录了遍历过程中产生的max，然后每次把globalmax和这个localmax做对比即可。<br>同样，我们在求max product subarray的问题中，也可以用这样的思想。但是，乘法的max可能有两种，一种是 最大正数＊正数，另一种是 最小负数＊负数。于是。我们就用两个变量分别来记录。用localmax和localmin分别来记录遍历过程中产生的max和min。我们可以得到如下的动态规划方程：<br>localmax = max(nums[i], max(localmax*nums[i], localmin*nums[i]));<br>localmin = min(nums[i], min(localmin*nums[i], localmin*nums[i]));<br>最后再用一个globalmax 的变量来记录整个过程中产生的最大值。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProduct</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> localmax = nums[<span class="number">0</span>], localmin = nums[<span class="number">0</span>], ans = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> val = nums[i];</span><br><span class="line">        <span class="keyword">int</span> temp = localmax;</span><br><span class="line">        localmax = Math.max(val, Math.max(localmax * val, localmin * val));</span><br><span class="line">        localmin = Math.min(val, Math.min(temp * val, localmin * val));</span><br><span class="line">        ans = Math.max(ans, localmax);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/5/">&raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/5/">&raquo;</a>
   </nav>
 
  </div>
@@ -885,7 +892,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">120</span>
+              <span class="site-state-item-count">121</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

@@ -192,6 +192,83 @@
           
           
             
+              <a class="post-title-link" href="/2015/08/30/Unique-Binary-Search-Trees-I-II/" itemprop="url">
+                Unique Binary Search Trees I, II
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-08-30T12:24:17-04:00" content="2015-08-30">
+            2015-08-30
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/unique-binary-search-trees/" target="_blank" rel="external">Unique Binary Search Trees</a><br>递归。helper来计算从begin到end这个区间内，能够组成多少BST。<br>令root ＝ i， 则它的左子树的区间为begin到i-1, 右子树区间为i+1到end， 一共有左子树个数＊右子树个数个unique BST<br>注意递归的终止条件。<br>如果begin ＝＝ end， 说明就一个结点，返回1<br>如果begin &gt; end， 则表示在这个区间上只有一个null的情况， 返回1.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numTrees</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> helper(<span class="number">1</span>, n);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">helper</span><span class="params">(<span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin &gt;= end)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = begin; i &lt;= end; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> left = helper(begin, i - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> right = helper(i + <span class="number">1</span>, end);</span><br><span class="line">        count += left * right;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码超时，因为有很多重复计算。改一改，用一个哈希表来记忆搜索。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pair</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">int</span> j;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Pair</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.i = i;</span><br><span class="line">        <span class="keyword">this</span>.j = j;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> result = i;</span><br><span class="line">        result = <span class="number">31</span> * result + j;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> == obj)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (!(obj <span class="keyword">instanceof</span> Pair))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        Pair p = (Pair) obj;</span><br><span class="line">        <span class="keyword">return</span> p.i == i &amp;&amp; p.j == j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">HashMap&lt;Pair, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Pair, Integer&gt;();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numTrees</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> helper(<span class="number">1</span>, n);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">helper</span><span class="params">(<span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin &gt;= end)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    Pair pair = <span class="keyword">new</span> Pair(begin, end);</span><br><span class="line">    <span class="keyword">if</span> (map.containsKey(pair))</span><br><span class="line">        <span class="keyword">return</span> map.get(pair);</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = begin; i &lt;= end; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> left = helper(begin, i - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> right = helper(i + <span class="number">1</span>, end);</span><br><span class="line">        count += left * right;</span><br><span class="line">    &#125;</span><br><span class="line">    map.put(pair, count);</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以用DP来做。<br>令dp[i]为i个结点构成BST的个数。初始化， dp[0] = 1, dp[1] = 1, 我们来举个栗子。 设i ＝ 3</p>
+<p></p><p align="center"><br>dp[3] = (dp[0] * dp[2] // 以1为root，左子树结点为0， 右子树结点数为2</p>
+<pre><code>+ dp[<span class="number">1</span>] * dp[<span class="number">1</span>] <span class="comment">// 以2为root， 左子树结点数为1， 右子树结点数为1</span>
++ dp[<span class="number">2</span>] * dp[<span class="number">0</span>]) <span class="comment">// 以3为root，左子树结点数为2， 右子树结点数为0</span>
+</code></pre><p></p><br>所以dp[i] = dp[0]*dp[i-1]+dp[1]*dp[i-2]+ …+dp[i-1]*dp[0];<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numTrees</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt;= <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="number">1</span>; dp[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; ++j) &#123;</span><br><span class="line">            dp[i] += (dp[j] * dp[i-j-<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p></p>
+<p><a href="https://leetcode.com/problems/unique-binary-search-trees-ii/" target="_blank" rel="external">Unique Binary Search Trees II</a><br>思想和第一题的递归差不多。但是坑坑洼洼挂在了几个地方。<br>递归来计算区间begin到end之间能够构成所有BST的list。递归终止条件可以有两个</p>
+<ol>
+<li>begin &gt; end, 直接返回， <strong>注意</strong>在返回的list中要加入null</li>
+<li>begin ＝＝ end， 将当前的结点介入到list中，返回。</li>
+</ol>
+<p>还挂在root 那个地方, 过早new 了root，其实在加到list的时候，都是同一个元素，出错了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;TreeNode&gt; <span class="title">generateTrees</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> helper(<span class="number">1</span>, n);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;TreeNode&gt; <span class="title">helper</span><span class="params">(<span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">    List&lt;TreeNode&gt; temp = <span class="keyword">new</span> ArrayList&lt;TreeNode&gt;();</span><br><span class="line">    <span class="keyword">if</span> (begin &gt; end) &#123;</span><br><span class="line">        temp.add(<span class="keyword">null</span>);</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (begin == end) &#123;</span><br><span class="line">        temp.add(<span class="keyword">new</span> TreeNode(begin));</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = begin; i &lt;= end; ++i) &#123;</span><br><span class="line">        <span class="comment">// TreeNode root = new TreeNode(i);</span></span><br><span class="line">        List&lt;TreeNode&gt; left = helper(begin, i - <span class="number">1</span>);</span><br><span class="line">        List&lt;TreeNode&gt; right = helper(i + <span class="number">1</span>, end);</span><br><span class="line">        <span class="keyword">for</span> (TreeNode l : left) &#123;</span><br><span class="line">            <span class="keyword">for</span> (TreeNode r : right) &#123;</span><br><span class="line">                TreeNode root = <span class="keyword">new</span> TreeNode(i);</span><br><span class="line">                root.left = l;</span><br><span class="line">                root.right = r;</span><br><span class="line">                temp.add(root);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/08/30/Evaluate-Reverse-Polish-Notation/" itemprop="url">
                 Evaluate Reverse Polish Notation
               </a>
@@ -770,80 +847,11 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/28/Minimum-Window-Substring/" itemprop="url">
-                Minimum Window Substring
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-28T15:10:04-04:00" content="2015-08-28">
-            2015-08-28
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p>早上看到这题就跳过了，觉得这么麻烦 考到概率低下。结果特么下午面试就来了这么道题。写了好多bug。WTF!!!<br>代码写的跟狗屎一样长，在于java的哈希表操作太麻烦，不能像c++那样直接加加减减。<br>思路如下：<br>首先，开一个哈希表，map 用来记录t中每个字符出现的次数。<br>再开一个哈希表，window，用来记录当前window中每个字符出现的次数。<br>还得有一个变量count来记录当前window中符合条件的字符的数量。<br>然后开始对字符串s做遍历。<br>如果字符c在哈希表map中，那么把这个字符c加入到当前的window中。注意，当window中c出现的次数小于map中c出现的次数，才去更新count。<br>如果count等于t的长度，意思是目前的window中，已经包含了所有t中的字符，那么 我们开始要做些事儿了去移动window的左侧了。<br>在第29行代码while循环中</p>
-<ol>
-<li>得跳过不在map中的字符</li>
-<li>如果字符在map中，而且字符出现的次数大于map中字符出现的次数，也得跳过。 e.g. s=aaaaabaa t=ab</li>
-</ol>
-<p>这样，通过这个while循环，我们就得到了当前包含所有字符的最小的一个window，然后去更新min和结果。<br>完了之后，我们把left右移一位，使得window中不再包含所有的字符。</p>
-<p>总之。太麻烦了。bug-free好难啊。这题的思想和<a href="../../23/Longest-Substring-Without-Repeating-Characters/index.html">Longest Substring Without Repeating Characters</a>以及<a href="../../25/Substring-with-Concatenation-of-All-Words/index.html">Substring with Concatenation of All Words</a>类似。注意体会如何移动left。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">minWindow</span><span class="params">(String s, String t)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (s.length() == <span class="number">0</span> || t.length() == <span class="number">0</span> || s.length() &lt; t.length())</span><br><span class="line">        <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">    HashMap&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Character, Integer&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> c : t.toCharArray()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(c)) &#123;</span><br><span class="line">            map.put(c, map.get(c) + <span class="number">1</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            map.put(c, <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    HashMap&lt;Character, Integer&gt; window = <span class="keyword">new</span> HashMap&lt;Character, Integer&gt;();</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>, left = <span class="number">0</span>, min = Integer.MAX_VALUE;</span><br><span class="line">    String res = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); ++i) &#123;</span><br><span class="line">        <span class="keyword">char</span> c = s.charAt(i);</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(c)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (window.containsKey(c)) &#123;</span><br><span class="line">                <span class="keyword">if</span> (window.get(c) &lt; map.get(c)) &#123;</span><br><span class="line">                    count += <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                window.put(c, window.get(c) + <span class="number">1</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                window.put(c, <span class="number">1</span>);</span><br><span class="line">                count += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (count == t.length()) &#123;</span><br><span class="line">            <span class="keyword">while</span> (map.containsKey(s.charAt(left)) == <span class="keyword">false</span> || window.get(s.charAt(left)) &gt; map.get(s.charAt(left))) &#123;</span><br><span class="line">                <span class="keyword">if</span> (window.containsKey(s.charAt(left)))</span><br><span class="line">                    window.put(s.charAt(left), window.get(s.charAt(left)) -<span class="number">1</span>);</span><br><span class="line">                ++left;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (min &gt; i - left + <span class="number">1</span>) &#123;</span><br><span class="line">                min = i - left + <span class="number">1</span>;</span><br><span class="line">                res = s.substring(left, i + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            window.put(s.charAt(left), window.get(s.charAt(left)) -<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span> (window.get(s.charAt(left)) == <span class="number">0</span>)</span><br><span class="line">                window.remove(s.charAt(left));</span><br><span class="line">            ++left;</span><br><span class="line">            count -= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/9/">&raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/7/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/9/">&raquo;</a>
   </nav>
 
  </div>
@@ -877,7 +885,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">120</span>
+              <span class="site-state-item-count">121</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
