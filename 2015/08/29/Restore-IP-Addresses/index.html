@@ -26,7 +26,7 @@
 
 
 
-  <meta name="keywords" content="Binary Tree," />
+  <meta name="keywords" content="Backtracking," />
 
 
 
@@ -35,16 +35,22 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="Validate Binary Search Tree1234567891011TreeNode prev = null;public boolean isValidBST(TreeNode root) &amp;#123;    if (root == null)        return true;    if (isValidBST(root.left) == false)        retu">
+<meta name="description" content="Restore IP Addresses又写得坑坑洼洼的。首先得写好valid函数。因为在做dfs过程中，会产生01或者001这样的组合，是不合法的，所以得排除掉。
+然后，这题递归终止的条件稍微有点蛋疼。本来不想遍历path，搞了一堆堆bug，最后还是算了，遍历一遍计算path的长度是否与给的string相同，不同则回朔到上一层。
+123456789101112131415161718192021">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Validate Binary Search Tree">
-<meta property="og:url" content="http://zhaoze1991.github.io/2015/08/30/Validate-Binary-Search-Tree/index.html">
+<meta property="og:title" content="Restore IP Addresses">
+<meta property="og:url" content="http://zhaoze1991.github.io/2015/08/29/Restore-IP-Addresses/index.html">
 <meta property="og:site_name" content="Just-Zzz">
-<meta property="og:description" content="Validate Binary Search Tree1234567891011TreeNode prev = null;public boolean isValidBST(TreeNode root) &amp;#123;    if (root == null)        return true;    if (isValidBST(root.left) == false)        retu">
-<meta property="og:updated_time" content="2015-08-30T06:19:21.000Z">
+<meta property="og:description" content="Restore IP Addresses又写得坑坑洼洼的。首先得写好valid函数。因为在做dfs过程中，会产生01或者001这样的组合，是不合法的，所以得排除掉。
+然后，这题递归终止的条件稍微有点蛋疼。本来不想遍历path，搞了一堆堆bug，最后还是算了，遍历一遍计算path的长度是否与给的string相同，不同则回朔到上一层。
+123456789101112131415161718192021">
+<meta property="og:updated_time" content="2015-08-30T05:52:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Validate Binary Search Tree">
-<meta name="twitter:description" content="Validate Binary Search Tree1234567891011TreeNode prev = null;public boolean isValidBST(TreeNode root) &amp;#123;    if (root == null)        return true;    if (isValidBST(root.left) == false)        retu">
+<meta name="twitter:title" content="Restore IP Addresses">
+<meta name="twitter:description" content="Restore IP Addresses又写得坑坑洼洼的。首先得写好valid函数。因为在做dfs过程中，会产生01或者001这样的组合，是不合法的，所以得排除掉。
+然后，这题递归终止的条件稍微有点蛋疼。本来不想遍历path，搞了一堆堆bug，最后还是算了，遍历一遍计算path的长度是否与给的string相同，不同则回朔到上一层。
+123456789101112131415161718192021">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -54,7 +60,7 @@
   };
 </script>
 
-  <title> Validate Binary Search Tree | Just-Zzz </title>
+  <title> Restore IP Addresses | Just-Zzz </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -191,7 +197,7 @@
           
           
             
-              Validate Binary Search Tree
+              Restore IP Addresses
             
           
         </h1>
@@ -200,8 +206,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-30T02:08:58-04:00" content="2015-08-30">
-            2015-08-30
+          <time itemprop="dateCreated" datetime="2015-08-29T22:44:51-07:00" content="2015-08-29">
+            2015-08-29
           </time>
         </span>
 
@@ -219,7 +225,9 @@
       
 
       
-        <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/validate-binary-search-tree/" target="_blank" rel="external">Validate Binary Search Tree</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">TreeNode prev = <span class="keyword">null</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValidBST</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (isValidBST(root.left) == <span class="keyword">false</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (prev != <span class="keyword">null</span> &amp;&amp; prev.val &gt;= root.val)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    prev = root;</span><br><span class="line">    <span class="keyword">return</span> isValidBST(root.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/restore-ip-addresses/" target="_blank" rel="external">Restore IP Addresses</a><br>又写得坑坑洼洼的。<br>首先得写好valid函数。因为在做dfs过程中，会产生01或者001这样的组合，是不合法的，所以得排除掉。</p>
+<p>然后，这题递归终止的条件稍微有点蛋疼。本来不想遍历path，搞了一堆堆bug，最后还是算了，遍历一遍计算path的长度是否与给的string相同，不同则回朔到上一层。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; ans = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">restoreIpAddresses</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    List&lt;String&gt; path = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">    dfs(s, path, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(String s, List&lt;String&gt; path, <span class="keyword">int</span> begin)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (path.size() == <span class="number">4</span>) &#123;</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">int</span> size = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (String str : path) &#123;</span><br><span class="line">            size += str.length();</span><br><span class="line">            sb.append(str + <span class="string">"."</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (size != s.length())</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        sb.deleteCharAt(sb.length() - <span class="number">1</span>);</span><br><span class="line">        ans.add(sb.toString());</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = begin; i &lt; s.length(); ++i) &#123;</span><br><span class="line">        String str = s.substring(begin, i + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (valid(str) == <span class="keyword">false</span>)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        path.add(str);</span><br><span class="line">        dfs(s, path, i + <span class="number">1</span>);</span><br><span class="line">        path.remove(path.size() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">valid</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num = Integer.parseInt(s);</span><br><span class="line">    <span class="keyword">if</span> (num &gt; <span class="number">255</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (s.length() == <span class="number">2</span> &amp;&amp; num &lt; <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (s.length() == <span class="number">3</span> &amp;&amp; num &lt; <span class="number">100</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </span>
       
     </div>
@@ -228,7 +236,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Binary-Tree/" rel="tag">#Binary Tree</a>
+            <a href="/tags/Backtracking/" rel="tag">#Backtracking</a>
           
         </div>
       
@@ -237,13 +245,13 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/08/30/Reverse-Linked-List-I-II/" rel="prev">Reverse Linked List I, II</a>
+              <a href="/2015/08/29/Tree-Traversal/" rel="prev">Tree Traversal</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/08/30/Tree-Traversal/" rel="next">Tree Traversal</a>
+              <a href="/2015/08/29/Decode-Ways/" rel="next">Decode Ways</a>
             
           </div>
         </div>

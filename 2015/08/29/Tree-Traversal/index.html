@@ -26,7 +26,7 @@
 
 
 
-  <meta name="keywords" content="Greedy," />
+  <meta name="keywords" content="Binary Tree," />
 
 
 
@@ -35,16 +35,16 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="Gas Station题目告诉我们解是唯一的。那么我们就从0开始走好了。走的过程中，更新tank的容量，如果tank的容量小于0，则表示当前的start不靠谱，我们得重新找start。如何更新start呢？我们可以得出start～i 之间的点都舍掉，start ＝ i ＋ 1反正一下如果gas[start] + … + gas[i] &amp;lt; cost[start] +…+ cost[i]我们假设">
+<meta name="description" content="理解并背诵全文Binary Tree Inorder Traversal1234567891011121314151617181920public List&amp;lt;Integer&amp;gt; inorderTraversal(TreeNode root) &amp;#123;    List&amp;lt;Integer&amp;gt; ans = new ArrayList&amp;lt;Integer&amp;gt;();    if">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Gas Station">
-<meta property="og:url" content="http://zhaoze1991.github.io/2015/09/04/Gas-Station/index.html">
+<meta property="og:title" content="Tree Traversal">
+<meta property="og:url" content="http://zhaoze1991.github.io/2015/08/29/Tree-Traversal/index.html">
 <meta property="og:site_name" content="Just-Zzz">
-<meta property="og:description" content="Gas Station题目告诉我们解是唯一的。那么我们就从0开始走好了。走的过程中，更新tank的容量，如果tank的容量小于0，则表示当前的start不靠谱，我们得重新找start。如何更新start呢？我们可以得出start～i 之间的点都舍掉，start ＝ i ＋ 1反正一下如果gas[start] + … + gas[i] &amp;lt; cost[start] +…+ cost[i]我们假设">
-<meta property="og:updated_time" content="2015-09-04T05:02:01.000Z">
+<meta property="og:description" content="理解并背诵全文Binary Tree Inorder Traversal1234567891011121314151617181920public List&amp;lt;Integer&amp;gt; inorderTraversal(TreeNode root) &amp;#123;    List&amp;lt;Integer&amp;gt; ans = new ArrayList&amp;lt;Integer&amp;gt;();    if">
+<meta property="og:updated_time" content="2015-08-30T06:04:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Gas Station">
-<meta name="twitter:description" content="Gas Station题目告诉我们解是唯一的。那么我们就从0开始走好了。走的过程中，更新tank的容量，如果tank的容量小于0，则表示当前的start不靠谱，我们得重新找start。如何更新start呢？我们可以得出start～i 之间的点都舍掉，start ＝ i ＋ 1反正一下如果gas[start] + … + gas[i] &amp;lt; cost[start] +…+ cost[i]我们假设">
+<meta name="twitter:title" content="Tree Traversal">
+<meta name="twitter:description" content="理解并背诵全文Binary Tree Inorder Traversal1234567891011121314151617181920public List&amp;lt;Integer&amp;gt; inorderTraversal(TreeNode root) &amp;#123;    List&amp;lt;Integer&amp;gt; ans = new ArrayList&amp;lt;Integer&amp;gt;();    if">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -54,7 +54,7 @@
   };
 </script>
 
-  <title> Gas Station | Just-Zzz </title>
+  <title> Tree Traversal | Just-Zzz </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -191,7 +191,7 @@
           
           
             
-              Gas Station
+              Tree Traversal
             
           
         </h1>
@@ -200,8 +200,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-04T00:52:50-04:00" content="2015-09-04">
-            2015-09-04
+          <time itemprop="dateCreated" datetime="2015-08-29T22:57:10-07:00" content="2015-08-29">
+            2015-08-29
           </time>
         </span>
 
@@ -219,7 +219,9 @@
       
 
       
-        <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/gas-station/" target="_blank" rel="external">Gas Station</a><br>题目告诉我们解是唯一的。那么我们就从0开始走好了。走的过程中，更新tank的容量，如果tank的容量小于0，则表示当前的start不靠谱，我们得重新找start。如何更新start呢？我们可以得出start～i 之间的点都舍掉，start ＝ i ＋ 1<br>反正一下<br>如果gas[start] + … + gas[i] &lt; cost[start] +…+ cost[i]<br>我们假设存在某一点x为可行的新的start，那么我们会得到：<br>gas[x] +…+gas[i] &gt; cost[x] +…+cost[i]<br>因此我们可以得到gas[start] + … + gas[x-1] &lt; cost[start]+…+cost[x-1], 根据这一不等式，我们无法到达x点。所以x点不存在。<br><strong>注意</strong> 在走的过程中， 记录总的油量和耗油量。如果总油量小于总耗油量，则返回－1。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">canCompleteCircuit</span><span class="params">(<span class="keyword">int</span>[] gas, <span class="keyword">int</span>[] cost)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> start = <span class="number">0</span>, totalGas = <span class="number">0</span>, totalCost = <span class="number">0</span>, tank = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; gas.length; ++i) &#123;</span><br><span class="line">        tank += (gas[i] - cost[i]);</span><br><span class="line">        totalGas += gas[i];</span><br><span class="line">        totalCost += cost[i];</span><br><span class="line">        <span class="keyword">if</span> (tank &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// if A cannot reach B</span></span><br><span class="line">            <span class="comment">// any node inside A and B can not reach B</span></span><br><span class="line">            tank = <span class="number">0</span>;</span><br><span class="line">            start = i + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (totalCost &gt; totalGas)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> start;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <span itemprop="articleBody"><p>理解并背诵全文<br><a href="https://leetcode.com/problems/binary-tree-inorder-traversal/" target="_blank" rel="external">Binary Tree Inorder Traversal</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">inorderTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;TreeNode&gt;();</span><br><span class="line">    <span class="keyword">while</span> (root != <span class="keyword">null</span>) &#123;</span><br><span class="line">        stack.push(root);</span><br><span class="line">        root = root.left;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (!stack.isEmpty()) &#123;</span><br><span class="line">        root = stack.pop();</span><br><span class="line">        ans.add(root.val);</span><br><span class="line">        root = root.right;</span><br><span class="line">        <span class="keyword">while</span> (root != <span class="keyword">null</span>) &#123;</span><br><span class="line">            stack.push(root);</span><br><span class="line">            root = root.left;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://leetcode.com/problems/binary-tree-preorder-traversal/" target="_blank" rel="external">Binary Tree Preorder Traversal</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">preorderTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;TreeNode&gt;();</span><br><span class="line">    stack.push(root);</span><br><span class="line">    <span class="keyword">while</span> (!stack.isEmpty()) &#123;</span><br><span class="line">        root = stack.pop();</span><br><span class="line">        ans.add(root.val);</span><br><span class="line">        <span class="keyword">if</span> (root.right != <span class="keyword">null</span>) &#123;</span><br><span class="line">            stack.push(root.right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (root.left != <span class="keyword">null</span>) &#123;</span><br><span class="line">            stack.push(root.left);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://leetcode.com/problems/binary-tree-postorder-traversal/" target="_blank" rel="external">Binary Tree Postorder Traversal</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">postorderTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;TreeNode&gt;();</span><br><span class="line">    stack.push(root);</span><br><span class="line">    <span class="keyword">while</span> (!stack.isEmpty()) &#123;</span><br><span class="line">        root = stack.pop();</span><br><span class="line">        ans.add(root.val);</span><br><span class="line">        <span class="keyword">if</span> (root.left != <span class="keyword">null</span>) &#123;</span><br><span class="line">            stack.push(root.left);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (root.right != <span class="keyword">null</span>) &#123;</span><br><span class="line">            stack.push(root.right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    Collections.reverse(ans);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </span>
       
     </div>
@@ -228,7 +230,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Greedy/" rel="tag">#Greedy</a>
+            <a href="/tags/Binary-Tree/" rel="tag">#Binary Tree</a>
           
         </div>
       
@@ -237,13 +239,13 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/09/04/Copy-List-with-Random-Pointer/" rel="prev">Copy List with Random Pointer</a>
+              <a href="/2015/08/29/Validate-Binary-Search-Tree/" rel="prev">Validate Binary Search Tree</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/09/03/Clone-Graph/" rel="next">Clone Graph</a>
+              <a href="/2015/08/29/Restore-IP-Addresses/" rel="next">Restore IP Addresses</a>
             
           </div>
         </div>
