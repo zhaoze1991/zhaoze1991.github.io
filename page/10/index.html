@@ -192,6 +192,71 @@
           
           
             
+              <a class="post-title-link" href="/2015/08/27/Maximum-Subarray/" itemprop="url">
+                Maximum Subarray
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-08-27T13:23:28-04:00" content="2015-08-27">
+            2015-08-27
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/maximum-subarray/" target="_blank" rel="external">Problem Description</a><br>这题有好多种AC的方法。这里我写了两种。<br>dp[i]表示从0~i之间最大的subarray, 用一个local的数组，来记录局部最优。<br>那么dp[i] = max{dp[i-1], local[i]}<br>其中local[i] = max{local[i - 1] + nums[i], nums[i]}</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// dp[i] means max subarray from 0 ~ i</span></span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">    <span class="keyword">int</span>[] local = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">    dp[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">    local[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">        local[i] = Math.max(local[i - <span class="number">1</span>] + nums[i], nums[i]);</span><br><span class="line">        dp[i] = Math.max(dp[i - <span class="number">1</span>], local[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[nums.length - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>感觉这种方法不能算DP，算贪心吧。用一个local数组，来记录，包含i的区间中最优的解。然后再用一个变量来记录最大的局部最优解，最后返回这个变量。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span>[] local = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">    <span class="keyword">int</span> ans = nums[<span class="number">0</span>];</span><br><span class="line">    local[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">        local[i] = Math.max(local[i - <span class="number">1</span>] + nums[i], nums[i]);</span><br><span class="line">        ans = Math.max(ans, local[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/08/27/N-Queens-I-II/" itemprop="url">
                 N-Queens I, II
               </a>
@@ -203,7 +268,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-27T09:22:32-07:00" content="2015-08-27">
+          <time itemprop="dateCreated" datetime="2015-08-27T12:22:32-04:00" content="2015-08-27">
             2015-08-27
           </time>
         </span>
@@ -270,7 +335,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-27T08:19:03-07:00" content="2015-08-27">
+          <time itemprop="dateCreated" datetime="2015-08-27T11:19:03-04:00" content="2015-08-27">
             2015-08-27
           </time>
         </span>
@@ -330,7 +395,7 @@
           
           
             
-              <a class="post-title-link" href="/2015/08/26/Group-Anagrams/" itemprop="url">
+              <a class="post-title-link" href="/2015/08/27/Group-Anagrams/" itemprop="url">
                 Group Anagrams
               </a>
             
@@ -341,8 +406,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-26T22:11:27-07:00" content="2015-08-26">
-            2015-08-26
+          <time itemprop="dateCreated" datetime="2015-08-27T01:11:27-04:00" content="2015-08-27">
+            2015-08-27
           </time>
         </span>
 
@@ -404,7 +469,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-26T20:14:13-07:00" content="2015-08-26">
+          <time itemprop="dateCreated" datetime="2015-08-26T23:14:13-04:00" content="2015-08-26">
             2015-08-26
           </time>
         </span>
@@ -472,7 +537,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-26T19:45:43-07:00" content="2015-08-26">
+          <time itemprop="dateCreated" datetime="2015-08-26T22:45:43-04:00" content="2015-08-26">
             2015-08-26
           </time>
         </span>
@@ -536,7 +601,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-26T19:27:23-07:00" content="2015-08-26">
+          <time itemprop="dateCreated" datetime="2015-08-26T22:27:23-04:00" content="2015-08-26">
             2015-08-26
           </time>
         </span>
@@ -601,7 +666,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-26T18:31:55-07:00" content="2015-08-26">
+          <time itemprop="dateCreated" datetime="2015-08-26T21:31:55-04:00" content="2015-08-26">
             2015-08-26
           </time>
         </span>
@@ -669,7 +734,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-26T17:54:09-07:00" content="2015-08-26">
+          <time itemprop="dateCreated" datetime="2015-08-26T20:54:09-04:00" content="2015-08-26">
             2015-08-26
           </time>
         </span>
@@ -732,7 +797,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-26T17:18:17-07:00" content="2015-08-26">
+          <time itemprop="dateCreated" datetime="2015-08-26T20:18:17-04:00" content="2015-08-26">
             2015-08-26
           </time>
         </span>
@@ -755,78 +820,6 @@
           <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/trapping-rain-water/" target="_blank" rel="external">Problem Description</a></p>
 <p></p><p align="center"><br><img src="/images/rainwatertrap.png" alt="image"><br></p><br>这种题就是属于不看答案就呵呵的。<br>如图所示，每个bar能顶住水，取决于这块bar两侧的bar是否都高于它，如果这块bar能够顶住水，这块bar能顶住水的容积为，两侧最小的高度－自己的高度，遍历累加每块bar能装的容积，就能得到答案。<br>如何求每块bar两侧最大的bar呢？<br>设两个数组，left和right，left[i]表示bar i左边最大的bar，right[i]表示bar i 右边最大的bar, 我们可以得到以下两个关系式：<p></p>
 <p></p><p align="center"><br>left[i] = max(left[i - 1], height[i]);<br>right[i] = max(right[i + 1], height[i]);<br></p><br>得到每个bar对应的两边最大的bar之后，我们再从头到尾扫描一次数组，求能够累计的水容积。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (height == <span class="keyword">null</span> || height.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span>[] left = <span class="keyword">new</span> <span class="keyword">int</span>[height.length];</span><br><span class="line">    <span class="keyword">int</span>[] right = <span class="keyword">new</span> <span class="keyword">int</span>[height.length];</span><br><span class="line">    left[<span class="number">0</span>] = height[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; height.length; ++i)</span><br><span class="line">        left[i] = Math.max(left[i-<span class="number">1</span>], height[i]);</span><br><span class="line">    right[height.length - <span class="number">1</span>] = height[height.length - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = height.length - <span class="number">2</span>; i &gt;= <span class="number">0</span>; --i)</span><br><span class="line">        right[i] = Math.max(right[i + <span class="number">1</span>], height[i]);</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; height.length - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> lowbar = Math.min(left[i], right[i]);</span><br><span class="line">        <span class="keyword">if</span> (lowbar &gt; height[i])</span><br><span class="line">            ans += (lowbar - height[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p></p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/26/First-Missing-Positive/" itemprop="url">
-                First Missing Positive
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-26T13:24:08-07:00" content="2015-08-26">
-            2015-08-26
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/first-missing-positive/" target="_blank" rel="external">Problem Description</a><br>思路：<br>如果nums[i] 不在它应该在的位置上，那就把num[i] 替换到它应该在的位置上。在替换过程中，得考虑几个条件。</p>
-<ol>
-<li>如果nums[i] &lt;= 0, 或者nums[i] &gt; 数组长度，那么跳过，因为数组中没有可以放置它的地方</li>
-<li>如果nums[i] 和它 交换的位置的数相同，skip。否则就死循环了。e.g.［1， 1］</li>
-</ol>
-<p>在交换完之后，i需要停留在原来的位置，所以i -= 1;</p>
-<p>整个数组交换完之后，从头到尾扫描一次数组，第一个不在其位的数字就是题目想要的答案。</p>
-<p align="center"><br>   图片引用自:<a href="http://www.cnblogs.com/AnnieKim/archive/2013/04/21/3034631.html" target="_blank" rel="external">http://www.cnblogs.com/AnnieKim/archive/2013/04/21/3034631.html</a><br><img src="/images/firstmissintpositive.jpg" alt="image"><br></p>
-
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">firstMissingPositive</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[i] != i + <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] &lt;= <span class="number">0</span> || nums[i] &gt;= nums.length || nums[i] == nums[nums[i] - <span class="number">1</span>])</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            swap(nums, i, nums[i] - <span class="number">1</span>);</span><br><span class="line">            --i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[i] != i + <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> i + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> nums.length + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp = nums[i];</span><br><span class="line">    nums[i] = nums[j];</span><br><span class="line">    nums[j] = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </span>
         
       
@@ -884,7 +877,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">121</span>
+              <span class="site-state-item-count">122</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

@@ -192,6 +192,75 @@
           
           
             
+              <a class="post-title-link" href="/2015/08/24/Generate-Parentheses/" itemprop="url">
+                Generate Parentheses
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-08-24T20:42:43-04:00" content="2015-08-24">
+            2015-08-24
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/generate-parentheses/" target="_blank" rel="external">https://leetcode.com/problems/generate-parentheses/</a><br>经典递归，思路如下：<br>用left 和 right 表示左边和右边括号的数目，有如下几种边界条件：</p>
+<ol>
+<li>left &lt; right, 表示产生的括号中，右边的括号多于左边的，e.g. “)” 这种情况not valid，直接返回</li>
+<li>left 和 right 均等于n，则表示这是一个符合条件的组合，输出。</li>
+<li>left &lt; n， 则表示左边的括号还可以继续增加</li>
+</ol>
+<p>e.g.<br>generateParenthesis(3);<br>((()))<br>(()())<br>(())()<br>()(())<br>()()()<br>体会下递归过程</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; ans = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">generateParenthesis</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    helper(<span class="string">""</span>, <span class="number">0</span>, <span class="number">0</span>, n);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">helper</span><span class="params">(String path, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (left &lt; right)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span> (left == n &amp;&amp; right == n) &#123;</span><br><span class="line">        ans.add(path);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (left &lt; n)</span><br><span class="line">        helper(path + <span class="string">"("</span>, left + <span class="number">1</span>, right, n);</span><br><span class="line"></span><br><span class="line">    helper(path + <span class="string">")"</span>, left, right + <span class="number">1</span>, n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/08/24/Linked-List-基本操作/" itemprop="url">
                 Linked List 基本操作
               </a>
@@ -203,7 +272,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-24T13:34:55-07:00" content="2015-08-24">
+          <time itemprop="dateCreated" datetime="2015-08-24T16:34:55-04:00" content="2015-08-24">
             2015-08-24
           </time>
         </span>
@@ -274,7 +343,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-24T12:44:29-07:00" content="2015-08-24">
+          <time itemprop="dateCreated" datetime="2015-08-24T15:44:29-04:00" content="2015-08-24">
             2015-08-24
           </time>
         </span>
@@ -340,7 +409,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-24T11:26:26-07:00" content="2015-08-24">
+          <time itemprop="dateCreated" datetime="2015-08-24T14:26:26-04:00" content="2015-08-24">
             2015-08-24
           </time>
         </span>
@@ -404,7 +473,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-24T07:34:11-07:00" content="2015-08-24">
+          <time itemprop="dateCreated" datetime="2015-08-24T10:34:11-04:00" content="2015-08-24">
             2015-08-24
           </time>
         </span>
@@ -467,7 +536,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-23T20:44:20-07:00" content="2015-08-23">
+          <time itemprop="dateCreated" datetime="2015-08-23T23:44:20-04:00" content="2015-08-23">
             2015-08-23
           </time>
         </span>
@@ -541,7 +610,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-23T17:00:01-07:00" content="2015-08-23">
+          <time itemprop="dateCreated" datetime="2015-08-23T20:00:01-04:00" content="2015-08-23">
             2015-08-23
           </time>
         </span>
@@ -604,7 +673,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-23T14:39:52-07:00" content="2015-08-23">
+          <time itemprop="dateCreated" datetime="2015-08-23T17:39:52-04:00" content="2015-08-23">
             2015-08-23
           </time>
         </span>
@@ -674,7 +743,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-23T14:10:18-07:00" content="2015-08-23">
+          <time itemprop="dateCreated" datetime="2015-08-23T17:10:18-04:00" content="2015-08-23">
             2015-08-23
           </time>
         </span>
@@ -744,7 +813,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-23T09:30:09-07:00" content="2015-08-23">
+          <time itemprop="dateCreated" datetime="2015-08-23T12:30:09-04:00" content="2015-08-23">
             2015-08-23
           </time>
         </span>
@@ -779,69 +848,6 @@
 </ul>
 </li>
 </ul>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/22/Permutation-Template/" itemprop="url">
-                Permutation Template
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-22T21:54:23-07:00" content="2015-08-22">
-            2015-08-22
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/permutations/" target="_blank" rel="external">https://leetcode.com/problems/permutations/</a><br>模板一样的题。背诵并理解全文。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">List&lt;List&lt;Integer&gt;&gt; ans;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; permute(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">    Arrays.sort(nums);</span><br><span class="line">    ans = <span class="keyword">new</span> ArrayList&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line">    HashSet&lt;Integer&gt; visited = <span class="keyword">new</span> HashSet&lt;Integer&gt;();</span><br><span class="line">    List&lt;Integer&gt; path = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    dfs(nums, path, visited);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[] nums, List&lt;Integer&gt; path, HashSet&lt;Integer&gt; visited)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (path.size() == nums.length) &#123;</span><br><span class="line">        ans.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;(path));</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (visited.contains(nums[i]))</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        visited.add(nums[i]);</span><br><span class="line">        path.add(nums[i]);</span><br><span class="line">        dfs(nums, path, visited);</span><br><span class="line">        path.remove(path.size() - <span class="number">1</span>);</span><br><span class="line">        visited.remove(nums[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </span>
         
       
@@ -899,7 +905,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">121</span>
+              <span class="site-state-item-count">122</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

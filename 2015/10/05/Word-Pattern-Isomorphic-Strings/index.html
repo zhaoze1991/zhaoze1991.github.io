@@ -26,7 +26,7 @@
 
 
 
-  <meta name="keywords" content="Binary Tree," />
+  <meta name="keywords" content="HashTable," />
 
 
 
@@ -35,16 +35,16 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="Validate Binary Search Tree1234567891011TreeNode prev = null;public boolean isValidBST(TreeNode root) &amp;#123;    if (root == null)        return true;    if (isValidBST(root.left) == false)        retu">
+<meta name="description" content="这俩题是一样的。维护两个哈希表，原因在于这里的映射是双向的，所以必须都保存下来。遍历的时候检测，如果能从左边到右边，那么已经保存的映射跟当前碰到的情况是否一致，如果不一致，则返回false如果左边不能到右边，我们检测右边的元素是否已经出现过，如果是，那么返回false。Word Pattern123456789101112131415161718192021public boolean wordP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Validate Binary Search Tree">
-<meta property="og:url" content="http://zhaoze1991.github.io/2015/08/29/Validate-Binary-Search-Tree/index.html">
+<meta property="og:title" content="Word Pattern & Isomorphic Strings">
+<meta property="og:url" content="http://zhaoze1991.github.io/2015/10/05/Word-Pattern-Isomorphic-Strings/index.html">
 <meta property="og:site_name" content="Just-Zzz">
-<meta property="og:description" content="Validate Binary Search Tree1234567891011TreeNode prev = null;public boolean isValidBST(TreeNode root) &amp;#123;    if (root == null)        return true;    if (isValidBST(root.left) == false)        retu">
-<meta property="og:updated_time" content="2015-08-30T06:19:21.000Z">
+<meta property="og:description" content="这俩题是一样的。维护两个哈希表，原因在于这里的映射是双向的，所以必须都保存下来。遍历的时候检测，如果能从左边到右边，那么已经保存的映射跟当前碰到的情况是否一致，如果不一致，则返回false如果左边不能到右边，我们检测右边的元素是否已经出现过，如果是，那么返回false。Word Pattern123456789101112131415161718192021public boolean wordP">
+<meta property="og:updated_time" content="2015-10-05T20:39:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Validate Binary Search Tree">
-<meta name="twitter:description" content="Validate Binary Search Tree1234567891011TreeNode prev = null;public boolean isValidBST(TreeNode root) &amp;#123;    if (root == null)        return true;    if (isValidBST(root.left) == false)        retu">
+<meta name="twitter:title" content="Word Pattern & Isomorphic Strings">
+<meta name="twitter:description" content="这俩题是一样的。维护两个哈希表，原因在于这里的映射是双向的，所以必须都保存下来。遍历的时候检测，如果能从左边到右边，那么已经保存的映射跟当前碰到的情况是否一致，如果不一致，则返回false如果左边不能到右边，我们检测右边的元素是否已经出现过，如果是，那么返回false。Word Pattern123456789101112131415161718192021public boolean wordP">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -54,7 +54,7 @@
   };
 </script>
 
-  <title> Validate Binary Search Tree | Just-Zzz </title>
+  <title> Word Pattern & Isomorphic Strings | Just-Zzz </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -191,7 +191,7 @@
           
           
             
-              Validate Binary Search Tree
+              Word Pattern & Isomorphic Strings
             
           
         </h1>
@@ -200,8 +200,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-29T23:08:58-07:00" content="2015-08-29">
-            2015-08-29
+          <time itemprop="dateCreated" datetime="2015-10-05T15:58:43-04:00" content="2015-10-05">
+            2015-10-05
           </time>
         </span>
 
@@ -219,7 +219,8 @@
       
 
       
-        <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/validate-binary-search-tree/" target="_blank" rel="external">Validate Binary Search Tree</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">TreeNode prev = <span class="keyword">null</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValidBST</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (isValidBST(root.left) == <span class="keyword">false</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (prev != <span class="keyword">null</span> &amp;&amp; prev.val &gt;= root.val)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    prev = root;</span><br><span class="line">    <span class="keyword">return</span> isValidBST(root.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <span itemprop="articleBody"><p>这俩题是一样的。维护两个哈希表，原因在于这里的映射是双向的，所以必须都保存下来。<br>遍历的时候检测，如果能从左边到右边，那么已经保存的映射跟当前碰到的情况是否一致，如果不一致，则返回false<br>如果左边不能到右边，我们检测右边的元素是否已经出现过，如果是，那么返回false。<br><a href="https://leetcode.com/problems/word-pattern/" target="_blank" rel="external">Word Pattern</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">wordPattern</span><span class="params">(String pattern, String str)</span> </span>&#123;</span><br><span class="line">        String[] strs = str.split(<span class="string">" "</span>);</span><br><span class="line">        <span class="keyword">if</span> (strs.length != pattern.length())</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        HashMap&lt;Character, String&gt; map1 = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        HashMap&lt;String, Character&gt; map2 = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strs.length; ++i) &#123;</span><br><span class="line">            String word = strs[i];</span><br><span class="line">            <span class="keyword">char</span> c = pattern.charAt(i);</span><br><span class="line">            <span class="keyword">if</span> (map1.containsKey(c)) &#123;</span><br><span class="line">                <span class="keyword">if</span> (map1.get(c).equals(word) == <span class="keyword">false</span>)</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (map2.containsKey(word))</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                map1.put(c, word);</span><br><span class="line">                map2.put(word, c);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://leetcode.com/problems/isomorphic-strings/" target="_blank" rel="external">Isomorphic Strings</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isIsomorphic</span><span class="params">(String s, String t)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (s.length() != t.length())</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    HashMap&lt;Character, Character&gt; map1 = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    HashMap&lt;Character, Character&gt; map2 = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); ++i) &#123;</span><br><span class="line">        <span class="keyword">char</span> sc = s.charAt(i), tc = t.charAt(i);</span><br><span class="line">        <span class="keyword">if</span> (map1.containsKey(sc)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (map1.get(sc) != tc)</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (map2.containsKey(tc))</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            map1.put(sc, tc);</span><br><span class="line">            map2.put(tc, sc);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </span>
       
     </div>
@@ -228,7 +229,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Binary-Tree/" rel="tag">#Binary Tree</a>
+            <a href="/tags/HashTable/" rel="tag">#HashTable</a>
           
         </div>
       
@@ -237,13 +238,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/08/30/Reverse-Linked-List-I-II/" rel="prev">Reverse Linked List I, II</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/08/29/Tree-Traversal/" rel="next">Tree Traversal</a>
+              <a href="/2015/09/26/Excel-Sheet-Column-Title/" rel="next">Excel Sheet Column Title</a>
             
           </div>
         </div>
@@ -305,7 +304,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">121</span>
+              <span class="site-state-item-count">122</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
