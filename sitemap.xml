@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zhaoze1991.github.io/2015/10/06/Distinct-Subsequences/</loc>
+    <lastmod>2015-10-07T00:19:44.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://zhaoze1991.github.io/2015/10/05/Expression-Add-Operators/</loc>
+    <lastmod>2015-10-05T22:31:17.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://zhaoze1991.github.io/2015/10/05/Word-Pattern-Isomorphic-Strings/</loc>
     <lastmod>2015-10-05T20:39:19.000Z</lastmod>
   </url>

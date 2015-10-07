@@ -192,6 +192,152 @@
           
           
             
+              <a class="post-title-link" href="/2015/08/23/Data-Stream-Median/" itemprop="url">
+                Data Stream Median
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-08-23T17:10:18-04:00" content="2015-08-23">
+            2015-08-23
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="http://www.lintcode.com/en/problem/data-stream-median/" target="_blank" rel="external">http://www.lintcode.com/en/problem/data-stream-median/</a></p>
+<h3 id="Description">Description</h3><p>Numbers keep coming, return the median of numbers at every time a new number added.</p>
+<h3 id="Example">Example</h3><p>For numbers coming list: [1, 2, 3, 4, 5], return [1, 1, 2, 2, 3].</p>
+<p>For numbers coming list: [4, 5, 1, 3, 2, 6, 0], return [4, 4, 4, 3, 3, 3, 3].</p>
+<p>For numbers coming list: [2, 20, 100], return [2, 2, 20].</p>
+<h3 id="Challenge">Challenge</h3><p>Total run time in O(nlogn).</p>
+<h3 id="Clarification">Clarification</h3><p>What’s the definition of Median? - Median is the number that in the middle of a sorted array. If there are n numbers in a sorted array A, the median is A[(n - 1) / 2]. For example, if A=[1,2,3], median is 2. If A=[1,19], median is 1.</p>
+<h3 id="思路">思路</h3><p>定义两个堆，一个最大堆和一个最小堆，最小堆中所有的数字，大于最大堆中所有的数字，于是就将所有的数字分成了左边和右边， 最大堆中的最大值，就是median.<br>注意两个堆中元素的个数，保持最大堆中元素的个数始终大于最小堆中元素的个数。</p>
+<h3 id="Code">Code</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] medianII(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">    <span class="keyword">int</span> initSize = <span class="number">10</span>;</span><br><span class="line">    PriorityQueue&lt;Integer&gt; min = <span class="keyword">new</span> PriorityQueue&lt;Integer&gt;();</span><br><span class="line">    PriorityQueue&lt;Integer&gt; max = <span class="keyword">new</span> PriorityQueue&lt;Integer&gt;(initSize, <span class="keyword">new</span> Comparator&lt;Integer&gt;() &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Integer x, Integer y)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> y - x;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    ans[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">    max.offer(nums[<span class="number">0</span>]);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> val = max.peek();</span><br><span class="line">        <span class="keyword">if</span> (nums[i] &gt; val) &#123;</span><br><span class="line">            min.offer(nums[i]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            max.offer(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (max.size() &gt; min.size() + <span class="number">1</span>) &#123;</span><br><span class="line">            min.offer(max.poll());</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (max.size() &lt; min.size()) &#123;</span><br><span class="line">            max.offer(min.poll());</span><br><span class="line">        &#125;</span><br><span class="line">        ans[i] = max.peek();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/08/23/polymorphism/" itemprop="url">
+                Polymorphism
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-08-23T12:30:09-04:00" content="2015-08-23">
+            2015-08-23
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><h3 id="Definition_of_Polymorphism">Definition of Polymorphism</h3><p>Polymorphism is the ability of an object to take on many forms. The most common use<br>of polymorphism in OOP occurs when a parent class reference is used to refer to a<br>child class object.</p>
+<h3 id="例子">例子</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Instrument</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Instrument play"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Piano</span> <span class="keyword">extends</span> <span class="title">Instrument</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Piano play"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Violin</span> <span class="keyword">extends</span> <span class="title">Instrument</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Violin play"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义了Piano和Violin类，每个类override父类的play() method</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Good_Example</span> </span>&#123;</span><br><span class="line">    <span class="comment">// if you add more new class, you can still use this interface</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tune</span><span class="params">(Instrument i)</span> </span>&#123;</span><br><span class="line">        i.play();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Piano piano = <span class="keyword">new</span> Piano();</span><br><span class="line">        Violin violin = <span class="keyword">new</span> Violin();</span><br><span class="line">        ArrayList&lt;Instrument&gt; instrument = <span class="keyword">new</span> ArrayList&lt;Instrument&gt;();</span><br><span class="line">        instrument.add(piano);</span><br><span class="line">        instrument.add(violin)</span><br><span class="line">        <span class="comment">// you can add more for different class</span></span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">        <span class="keyword">for</span> (Instrument i : instrument) &#123;</span><br><span class="line">            tune(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bad_Example</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tune</span><span class="params">(Violin v)</span> </span>&#123;</span><br><span class="line">        v.play();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tune</span><span class="params">(Piano p)</span> </span>&#123;</span><br><span class="line">        p.play();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// if you want to add more new subclass, you need to implement</span></span><br><span class="line">    <span class="comment">// the new tune() method</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Piano piano = <span class="keyword">new</span> Piano();</span><br><span class="line">        Violin violin = <span class="keyword">new</span> Violin();</span><br><span class="line">        tune(piano);</span><br><span class="line">        tune(violin);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Benefits_of_Polymorphism">Benefits of Polymorphism</h3><ul>
+<li>Simplicity<ul>
+<li>less code</li>
+</ul>
+</li>
+<li>Extensibility<ul>
+<li>Other subclass could be added later to family of types</li>
+</ul>
+</li>
+</ul>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/08/23/Permutation-Template/" itemprop="url">
                 Permutation Template
               </a>
@@ -352,7 +498,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">122</span>
+              <span class="site-state-item-count">124</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

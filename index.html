@@ -192,6 +192,133 @@
           
           
             
+              <a class="post-title-link" href="/2015/10/06/Distinct-Subsequences/" itemprop="url">
+                Distinct Subsequences
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-10-06T14:49:39-04:00" content="2015-10-06">
+            2015-10-06
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/distinct-subsequences/" target="_blank" rel="external">Distinct Subsequences</a><br><a href="https://leetcode.com/discuss/19735/a-dp-solution-with-clarification-and-explanation" target="_blank" rel="external">Reference</a> <a href="https://leetcode.com/discuss/19735/a-dp-solution-with-clarification-and-explanation" target="_blank" rel="external">https://leetcode.com/discuss/19735/a-dp-solution-with-clarification-and-explanation</a><br>首先，这题的题目描述不咋滴，看啊看不懂。这题的意思是，在S中，有多少种取法，能够形成T. 举个例子，<br>s = rabbbit, t = rabbit, 那么s1 = ra_bbit, s2 = rab_bit, s3 = rabb_it 三种形式都能构成t中的rabbit。<br>如果s=ABCDE, t = AEC, 那么s无法构成t，返回0。<br>解法如下：<br>开一个二维的数组dp[i][j], 表示在S[0…j]中，构成T[0…i]的个数。我们先来手动写一写这个动态规划的过程(<a href="http://blog.csdn.net/abcbc/article/details/8978146" target="_blank" rel="external">图片引用</a>)：</p>
+<p></p><p align="center"><br><img src="/images/distinct-sequence.png" alt="image"><br></p><br>首先，初始化这个二维数组。dp[0][j] ＝ 1，因为如果 T=””，那么不管S是啥，都可以删掉所有元素，构成T。当i &gt; 1 的时候，假设S已经匹配了j-1个字符，得到匹配个数为dp[i][j-1]，那么无论S[j]是不是和T[i]匹配，匹配的个数至少是dp[i][j-1].<br>如果S[j]和T[i]相等，我们可以让S[j]和T[i]匹配，然后让S[j - 1]和T[i - 1]去匹配。<p></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numDistinct</span><span class="params">(String s, String t)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (s.length() == <span class="number">0</span> || t.length() == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[t.length() + <span class="number">1</span>][s.length() + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= s.length(); ++i)</span><br><span class="line">        dp[<span class="number">0</span>][i] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= t.length(); ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= s.length(); ++j) &#123;</span><br><span class="line">            dp[i][j] = dp[i][j - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (s.charAt(j - <span class="number">1</span>) == t.charAt(i - <span class="number">1</span>)) &#123;</span><br><span class="line">                dp[i][j] += dp[i-<span class="number">1</span>][j-<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[t.length()][s.length()];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/05/Expression-Add-Operators/" itemprop="url">
+                Expression Add Operators
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-10-05T18:09:46-04:00" content="2015-10-05">
+            2015-10-05
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/expression-add-operators/" target="_blank" rel="external">Expression Add Operators</a><br>这题因为没有涉及除法，所以可以用divide and conquer来做。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; ans;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">addOperators</span><span class="params">(String num, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (num == <span class="keyword">null</span> || num.length() == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> ans;</span><br><span class="line">        dfs(num, <span class="string">""</span>, <span class="number">0</span>, <span class="number">0</span>, target, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(String num, String path, <span class="keyword">int</span> begin, <span class="keyword">long</span> sum, <span class="keyword">int</span> target, <span class="keyword">long</span> prev)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (begin &gt;= num.length()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (sum == target) &#123;</span><br><span class="line">                ans.add(path);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = begin; i &lt; num.length(); ++i) &#123;</span><br><span class="line">            <span class="comment">// skip 05</span></span><br><span class="line">            <span class="keyword">if</span> (i != begin &amp;&amp; num.charAt(begin) == <span class="string">'0'</span>)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">long</span> val = Long.parseLong(num.substring(begin, i + <span class="number">1</span>));</span><br><span class="line">            <span class="keyword">if</span> (begin == <span class="number">0</span>) &#123;</span><br><span class="line">                dfs(num, path + val, i + <span class="number">1</span>, <span class="number">0</span> + val, target, val);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                dfs(num, path + <span class="string">"+"</span> + val, i + <span class="number">1</span>, sum + val, target, val);</span><br><span class="line">                dfs(num, path + <span class="string">"-"</span> + val, i + <span class="number">1</span>, sum - val, target, -val);</span><br><span class="line">                dfs(num, path + <span class="string">"*"</span> + val, i + <span class="number">1</span>, sum + val * prev - prev, target, val * prev);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/10/05/Word-Pattern-Isomorphic-Strings/" itemprop="url">
                 Word Pattern & Isomorphic Strings
               </a>
@@ -690,132 +817,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/20/4-Sum/" itemprop="url">
-                4-Sum
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-20T11:01:57-04:00" content="2015-09-20">
-            2015-09-20
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/4sum/" target="_blank" rel="external">4Sum</a><br>注意点在于，去掉重复，在第二个for循环中，首先要判断j是不是等于i+1，如果j==i+1, 那么即使数字一样也没事儿。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; fourSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length &lt; <span class="number">4</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    Arrays.sort(nums);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length - <span class="number">3</span>; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i != <span class="number">0</span> &amp;&amp; nums[i] == nums[i - <span class="number">1</span>])</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; nums.length - <span class="number">2</span>; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (j != i + <span class="number">1</span> &amp;&amp; nums[j] == nums[j - <span class="number">1</span>])</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">int</span> begin = j + <span class="number">1</span>, end = nums.length - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span> (begin &lt; end) &#123;</span><br><span class="line">                <span class="keyword">int</span> sum = nums[i] + nums[j] + nums[begin] + nums[end];</span><br><span class="line">                <span class="keyword">if</span> (sum == target) &#123;</span><br><span class="line">                    List&lt;Integer&gt; tmp = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">                    tmp.add(nums[i]);</span><br><span class="line">                    tmp.add(nums[j]);</span><br><span class="line">                    tmp.add(nums[begin]);</span><br><span class="line">                    tmp.add(nums[end]);</span><br><span class="line">                    ans.add(tmp);</span><br><span class="line">                    <span class="keyword">while</span> (begin &lt; end &amp;&amp; nums[begin] == nums[begin + <span class="number">1</span>])</span><br><span class="line">                        ++begin;</span><br><span class="line">                    <span class="keyword">while</span> (begin &lt; end &amp;&amp; nums[end] == nums[end - <span class="number">1</span>])</span><br><span class="line">                        --end;</span><br><span class="line">                    ++begin;</span><br><span class="line">                    --end;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (sum &gt; target)</span><br><span class="line">                    --end;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    ++begin;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/19/Compare-Version-Numbers/" itemprop="url">
-                Compare Version Numbers
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-19T20:48:06-04:00" content="2015-09-19">
-            2015-09-19
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/compare-version-numbers/" target="_blank" rel="external">Compare Version Numbers</a><br><strong>⚠️注意</strong>要把两个字符串全遍历完。因为有”1.0.1”和”1”这种情况，如果early return就出问题了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareVersion</span><span class="params">(String version1, String version2)</span> </span>&#123;</span><br><span class="line">    String[] v1 = version1.split(<span class="string">"\\."</span>);</span><br><span class="line">    String[] v2 = version2.split(<span class="string">"\\."</span>);</span><br><span class="line">    <span class="keyword">int</span> len = v1.length &gt; v2.length ? v1.length : v2.length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> num1 = i &lt; v1.length ? Integer.parseInt(v1[i]) : <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> num2 = i &lt; v2.length ? Integer.parseInt(v2[i]) : <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (num1 &lt; num2)</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (num1 &gt; num2)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -854,7 +855,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">122</span>
+              <span class="site-state-item-count">124</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
