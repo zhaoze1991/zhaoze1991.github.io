@@ -1,0 +1,649 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+
+
+  <meta name="keywords" content="Git,Notebook," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="Git Tutor会一点儿git。。但是从来没系统学过。。趁着还没上班，消遣时间看看.
+1. Git1.1 What is a version control system?A Version Control System(VCS) allows you to track the history of a collection of files. It supports creating diff">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git - Tutor 读书笔记">
+<meta property="og:url" content="http://zhaoze1991.github.io/2016/01/23/Git-Tutor-读书笔记/index.html">
+<meta property="og:site_name" content="Just-Zzz">
+<meta property="og:description" content="Git Tutor会一点儿git。。但是从来没系统学过。。趁着还没上班，消遣时间看看.
+1. Git1.1 What is a version control system?A Version Control System(VCS) allows you to track the history of a collection of files. It supports creating diff">
+<meta property="og:image" content="http://zhaoze1991.github.io/images/add_change_to_git_repo.png">
+<meta property="og:image" content="http://zhaoze1991.github.io/images/commit_object.png">
+<meta property="og:updated_time" content="2016-01-23T22:42:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git - Tutor 读书笔记">
+<meta name="twitter:description" content="Git Tutor会一点儿git。。但是从来没系统学过。。趁着还没上班，消遣时间看看.
+1. Git1.1 What is a version control system?A Version Control System(VCS) allows you to track the history of a collection of files. It supports creating diff">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> Git - Tutor 读书笔记 | Just-Zzz </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-66666879-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Just-Zzz</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'QKpdpxpWyg7TyzmCAT81','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              Git - Tutor 读书笔记
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-23T15:45:48-05:00" content="2016-01-23">
+            2016-01-23
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p><a href="http://www.vogella.com/tutorials/Git/article.html" target="_blank" rel="external">Git Tutor</a><br>会一点儿git。。但是从来没系统学过。。趁着还没上班，消遣时间看看.</p>
+<h1 id="1-_Git">1. Git</h1><h2 id="1-1_What_is_a_version_control_system?">1.1 What is a version control system?</h2><p>A Version Control System(VCS) allows you to track the history of a collection of files. It supports creating different versions of this collection. These versions are stored in a specific place, typically called a repository.</p>
+<h2 id="1-2_Localized_and_centralized_version_control_systems-">1.2 Localized and centralized version control systems.</h2><p>A localized version control system keeps local copies of the files.<br>A centralized version control system provides a server software component which stores and manages the different versions of the files and let developers copy(checkout) a certain version onto their individual computer.</p>
+<h2 id="1-3_What_is_a_distributed_version_control_system?">1.3 What is a distributed version control system?</h2><p>In a distributed version control system, each user has a complete local copy of a repository on his individual computer.</p>
+<h1 id="2-_Tools">2. Tools</h1><h2 id="2-1_The_Git_command_line_tools">2.1 The Git command line tools</h2><p>The original tooling for Git is based on the command line.</p>
+<h2 id="2-2_Separating_parameters_and_file_arguments_in_Git_commands-">2.2 Separating parameters and file arguments in Git commands.</h2><p>The Double hyphens(–) in Git separates out any references or other options from a path(usually file name).</p>
+<h1 id="3-_Important_terminology_in_Git-">3. Important terminology in Git.</h1><h2 id="3-1_Cloning,_creating_and_deleting_a_Git_repository">3.1 Cloning, creating and deleting a Git repository</h2><h2 id="3-2_Bare_repositories_and_non-bare_repositories">3.2 Bare repositories and non-bare repositories</h2><ul>
+<li>bare repository are supposed to be used on a server for sharing changes coming from different developers.</li>
+<li>non-bare repositories target the user.This is the <strong>default</strong> type which is created if you do not specify any parameter during the clone operation.</li>
+</ul>
+<h2 id="3-3_Working_tree">3.3 Working tree</h2><p>A local repository provides at least one collection of files which originate from a certain version of the repository. This collection of files is called the <em>working tree</em>.</p>
+<h2 id="3-4_Local_operations">3.4 Local operations</h2><h2 id="3-5_Synchronization_with_remote_repositories">3.5 Synchronization with remote repositories</h2><h2 id="3-6_The_concept_of_branches">3.6 The concept of branches</h2><h1 id="4-_The_process_of_adding_to_a_Git_repository_via_staging_and_committing">4. The process of adding to a Git repository via staging and committing</h1><h2 id="4-1_Adding_changes_to_a_Git_repository">4.1 Adding changes to a Git repository</h2><ul>
+<li>add selected changes to the something called the <em>staging area</em></li>
+<li>afterwards you commit the changes stored in the <em>staging area</em> to the repository<br>The process is depicted in the following graphic.<br><img src="/images/add_change_to_git_repo.png" alt="image"></li>
+</ul>
+<h2 id="4-2_Adding_to_the_staging_area">4.2 Adding to the staging area</h2><p>You need to mark changes in the working tree to be relevant for Git. This process is called staging or add changes to the staging area</p>
+<h2 id="4-3_Committing_to_the_repository">4.3 Committing to the repository</h2><p>After adding the selected files to the staging area, you can commit these files to add them permanently to the Git repository. <em>Committing</em> creates a new persistent snapshot(called <em>commit</em> or <em>commit object</em>) of the staging area in the Git repository. A commit object, like all objects in Git, is immutable.</p>
+<h2 id="4-4_Committing_changes">4.4 Committing changes</h2><p>If you commit changes to your Git repository, you create a new commit object in the Git Repository.</p>
+<h1 id="5-_The_details_of_the_commit_objects">5. The details of the commit objects</h1><h2 id="5-1_Commit_object">5.1 Commit object</h2><p>Conceptually a commit object represents a version of all files tracked in the repository at the time the commit was created. Commits know their parents and this way capture the version history of the repository.</p>
+<h2 id="5-2_Technical_details_of_a_commit_object">5.2 Technical details of a commit object</h2><p>This commit object is addressable via a hash (SHA-1 checksum). This hash is calculated based on the content of the files, the content of the directories, the complete history of up to the new commit, the committer, the commit message, and several other factors.</p>
+<p>This means that Git is safe, you cannot manipulate a file or the commit message in the Git repository without Git noticing that corresponding hash does not fit anymore to the content.</p>
+<p>The commit object points to the individual files in this commit via a tree object. The files are stored in the Git repository as blob objects and might be packed by Git for better performance and more compact storage. Blobs are addressed via their SHA-1 hash.</p>
+<p>Packing involves storing changes as deltas, compression and storage of many objects in a single pack file. Pack files are accompanied by one or multiple index files which speedup access to individual objects stored in these packs.</p>
+<p>A commit object is depicted in the following picture.<br><img src="/images/commit_object.png" alt="image"></p>
+<h2 id="5-3_Hash_and_abbreviated_commit_hash">5.3 Hash and abbreviated commit hash</h2><p>In a typical Git repository you need fewer characters to uniquely identify a commit object. This short form is called the abbreviated commit hash or abbreviated hash</p>
+<h1 id="6-_Summary_of_Git_Terminology">6. Summary of Git Terminology</h1><p><a href="http://www.vogella.com/tutorials/Git/article.html#gitterminology_section" target="_blank" rel="external">See reference</a></p>
+<h1 id="7-_Commit_references">7. Commit references</h1><h2 id="7-1_Predecessor_commits,_parents_and_commit_references">7.1 Predecessor commits, parents and commit references</h2><p>Each commit has zero or more direct predecessor commits. the first commit has zero parents, merge commits have two or more parents, most commits have one parent.<br>In Git, you typically need to address certain commits. Git allows addressing commits via commit reference for this purpose.</p>
+<p>A commit reference can be a simple reference, in this case it points directly to a commit. This is the case for a commit hash or a tag.</p>
+<p>A commit reference can also be symbolic reference, in this case it points to another reference. For example, HEAD is a symbolic ref for a branch if it points to a branch.</p>
+<h2 id="7-2_Branch_references_and_the_HEAD_reference">7.2 Branch references and the HEAD reference</h2><p>A branch points to a specific commit. You can use the branch name as reference to the corresponding commit. You can also use HEAD to reference the corresponding commit.</p>
+<h2 id="7-3_Parent_ancestor_commit">7.3 Parent ancestor commit</h2><p>You can use ^ (caret) and ~ (tilde) to reference predecessor commit objects from other references. You can also combine the ^ and ~ operators<br>The Git terminology is <em>parent</em> for ^ and <em>ancestor</em> for ~.</p>
+<h2 id="7-4-_Using_caret_and_tilde_for_commit_references">7.4. Using caret and tilde for commit references</h2><p>For example, you can use the HEAD~1 or HEAD~ reference to access the first parent of the commit to which the HEAD pointer currently points.</p>
+<h2 id="7-5_Commit_ranges_with_the_double_dot_operator">7.5 Commit ranges with the double dot operator</h2><p>Think of c1..c2 as all commits as of c1 (not including c1) until commit c2.</p>
+<h3 id="7-6-_Commit_ranges_with_the_triple_dot_operator">7.6. Commit ranges with the triple dot operator</h3><p>The triple dot operator allows you to select all commits which are reachable either from commit c1 or commit c2 but not from both of them.</p>
+<h1 id="9-_Different_levels_of_Git_configuration">9. Different levels of Git configuration</h1></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Git/" rel="tag">#Git</a>
+          
+            <a href="/tags/Notebook/" rel="tag">#Notebook</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/11/MapReduce-Content/" rel="next">Data-Intensive Text Processing with MapReduce</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.png" alt="Zhaoze Zhou" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Zhaoze Zhou</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">126</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-_Git"><span class="nav-number">1.</span> <span class="nav-text">1. Git</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1_What_is_a_version_control_system?"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 What is a version control system?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2_Localized_and_centralized_version_control_systems-"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Localized and centralized version control systems.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3_What_is_a_distributed_version_control_system?"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 What is a distributed version control system?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-_Tools"><span class="nav-number">2.</span> <span class="nav-text">2. Tools</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1_The_Git_command_line_tools"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 The Git command line tools</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2_Separating_parameters_and_file_arguments_in_Git_commands-"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 Separating parameters and file arguments in Git commands.</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-_Important_terminology_in_Git-"><span class="nav-number">3.</span> <span class="nav-text">3. Important terminology in Git.</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1_Cloning,_creating_and_deleting_a_Git_repository"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 Cloning, creating and deleting a Git repository</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2_Bare_repositories_and_non-bare_repositories"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 Bare repositories and non-bare repositories</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3_Working_tree"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 Working tree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4_Local_operations"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 Local operations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5_Synchronization_with_remote_repositories"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 Synchronization with remote repositories</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6_The_concept_of_branches"><span class="nav-number">3.6.</span> <span class="nav-text">3.6 The concept of branches</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-_The_process_of_adding_to_a_Git_repository_via_staging_and_committing"><span class="nav-number">4.</span> <span class="nav-text">4. The process of adding to a Git repository via staging and committing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1_Adding_changes_to_a_Git_repository"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 Adding changes to a Git repository</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2_Adding_to_the_staging_area"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 Adding to the staging area</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3_Committing_to_the_repository"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 Committing to the repository</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4_Committing_changes"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 Committing changes</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-_The_details_of_the_commit_objects"><span class="nav-number">5.</span> <span class="nav-text">5. The details of the commit objects</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1_Commit_object"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 Commit object</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2_Technical_details_of_a_commit_object"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 Technical details of a commit object</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3_Hash_and_abbreviated_commit_hash"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 Hash and abbreviated commit hash</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-_Summary_of_Git_Terminology"><span class="nav-number">6.</span> <span class="nav-text">6. Summary of Git Terminology</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-_Commit_references"><span class="nav-number">7.</span> <span class="nav-text">7. Commit references</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1_Predecessor_commits,_parents_and_commit_references"><span class="nav-number">7.1.</span> <span class="nav-text">7.1 Predecessor commits, parents and commit references</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2_Branch_references_and_the_HEAD_reference"><span class="nav-number">7.2.</span> <span class="nav-text">7.2 Branch references and the HEAD reference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-3_Parent_ancestor_commit"><span class="nav-number">7.3.</span> <span class="nav-text">7.3 Parent ancestor commit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-4-_Using_caret_and_tilde_for_commit_references"><span class="nav-number">7.4.</span> <span class="nav-text">7.4. Using caret and tilde for commit references</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-5_Commit_ranges_with_the_double_dot_operator"><span class="nav-number">7.5.</span> <span class="nav-text">7.5 Commit ranges with the double dot operator</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-6-_Commit_ranges_with_the_triple_dot_operator"><span class="nav-number">7.5.1.</span> <span class="nav-text">7.6. Commit ranges with the triple dot operator</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-_Different_levels_of_Git_configuration"><span class="nav-number">8.</span> <span class="nav-text">9. Different levels of Git configuration</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhaoze Zhou</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
