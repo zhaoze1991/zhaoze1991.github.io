@@ -192,6 +192,69 @@
           
           
             
+              <a class="post-title-link" href="/2015/08/27/Add-Binary/" itemprop="url">
+                Add Binary
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-08-27T17:04:42-04:00" content="2015-08-27">
+            2015-08-27
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/add-binary/" target="_blank" rel="external">Add Binary</a><br>难得一次AC</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">addBinary</span><span class="params">(String a, String b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[a.length() + b.length() + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> ia = a.length() - <span class="number">1</span>, ib = b.length() - <span class="number">1</span>, i = ans.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> carry = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (ia &gt;= <span class="number">0</span> &amp;&amp; ib &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> sum = carry + a.charAt(ia--) - <span class="string">'0'</span> + b.charAt(ib--) - <span class="string">'0'</span>;</span><br><span class="line">        <span class="keyword">if</span> (sum == <span class="number">3</span>) &#123;</span><br><span class="line">            carry = <span class="number">1</span>;</span><br><span class="line">            ans[i--] = <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (sum  == <span class="number">2</span>) &#123;</span><br><span class="line">            carry = <span class="number">1</span>;</span><br><span class="line">            ans[i--] = <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ans [i--] = sum;</span><br><span class="line">            carry = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (ia &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> sum = carry + a.charAt(ia--) - <span class="string">'0'</span>;</span><br><span class="line">        <span class="keyword">if</span> (sum == <span class="number">2</span>) &#123;</span><br><span class="line">            carry = <span class="number">1</span>;</span><br><span class="line">            ans[i--] = <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            carry = <span class="number">0</span>;</span><br><span class="line">            ans[i--] = sum;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (ib &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> sum = carry + b.charAt(ib--) - <span class="string">'0'</span>;</span><br><span class="line">        <span class="keyword">if</span> (sum == <span class="number">2</span>) &#123;</span><br><span class="line">            carry = <span class="number">1</span>;</span><br><span class="line">            ans[i--] = <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            carry = <span class="number">0</span>;</span><br><span class="line">            ans[i--] = sum;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (carry != <span class="number">0</span>) &#123;</span><br><span class="line">        ans[i--] = carry;</span><br><span class="line">    &#125;</span><br><span class="line">    i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; ans.length &amp;&amp; ans[i] == <span class="number">0</span>)</span><br><span class="line">        ++i;</span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    <span class="keyword">while</span> (i&lt; ans.length) &#123;</span><br><span class="line">        sb.append(ans[i++]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sb.length() == <span class="number">0</span> ?  <span class="string">"0"</span> : sb.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/08/27/Simplify-Path/" itemprop="url">
                 Simplify Path
               </a>
@@ -775,70 +838,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/26/Rotate-Image/" itemprop="url">
-                Rotate Image
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-26T22:45:43-04:00" content="2015-08-26">
-            2015-08-26
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/rotate-image/" target="_blank" rel="external">Problem Description</a><br>这题按照CC150上的做法，我是死活写不对。幸好大牛给了条活路，先把矩阵上下行交换，然后，沿着对角线交换<br>图片引用自：<a href="http://fisherlei.blogspot.com/2013/01/leetcode-rotate-image.html" target="_blank" rel="external">http://fisherlei.blogspot.com/2013/01/leetcode-rotate-image.html</a></p>
-<p></p><p align="center"><br><img src="/images/rotate_image.png" alt="image"><br></p><br>略微有点不一样，结果都一样的。<p></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (matrix == <span class="keyword">null</span> || matrix.length == <span class="number">0</span> || matrix[<span class="number">0</span>] == <span class="keyword">null</span> || matrix[<span class="number">0</span>].length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> n = matrix.length - <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// reverse</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrix.length / <span class="number">2</span> ; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; matrix[<span class="number">0</span>].length; ++j) &#123;</span><br><span class="line">            <span class="keyword">int</span> temp = matrix[i][j];</span><br><span class="line">            matrix[i][j] = matrix[n - i][j];</span><br><span class="line">            matrix[n - i][j] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// symmetry swap</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrix.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; matrix[<span class="number">0</span>].length; ++j) &#123;</span><br><span class="line">            <span class="keyword">int</span> temp = matrix[i][j];</span><br><span class="line">            matrix[i][j] = matrix[j][i];</span><br><span class="line">            matrix[j][i] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -877,7 +876,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">126</span>
+              <span class="site-state-item-count">127</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -891,7 +890,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">30</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

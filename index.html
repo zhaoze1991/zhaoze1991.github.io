@@ -192,6 +192,102 @@
           
           
             
+              <a class="post-title-link" href="/2016/01/23/Ry’s-Objective-C-Tutorial-读书笔记/" itemprop="url">
+                Ry's Objective-C Tutorial 读书笔记
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-23T17:57:22-05:00" content="2016-01-23">
+            2016-01-23
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="http://rypress.com/tutorials/objective-c/index" target="_blank" rel="external">Ry’s Objective-C Tutorial </a></p>
+<h1 id="1-_Introduction">1. Introduction</h1><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#import <span class="title">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">// insert code here...</span></span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"Hello, World!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Inside of the <em>@autoreleasepool</em> block is where you can write code and experiment with the snippets from this tutorial.</p>
+<p>Also note that Objective-C strings are always prefixed with an at (@) symbol.</p>
+<h1 id="2-_C_Basics">2. C Basics</h1><p>Objective-C is a strict superset of C, which means that it’s possible to seamlessly combine both languages in the same source file.</p>
+<h2 id="2-1_Comments">2.1 Comments</h2><h2 id="2-2_Variables">2.2 Variables</h2><h2 id="2-3_Constants">2.3 Constants</h2><p>The <strong>const</strong> variable  modifier can be used to tell the compiler that a variable is never allowed to change</p>
+<h2 id="2-4_Arithmetic">2.4 Arithmetic</h2><h2 id="2-5_Conditionals">2.5 Conditionals</h2><h2 id="2-6_Loops">2.6 Loops</h2><p>While it’s technically not a part of the C programming language, this is an appropriate time to introduce the for-in loop. This is referred to as the fast-enumeration syntax because it’s a more efficient way to iterate over Objective-C collections like NSSet and NSArray than the traditional for and while loops.</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// For-in loops ("Fast-enumeration," specific to Objective-C)</span></span><br><span class="line"><span class="built_in">NSArray</span> *models = @[<span class="string">@"Ford"</span>, <span class="string">@"Honda"</span>, <span class="string">@"Nissan"</span>, <span class="string">@"Porsche"</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">id</span> model <span class="keyword">in</span> models) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, model);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-7_Macros">2.7 Macros</h2><h2 id="2-8_Typedef">2.8 Typedef</h2><h2 id="2-9_Structs">2.9 Structs</h2><h2 id="2-10_Enums">2.10 Enums</h2><h2 id="2-11_Primitive_Arrays">2.11 Primitive Arrays</h2><h2 id="2-12_Pointers">2.12 Pointers</h2><ul>
+<li>The reference operator (&amp;) returns the memory address of a normal variable. This is how you create pointers.</li>
+<li>The dereference operator (*) returns the contents of a pointer’s memory address.</li>
+</ul>
+<h2 id="2-13_The_Null_Pointer">2.13 The Null Pointer</h2><h2 id="2-14_Void_Pointers">2.14 Void Pointers</h2><p>A void pointer is a generic type that can point to anything. It’s essentially a reference to an arbitrary memory address. Accordingly, more information is required to interpret the contents of a void pointer.<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> year = <span class="number">1967</span>;</span><br><span class="line"><span class="keyword">void</span> *genericPointer = &amp;year;</span><br><span class="line"><span class="keyword">int</span> *intPointer = (<span class="keyword">int</span> *)genericPointer;</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>, *intPointer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-15_Pointers_in_Objective-C">2.15 Pointers in Objective-C</h3><p>The only thing that you really have to understand is that all Object-C objects are referenced as pointers. For instance, an NSString object must be stored as a pointer, not a normal variable:<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *model = <span class="string">@"Honda"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSString</span> *anObject;    <span class="comment">// An Objective-C object</span></span><br><span class="line">anObject = <span class="literal">NULL</span>;       <span class="comment">// This will work</span></span><br><span class="line">anObject = <span class="literal">nil</span>;        <span class="comment">// But this is preferred</span></span><br><span class="line"><span class="keyword">int</span> *aPointer;         <span class="comment">// A plain old C pointer</span></span><br><span class="line">aPointer = <span class="literal">nil</span>;        <span class="comment">// Don't do this</span></span><br><span class="line">aPointer = <span class="literal">NULL</span>;       <span class="comment">// Do this instead</span></span><br></pre></td></tr></table></figure></p>
+<p>After defining an object pointer, you can basically forget about the fact that it’s a pointer and interact with it as if it were a normal variable. This will be made abundantly clear from the examples throughout the rest of this tutorial.</p>
+<h2 id="2-16_Summary">2.16 Summary</h2><h1 id="3-_Functions">3. Functions</h1><h2 id="3-1_Basic_Syntax">3.1 Basic Syntax</h2><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.m</span></span><br><span class="line"><span class="preprocessor">#import <span class="title">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NSString</span> *getRandomMake(<span class="built_in">NSArray</span> *makes) &#123;</span><br><span class="line">    <span class="keyword">int</span> maximum = (<span class="keyword">int</span>)[makes count];</span><br><span class="line">    <span class="keyword">int</span> randomIndex = arc4random_uniform(maximum);</span><br><span class="line">    <span class="keyword">return</span> makes[randomIndex];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="built_in">NSArray</span> *makes = @[<span class="string">@"Honda"</span>, <span class="string">@"Ford"</span>, <span class="string">@"Nissan"</span>, <span class="string">@"Porsche"</span>];</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"Selected a %@"</span>, getRandomMake(makes));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-2_Declarations_vs-_Implementations">3.2 Declarations vs. Implementations</h3><h3 id="3-3_The_Static_Keyword">3.3 The Static Keyword</h3><h4 id="3-3-1_Static_Functions">3.3.1 Static Functions</h4><p>By default, all functions have a global scope. This means that as soon as you define a function in one file, it’s immediately available everywhere else. The <em>static</em> specifier lets you limit the function’s scope to the current file, which is useful for creating “private” functions and avoiding naming conflicts.</p>
+<h4 id="3-3-2_Static_Local_Variables">3.3.2 Static Local Variables</h4><h3 id="3-4_Function_Libraries">3.4 Function Libraries</h3><p>Objective-C doesn’t support namespaces, so to prevent naming collisions with other global functions, large frameworks need to prefix their functions (and classes) with a unique identifier. This is why you see built-in functions like NSMakeRange() and CGImageCreate() instead of just makeRange() and imageCreate().</p>
+<h1 id="4-_Classes">4. Classes</h1><h2 id="4-1_Creating_Classes">4.1 Creating Classes</h2><h2 id="4-2_Interfaces">4.2 Interfaces</h2><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Car.h</span></span><br><span class="line"><span class="preprocessor">#import <span class="title">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Car</span> : <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Protected instance variables (not recommended)</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">copy</span>) <span class="built_in">NSString</span> *model;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)drive;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>The minus sign prepended to the method marks it as instance method(oppose to a class method).</p>
+<h2 id="4-3_Implementations">4.3 Implementations</h2><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Car.m</span></span><br><span class="line"><span class="preprocessor">#import <span class="title">"Car.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Private instance variables</span></span><br><span class="line">    <span class="keyword">double</span> _odometer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@synthesize</span> model = _model;    <span class="comment">// Optional for Xcode 4.4+</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)drive &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Driving a %@. Vrooooom!"</span>, <span class="keyword">self</span><span class="variable">.model</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p><em>@synthesize</em> is a convenience directive that automatically generates accessor methods for the property.<br>By default, the getter is simply the property name(<em>model</em>), and the setter is capitalized name with the set prefix.(<em>setModel</em>). The <em>_model</em> portion of the synthesize statement defines the private instance variable name to use for the property.</p>
+<h2 id="4-4_Instantiation_and_Usage">4.4 Instantiation and Usage</h2><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.m</span></span><br><span class="line"><span class="preprocessor">#import <span class="title">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="preprocessor">#import <span class="title">"Car.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        Car *toyota = [[Car alloc] init];</span><br><span class="line"></span><br><span class="line">        [toyota setModel:<span class="string">@"Toyota Corolla"</span>];</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"Created a %@"</span>, [toyota model]);</span><br><span class="line"></span><br><span class="line">        toyota<span class="variable">.model</span> = <span class="string">@"Toyota Camry"</span>;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"Changed the car to a %@"</span>, toyota<span class="variable">.model</span>);</span><br><span class="line"></span><br><span class="line">        [toyota drive];</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>It’s worth <strong>repeating</strong> that all objects must be stored as pointers.</p>
+<h2 id="4-5_Class_Methods_and_Variables">4.5 Class Methods and Variables</h2><p>The above snippets define instance-level properties and methods, but it’s also possible to define class-level ones.</p>
+<p>Class method declarations looks just like instance methods, except they are prefixed with a <em>plus</em> sign instead of a minus sign. For example:</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Car.h</span></span><br><span class="line">+ (<span class="keyword">void</span>)setDefaultModel:(<span class="built_in">NSString</span> *)aModel;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Car.m</span></span><br><span class="line"><span class="preprocessor">#import <span class="title">"Car.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> *_defaultModel;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">void</span>)setDefaultModel:(<span class="built_in">NSString</span> *)aModel &#123;</span><br><span class="line">    _defaultModel = [aModel <span class="keyword">copy</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-6_“Constructor”_Methods">4.6 “Constructor” Methods</h2><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Car.m</span></span><br><span class="line">- (<span class="keyword">id</span>)initWithModel:(<span class="built_in">NSString</span> *)aModel &#123;</span><br><span class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> init];</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="comment">// Any custom setup work goes here</span></span><br><span class="line">        _model = [aModel <span class="keyword">copy</span>];</span><br><span class="line">        _odometer = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">id</span>)init &#123;</span><br><span class="line">    <span class="comment">// Forward to the "designated" initialization method</span></span><br><span class="line">    <span class="keyword">return</span> [<span class="keyword">self</span> initWithModel:_defaultModel];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Initialization methods should always return a reference to the object itself, and if it cannot be initialized, it should return nil.</p>
+<h3 id="4-6-1_Class-Level_Initialization">4.6.1 Class-Level Initialization</h3><p>The initialize method is the class-level equivalent of init. It gives you a chance to set up the class before anyone uses it.</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Car.m</span></span><br><span class="line">+ (<span class="keyword">void</span>)initialize &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> == [Car class]) &#123;</span><br><span class="line">        <span class="comment">// Makes sure this isn't executed more than once</span></span><br><span class="line">        _defaultModel = <span class="string">@"Nissan Versa"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-7_Dynamic_Typing">4.7 Dynamic Typing</h2><h1 id="5_Properties">5 Properties</h1><p>The goal of the <em>@property</em> directive is to make it easy to create and configure properties by automatically generating these accessor methods. It allows you to specify the behavior of a public property on a semantic level, and it takes care of the implementation details for you.</p>
+<h2 id="5-1_The_@property_Directive">5.1 The @property Directive</h2><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Car.h</span></span><br><span class="line"><span class="preprocessor">#import <span class="title">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Car</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> <span class="built_in">BOOL</span> running;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Car.m</span></span><br><span class="line"><span class="preprocessor">#import <span class="title">"Car.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Car</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@synthesize</span> running = _running;    <span class="comment">// Optional for Xcode 4.4+</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// behind the scene</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)running &#123;</span><br><span class="line">    <span class="keyword">return</span> _running;</span><br><span class="line">&#125;</span><br><span class="line">- (<span class="keyword">void</span>)setRunning:(<span class="built_in">BOOL</span>)newValue &#123;</span><br><span class="line">    _running = newValue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// main.m</span></span><br><span class="line"><span class="preprocessor">#import <span class="title">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="preprocessor">#import <span class="title">"Car.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        Car *honda = [[Car alloc] init];</span><br><span class="line">        honda<span class="variable">.running</span> = <span class="literal">YES</span>;                <span class="comment">// [honda setRunning:YES]</span></span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%d"</span>, honda<span class="variable">.running</span>);        <span class="comment">// [honda running]</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="5-2_The_getter=_and_setter=_Attributes">5.2 The getter= and setter= Attributes</h2><p>If you don’t like @property’s default naming conventions, you can change the getter/setter method names with the getter= and setter= attributes.</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span> (getter=isRunning) <span class="built_in">BOOL</span> running;</span><br><span class="line"></span><br><span class="line">Car *honda = [[Car alloc] init];</span><br><span class="line">honda<span class="variable">.running</span> = <span class="literal">YES</span>;                <span class="comment">// [honda setRunning:YES]</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>, honda<span class="variable">.running</span>);        <span class="comment">// [honda isRunning]</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>, [honda running]);      <span class="comment">// Error: method no longer exists</span></span><br></pre></td></tr></table></figure>
+<h2 id="5-3_The_readonly_Attribute">5.3 The readonly Attribute</h2><h2 id="5-4_The_nonatomic_Attribute">5.4 The nonatomic Attribute</h2></span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2016/01/23/Git-Tutor-读书笔记/" itemprop="url">
                 Git - Tutor 读书笔记
               </a>
@@ -257,7 +353,7 @@
 <h2 id="7-4-_Using_caret_and_tilde_for_commit_references">7.4. Using caret and tilde for commit references</h2><p>For example, you can use the HEAD~1 or HEAD~ reference to access the first parent of the commit to which the HEAD pointer currently points.</p>
 <h2 id="7-5_Commit_ranges_with_the_double_dot_operator">7.5 Commit ranges with the double dot operator</h2><p>Think of c1..c2 as all commits as of c1 (not including c1) until commit c2.</p>
 <h3 id="7-6-_Commit_ranges_with_the_triple_dot_operator">7.6. Commit ranges with the triple dot operator</h3><p>The triple dot operator allows you to select all commits which are reachable either from commit c1 or commit c2 but not from both of them.</p>
-<h1 id="9-_Different_levels_of_Git_configuration">9. Different levels of Git configuration</h1></span>
+</span>
         
       
     </div>
@@ -787,71 +883,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/20/Longest-Substring-with-At-Most-K-Distinct-Characters/" itemprop="url">
-                Longest Substring with At Most K Distinct Characters
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-20T23:46:55-04:00" content="2015-09-20">
-            2015-09-20
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="http://www.lintcode.com/en/problem/longest-substring-with-at-most-k-distinct-characters/" target="_blank" rel="external">Longest Substring with At Most K Distinct Characters</a><br>这道题有意思的地方在于，就算map中unique的字符不到k，也得比较长度，否则就少算了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstringKDistinct</span><span class="params">(String s, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write your code here</span></span><br><span class="line">    <span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    HashMap&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>, max = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); ++i) &#123;</span><br><span class="line">        <span class="keyword">char</span> c = s.charAt(i);</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(c)) &#123;</span><br><span class="line">            map.put(c, map.get(c) + <span class="number">1</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            map.put(c, <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">while</span> (map.size() &gt; k) &#123;</span><br><span class="line">                c = s.charAt(left++);</span><br><span class="line">                map.put(c, map.get(c) - <span class="number">1</span>);</span><br><span class="line">                <span class="keyword">if</span> (map.get(c) == <span class="number">0</span>) &#123;</span><br><span class="line">                    map.remove(c);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        max = Math.max(max, i - left + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>wrong answer</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstringKDistinct</span><span class="params">(String s, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write your code here</span></span><br><span class="line">    <span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    HashMap&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>, count = <span class="number">0</span>, max = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); ++i) &#123;</span><br><span class="line">        <span class="keyword">char</span> c = s.charAt(i);</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(c)) &#123;</span><br><span class="line">            map.put(c, map.get(c) + <span class="number">1</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            map.put(c, <span class="number">1</span>);</span><br><span class="line">            ++count;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (count == k) &#123;</span><br><span class="line">            <span class="keyword">int</span> len = i - left + <span class="number">1</span>;</span><br><span class="line">            max = Math.max(len, max);</span><br><span class="line">            <span class="comment">// move left</span></span><br><span class="line">            <span class="keyword">while</span> (map.containsKey(s.charAt(left)) &amp;&amp; map.get(s.charAt(left)) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                map.put(s.charAt(left), map.get(s.charAt(left)) - <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            map.remove(s.charAt(left));</span><br><span class="line">            ++left;</span><br><span class="line">            --count;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -890,7 +921,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">126</span>
+              <span class="site-state-item-count">127</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -904,7 +935,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">30</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
