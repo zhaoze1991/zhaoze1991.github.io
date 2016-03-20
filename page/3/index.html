@@ -192,6 +192,135 @@
           
           
             
+              <a class="post-title-link" href="/2015/09/13/Binary-Tree-Serialization/" itemprop="url">
+                Binary Tree Serialization
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-13T23:19:30-07:00" content="2015-09-13">
+            2015-09-13
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="http://www.lintcode.com/en/problem/binary-tree-serialization/" target="_blank" rel="external">Binary Tree Serialization</a><br><a href="http://www.geeksforgeeks.org/serialize-deserialize-binary-tree/" target="_blank" rel="external">Geeks for geeks</a>给了比较好的思路。比较容易想到的方法是，得到pre-order和in-order或者得到post-order和in-order数组，然后就像leetcode上的题一样把它重构出来。但是这样空间复杂度就高了一倍。</p>
+<p>我们可以只存pre-order的结果，把空的情况用”#”来代替，构造string的时候，只要进行pre-order遍历就可以了，在做 deserialize的时候，我们同样，用pre-order 的方法去遍历就能把这棵树给恢复回来了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * This method will be invoked first, you should design your own algorithm</span><br><span class="line"> * to serialize a binary tree which denote by a root node to a string which</span><br><span class="line"> * can be easily deserialized by your own "deserialize" method later.</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">private</span> StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">serialize</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write your code here</span></span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"#"</span>;</span><br><span class="line">    helper(root);</span><br><span class="line">    <span class="keyword">return</span> sb.toString();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">helper</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">        sb.append(<span class="string">",#"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (sb.length() == <span class="number">0</span>)</span><br><span class="line">        sb.append(root.val);</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        sb.append(<span class="string">","</span>);</span><br><span class="line">        sb.append(root.val);</span><br><span class="line">    &#125;</span><br><span class="line">    helper(root.left);</span><br><span class="line">    helper(root.right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * This method will be invoked second, the argument data is what exactly</span><br><span class="line"> * you serialized at method "serialize", that means the data is not given by</span><br><span class="line"> * system, it's given by your own serialize method. So the format of data is</span><br><span class="line"> * designed by yourself, and deserialize it here as you serialize it in</span><br><span class="line"> * "serialize" method.</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">deserialize</span><span class="params">(String data)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write your code here</span></span><br><span class="line">    String[] arr = data.split(<span class="string">","</span>);</span><br><span class="line">    <span class="keyword">return</span> helper(arr);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> TreeNode <span class="title">helper</span><span class="params">(String[] data)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (data[i].equals(<span class="string">"#"</span>)) &#123;</span><br><span class="line">        ++i;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    TreeNode root = <span class="keyword">new</span> TreeNode(Integer.parseInt(data[i++]));</span><br><span class="line">    root.left = helper(data);</span><br><span class="line">    root.right = helper(data);</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/13/Palindrome-Linked-List/" itemprop="url">
+                Palindrome Linked List
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-13T18:32:32-07:00" content="2015-09-13">
+            2015-09-13
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/palindrome-linked-list/" target="_blank" rel="external">Palindrome Linked List</a></p>
+<p>如何找链表中点:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">getMid</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    ListNode slow = head, fast = head.next;</span><br><span class="line">    <span class="keyword">while</span> (fast != <span class="keyword">null</span> &amp;&amp; fast.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">        fast = fast.next.next;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> slow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    ListNode slow = head, fast = head.next;</span><br><span class="line">    <span class="keyword">while</span> (fast != <span class="keyword">null</span> &amp;&amp; fast.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">        fast = fast.next.next;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode newNode = reverse(slow.next);</span><br><span class="line">    slow.next = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">while</span> (head != <span class="keyword">null</span> &amp;&amp; newNode != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (head.val != newNode.val)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        head = head.next;</span><br><span class="line">        newNode = newNode.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">reverse</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    ListNode prev = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">while</span> (head != <span class="keyword">null</span>) &#123;</span><br><span class="line">        ListNode tmp = head.next;</span><br><span class="line">        head.next = prev;</span><br><span class="line">        prev = head;</span><br><span class="line">        head = tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> prev;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/09/13/Minimum-Size-Subarray-Sum/" itemprop="url">
                 Minimum Size Subarray Sum
               </a>
@@ -203,7 +332,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-13T18:00:26-04:00" content="2015-09-13">
+          <time itemprop="dateCreated" datetime="2015-09-13T18:00:26-07:00" content="2015-09-13">
             2015-09-13
           </time>
         </span>
@@ -266,7 +395,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-13T17:36:47-04:00" content="2015-09-13">
+          <time itemprop="dateCreated" datetime="2015-09-13T17:36:47-07:00" content="2015-09-13">
             2015-09-13
           </time>
         </span>
@@ -329,7 +458,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-13T17:06:36-04:00" content="2015-09-13">
+          <time itemprop="dateCreated" datetime="2015-09-13T17:06:36-07:00" content="2015-09-13">
             2015-09-13
           </time>
         </span>
@@ -392,7 +521,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-11T21:35:47-04:00" content="2015-09-11">
+          <time itemprop="dateCreated" datetime="2015-09-11T21:35:47-07:00" content="2015-09-11">
             2015-09-11
           </time>
         </span>
@@ -455,7 +584,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-11T11:02:17-04:00" content="2015-09-11">
+          <time itemprop="dateCreated" datetime="2015-09-11T11:02:17-07:00" content="2015-09-11">
             2015-09-11
           </time>
         </span>
@@ -518,7 +647,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-10T16:34:01-04:00" content="2015-09-10">
+          <time itemprop="dateCreated" datetime="2015-09-10T16:34:01-07:00" content="2015-09-10">
             2015-09-10
           </time>
         </span>
@@ -582,7 +711,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-10T01:22:48-04:00" content="2015-09-10">
+          <time itemprop="dateCreated" datetime="2015-09-10T01:22:48-07:00" content="2015-09-10">
             2015-09-10
           </time>
         </span>
@@ -645,7 +774,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-09T14:41:20-04:00" content="2015-09-09">
+          <time itemprop="dateCreated" datetime="2015-09-09T14:41:20-07:00" content="2015-09-09">
             2015-09-09
           </time>
         </span>
@@ -668,139 +797,6 @@
           <span itemprop="articleBody"><p><a href="http://www.lintcode.com/en/problem/longest-increasing-continuous-subsequence/" target="_blank" rel="external">Longest Increasing Continuous subsequence</a><br>这题要注意的是index要连续，并且数值是递增的。所以，每次如果数值不递增，要把continuous的值更新为1。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestIncreasingContinuousSubsequence</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Write your code here</span></span><br><span class="line">    <span class="keyword">if</span> (A == <span class="keyword">null</span> || A.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> max = <span class="number">1</span>, continuous = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; A.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (A[i] &gt; A[i - <span class="number">1</span>]) &#123;</span><br><span class="line">            continuous += <span class="number">1</span>;</span><br><span class="line">            max = Math.max(continuous, max);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            continuous = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    continuous = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = A.length - <span class="number">1</span>; i &gt;= <span class="number">1</span>; --i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (A[i - <span class="number">1</span>] &gt; A[i]) &#123;</span><br><span class="line">            continuous += <span class="number">1</span>;</span><br><span class="line">            max = Math.max(continuous, max);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            continuous = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><a href="http://www.lintcode.com/en/problem/longest-increasing-continuous-subsequence-ii/" target="_blank" rel="external">Longest Increasing Continuous subsequence II</a><br>记忆+DP. dp[i][j]表示以i,j为起始点，能到达的最大的增长序列。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestIncreasingContinuousSubsequenceII</span><span class="params">(<span class="keyword">int</span>[][] A)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Write your code here</span></span><br><span class="line">    <span class="keyword">if</span> (A == <span class="keyword">null</span> || A.length == <span class="number">0</span> || A[<span class="number">0</span>].length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[A.length][A[<span class="number">0</span>].length];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; A.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; A[<span class="number">0</span>].length; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (dp[i][j] != <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            dfs(A, dp, i, j);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] nums, <span class="keyword">int</span>[][] dp, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (dp[i][j] &gt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> dp[i][j];</span><br><span class="line">    <span class="keyword">int</span> val = nums[i][j];</span><br><span class="line">    <span class="keyword">int</span>[] vals = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">4</span>];</span><br><span class="line">    <span class="keyword">if</span> (j - <span class="number">1</span> &gt;= <span class="number">0</span> &amp;&amp; nums[i][j - <span class="number">1</span>] &gt; val)</span><br><span class="line">        vals[<span class="number">0</span>] = dfs(nums, dp, i, j - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (j + <span class="number">1</span> &lt; nums[<span class="number">0</span>].length &amp;&amp; nums[i][j + <span class="number">1</span>] &gt; val)</span><br><span class="line">        vals[<span class="number">1</span>] = dfs(nums, dp, i, j + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (i - <span class="number">1</span> &gt;= <span class="number">0</span> &amp;&amp; nums[i - <span class="number">1</span>][j] &gt; val)</span><br><span class="line">        vals[<span class="number">2</span>] = dfs(nums, dp, i - <span class="number">1</span>, j);</span><br><span class="line">    <span class="keyword">if</span> (i + <span class="number">1</span> &lt; nums.length &amp;&amp; nums[i + <span class="number">1</span>][j] &gt; val)</span><br><span class="line">        vals[<span class="number">3</span>] = dfs(nums, dp, i + <span class="number">1</span>, j);</span><br><span class="line">    dp[i][j] = <span class="number">1</span> + Math.max(vals[<span class="number">0</span>], Math.max(vals[<span class="number">1</span>], Math.max(vals[<span class="number">2</span>], vals[<span class="number">3</span>])));</span><br><span class="line">    max = Math.max(dp[i][j], max);</span><br><span class="line">    <span class="keyword">return</span> dp[i][j];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/09/Coins-in-a-Line-II/" itemprop="url">
-                Coins in a Line
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-09T09:36:53-04:00" content="2015-09-09">
-            2015-09-09
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="http://www.lintcode.com/en/problem/coins-in-a-line/" target="_blank" rel="external">Coins in a Line</a><br>一排硬币，按次序拿，每次拿一枚或者两枚，谁拿到最后的一枚硬币谁就赢。<strong>注意</strong>，如果n＝0，先拿的的人也没拿到最后一枚，所以应该返回false。<br>我们来定义子问题dp[i]，表示有i枚硬币的时候，先拿的人是否赢。<br>我们先来看初始化条件，如果只有一枚或者两枚硬币，那么第一个拿的人肯定赢，如果有三枚硬币，第一个人稳输，如果没有硬币，算第一个人输。<br>我们可以得到这样的关系式<br>dp[i] = (dp[i-2] &amp;&amp; dp[i-3]) || (dp[i-3] &amp;&amp; dp[i-4])<br>啥意思呢，如果A拿了第i枚硬币，那么对手B可能拿i-1，或者拿了i-1和i-2枚，那么下一枚A能拿到的就是i-2或者i-3,那么我的策略就要求A不管下一枚拿到i-2或者i-3，都得能赢，否则，对手肯定会拿A不能赢的策略<br>如果A那了第i枚和i-1枚，那么对手B可能拿了i-2, 或者拿了i-2和i-3枚。那么下一枚A能拿到的就是i-3或者i-4，我们得保证i-3或者i-4都能赢，否则对手B肯定会做出不让A赢的拿法。<br>这里还用了一个哈希来记录已经计算过的拿法，否则这种指数级的计算肯定超时。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">HashSet&lt;Integer&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">firstWillWin</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write your code here</span></span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (n &lt;= <span class="number">2</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">3</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">boolean</span>[] dp = <span class="keyword">new</span> <span class="keyword">boolean</span>[n + <span class="number">1</span>];</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="keyword">false</span>;</span><br><span class="line">    dp[<span class="number">1</span>] = <span class="keyword">true</span>;</span><br><span class="line">    dp[<span class="number">2</span>] = <span class="keyword">true</span>;</span><br><span class="line">    dp[<span class="number">3</span>] = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">return</span> helper(n, dp);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">helper</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">boolean</span>[] dp)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (i &lt;= <span class="number">2</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (i == <span class="number">3</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (set.contains(i))</span><br><span class="line">        <span class="keyword">return</span> dp[i];</span><br><span class="line">    <span class="keyword">if</span> ((helper(i - <span class="number">2</span>, dp) &amp;&amp; helper(i - <span class="number">3</span>,  dp)) || (helper(i - <span class="number">3</span>, dp) &amp;&amp; helper(i - <span class="number">4</span>, dp)))</span><br><span class="line">        dp[i] = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        dp[i] = <span class="keyword">false</span>;</span><br><span class="line">    set.add(i);</span><br><span class="line">    <span class="keyword">return</span> dp[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="http://www.lintcode.com/en/problem/coins-in-a-line-ii/" target="_blank" rel="external">Coins in a Line II</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">firstWillWin</span><span class="params">(<span class="keyword">int</span>[] values)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write your code here</span></span><br><span class="line">    <span class="keyword">int</span> n = values.length;</span><br><span class="line">    <span class="comment">// dp[i][j] means the value can get from i to j</span></span><br><span class="line">    <span class="comment">// dp[i][j] = max(v[i] + min(dp[i+2][j],dp[i+3][j]),</span></span><br><span class="line">    <span class="comment">//                v[i] + v[i+1] + min(dp[i+3][j], dp[i+4][j]))</span></span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : values)</span><br><span class="line">        sum += i;</span><br><span class="line">    <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">    <span class="keyword">return</span>  helper(dp, values, <span class="number">0</span>, n - <span class="number">1</span>) * <span class="number">2</span> &gt; sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">helper</span><span class="params">(<span class="keyword">int</span>[][]dp, <span class="keyword">int</span>[]vals, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (j &gt;= vals.length)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (i &gt; j)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (dp[i][j] &gt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> dp[i][j];</span><br><span class="line">    <span class="keyword">int</span> w = (i + <span class="number">1</span>) &lt;= j ?  vals[i + <span class="number">1</span>] : <span class="number">0</span>;</span><br><span class="line">    dp[i][j] = Math.max(vals[i] + Math.min(helper(dp, vals, i + <span class="number">2</span>, j),</span><br><span class="line">                        helper(dp, vals, i + <span class="number">3</span>, j)),</span><br><span class="line">        vals[i] + w + Math.min(helper(dp, vals, i + <span class="number">3</span>, j),</span><br><span class="line">        helper(dp, vals, i + <span class="number">4</span>, j)));</span><br><span class="line">    <span class="keyword">return</span> dp[i][j];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><a href="http://www.lintcode.com/en/problem/coins-in-a-line-iii/" target="_blank" rel="external">Coins in a Line III</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">firstWillWin</span><span class="params">(<span class="keyword">int</span>[] values)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write your code here</span></span><br><span class="line">    <span class="keyword">int</span> n = values.length;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : values)</span><br><span class="line">        sum += i;</span><br><span class="line">    <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">    <span class="comment">// dp[i][j] = max(val[i] + min(dp[i+2][j], dp[i+1][j-1]),</span></span><br><span class="line">    <span class="comment">//            val[j] + min(dp[i+1][j-1], dp[i][j-2])</span></span><br><span class="line">    <span class="comment">// return dp[0][n - 1] * 2 &gt; sum;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> helper(dp, values, <span class="number">0</span>, n - <span class="number">1</span>) * <span class="number">2</span> &gt; sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">helper</span><span class="params">(<span class="keyword">int</span>[][] dp, <span class="keyword">int</span>[] vals, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (j &gt;= vals.length)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (i &gt; j)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (i == j) &#123;</span><br><span class="line">        dp[i][j] = vals[i];</span><br><span class="line">        <span class="keyword">return</span> dp[i][j];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// memorized</span></span><br><span class="line">    <span class="keyword">if</span> (dp[i][j] &gt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> dp[i][j];</span><br><span class="line">    dp[i][j] = Math.max(vals[i] + Math.min(helper(dp, vals, i + <span class="number">2</span>, j),</span><br><span class="line">                            helper(dp, vals, i + <span class="number">1</span>, j - <span class="number">1</span>)),</span><br><span class="line">                            vals[j] + Math.min(helper(dp, vals, i + <span class="number">1</span>, j - <span class="number">1</span>),</span><br><span class="line">                            helper(dp, vals, i, j - <span class="number">2</span>)));</span><br><span class="line">    <span class="keyword">return</span> dp[i][j];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/08/Max-Tree/" itemprop="url">
-                Max Tree
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-08T15:55:32-04:00" content="2015-09-08">
-            2015-09-08
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="http://www.lintcode.com/en/problem/max-tree/" target="_blank" rel="external">Max Tree</a><br>维护一个递减的栈。</p>
-<ol>
-<li>如果当前的值小于栈顶元素，则入栈。</li>
-<li>如果当前的值大于栈顶的元素，开始做出栈操作，直到栈顶元素大于当前的值。新出栈的结点以旧出栈的结点为右子树。因为这是一个递减的栈，所以旧弹出的结点值比新弹出的要小，并且index比新弹出的要大。当前值的左子树，就是刚刚弹出的最后一个结点，因为它最大，然后再把当前值构成的树入栈。</li>
-<li>最后，对栈做判断空操作，如果非空，则一直做2中的操作，新弹出的结点的右子树是旧弹出的结点。</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">maxTree</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write your code here</span></span><br><span class="line">    <span class="keyword">if</span> (A == <span class="keyword">null</span> || A.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">// decreasing tree</span></span><br><span class="line">    Stack&lt;TreeNode&gt; s = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    s.push(<span class="keyword">new</span> TreeNode(A[<span class="number">0</span>]));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; A.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> val = A[i];</span><br><span class="line">        <span class="keyword">if</span> (val &gt; s.peek().val) &#123;</span><br><span class="line">            TreeNode prev = s.pop();</span><br><span class="line">            <span class="keyword">while</span> (s.isEmpty() == <span class="keyword">false</span> &amp;&amp; s.peek().val &lt; val) &#123;</span><br><span class="line">                TreeNode tmp = s.pop();</span><br><span class="line">                tmp.right = prev;</span><br><span class="line">                prev = tmp;</span><br><span class="line">            &#125;</span><br><span class="line">            TreeNode node = <span class="keyword">new</span> TreeNode(val);</span><br><span class="line">            node.left = prev;</span><br><span class="line">            s.push(node);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            s.push(<span class="keyword">new</span> TreeNode(val));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    TreeNode root = s.pop();</span><br><span class="line">    <span class="keyword">while</span> (s.isEmpty() == <span class="keyword">false</span>) &#123;</span><br><span class="line">        TreeNode tmp = s.pop();</span><br><span class="line">        tmp.right = root;</span><br><span class="line">        root = tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </span>
         
       
@@ -858,7 +854,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">127</span>
+              <span class="site-state-item-count">129</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -872,7 +868,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

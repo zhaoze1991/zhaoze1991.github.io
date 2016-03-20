@@ -192,6 +192,139 @@
           
           
             
+              <a class="post-title-link" href="/2015/09/03/H-Index/" itemprop="url">
+                H-Index
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-03T13:15:14-07:00" content="2015-09-03">
+            2015-09-03
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/h-index/" target="_blank" rel="external">H-Index</a><br>新题就跪。蛋疼<br>首先，得知道啥是<a href="https://en.wikipedia.org/wiki/H-index" target="_blank" rel="external">H-index</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hIndex</span><span class="params">(<span class="keyword">int</span>[] citations)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (citations == <span class="keyword">null</span> || citations.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">    Arrays.sort(citations);</span><br><span class="line">    <span class="keyword">int</span> n = citations.length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">        <span class="keyword">int</span> min = Math.min(citations[i], n - i);</span><br><span class="line">        max = Math.max(max, min);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>刚开始把这道题理解错了。死活出不来，意思是，存在h篇论文，引用数量至少是h，剩下的n - h篇论文的的引用数量不大于h。<br>那么我们就先把这个数组排序一下。然后从头开始扫。如果citations[i] &gt;= n - i, 那么citations[i]后面的元素都要大于n-i，即满足条件，而左边的i篇论文，引用书都要小于等于citations[i]</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hIndex</span><span class="params">(<span class="keyword">int</span>[] citations)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (citations == <span class="keyword">null</span> || citations.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    Arrays.sort(citations);</span><br><span class="line">    <span class="keyword">int</span> n = citations.length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (citations[i] &gt;= n - i)</span><br><span class="line">            <span class="keyword">return</span> n - i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>O(n)空间复杂度O(n)时间复杂度。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hIndex</span><span class="params">(<span class="keyword">int</span>[] citations)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = citations.length;</span><br><span class="line">    <span class="keyword">int</span>[] count = <span class="keyword">new</span> <span class="keyword">int</span>[len + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> c: citations)</span><br><span class="line">        <span class="keyword">if</span> (c &gt; len)</span><br><span class="line">            count[len]++;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            count[c]++;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> total = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = len; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        total += count[i];</span><br><span class="line">        <span class="keyword">if</span> (total &gt;= i)</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>二分查找<br><a href="https://leetcode.com/problems/h-index-ii/" target="_blank" rel="external">H-Index II</a><br>无敌二分法不是很好用。因为这里尾部处理比较恶心，要判断是不是每篇论文是不是都没人引用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hIndex</span><span class="params">(<span class="keyword">int</span>[] citations)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (citations == <span class="keyword">null</span> || citations.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> begin = <span class="number">0</span>, end = citations.length - <span class="number">1</span>, n = citations.length;</span><br><span class="line">    <span class="keyword">while</span> (begin + <span class="number">1</span> &lt; end) &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = begin + (end - begin) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (citations[mid] == n - mid) &#123;</span><br><span class="line">            <span class="keyword">return</span> n - mid;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (citations[mid] &gt; n - mid)</span><br><span class="line">            end = mid;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            begin = mid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (citations[begin] &gt;= n - begin)</span><br><span class="line">        <span class="keyword">return</span> n - begin;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (citations[end] &gt;= n - end)</span><br><span class="line">        <span class="keyword">return</span> n - end;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (citations[<span class="number">0</span>] == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/03/Surrounded-Regions/" itemprop="url">
+                Surrounded Regions
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-03T10:21:37-07:00" content="2015-09-03">
+            2015-09-03
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p>这题的思路比较有意思，既然中间被外面如果包着，就会被变成X，那么，我们从最外面的一层开始去搜索，如果能跟最外面一层连通，那么这个元素就不会被变成X。我们这样的元素改成一个中间值，比如说 “Z”, 用BFS或者DFS把所有能与最外层连通的元素都变成 “Z”。<br>然后再遍历一次整个board，如果该元素是 “O” 则这个元素是不与最外层连通的，标记为 “X”,如果这个元素是 “Z”,那么重新标记为 “O”.<br><strong>注意</strong>这个操作的顺序，首先判断是否是 “O”，再判断是否是 “Z”.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// long-painful null check</span></span><br><span class="line">    <span class="keyword">if</span> (board == <span class="keyword">null</span> || board.length == <span class="number">0</span> || board[<span class="number">0</span>] == <span class="keyword">null</span> || board[<span class="number">0</span>].length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> m = board.length, n = board[<span class="number">0</span>].length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (board[<span class="number">0</span>][i] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            bfs(board,  <span class="number">0</span>, i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (board[m - <span class="number">1</span>][i] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            bfs(board, m - <span class="number">1</span>, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; m; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (board[i][<span class="number">0</span>] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            bfs(board, i, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (board[i][n - <span class="number">1</span>] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            bfs(board, i, n - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (board[i][j] == <span class="string">'O'</span>)</span><br><span class="line">                board[i][j] = <span class="string">'X'</span>;</span><br><span class="line">            <span class="keyword">if</span> (board[i][j] == <span class="string">'Z'</span>)</span><br><span class="line">                board[i][j] = <span class="string">'O'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>bfs<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pair</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j;</span><br><span class="line">    Pair(<span class="keyword">int</span> i, <span class="keyword">int</span> j) &#123;</span><br><span class="line">        <span class="keyword">this</span>.i = i;</span><br><span class="line">        <span class="keyword">this</span>.j = j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bfs</span><span class="params">(<span class="keyword">char</span>[][]board, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// bfs since dfs will stack overflow</span></span><br><span class="line">    Queue&lt;Pair&gt; q = <span class="keyword">new</span> LinkedList&lt;Pair&gt;();</span><br><span class="line">    board[i][j] = <span class="string">'Z'</span>;</span><br><span class="line">    q.offer(<span class="keyword">new</span> Pair(i, j));</span><br><span class="line">    <span class="keyword">while</span> (q.isEmpty() == <span class="keyword">false</span>) &#123;</span><br><span class="line">        Pair cur = q.poll();</span><br><span class="line">        i = cur.i;</span><br><span class="line">        j = cur.j;</span><br><span class="line">        <span class="keyword">if</span> (i+<span class="number">1</span> &lt; board.length &amp;&amp; board[i+<span class="number">1</span>][j] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            board[i+<span class="number">1</span>][j] = <span class="string">'Z'</span>;</span><br><span class="line">            q.offer(<span class="keyword">new</span> Pair(i + <span class="number">1</span>, j));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (i - <span class="number">1</span> &gt;= <span class="number">0</span> &amp;&amp; board[i - <span class="number">1</span>][j] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            board[i-<span class="number">1</span>][j] = <span class="string">'Z'</span>;</span><br><span class="line">            q.offer(<span class="keyword">new</span> Pair(i - <span class="number">1</span>, j));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (j+<span class="number">1</span> &lt; board[<span class="number">0</span>].length &amp;&amp; board[i][j+<span class="number">1</span>] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            board[i][j+<span class="number">1</span>] = <span class="string">'Z'</span>;</span><br><span class="line">            q.offer(<span class="keyword">new</span> Pair(i, j + <span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (j-<span class="number">1</span> &gt;= <span class="number">0</span> &amp;&amp; board[i][j-<span class="number">1</span>] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            board[i][j-<span class="number">1</span>] = <span class="string">'Z'</span>;</span><br><span class="line">            q.offer(<span class="keyword">new</span> Pair(i, j-<span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>DFS版本的搜索，代码好些一些，但是栈溢出了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">char</span>[][]board, <span class="keyword">boolean</span>[][] visited, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">0</span> || j &lt; <span class="number">0</span> || i &gt;= board.length || j &gt;= board[<span class="number">0</span>].length)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span> (visited[i][j] || board[i][j] != <span class="string">'O'</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    visited[i][j] = <span class="keyword">true</span>;</span><br><span class="line">    board[i][j] = <span class="string">'Z'</span>;</span><br><span class="line">    <span class="comment">//note</span></span><br><span class="line">    dfs(board, visited, i + <span class="number">1</span>, j);</span><br><span class="line">    dfs(board, visited, i - <span class="number">1</span>, j);</span><br><span class="line">    dfs(board, visited, i, j - <span class="number">1</span>);</span><br><span class="line">    dfs(board, visited, i, j + <span class="number">1</span>);</span><br><span class="line">    <span class="comment">// visited[i][j] = false;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/09/03/Sum-Root-to-Leaf-Numbers/" itemprop="url">
                 Sum Root to Leaf Numbers
               </a>
@@ -203,7 +336,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-03T09:31:52-04:00" content="2015-09-03">
+          <time itemprop="dateCreated" datetime="2015-09-03T09:31:52-07:00" content="2015-09-03">
             2015-09-03
           </time>
         </span>
@@ -265,7 +398,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-03T00:45:37-04:00" content="2015-09-03">
+          <time itemprop="dateCreated" datetime="2015-09-03T00:45:37-07:00" content="2015-09-03">
             2015-09-03
           </time>
         </span>
@@ -330,7 +463,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-02T21:28:25-04:00" content="2015-09-02">
+          <time itemprop="dateCreated" datetime="2015-09-02T21:28:25-07:00" content="2015-09-02">
             2015-09-02
           </time>
         </span>
@@ -394,7 +527,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-02T19:19:58-04:00" content="2015-09-02">
+          <time itemprop="dateCreated" datetime="2015-09-02T19:19:58-07:00" content="2015-09-02">
             2015-09-02
           </time>
         </span>
@@ -461,7 +594,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-01T13:47:14-04:00" content="2015-09-01">
+          <time itemprop="dateCreated" datetime="2015-09-01T13:47:14-07:00" content="2015-09-01">
             2015-09-01
           </time>
         </span>
@@ -531,7 +664,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-01T11:34:34-04:00" content="2015-09-01">
+          <time itemprop="dateCreated" datetime="2015-09-01T11:34:34-07:00" content="2015-09-01">
             2015-09-01
           </time>
         </span>
@@ -595,7 +728,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-01T09:40:31-04:00" content="2015-09-01">
+          <time itemprop="dateCreated" datetime="2015-09-01T09:40:31-07:00" content="2015-09-01">
             2015-09-01
           </time>
         </span>
@@ -672,7 +805,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-31T22:54:47-04:00" content="2015-08-31">
+          <time itemprop="dateCreated" datetime="2015-08-31T22:54:47-07:00" content="2015-08-31">
             2015-08-31
           </time>
         </span>
@@ -707,132 +840,6 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line"> quu..__</span><br><span class="line">  $$$b  `---.__</span><br><span class="line">   "$$b        `--.                          ___.---uuudP</span><br><span class="line">    `$$b           `.__.------.__     __.---'      $$$$"              .</span><br><span class="line">      "$b          -'            `-.-'            $$$"              .'|</span><br><span class="line">        ".                                       d$"             _.'  |</span><br><span class="line">          `.   /                              ..."             .'     |</span><br><span class="line">            `./                           ..::-'            _.'       |</span><br><span class="line">             /                         .:::-'            .-'         .'</span><br><span class="line">            :                          ::''\          _.'            |</span><br><span class="line">           .' .-.             .-.           `.      .'               |</span><br><span class="line">           : /'$$|           .@"$\           `.   .'              _.-'</span><br><span class="line">          .'|$u$$|          |$$,$$|           |  &lt;            _.-'</span><br><span class="line">          | `:$$:'          :$$$$$:           `.  `.       .-'</span><br><span class="line">          :                  `"--'             |    `-.     \</span><br><span class="line">         :##.       ==             .###.       `.      `.    `\</span><br><span class="line">         |##:                      :###:        |        &gt;     &gt;</span><br><span class="line">         |#'     `..'`..'          `###'        x:      /     /</span><br><span class="line">          \                                   xXX|     /    ./</span><br><span class="line">           \                                x<span class="label">XXX'|    /   ./</span></span><br><span class="line">           /`-.                                  `.  /   /</span><br><span class="line">          :    `-  ...........,                   | /  .'</span><br><span class="line">          |         ``:::::::'       .            |&lt;    `.</span><br><span class="line">          |             ```          |           x| \ `.:``.</span><br><span class="line">          |                         .'    /'   xXX|  `:`M`M':.</span><br><span class="line">          |    |                    ;    /:' x<span class="label">XXX'|  -'MMMMM:'</span></span><br><span class="line">          `.  .'                   :    /:'       |-'MMMM.-'</span><br><span class="line">           |  |                   .'   /'        .'MMM.-'</span><br><span class="line">           `'`'                   :  ,'          |MMM&lt;</span><br><span class="line">             |                     `'            |tbap\</span><br><span class="line">              \                                  :MM.-'</span><br><span class="line">               \                 |              .''</span><br><span class="line">                \.               `.            /</span><br><span class="line">                 /     .:::::::.. :           /</span><br><span class="line">                |     .:::::::::::`.         /</span><br><span class="line">                |   .:::------------\       /</span><br><span class="line">               /   .''               &gt;::'  /</span><br><span class="line">               `',:                 :    .'</span><br><span class="line">                                    `:.:'</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> */</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line">             ,----------------,              ,---------,</span><br><span class="line">        ,-----------------------,          ,"        ,"|</span><br><span class="line">      ,"                      ,"|        ,"        ,"  |</span><br><span class="line">     +-----------------------+  |      ,"        ,"    |</span><br><span class="line">     |  .-----------------.  |  |     +---------+      |</span><br><span class="line">     |  |                 |  |  |     | -==----'|      |</span><br><span class="line">     |  |  I LOVE DOS!    |  |  |     |         |      |</span><br><span class="line">     |  |  Bad command or |  |  |/----|`---=    |      |</span><br><span class="line">     |  |  C:\&gt;_          |  |  |   ,/|==== ooo |      ;</span><br><span class="line">     |  |                 |  |  |  // |(((( [33]|    ,"</span><br><span class="line">     |  `-----------------'  |," .;'| |((((     |  ,"</span><br><span class="line">     +-----------------------+  ;;  | |         |,"</span><br><span class="line">        /_)______________(_/  //'   | +---------+</span><br><span class="line">   ___________________________/___  `,</span><br><span class="line">  /  oooooooooooooooo  .o.  oooo /,   \,"-----------</span><br><span class="line"> / ==ooooooooooooooo==.o.  ooo= //   ,`\--&#123;)B     ,"</span><br><span class="line">/_==__==========__==_ooo__ooo=_/'   /___________,"</span><br><span class="line"></span><br><span class="line">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line">                            _________</span><br><span class="line">                           /         /.</span><br><span class="line">    .-------------.       /_________/ |</span><br><span class="line">   /             / |      |         | |</span><br><span class="line">  /+============+\ |      | |====|  | |</span><br><span class="line">  ||C:\&gt;        || |      |         | |</span><br><span class="line">  ||            || |      | |====|  | |</span><br><span class="line">  ||            || |      |   ___   | |</span><br><span class="line">  ||            || |      |  |166|  | |</span><br><span class="line">  ||            ||/@@@    |   ---   | |</span><br><span class="line">  \+============+/    @   |_________|./.</span><br><span class="line">                     @          ..  ....'</span><br><span class="line">  ..................@     __.'.'  ''</span><br><span class="line"> /oooooooooooooooo//     ///</span><br><span class="line">/................//     /_/</span><br><span class="line">------------------</span><br><span class="line">*/</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">/*</span><br><span class="line">        11111111111111111111111111111111111111001111111111111111111111111</span><br><span class="line">        11111111111111111111111111111111111100011111111111111111111111111</span><br><span class="line">        11111111111111111111111111111111100001111111111111111111111111111</span><br><span class="line">        11111111111111111111111111111110000111111111111111111111111111111</span><br><span class="line">        11111111111111111111111111111000000111111111111111111111111111111</span><br><span class="line">        11111111111111111111111111100000011110001100000000000000011111111</span><br><span class="line">        11111111111111111100000000000000000000000000000000011111111111111</span><br><span class="line">        11111111111111110111000000000000000000000000000011111111111111111</span><br><span class="line">        11111111111111111111111000000000000000000000000000000000111111111</span><br><span class="line">        11111111111111111110000000000000000000000000000000111111111111111</span><br><span class="line">        11111111111111111100011100000000000000000000000000000111111111111</span><br><span class="line">        11111111111111100000110000000000011000000000000000000011111111111</span><br><span class="line">        11111111111111000000000000000100111100000000000001100000111111111</span><br><span class="line">        11111111110000000000000000001110111110000000000000111000011111111</span><br><span class="line">        11111111000000000000000000011111111100000000000000011110001111111</span><br><span class="line">        11111110000000011111111111111111111100000000000000001111100111111</span><br><span class="line">        11111111000001111111111111111111110000000000000000001111111111111</span><br><span class="line">        11111111110111111111111111111100000000000000000000000111111111111</span><br><span class="line">        11111111111111110000000000000000000000000000000000000111111111111</span><br><span class="line">        11111111111111111100000000000000000000000000001100000111111111111</span><br><span class="line">        11111111111111000000000000000000000000000000111100000111111111111</span><br><span class="line">        11111111111000000000000000000000000000000001111110000111111111111</span><br><span class="line">        11111111100000000000000000000000000000001111111110000111111111111</span><br><span class="line">        11111110000000000000000000000000000000111111111110000111111111111</span><br><span class="line">        11111100000000000000000001110000001111111111111110001111111111111</span><br><span class="line">        11111000000000000000011111111111111111111111111110011111111111111</span><br><span class="line">        11110000000000000001111111111111111100111111111111111111111111111</span><br><span class="line">        11100000000000000011111111111111111111100001111111111111111111111</span><br><span class="line">        11100000000001000111111111111111111111111000001111111111111111111</span><br><span class="line">        11000000000001100111111111111111111111111110000000111111111111111</span><br><span class="line">        11000000000000111011111111111100011111000011100000001111111111111</span><br><span class="line">        11000000000000011111111111111111000111110000000000000011111111111</span><br><span class="line">        11000000000000000011111111111111000000000000000000000000111111111</span><br><span class="line">        11001000000000000000001111111110000000000000000000000000001111111</span><br><span class="line">        11100110000000000001111111110000000000000000111000000000000111111</span><br><span class="line">        11110110000000000000000000000000000000000111111111110000000011111</span><br><span class="line">        11111110000000000000000000000000000000001111111111111100000001111</span><br><span class="line">        11111110000010000000000000000001100000000111011111111110000001111</span><br><span class="line">        11111111000111110000000000000111110000000000111111111110110000111</span><br><span class="line">        11111110001111111100010000000001111100000111111111111111110000111</span><br><span class="line">        11111110001111111111111110000000111111100000000111111111111000111</span><br><span class="line">        11111111001111111111111111111000000111111111111111111111111100011</span><br><span class="line">        11111111101111111111111111111110000111111111111111111111111001111</span><br><span class="line">        11111111111111111111111111111110001111111111111111111111100111111</span><br><span class="line">        11111111111111111111111111111111001111111111111111111111001111111</span><br><span class="line">        11111111111111111111111111111111100111111111111111111111111111111</span><br><span class="line">        11111111111111111111111111111111110111111111111111111111111111111</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        */</span></span><br><span class="line">        <span class="comment">/*</span><br><span class="line">                                                     __----~~~~~~~~~~~------___</span><br><span class="line">                                          .  .   ~~//====......          __--~ ~~</span><br><span class="line">                          -.            \_|//     |||\\  ~~~~~~::::... /~</span><br><span class="line">                       ___-==_       _-~o~  \/    |||  \\            _/~~-</span><br><span class="line">               __---~~~.==~||\=_    -_--~/_-~|-   |\\   \\        _/~</span><br><span class="line">           _-~~     .=~    |  \\-_    '-~7  /-   /  ||    \      /</span><br><span class="line">         .~       .~       |   \\ -_    /  /-   /   ||      \   /</span><br><span class="line">        /  ____  /         |     \\ ~-_/  /|- _/   .||       \ /</span><br><span class="line">        |~~    ~~|--~~~~--_ \     ~==-/   | \~--===~~        .\</span><br><span class="line">                 '         ~-|      /|    |-~\~~       __--~~</span><br><span class="line">                             |-~~-_/ |    |   ~\_   _-~            /\</span><br><span class="line">                                  /  \     \__   \/~                \__</span><br><span class="line">                              _--~ _/ | .-~~____--~-/                  ~~==.</span><br><span class="line">                             ((-&gt;/~   '.|||' -_|    ~~-/ ,              . _||</span><br><span class="line">                                        -_     ~\      ~~---l__i__i__i--~~_/</span><br><span class="line">                                        _-~-__   ~)  \--______________--~~</span><br><span class="line">                                      //.-~~~-~_--~- |-------~~~~~~~~</span><br><span class="line">                                             //.-~~~--\</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        */</span></span><br><span class="line"><span class="comment">//                       )      (</span></span><br><span class="line"><span class="comment">//                  /+++=))    ((=+++\</span></span><br><span class="line"><span class="comment">//             /++++++++//      \\+++++++++\</span></span><br><span class="line"><span class="comment">//          /++++++++++//(  /\  )\\++++++++++\</span></span><br><span class="line"><span class="comment">//        /+++++++++++//  \\^^//  \\+++++++++++\</span></span><br><span class="line"><span class="comment">//     _/++++++++++++//  &#123;&#123;@::@&#125;&#125;  \\++++++++++++\_</span></span><br><span class="line"><span class="comment">//    /+++++++++++++((     &#123;\/&#125;     ))+++++++++++++\</span></span><br><span class="line"><span class="comment">//   /+++++++++++++++\\    &lt;**&gt;    //+++++++++++++++\</span></span><br><span class="line"><span class="comment">//  /+++++++++++++++++\\  / VV \  //+++++++++++++++++\</span></span><br><span class="line"><span class="comment">// /+++++++++++++++++++\\/******\//+++++++++++++++++++\</span></span><br><span class="line"><span class="comment">//|+/|++++++++++/\++++++(***/\***)++++++/\++++++++++|\+\</span></span><br><span class="line"><span class="comment">//|/ |+/\+/\+/\/  \+/\++\**|**|**/++/\+/  \/\+/\+/\+| \|</span></span><br><span class="line"><span class="comment">//v  |/  V  V  V   V  \+\|*|**|*|/+/  V   v  V  V  \|  v</span></span><br><span class="line"><span class="comment">//   v                 /*|*|**|*|*\...              v</span></span><br><span class="line"><span class="comment">//                    (**|*|**|*|**). .</span></span><br><span class="line"><span class="comment">//                   __\*|*|**|*|*/__. .</span></span><br><span class="line"><span class="comment">//                  (vvv(VVV)(VVV)vvv). .</span></span><br><span class="line"><span class="comment">//                      ............../ /</span></span><br><span class="line"><span class="comment">//                     / ............../</span></span><br><span class="line"><span class="comment">//                     ((</span></span><br><span class="line"><span class="comment">/*</span><br><span class="line">                 ___====-_  _-====___</span><br><span class="line">           _--^^^#####//      \\#####^^^--_</span><br><span class="line">        _-^##########// (    ) \\##########^-_</span><br><span class="line">       -############//  |\^^/|  \\############-</span><br><span class="line">     _/############//   (@::@)   \\############\_</span><br><span class="line">    /#############((     \\//     ))#############\</span><br><span class="line">   -###############\\    (oo)    //###############-</span><br><span class="line">  -#################\\  / VV \  //#################-</span><br><span class="line"> -###################\\/      \//###################-</span><br><span class="line">_#/|##########/\######(   /\   )######/\##########|\#_</span><br><span class="line">|/ |#/\#/\#/\/  \#/\##\  |  |  /##/\#/  \/\#/\#/\#| \|</span><br><span class="line">`  |/  V  V  `   V  \#\| |  | |/#/  V   '  V  V  \|  '</span><br><span class="line">   `   `  `      `   / | |  | | \   '      '  '   '</span><br><span class="line">                    (  | |  | |  )</span><br><span class="line">                   __\ | |  | | /__</span><br><span class="line">                  (vvv(VVV)(VVV)vvv)</span><br><span class="line"></span><br><span class="line">*/</span></span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/31/Pascal-s-Triangle-I-II/" itemprop="url">
-                Pascal's Triangle I, II
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-31T22:06:57-04:00" content="2015-08-31">
-            2015-08-31
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/pascals-triangle/" target="_blank" rel="external">Pascal’s Triangle</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; generate(<span class="keyword">int</span> numRows) &#123;</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> ArrayList&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line">    <span class="keyword">if</span> (numRows == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    List&lt;Integer&gt; parent = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    parent.add(<span class="number">1</span>);</span><br><span class="line">    ans.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;(parent));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; numRows; ++i) &#123;</span><br><span class="line">        List&lt;Integer&gt; children = <span class="keyword">new</span> ArrayList&lt;Integer&gt;(i + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i + <span class="number">1</span>; ++j)</span><br><span class="line">            children.add(<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; parent.size(); ++j) &#123;</span><br><span class="line">            children.set(j, parent.get(j) + parent.get(j-<span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        parent = children;</span><br><span class="line">        ans.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;(parent));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><a href="https://leetcode.com/problems/pascals-triangle-ii/" target="_blank" rel="external">Pascal’s Triangle II</a><br>这题恶心人的地方在于，k-th竟然 k从0开始计数的。wtf!<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">getRow</span><span class="params">(<span class="keyword">int</span> rowIndex)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    ans.add(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (rowIndex == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= rowIndex; ++i) &#123;</span><br><span class="line">        List&lt;Integer&gt; children = <span class="keyword">new</span> ArrayList&lt;Integer&gt;(i + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i + <span class="number">1</span>; ++j)</span><br><span class="line">            children.add(<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; ans.size(); ++j) &#123;</span><br><span class="line">            children.set(j, ans.get(j) + ans.get(j-<span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        ans = children;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/31/Populating-Next-Right-Pointers-in-Each-Node/" itemprop="url">
-                Populating Next Right Pointers in Each Node
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-31T14:04:46-04:00" content="2015-08-31">
-            2015-08-31
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/populating-next-right-pointers-in-each-node/" target="_blank" rel="external">Populating Next Right Pointers in Each Node</a><br>一次过了之后，不理解为啥这题会被标记为medium。后来仔细一看，要求contant space！下面这个naive的方法不符合题意。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connect</span><span class="params">(TreeLinkNode root)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">         <span class="keyword">return</span>;</span><br><span class="line">     List&lt;TreeLinkNode&gt; parents = <span class="keyword">new</span> LinkedList&lt;TreeLinkNode&gt;();</span><br><span class="line">     parents.add(root);</span><br><span class="line">     <span class="keyword">while</span> (parents.size() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; parents.size() - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">             parents.get(i).next = parents.get(i + <span class="number">1</span>);</span><br><span class="line">         &#125;</span><br><span class="line">         List&lt;TreeLinkNode&gt; children = <span class="keyword">new</span> LinkedList&lt;TreeLinkNode&gt;();</span><br><span class="line">         <span class="keyword">for</span> (TreeLinkNode node : parents) &#123;</span><br><span class="line">             <span class="keyword">if</span> (node.left != <span class="keyword">null</span>)</span><br><span class="line">                 children.add(node.left);</span><br><span class="line">             <span class="keyword">if</span> (node.right != <span class="keyword">null</span>)</span><br><span class="line">                 children.add(node.right);</span><br><span class="line">         &#125;</span><br><span class="line">         parents = children;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 </span>
         
       
@@ -890,7 +897,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">127</span>
+              <span class="site-state-item-count">129</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -904,7 +911,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

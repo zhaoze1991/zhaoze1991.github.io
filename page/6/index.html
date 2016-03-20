@@ -192,6 +192,136 @@
           
           
             
+              <a class="post-title-link" href="/2015/09/04/Insertion-Sort-List/" itemprop="url">
+                Insertion Sort List
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-04T12:30:26-07:00" content="2015-09-04">
+            2015-09-04
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/insertion-sort-list/" target="_blank" rel="external">Insertion Sort List</a><br><strong>再次强调</strong> 这种可能变动head的题，要用dummy node，省时省力多了。<br>思路如下，用两根指针，一个head，一个prev，表示head之前的元素，分情况讨论：</p>
+<ol>
+<li>如果head的值大于等于prev的值，就继续向后移动，prev指向head，head指向head.next</li>
+<li>如果head的值小于prev的值，那我们就要把head插入到它应该在的地方。首先，得把head从当前位置给删掉，然后从头开始扫描，把它放在正确的位置。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">insertionSortList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</span><br><span class="line">    dummy.next = head;</span><br><span class="line">    ListNode prev = head;</span><br><span class="line">    head = head.next;</span><br><span class="line">    <span class="keyword">while</span> (head != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (head.val &lt; prev.val) &#123;</span><br><span class="line">            <span class="comment">// delete</span></span><br><span class="line">            ListNode next = head.next;</span><br><span class="line">            prev.next = next;</span><br><span class="line">            <span class="comment">// swap</span></span><br><span class="line">            ListNode node = dummy;</span><br><span class="line">            <span class="keyword">while</span> (head.val &gt; node.next.val) &#123;</span><br><span class="line">                node = node.next;</span><br><span class="line">            &#125;</span><br><span class="line">            ListNode nextNode = node.next;</span><br><span class="line">            node.next = head;</span><br><span class="line">            head.next = nextNode;</span><br><span class="line">            head = next;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            prev = head;</span><br><span class="line">            head = head.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dummy.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/04/Sort-List/" itemprop="url">
+                Sort List
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-04T11:46:11-07:00" content="2015-09-04">
+            2015-09-04
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/sort-list/" target="_blank" rel="external">Sort List</a><br>O(nlogn)的排序算法也就那么几个，对于这题，还是感觉merge sort比较趁手。<br>问题在于如何用O(1)的时间复杂度，去找到对应的元素？如果是数组，很好办，直接用index就能访问。但是对于链表，我们能想到的naive的方法就是每次去遍历，然后找到第k个元素。这样显然不符合题意。咋办？我们只能在递归过程中，对head做些手脚。在split过程中，如果当前递归区间的长度是1，即begin == end， 那么我们就把head断开，然后head向后移动一位，再返回断开之前的那个点。<br>这题没有一次AC，主要原因在于split的时候，左边的区间取的有问题，左边的end ＝ mid， 而不是mid－1， 查了下mergesort的算法，好像也是左边的end ＝ mid。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">ListNode node;</span><br><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">sortList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    node = head;</span><br><span class="line">    <span class="keyword">while</span> (head != <span class="keyword">null</span>) &#123;</span><br><span class="line">        count++;</span><br><span class="line">        head = head.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> split(<span class="number">0</span>, count - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">split</span><span class="params">(<span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin &gt; end)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (begin == end) &#123;</span><br><span class="line">        ListNode ans = node;</span><br><span class="line">        node = node.next;</span><br><span class="line">        ans.next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid = begin + (end - begin) / <span class="number">2</span>;</span><br><span class="line">    <span class="comment">// node, the end of left part should be mid</span></span><br><span class="line">    ListNode left = split(begin, mid);</span><br><span class="line">    ListNode right = split(mid + <span class="number">1</span>, end);</span><br><span class="line">    <span class="keyword">return</span> merge(left, right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">merge</span><span class="params">(ListNode head1, ListNode head2)</span> </span>&#123;</span><br><span class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</span><br><span class="line">    ListNode ptr = dummy;</span><br><span class="line">    <span class="keyword">while</span> (head1 != <span class="keyword">null</span> &amp;&amp; head2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (head1.val &lt; head2.val) &#123;</span><br><span class="line">            ptr.next = head1;</span><br><span class="line">            head1 = head1.next;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ptr.next = head2;</span><br><span class="line">            head2 = head2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        ptr = ptr.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (head1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        ptr.next = head1;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (head2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        ptr.next = head2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dummy.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/09/04/LRU-cache/" itemprop="url">
                 LRU cache
               </a>
@@ -203,7 +333,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-04T11:15:36-04:00" content="2015-09-04">
+          <time itemprop="dateCreated" datetime="2015-09-04T11:15:36-07:00" content="2015-09-04">
             2015-09-04
           </time>
         </span>
@@ -266,7 +396,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-04T10:40:07-04:00" content="2015-09-04">
+          <time itemprop="dateCreated" datetime="2015-09-04T10:40:07-07:00" content="2015-09-04">
             2015-09-04
           </time>
         </span>
@@ -328,7 +458,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-04T10:11:36-04:00" content="2015-09-04">
+          <time itemprop="dateCreated" datetime="2015-09-04T10:11:36-07:00" content="2015-09-04">
             2015-09-04
           </time>
         </span>
@@ -391,7 +521,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-04T09:51:53-04:00" content="2015-09-04">
+          <time itemprop="dateCreated" datetime="2015-09-04T09:51:53-07:00" content="2015-09-04">
             2015-09-04
           </time>
         </span>
@@ -454,7 +584,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-04T00:52:50-04:00" content="2015-09-04">
+          <time itemprop="dateCreated" datetime="2015-09-04T00:52:50-07:00" content="2015-09-04">
             2015-09-04
           </time>
         </span>
@@ -516,7 +646,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-03T23:47:53-04:00" content="2015-09-03">
+          <time itemprop="dateCreated" datetime="2015-09-03T23:47:53-07:00" content="2015-09-03">
             2015-09-03
           </time>
         </span>
@@ -580,7 +710,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-03T21:56:39-04:00" content="2015-09-03">
+          <time itemprop="dateCreated" datetime="2015-09-03T21:56:39-07:00" content="2015-09-03">
             2015-09-03
           </time>
         </span>
@@ -646,7 +776,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-03T14:39:29-04:00" content="2015-09-03">
+          <time itemprop="dateCreated" datetime="2015-09-03T14:39:29-07:00" content="2015-09-03">
             2015-09-03
           </time>
         </span>
@@ -674,139 +804,6 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">wordBreak</span><span class="params">(String s, Set&lt;String&gt; wordDict)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span>[] dp =<span class="keyword">new</span> <span class="keyword">boolean</span>[s.length() + <span class="number">1</span>];</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= s.length(); ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; ++j) &#123;</span><br><span class="line">            String str = s.substring(j, i);</span><br><span class="line">            <span class="keyword">if</span> (dp[j] &amp;&amp; wordDict.contains(str)) &#123;</span><br><span class="line">                dp[i] = <span class="keyword">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[s.length()];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><a href="https://leetcode.com/problems/word-break-ii/" target="_blank" rel="external">Word Break II</a><br>这种题，肯定是得用到DFS的。直接上DFS。超时了。<br>咋办呢。首先，我们做一次Word Break I中的判断，判断输入的数据能否被完全break， 即dp[s.length()] = true.<br>然后。。我以为要加个啥cache来避免些重复计算。。结果。直接过了。那就这样吧。不折腾了。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; ans = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">wordBreak</span><span class="params">(String s, Set&lt;String&gt; wordDict)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span>[] dp = <span class="keyword">new</span> <span class="keyword">boolean</span>[s.length() + <span class="number">1</span>];</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= s.length(); ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; ++j) &#123;</span><br><span class="line">            String str = s.substring(j, i);</span><br><span class="line">            <span class="keyword">if</span> (dp[j] == <span class="keyword">true</span> &amp;&amp; wordDict.contains(str)) &#123;</span><br><span class="line">                dp[i] = <span class="keyword">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (dp[s.length()] == <span class="keyword">false</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    dfs(s, <span class="keyword">new</span> ArrayList&lt;String&gt;(), <span class="number">0</span>, wordDict);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(String s, List&lt;String&gt; path, <span class="keyword">int</span> begin, Set&lt;String&gt; wordDict)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin &gt;= s.length()) &#123;</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span> (String str : path) &#123;</span><br><span class="line">            sb.append(str + <span class="string">" "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        sb.deleteCharAt(sb.length() - <span class="number">1</span>);</span><br><span class="line">        ans.add(sb.toString());</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = begin; i &lt; s.length(); ++i) &#123;</span><br><span class="line">        String str = s.substring(begin, i + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (wordDict.contains(str) == <span class="keyword">false</span>)</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        path.add(str);</span><br><span class="line">        dfs(s, path, i + <span class="number">1</span>, wordDict);</span><br><span class="line">        path.remove(path.size() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/03/H-Index/" itemprop="url">
-                H-Index
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-03T13:15:14-04:00" content="2015-09-03">
-            2015-09-03
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/h-index/" target="_blank" rel="external">H-Index</a><br>新题就跪。蛋疼<br>首先，得知道啥是<a href="https://en.wikipedia.org/wiki/H-index" target="_blank" rel="external">H-index</a></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hIndex</span><span class="params">(<span class="keyword">int</span>[] citations)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (citations == <span class="keyword">null</span> || citations.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">    Arrays.sort(citations);</span><br><span class="line">    <span class="keyword">int</span> n = citations.length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">        <span class="keyword">int</span> min = Math.min(citations[i], n - i);</span><br><span class="line">        max = Math.max(max, min);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>刚开始把这道题理解错了。死活出不来，意思是，存在h篇论文，引用数量至少是h，剩下的n - h篇论文的的引用数量不大于h。<br>那么我们就先把这个数组排序一下。然后从头开始扫。如果citations[i] &gt;= n - i, 那么citations[i]后面的元素都要大于n-i，即满足条件，而左边的i篇论文，引用书都要小于等于citations[i]</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hIndex</span><span class="params">(<span class="keyword">int</span>[] citations)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (citations == <span class="keyword">null</span> || citations.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    Arrays.sort(citations);</span><br><span class="line">    <span class="keyword">int</span> n = citations.length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (citations[i] &gt;= n - i)</span><br><span class="line">            <span class="keyword">return</span> n - i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>O(n)空间复杂度O(n)时间复杂度。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hIndex</span><span class="params">(<span class="keyword">int</span>[] citations)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = citations.length;</span><br><span class="line">    <span class="keyword">int</span>[] count = <span class="keyword">new</span> <span class="keyword">int</span>[len + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> c: citations)</span><br><span class="line">        <span class="keyword">if</span> (c &gt; len)</span><br><span class="line">            count[len]++;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            count[c]++;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> total = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = len; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        total += count[i];</span><br><span class="line">        <span class="keyword">if</span> (total &gt;= i)</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>二分查找<br><a href="https://leetcode.com/problems/h-index-ii/" target="_blank" rel="external">H-Index II</a><br>无敌二分法不是很好用。因为这里尾部处理比较恶心，要判断是不是每篇论文是不是都没人引用。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hIndex</span><span class="params">(<span class="keyword">int</span>[] citations)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (citations == <span class="keyword">null</span> || citations.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> begin = <span class="number">0</span>, end = citations.length - <span class="number">1</span>, n = citations.length;</span><br><span class="line">    <span class="keyword">while</span> (begin + <span class="number">1</span> &lt; end) &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = begin + (end - begin) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (citations[mid] == n - mid) &#123;</span><br><span class="line">            <span class="keyword">return</span> n - mid;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (citations[mid] &gt; n - mid)</span><br><span class="line">            end = mid;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            begin = mid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (citations[begin] &gt;= n - begin)</span><br><span class="line">        <span class="keyword">return</span> n - begin;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (citations[end] &gt;= n - end)</span><br><span class="line">        <span class="keyword">return</span> n - end;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (citations[<span class="number">0</span>] == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/03/Surrounded-Regions/" itemprop="url">
-                Surrounded Regions
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-03T10:21:37-04:00" content="2015-09-03">
-            2015-09-03
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p>这题的思路比较有意思，既然中间被外面如果包着，就会被变成X，那么，我们从最外面的一层开始去搜索，如果能跟最外面一层连通，那么这个元素就不会被变成X。我们这样的元素改成一个中间值，比如说 “Z”, 用BFS或者DFS把所有能与最外层连通的元素都变成 “Z”。<br>然后再遍历一次整个board，如果该元素是 “O” 则这个元素是不与最外层连通的，标记为 “X”,如果这个元素是 “Z”,那么重新标记为 “O”.<br><strong>注意</strong>这个操作的顺序，首先判断是否是 “O”，再判断是否是 “Z”.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// long-painful null check</span></span><br><span class="line">    <span class="keyword">if</span> (board == <span class="keyword">null</span> || board.length == <span class="number">0</span> || board[<span class="number">0</span>] == <span class="keyword">null</span> || board[<span class="number">0</span>].length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> m = board.length, n = board[<span class="number">0</span>].length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (board[<span class="number">0</span>][i] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            bfs(board,  <span class="number">0</span>, i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (board[m - <span class="number">1</span>][i] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            bfs(board, m - <span class="number">1</span>, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; m; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (board[i][<span class="number">0</span>] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            bfs(board, i, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (board[i][n - <span class="number">1</span>] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            bfs(board, i, n - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (board[i][j] == <span class="string">'O'</span>)</span><br><span class="line">                board[i][j] = <span class="string">'X'</span>;</span><br><span class="line">            <span class="keyword">if</span> (board[i][j] == <span class="string">'Z'</span>)</span><br><span class="line">                board[i][j] = <span class="string">'O'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>bfs<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pair</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j;</span><br><span class="line">    Pair(<span class="keyword">int</span> i, <span class="keyword">int</span> j) &#123;</span><br><span class="line">        <span class="keyword">this</span>.i = i;</span><br><span class="line">        <span class="keyword">this</span>.j = j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bfs</span><span class="params">(<span class="keyword">char</span>[][]board, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// bfs since dfs will stack overflow</span></span><br><span class="line">    Queue&lt;Pair&gt; q = <span class="keyword">new</span> LinkedList&lt;Pair&gt;();</span><br><span class="line">    board[i][j] = <span class="string">'Z'</span>;</span><br><span class="line">    q.offer(<span class="keyword">new</span> Pair(i, j));</span><br><span class="line">    <span class="keyword">while</span> (q.isEmpty() == <span class="keyword">false</span>) &#123;</span><br><span class="line">        Pair cur = q.poll();</span><br><span class="line">        i = cur.i;</span><br><span class="line">        j = cur.j;</span><br><span class="line">        <span class="keyword">if</span> (i+<span class="number">1</span> &lt; board.length &amp;&amp; board[i+<span class="number">1</span>][j] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            board[i+<span class="number">1</span>][j] = <span class="string">'Z'</span>;</span><br><span class="line">            q.offer(<span class="keyword">new</span> Pair(i + <span class="number">1</span>, j));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (i - <span class="number">1</span> &gt;= <span class="number">0</span> &amp;&amp; board[i - <span class="number">1</span>][j] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            board[i-<span class="number">1</span>][j] = <span class="string">'Z'</span>;</span><br><span class="line">            q.offer(<span class="keyword">new</span> Pair(i - <span class="number">1</span>, j));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (j+<span class="number">1</span> &lt; board[<span class="number">0</span>].length &amp;&amp; board[i][j+<span class="number">1</span>] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            board[i][j+<span class="number">1</span>] = <span class="string">'Z'</span>;</span><br><span class="line">            q.offer(<span class="keyword">new</span> Pair(i, j + <span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (j-<span class="number">1</span> &gt;= <span class="number">0</span> &amp;&amp; board[i][j-<span class="number">1</span>] == <span class="string">'O'</span>) &#123;</span><br><span class="line">            board[i][j-<span class="number">1</span>] = <span class="string">'Z'</span>;</span><br><span class="line">            q.offer(<span class="keyword">new</span> Pair(i, j-<span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>DFS版本的搜索，代码好些一些，但是栈溢出了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">char</span>[][]board, <span class="keyword">boolean</span>[][] visited, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">0</span> || j &lt; <span class="number">0</span> || i &gt;= board.length || j &gt;= board[<span class="number">0</span>].length)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span> (visited[i][j] || board[i][j] != <span class="string">'O'</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    visited[i][j] = <span class="keyword">true</span>;</span><br><span class="line">    board[i][j] = <span class="string">'Z'</span>;</span><br><span class="line">    <span class="comment">//note</span></span><br><span class="line">    dfs(board, visited, i + <span class="number">1</span>, j);</span><br><span class="line">    dfs(board, visited, i - <span class="number">1</span>, j);</span><br><span class="line">    dfs(board, visited, i, j - <span class="number">1</span>);</span><br><span class="line">    dfs(board, visited, i, j + <span class="number">1</span>);</span><br><span class="line">    <span class="comment">// visited[i][j] = false;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </span>
         
       
@@ -864,7 +861,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">127</span>
+              <span class="site-state-item-count">129</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -878,7 +875,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

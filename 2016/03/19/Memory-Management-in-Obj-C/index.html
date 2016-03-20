@@ -26,7 +26,7 @@
 
 
 
-  <meta name="keywords" content="Hexo,next" />
+  <meta name="keywords" content="Notebook,Objective-C," />
 
 
 
@@ -35,19 +35,19 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="Source: Effective Objective-C 2.0
+Understanding Reference CountingObjective-C uses reference counting for memory management, meaning that every object has a counter that is incremented and decremented">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://zhaoze1991.github.io/2015/08/23/hello-world/index.html">
+<meta property="og:title" content="Memory Management in Obj-C">
+<meta property="og:url" content="http://zhaoze1991.github.io/2016/03/19/Memory-Management-in-Obj-C/index.html">
 <meta property="og:site_name" content="Just-Zzz">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2015-08-23T04:13:04.000Z">
+<meta property="og:description" content="Source: Effective Objective-C 2.0
+Understanding Reference CountingObjective-C uses reference counting for memory management, meaning that every object has a counter that is incremented and decremented">
+<meta property="og:updated_time" content="2016-03-20T04:58:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="Memory Management in Obj-C">
+<meta name="twitter:description" content="Source: Effective Objective-C 2.0
+Understanding Reference CountingObjective-C uses reference counting for memory management, meaning that every object has a counter that is incremented and decremented">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -57,7 +57,7 @@ Quick">
   };
 </script>
 
-  <title> Hello World | Just-Zzz </title>
+  <title> Memory Management in Obj-C | Just-Zzz </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -194,7 +194,7 @@ Quick">
           
           
             
-              Hello World
+              Memory Management in Obj-C
             
           
         </h1>
@@ -203,8 +203,8 @@ Quick">
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-23T00:13:04-04:00" content="2015-08-23">
-            2015-08-23
+          <time itemprop="dateCreated" datetime="2016-03-19T15:13:31-07:00" content="2016-03-19">
+            2016-03-19
           </time>
         </span>
 
@@ -222,31 +222,63 @@ Quick">
       
 
       
-        <span itemprop="articleBody"><p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-</span>
+        <span itemprop="articleBody"><p><a href="http://www.amazon.com/Effective-Objective-C-2-0-Specific-Development/dp/0321917014" target="_blank" rel="external">Source: Effective Objective-C 2.0</a></p>
+<h1 id="Understanding_Reference_Counting">Understanding Reference Counting</h1><p>Objective-C uses reference counting for memory management, meaning that every object has a counter that is incremented and decremented. You increment the counter when you want to register your interest in keeping an object alive, and you decrement the counter when you have finished with it.<br>When an object’s counter reaches 0, the object no longer has anything interested in it and is free to be destroyed.</p>
+<h2 id="How_Reference_Counting_Works">How Reference Counting Works</h2><p><code>retain</code> Increment the retain count<br><code>release</code> Decrement the retain count<br><code>autorelease</code> Decrement the retain counter later, when the <code>autorelease</code> pool is drained.</p>
+<p>An object is always created with a retain count of at least 1. Interest in keeping the object alive is indicated by invoking the <em>retain</em> method.</p>
+<p><strong>Own other objects</strong> Objects are said to own other objects if they hold a strong reference to them.</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSMutableArray</span> *array = [[<span class="built_in">NSMutableArray</span> alloc] init];</span><br><span class="line"><span class="built_in">NSNumber</span> *number = [[<span class="built_in">NSNumber</span> alloc] initWithInt:<span class="number">1234</span>];</span><br><span class="line">[array addObject:number];</span><br><span class="line">[number release];</span><br><span class="line"></span><br><span class="line"><span class="comment">// do something with 'array'</span></span><br><span class="line"></span><br><span class="line">[array release];</span><br></pre></td></tr></table></figure>
+<p>In Objective-C, a call to <code>alloc</code> will result in the return of an object that is said to be owned by the caller. <strong>However</strong>, it’s important to note that this doesn’t necessarily mean that the retain count is exactly 1. It might be more, since the implementation of either <code>alloc</code> or <code>initWithInt:</code> may mean that other retains have been made on the object.<br>You should never do something like this:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSMutableArray</span> *array = [[<span class="built_in">NSMutableArray</span> alloc] init];</span><br><span class="line"><span class="built_in">NSNumber</span> *number = [[<span class="built_in">NSNumber</span> alloc] initWithInt:<span class="number">1234</span>];</span><br><span class="line">[array addObject:number];</span><br><span class="line">[number release];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"number = %@"</span>, number);</span><br></pre></td></tr></table></figure>
+<h2 id="Memory_Management_in_Property_Accessors">Memory Management in Property Accessors</h2><p>If the Property is a strong relationship, the value of the property is retained. A setter accessor for such a property called <code>foo</code> backed by an instance variable called <code>_foo</code>m would look like this:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)setFoo:(<span class="keyword">id</span>)foo &#123;</span><br><span class="line">    [foo retain];</span><br><span class="line">    [_foo release]</span><br><span class="line">    _foo = foo;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The new valued is retained, and the old value is retained. Then the instance variable is updated to point to the new value. The order is important. If the old value was released before the new value was retained, and the two values are exactly the same, the release would mean that the object could potentially be deallocated prematurely. The subsequent <code>retain</code> could not resurrect the deallocated object, and the instance variable would be a dangling point.</p>
+<h2 id="Autorelease_Pools">Autorelease Pools</h2><h2 id="Retain_Cycle">Retain Cycle</h2><p>The problem is usually solved by using <code>weak</code> reference.</p>
+<h1 id="Use_ARC_to_make_Reference_Counting_Easier">Use ARC to make Reference Counting Easier</h1><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ([<span class="keyword">self</span> shouldLogMessage]) &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *message = [[<span class="built_in">NSString</span> alloc] initWithFormat:</span><br><span class="line">        <span class="string">@"I am object, %p"</span>, <span class="keyword">self</span>]; <span class="built_in">NSLog</span>(<span class="string">@"message = %@"</span>, message);</span><br><span class="line">    [message release]; <span class="comment">///&lt; Added by ARC</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Because ARC adds <code>retain</code>, <code>release</code> and <code>autorelease</code> for you, calling memory management method directly under ARC is illegal.</p>
+<h2 id="Method-Naming_Rules_Applied_by_ARC">Method-Naming Rules Applied by ARC</h2><p>A method returning an object returns it owned by the caller if its method name begins with one of the following:</p>
+<ul>
+<li><code>alloc</code></li>
+<li><code>new</code></li>
+<li><code>copy</code></li>
+<li><code>mutableCopy</code><br>“Owned by the caller” means that the code calling any of the 4 methods listed is responsible for releasing the returned object.</li>
+</ul>
+<h2 id="Memory-Management_Semantics_of_Variables">Memory-Management Semantics of Variables</h2><p>ARC also handles memory management of local variables and instance variables. By default, every variable is said to hold a strong reference to the object.<br>The semantics of local and instance variables can be altered through the application of the following qualifiers:</p>
+<ul>
+<li><code>__strong</code>: the default, the value is retained.</li>
+<li><code>__unsafe_retain</code>: the value is not retained and is potentially unsafe, as the object may have been deallocated already by the time the variable is used again.</li>
+<li><code>__weak</code>: the value is not retained but is safe because it is automatically set to nil, if the current object is ever deallocated.</li>
+<li><code>__autorelease</code>: this special qualifier is used when an object is passed by reference to a method. The value is autoreleased on return.<br><code>_</code></li>
+</ul>
+<p>When applied to local variables, the qualifiers are often used to break retain cycles that can be introduced with blocks. A block automatically retains all objects it captures, which can sometimes lead to a retain cycle if an object retaining a block is retained by the block. A <code>__weak</code> local variable can be used to break the retain cycle.</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSURL</span> *url = [<span class="built_in">NSURL</span> URLWithString:<span class="string">@"http://www.example.com/"</span>];</span><br><span class="line">EOCNetworkFetcher *fetcher = [[EOCNetworkFetcher alloc] initWithURL:url];</span><br><span class="line">EOCNetworkFetcher * __<span class="keyword">weak</span> weakFetcher = fetcher;</span><br><span class="line">[fetcher startWithCompletion:^(<span class="built_in">BOOL</span> success)&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Finished fetching from %@"</span>, weakFetcher<span class="variable">.url</span>);</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<h2 id="ARC_Handling_of_Instance_Variables">ARC Handling of Instance Variables</h2><p>ARC also hands the memory management of instance variables. Doing so requires ARC to automatically generate the required cleanup code during deallocation. Any variables holding</p>
+<p>You still need to cleanup any non-Objective-C objects if you have any, such as CoreFoundation objects or heap-allocated memory, with <code>malloc()</code></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)dealloc &#123;</span><br><span class="line">    <span class="built_in">CFRelease</span>(_coreFoundationObject);</span><br><span class="line">    free(_heapAllocatedMemoryBlob);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Overriding_the_Memory-Management_Methods">Overriding the Memory-Management Methods</h2><h1 id="Release_References_and_Clean_Up_Observation_State_Only_in_dealloc">Release References and Clean Up Observation State Only in dealloc</h1></span>
       
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Notebook/" rel="tag">#Notebook</a>
+          
+            <a href="/tags/Objective-C/" rel="tag">#Objective-C</a>
+          
+        </div>
       
 
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/08/23/Permutation-Template/" rel="prev">Permutation Template</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/06/Delegates-and-Data-Sources/" rel="next">Delegates and Data Sources</a>
             
           </div>
         </div>
@@ -308,7 +340,7 @@ Quick">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">127</span>
+              <span class="site-state-item-count">129</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -322,7 +354,7 @@ Quick">
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -350,7 +382,7 @@ Quick">
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick_Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create_a_new_post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run_server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate_static_files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy_to_remote_sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Understanding_Reference_Counting"><span class="nav-number">1.</span> <span class="nav-text">Understanding Reference Counting</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#How_Reference_Counting_Works"><span class="nav-number">1.1.</span> <span class="nav-text">How Reference Counting Works</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Memory_Management_in_Property_Accessors"><span class="nav-number">1.2.</span> <span class="nav-text">Memory Management in Property Accessors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Autorelease_Pools"><span class="nav-number">1.3.</span> <span class="nav-text">Autorelease Pools</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Retain_Cycle"><span class="nav-number">1.4.</span> <span class="nav-text">Retain Cycle</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Use_ARC_to_make_Reference_Counting_Easier"><span class="nav-number">2.</span> <span class="nav-text">Use ARC to make Reference Counting Easier</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Method-Naming_Rules_Applied_by_ARC"><span class="nav-number">2.1.</span> <span class="nav-text">Method-Naming Rules Applied by ARC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Memory-Management_Semantics_of_Variables"><span class="nav-number">2.2.</span> <span class="nav-text">Memory-Management Semantics of Variables</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARC_Handling_of_Instance_Variables"><span class="nav-number">2.3.</span> <span class="nav-text">ARC Handling of Instance Variables</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Overriding_the_Memory-Management_Methods"><span class="nav-number">2.4.</span> <span class="nav-text">Overriding the Memory-Management Methods</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Release_References_and_Clean_Up_Observation_State_Only_in_dealloc"><span class="nav-number">3.</span> <span class="nav-text">Release References and Clean Up Observation State Only in dealloc</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

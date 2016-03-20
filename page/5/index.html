@@ -192,6 +192,131 @@
           
           
             
+              <a class="post-title-link" href="/2015/09/06/Longest-Common-Substring/" itemprop="url">
+                Longest Common Substring
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-06T21:02:35-07:00" content="2015-09-06">
+            2015-09-06
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="http://www.lintcode.com/en/problem/longest-common-substring/" target="_blank" rel="external">Longest Common Substring</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestCommonSubstring</span><span class="params">(String A, String B)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write your code here</span></span><br><span class="line">    <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[A.length() + <span class="number">1</span>][B.length() + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= A.length(); ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= B.length(); ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (A.charAt(i-<span class="number">1</span>) == B.charAt(j-<span class="number">1</span>)) &#123;</span><br><span class="line">                dp[i][j] = dp[i-<span class="number">1</span>][j-<span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">                max = Math.max(max, dp[i][j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/06/Largest-Number/" itemprop="url">
+                Largest Number
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-06T18:01:01-07:00" content="2015-09-06">
+            2015-09-06
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/largest-number/" target="_blank" rel="external">Largest Number</a><br>有点贪心法的思想。把数组排序后，取能组成最大数字的数。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">largestNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">    String[] str = Arrays.toString(nums).split(<span class="string">"[\\[\\]]"</span>)[<span class="number">1</span>].split(<span class="string">", "</span>);</span><br><span class="line">    Arrays.sort(str, <span class="keyword">new</span> Comparator&lt;String&gt;()&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(String str1, String str2)</span> </span>&#123;</span><br><span class="line">            String s1 = str1 + str2, s2 = str2 + str1;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span> * s1.compareTo(s2);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">if</span> (str[<span class="number">0</span>].equals(<span class="string">"0"</span>))</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"0"</span>;</span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    <span class="keyword">for</span> (String s : str)</span><br><span class="line">        sb.append(s);</span><br><span class="line">    <span class="keyword">return</span> sb.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/09/06/Find-Peak-Element/" itemprop="url">
                 Find Peak Element
               </a>
@@ -203,7 +328,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-06T17:06:09-04:00" content="2015-09-06">
+          <time itemprop="dateCreated" datetime="2015-09-06T17:06:09-07:00" content="2015-09-06">
             2015-09-06
           </time>
         </span>
@@ -266,7 +391,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-06T16:59:08-04:00" content="2015-09-06">
+          <time itemprop="dateCreated" datetime="2015-09-06T16:59:08-07:00" content="2015-09-06">
             2015-09-06
           </time>
         </span>
@@ -329,7 +454,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-06T16:24:08-04:00" content="2015-09-06">
+          <time itemprop="dateCreated" datetime="2015-09-06T16:24:08-07:00" content="2015-09-06">
             2015-09-06
           </time>
         </span>
@@ -394,7 +519,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-06T10:56:14-04:00" content="2015-09-06">
+          <time itemprop="dateCreated" datetime="2015-09-06T10:56:14-07:00" content="2015-09-06">
             2015-09-06
           </time>
         </span>
@@ -467,7 +592,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-04T21:07:26-04:00" content="2015-09-04">
+          <time itemprop="dateCreated" datetime="2015-09-04T21:07:26-07:00" content="2015-09-04">
             2015-09-04
           </time>
         </span>
@@ -537,7 +662,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-04T16:31:54-04:00" content="2015-09-04">
+          <time itemprop="dateCreated" datetime="2015-09-04T16:31:54-07:00" content="2015-09-04">
             2015-09-04
           </time>
         </span>
@@ -605,7 +730,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-04T13:59:15-04:00" content="2015-09-04">
+          <time itemprop="dateCreated" datetime="2015-09-04T13:59:15-07:00" content="2015-09-04">
             2015-09-04
           </time>
         </span>
@@ -669,7 +794,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-09-04T13:49:21-04:00" content="2015-09-04">
+          <time itemprop="dateCreated" datetime="2015-09-04T13:49:21-07:00" content="2015-09-04">
             2015-09-04
           </time>
         </span>
@@ -691,136 +816,6 @@
         
           <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/max-points-on-a-line/" target="_blank" rel="external">Max Points on a Line</a></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxPoints</span><span class="params">(Point[] points)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (points == <span class="keyword">null</span> || points.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; points.length; ++i) &#123;</span><br><span class="line">        HashMap&lt;Float, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> x1 = points[i].x, y1 = points[i].y;</span><br><span class="line">        <span class="keyword">int</span> same = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> vertical = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> horizontal = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; points.length; ++j) &#123;</span><br><span class="line">            <span class="keyword">int</span> x2 = points[j].x, y2 = points[j].y;</span><br><span class="line">            <span class="keyword">if</span> (x1 == x2 &amp;&amp; y1 == y2) &#123;</span><br><span class="line">                same += <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (x1 == x2) &#123;</span><br><span class="line">                vertical += <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (y1 == y2) &#123;</span><br><span class="line">                horizontal += <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">float</span> slope = slope(points[i], points[j]);</span><br><span class="line">            <span class="keyword">if</span> (map.containsKey(slope)) &#123;</span><br><span class="line">                map.put(slope, map.get(slope) + <span class="number">1</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                map.put(slope, <span class="number">2</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> localMax = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> val : map.values()) &#123;</span><br><span class="line">            localMax = Math.max(localMax, val);</span><br><span class="line">        &#125;</span><br><span class="line">        localMax = Math.max(localMax, Math.max(vertical, horizontal));</span><br><span class="line">        localMax += same;</span><br><span class="line">        ans = Math.max(localMax, ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">slope</span><span class="params">(Point p1, Point p2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (p1.y - p2.y) / (<span class="keyword">float</span>)(p1.x - p2.x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/04/Insertion-Sort-List/" itemprop="url">
-                Insertion Sort List
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-04T12:30:26-04:00" content="2015-09-04">
-            2015-09-04
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/insertion-sort-list/" target="_blank" rel="external">Insertion Sort List</a><br><strong>再次强调</strong> 这种可能变动head的题，要用dummy node，省时省力多了。<br>思路如下，用两根指针，一个head，一个prev，表示head之前的元素，分情况讨论：</p>
-<ol>
-<li>如果head的值大于等于prev的值，就继续向后移动，prev指向head，head指向head.next</li>
-<li>如果head的值小于prev的值，那我们就要把head插入到它应该在的地方。首先，得把head从当前位置给删掉，然后从头开始扫描，把它放在正确的位置。</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">insertionSortList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</span><br><span class="line">    dummy.next = head;</span><br><span class="line">    ListNode prev = head;</span><br><span class="line">    head = head.next;</span><br><span class="line">    <span class="keyword">while</span> (head != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (head.val &lt; prev.val) &#123;</span><br><span class="line">            <span class="comment">// delete</span></span><br><span class="line">            ListNode next = head.next;</span><br><span class="line">            prev.next = next;</span><br><span class="line">            <span class="comment">// swap</span></span><br><span class="line">            ListNode node = dummy;</span><br><span class="line">            <span class="keyword">while</span> (head.val &gt; node.next.val) &#123;</span><br><span class="line">                node = node.next;</span><br><span class="line">            &#125;</span><br><span class="line">            ListNode nextNode = node.next;</span><br><span class="line">            node.next = head;</span><br><span class="line">            head.next = nextNode;</span><br><span class="line">            head = next;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            prev = head;</span><br><span class="line">            head = head.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dummy.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/04/Sort-List/" itemprop="url">
-                Sort List
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-04T11:46:11-04:00" content="2015-09-04">
-            2015-09-04
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p><a href="https://leetcode.com/problems/sort-list/" target="_blank" rel="external">Sort List</a><br>O(nlogn)的排序算法也就那么几个，对于这题，还是感觉merge sort比较趁手。<br>问题在于如何用O(1)的时间复杂度，去找到对应的元素？如果是数组，很好办，直接用index就能访问。但是对于链表，我们能想到的naive的方法就是每次去遍历，然后找到第k个元素。这样显然不符合题意。咋办？我们只能在递归过程中，对head做些手脚。在split过程中，如果当前递归区间的长度是1，即begin == end， 那么我们就把head断开，然后head向后移动一位，再返回断开之前的那个点。<br>这题没有一次AC，主要原因在于split的时候，左边的区间取的有问题，左边的end ＝ mid， 而不是mid－1， 查了下mergesort的算法，好像也是左边的end ＝ mid。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">ListNode node;</span><br><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">sortList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    node = head;</span><br><span class="line">    <span class="keyword">while</span> (head != <span class="keyword">null</span>) &#123;</span><br><span class="line">        count++;</span><br><span class="line">        head = head.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> split(<span class="number">0</span>, count - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">split</span><span class="params">(<span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin &gt; end)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (begin == end) &#123;</span><br><span class="line">        ListNode ans = node;</span><br><span class="line">        node = node.next;</span><br><span class="line">        ans.next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid = begin + (end - begin) / <span class="number">2</span>;</span><br><span class="line">    <span class="comment">// node, the end of left part should be mid</span></span><br><span class="line">    ListNode left = split(begin, mid);</span><br><span class="line">    ListNode right = split(mid + <span class="number">1</span>, end);</span><br><span class="line">    <span class="keyword">return</span> merge(left, right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">merge</span><span class="params">(ListNode head1, ListNode head2)</span> </span>&#123;</span><br><span class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</span><br><span class="line">    ListNode ptr = dummy;</span><br><span class="line">    <span class="keyword">while</span> (head1 != <span class="keyword">null</span> &amp;&amp; head2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (head1.val &lt; head2.val) &#123;</span><br><span class="line">            ptr.next = head1;</span><br><span class="line">            head1 = head1.next;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ptr.next = head2;</span><br><span class="line">            head2 = head2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        ptr = ptr.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (head1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        ptr.next = head1;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (head2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        ptr.next = head2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dummy.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </span>
         
       
@@ -878,7 +873,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">127</span>
+              <span class="site-state-item-count">129</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -892,7 +887,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
